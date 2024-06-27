@@ -1,0 +1,41 @@
+.items-booker .feature-list li::before
+{
+    content: ' ';
+    height: 20px;
+    width: 20px;
+    background: url(checked.png);
+    display: block;
+    position: absolute;
+    top: 5px;
+    left: 0;
+    background-size: contain;
+}
+.items-booker .feature-list li
+{
+    position: relative;
+    padding-left: 30px;
+}
+.items-booker, .item-promo
+{
+    box-shadow: 0px 4px 25px rgba(0, 0, 0, 0.1);
+    border-radius: 15px;
+    padding: 32px;
+    overflow: hidden;
+    background: #fff;
+}
+.items-booker h3
+{
+    text-align: center;
+    padding: 12px 4px;
+}
+.item-promo .code
+{
+    border-radius: 99px;
+    border-color: #777;
+    font-weight: bold;
+    display: block;
+    padding: 5px;
+    width: 100%;
+    border: 2px solid #777;
+    font-size: 1.3rem;
+}
