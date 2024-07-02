@@ -18,6 +18,7 @@ class CreatePostsTable extends Migration
             $table->id();
             $table->text('title')->nullable()->default(null);
             $table->text('slug')->nullable()->default(null);
+            $table->text('keyword')->nullable()->default(null);
             $table->text('description')->nullable()->default(null);
             $table->longtext('content')->nullable()->default(null);
             $table->unsignedInteger('user_id')->nullable()->default(null);
