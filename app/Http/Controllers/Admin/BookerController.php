@@ -5,6 +5,8 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use App\Models\Booker;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Validator;
+use DB;
 
 class BookerController extends Controller
 {
@@ -16,6 +18,9 @@ class BookerController extends Controller
     public function index()
     {
         //
+        $query = Booker::latest();
+        $records = $query->paginate();
+        return view('admin.booker.index', compact('records'));
     }
 
     /**
@@ -26,6 +31,7 @@ class BookerController extends Controller
     public function create()
     {
         //
+        return view('admin.booker.form');
     }
 
     /**
@@ -36,7 +42,16 @@ class BookerController extends Controller
      */
     public function store(Request $request)
     {
-        //
+
+        DB::beginTransaction();
+        try {
+            $booker = Booker::create($request->only(['name','image', 'sale_text', 'url']));
+            DB::commit();
+            return redirect()->route('admin.booker.index')->with('message', 'Thêm mới thành công');
+        } catch(Exception $ex) {
+            DB::rollback();
+            return back()->withInput();
+        }
     }
 
     /**
@@ -56,9 +71,10 @@ class BookerController extends Controller
      * @param  \App\Models\Booker  $booker
      * @return \Illuminate\Http\Response
      */
-    public function edit(Booker $booker)
+    public function edit($id)
     {
-        //
+        $record = Booker::find($id);
+        return view('admin.booker.form',compact('record'));
     }
 
     /**
@@ -71,6 +87,16 @@ class BookerController extends Controller
     public function update(Request $request, Booker $booker)
     {
         //
+        DB::beginTransaction();
+        try {
+            $booker = Booker::find($id);
+            $booker->update($request->only(['name','image', 'sale_text', 'url']));
+            DB::commit();
+            return redirect()->route('admin.booker.index')->with('message', 'Cập nhật thành công');
+        }catch(Exception $ex) {
+            DB::rollback();
+            return back()->withInput();
+        }
     }
 
     /**
@@ -82,5 +108,7 @@ class BookerController extends Controller
     public function destroy(Booker $booker)
     {
         //
+        $booker->delete();
+        return response()->json(['success' => true, 'message' => 'Booker deleted successfully.']);
     }
 }

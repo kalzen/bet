@@ -16,6 +16,8 @@ use App\Http\Controllers\Admin\OrderController;
 use App\Http\Controllers\Admin\MessageController;
 use App\Http\Controllers\Admin\TestimonialController;
 use App\Http\Controllers\Admin\TeamController;
+use App\Http\Controllers\Admin\BookerController;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -79,6 +81,8 @@ Route::middleware(['auth'])->name('admin.')->prefix('admin')->group(function () 
     Route::resource('testimonial', TestimonialController::class);
     //Team 
     Route::resource('team', TeamController::class);
+    //Booker 
+    Route::resource('booker', BookerController::class);
     //Attribute
     Route::resource('attribute', AttributeController::class);
     Route::prefix('post')->name('post.')->group(function () {
