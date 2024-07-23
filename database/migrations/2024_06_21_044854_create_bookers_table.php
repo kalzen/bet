@@ -19,6 +19,9 @@ class CreateBookersTable extends Migration
             $table->text('image');
             $table->text('sale_text')->nullable();
             $table->text('url');
+            $table->text('content')->nullable();
+            $table->integer('is_hot')->default(0);
+            $table->integer('ordering')->default(0);
             $table->timestamps();
         });
     }

@@ -13,6 +13,7 @@ use App\Models\OrderDetail;
 use App\Models\Testimonial;
 use App\Models\Team;
 use App\Models\Package;
+use App\Models\Booker;
 use DB;
 
 class HomeController extends Controller
@@ -22,10 +23,10 @@ class HomeController extends Controller
         $slides = Slide::orderBy('ordering','asc')->paginate();
         $catalogues = Catalogue::orderBy('id','asc')->take(5)->get();
         $testimonials = Testimonial::All();
-        
+        $bookers = Booker::where('is_hot', 1)->orderBy('ordering', 'desc')->take(5)->get();
         $teams = Team::All();
         $posts = Post::latest()->withCount(['images'])->having('images_count','>',0)->active()->take(5)->get();
-        return view('home.index',['slides'=> $slides, 'posts'=>$posts, 'testimonials' => $testimonials, 'teams' => $teams, 'catalogues' => $catalogues]);
+        return view('home.index',['slides'=> $slides, 'posts'=>$posts, 'testimonials' => $testimonials, 'teams' => $teams, 'catalogues' => $catalogues, 'booker_hot'=>$bookers]);
     }
     public function order()
     {

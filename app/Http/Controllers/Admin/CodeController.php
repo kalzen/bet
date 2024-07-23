@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Models\Code;
+use App\Models\Booker;
 use Illuminate\Http\Request;
 
 class CodeController extends Controller
@@ -16,6 +17,9 @@ class CodeController extends Controller
     public function index()
     {
         //
+        $query = Code::latest();
+        $records = $query->paginate();
+        return view('admin.code.index', compact('records'));
     }
 
     /**
@@ -26,6 +30,8 @@ class CodeController extends Controller
     public function create()
     {
         //
+        $bookers = Booker::all();
+        return view('admin.code.form');
     }
 
     /**
@@ -37,6 +43,16 @@ class CodeController extends Controller
     public function store(Request $request)
     {
         //
+        DB::beginTransaction();
+        try {
+            $code = Code::create($request->only(['name','description', 'content', 'url']));
+            $code->booker()->sync($request->booker_id);
+            DB::commit();
+            return redirect()->route('admin.code.index')->with('message', 'Thêm mới thành công');
+        } catch(Exception $ex) {
+            DB::rollback();
+            return back()->withInput();
+        }
     }
 
     /**
@@ -56,9 +72,12 @@ class CodeController extends Controller
      * @param  \App\Models\Code  $code
      * @return \Illuminate\Http\Response
      */
-    public function edit(Code $code)
+    public function edit($id)
     {
         //
+        $record = Code::find($id);
+        $bookers = Booker::all();
+        return view('admin.code.form',compact('record', 'bookers'));
     }
 
     /**
@@ -71,6 +90,17 @@ class CodeController extends Controller
     public function update(Request $request, Code $code)
     {
         //
+        DB::beginTransaction();
+        try {
+            $code = Code::find($id);
+            $code->update($request->only(['description', 'url', 'content']));
+            $product->booker()->sync($request->booker_id);
+            DB::commit();
+            return redirect()->route('admin.code.index')->with('message', 'Cập nhật thành công');
+        }catch(Exception $ex) {
+            DB::rollback();
+            return back()->withInput();
+        }
     }
 
     /**
@@ -82,5 +112,7 @@ class CodeController extends Controller
     public function destroy(Code $code)
     {
         //
+        $code->delete();
+        return response()->json(['success' => true, 'message' => 'Code deleted successfully.']);
     }
 }

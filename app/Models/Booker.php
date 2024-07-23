@@ -9,4 +9,12 @@ class Booker extends Model
 {
     protected $guarded = [];
     use HasFactory;
+
+    /**
+     * Get the codes associated with the booker.
+     */
+    public function codes()
+    {
+        return $this->hasMany(Code::class);
+    }
 }

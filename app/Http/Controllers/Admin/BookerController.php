@@ -90,7 +90,7 @@ class BookerController extends Controller
         DB::beginTransaction();
         try {
             $booker = Booker::find($id);
-            $booker->update($request->only(['name','image', 'sale_text', 'url']));
+            $booker->update($request->only(['name','image', 'sale_text', 'url', 'content']));
             DB::commit();
             return redirect()->route('admin.booker.index')->with('message', 'Cập nhật thành công');
         }catch(Exception $ex) {

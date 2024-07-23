@@ -54,11 +54,40 @@
                                 <input type="text" class="form-control" value="" name="url">
                                 @endif
                             </div>
+                            <div class="form-group">
+                            <label class="font-weight-semibold">Nội dung bài viết <span class="required"></span></label>
+                            <textarea class="ckeditor form-control" id="content" name="content" required>{{ old('content') ?: ($record->content ?? '') }}</textarea>
+                            @error('content')
+                            <label id="content-error" class="validation-invalid-label" for="content">{{$message}}</label>
+                            @enderror
+                        </div>
                         <div class="text-right">
                             <button type="submit" class="btn btn-primary">Lưu <i class="icon-paperplane ml-2"></i></button>
                         </div>
                     </div>
 				</div>
+            </div>
+            <div class="sidebar sidebar-light bg-transparent sidebar-component sidebar-component-right wmin-300 border-0 shadow-0 order-1 order-md-2 sidebar-expand-md">
+                <div class="sidebar-content">
+                    <div class="card">
+                        <div class="card-body text-center">
+                        <div class="form-check form-check-inline">
+											<label class="form-check-label">
+												<input type="checkbox" class="form-input-styled" name="is_hot" {{isset($record) && $record->is_hot == 1 ? 'checked' : ''}}  data-fouc>
+												Nổi bật?
+											</label>
+										</div>
+                                        <div class="form-group">
+                            <label class="font-weight-semibold">Thứ tự sắp xếp </label>
+                            <input type="number" class="form-control" required id="ordering" name="ordering" value="{{ old('ordering') ?: ($record->ordering ?? '') }}">
+                            @error('ordering')
+                            <label id="ordering-error" class="validation-invalid-label" for="ordering">{{$message}}</label>
+                            @enderror
+                        </div>
+                        </div>
+
+                    </div>
+                </div>
             </div>
         </div>
     </div>

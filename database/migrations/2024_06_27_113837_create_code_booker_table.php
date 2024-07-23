@@ -15,9 +15,12 @@ class CreateCodeBookerTable extends Migration
     {
         Schema::create('code_booker', function (Blueprint $table) {
             $table->id();
-            $table->integer('code_id');
-            $table->integer('booker_id');
+            $table->unsignedBigInteger('code_id');
+            $table->unsignedBigInteger('booker_id');
             $table->timestamps();
+
+            $table->foreign('code_id')->references('id')->on('codes')->onDelete('cascade');
+            $table->foreign('booker_id')->references('id')->on('bookers')->onDelete('cascade');
         });
     }
 

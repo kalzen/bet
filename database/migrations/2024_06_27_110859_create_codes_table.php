@@ -15,6 +15,7 @@ class CreateCodesTable extends Migration
     {
         Schema::create('codes', function (Blueprint $table) {
             $table->id();
+            $table->string('name');
             $table->string('description')->nullable();
             $table->string('content')->nullable();
             $table->text('url')->nullable();

@@ -8,4 +8,12 @@ use Illuminate\Database\Eloquent\Model;
 class Code extends Model
 {
     use HasFactory;
+    protected $guarded = [];
+    /**
+     * Get the booker that owns the code.
+     */
+    public function booker()
+    {
+        return $this->belongsTo(Booker::class);
+    }
 }
