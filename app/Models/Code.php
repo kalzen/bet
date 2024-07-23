@@ -14,6 +14,6 @@ class Code extends Model
      */
     public function booker()
     {
-        return $this->belongsTo(Booker::class);
+        return $this->belongsToMany(Booker::class);
     }
 }
