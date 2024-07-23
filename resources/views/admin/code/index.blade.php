@@ -12,7 +12,6 @@
                             <th>#</th>
                             <th>Code</th>
                             <th>Booker</th>
-                            <th></th>
                         </tr>
                     </thead>
                     <tbody>
@@ -20,15 +19,12 @@
                         <tr>
                             <td>
                                 <input type="checkbox" name="ids[]" value="{{$record->id}}" class="form-input-styled">
-                            </td>
-                            <td>
-                                {{$code->name}}
-                            </td>
-                            <td>
-                                {{$code->booker->name}}
-                            </td>
+                            </td> 
                             <td>
                                 <a href="{{route('admin.code.edit', $record->id)}}">{{$record->name}}</a>
+                            </td>
+                            <td>
+                                {{$record->booker->first()->name}}
                             </td>
                         </tr>
                         @endforeach
