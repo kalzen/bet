@@ -31,7 +31,7 @@ class CodeController extends Controller
     {
         //
         $bookers = Booker::all();
-        return view('admin.code.form');
+        return view('admin.code.form', compact('bookers'));
     }
 
     /**
