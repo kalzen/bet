@@ -36,8 +36,8 @@
                     <select class="form-control" id="booker_id" name="booker_id" required>
                         <option value="">Chọn Booker</option>
                         @foreach($bookers as $booker)
-                            @if(old(booker_id))
-                            <option value="{{ $booker->id }}" {{ old(booker_id) == $booker->id ? 'selected' : '' }}>{{ $booker->name }}</option>
+                            @if(old('booker_id'))
+                            <option value="{{ $booker->id }}" {{ old('booker_id') == $booker->id ? 'selected' : '' }}>{{ $booker->name }}</option>
                             @elseif(isset($record))
                             <option value="{{ $booker->id }}" {{ $record->booker->id == $booker->id ? 'selected' : '' }}>{{ $booker->name }}</option>
                             
