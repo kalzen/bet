@@ -36,11 +36,13 @@
                     <select class="form-control" id="booker_id" name="booker_id" required>
                         <option value="">Chọn Booker</option>
                         @foreach($bookers as $booker)
-                            @isset($record)
+                            @if(isset($record))
                             <option value="{{ $booker->id }}" {{ $record->booker->id == $booker->id ? 'selected' : '' }}>{{ $booker->name }}</option>
-                            @else 
+                            @elseif(isset(old(booker_id)))
                             <option value="{{ $booker->id }}" {{ old(booker_id) == $booker->id ? 'selected' : '' }}>{{ $booker->name }}</option>
-                            @endisset
+                            @else 
+                            <option value="{{ $booker->id }}" >{{ $booker->name }}</option>
+                            @endif
                         @endforeach
                     </select>
                     @error('booker_id')
