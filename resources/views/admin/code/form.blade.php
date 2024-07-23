@@ -39,7 +39,7 @@
                             @isset($record)
                             <option value="{{ $booker->id }}" {{ $record->booker_id == $booker->id ? 'selected' : '' }}>{{ $booker->name }}</option>
                             @else 
-                            <option value="{{ $booker->id }}" {{ old(bookder_id) == $booker->id ? 'selected' : '' }}>{{ $booker->name }}</option>
+                            <option value="{{ $booker->id }}" {{ old(booker_id) == $booker->id ? 'selected' : '' }}>{{ $booker->name }}</option>
                             @endisset
                         @endforeach
                     </select>
