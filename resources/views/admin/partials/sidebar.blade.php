@@ -73,6 +73,14 @@
                     </ul>
                 </li>
                 <li class="nav-item nav-item-submenu">
+                    <a href="javascript:;" class="nav-link"><i class="icon-pushpin"></i> <span>Booker</span></a>
+
+                    <ul class="nav nav-group-sub" data-submenu-title="Bài viết">
+                        <li class="nav-item"><a href="{{route('admin.booker.index')}}" class="nav-link">Tất cả Bookers</a></li>
+                        <li class="nav-item"><a href="{{route('admin.booker.create')}}" class="nav-link">Thêm Booker mới</a></li>
+                    </ul>
+                </li>
+                <li class="nav-item nav-item-submenu">
                     <a href="javascript:;" class="nav-link"><i class="icon-pushpin"></i> <span>Bài viết</span></a>
 
                     <ul class="nav nav-group-sub" data-submenu-title="Bài viết">
