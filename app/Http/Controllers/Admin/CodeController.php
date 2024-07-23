@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Models\Code;
 use App\Models\Booker;
 use Illuminate\Http\Request;
+use DB;
 
 class CodeController extends Controller
 {
