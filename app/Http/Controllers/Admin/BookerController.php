@@ -84,7 +84,7 @@ class BookerController extends Controller
      * @param  \App\Models\Booker  $booker
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Booker $booker)
+    public function update(Request $request, $id)
     {
         //
         DB::beginTransaction();

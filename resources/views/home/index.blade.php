@@ -14,27 +14,29 @@
         </div>
         <div class="container">
             <div class="row">
+                @foreach($booker_hot as $booker)
                 <div class="col-md-4">
                     <div class="items-booker">
                         <a href="#">
-                            <img src="{{asset('bet/1xbet.png')}}" alt="">
+                            <img src="{{$booker->image}}" alt="">
                         </a>
-                        <h3 class="name">1xBet</h3>
+                        <h3 class="name">{{$booker->name}}</h3>
                         <ul class="feature-list">
-                            <li>Lorem ipsum dolor sit amet, consectetur </li>
-                            <li>Lorem ipsum dolor sit amet, consectetur </li>
-                            <li>Lorem ipsum dolor sit amet, consectetur </li>
+                            @foreach (explode(',', $booker->sale_text) as $sale_text)
+                            <li>{{$sale_text}} </li>
+                            @endforeach
                         </ul>
                         <div class="d-flex gap-2 justify-content-center align-items-center mt-3">
-                            <a href="" class="prd-btn-1 d-flex">
+                            <a href="{{$booker->url}}" class="prd-btn-1 d-flex">
                                 Chi tiết <i class="fa-duotone fa-arrow-right"></i>
                             </a>
-                            <a href="" class="prd-btn-2 d-flex">
+                            <a href="{{$booker->url}}" class="prd-btn-2 d-flex">
                                 Bet <i class="fa-duotone fa-arrow-right"></i>
                             </a>
                         </div>
                     </div>
                 </div>
+                @endforeach
             </div>
         </div>
     </div>
@@ -54,177 +56,77 @@
             <div class="section-title aos-init" data-aos="fade-up" data-aos-delay="100" data-aos-duration="500"
                 data-aos-easing="ease-in">
                 <h3 class="sub-title">News</h3>
-                <h2 class="title">Sportss betting News</h2>
+                <h2 class="title">Sports betting News</h2>
             </div>
             <div class="blog-posts">
                 <div class="global-shape style-3">
-                    <img src="assets/img/shapes/shape-1.png" alt="" data-aos="fade-left" data-aos-duration="500"
+                    <img src="{{asset('bet/shape-1.png')}}" alt="" data-aos="fade-left" data-aos-duration="500"
                         data-aos-offset="200" data-aos-easing="ease-in" data-aos-delay="400">
                 </div>
                 <div class="container">
                     <div class="row g-4">
                         <div class="col-xl-8 col-lg-12">
                             <div class="row g-4">
-                                <div class="col-xl-12 col-lg-12 col-md-6" data-aos="fade-up" data-aos-delay="100"
+                                @foreach ($posts as $post)
+                                @if ($loop->index < 4)
+                                <div class="col-xl-12 col-lg-12 col-md-6" data-aos="fade-up" data-aos-delay="{{ $loop->index*100 }}"
                                     data-aos-duration="500" data-aos-easing="ease-in">
                                     <div class="single-blog">
                                         <div class="part-img">
-                                            <img src="https://peredion.netlify.app/assets/img/blog/blog-post-1.jpg" alt="">
+                                            <img src="{{$post->images->first()->url}}" alt="">
                                         </div>
                                         <div class="part-text">
-                                            <span class="post-category">euro jackpot</span>
+                                            <span class="post-category">{{$post->categories->first()->name}}</span>
                                             <h3 class="blog-post-title">
-                                                <a href='/blog-details'> Even more and setted see.</a>
+                                                <a href="{{route('post.detail', ['alias' => $post->slug])}}"> {{$post->title}}</a>
                                             </h3>
-                                            <p>In it in more its bad got what's the based they world the on small where
-                                                them. Had the equally were so a in sign it like into the kind the found
-                                                been themselves go.</p>
-                                            <div class="post-info-stats">
-                                                <a href="#0" class="post-creator">
-                                                    <div class="creator-pic">
-                                                        <img src="assets/img/blog/user-1.jpg" alt="">
-                                                    </div>
-                                                    <span class="creator-name">Sierra Guzman</span>
-                                                </a>
-                                                <span class="posting-time">3 days ago</span>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-xl-12 col-lg-12 col-md-6" data-aos="fade-up" data-aos-delay="150"
-                                    data-aos-duration="500" data-aos-easing="ease-in">
-                                    <div class="single-blog right-sided-img">
-                                        <div class="part-text">
-                                            <span class="post-category">mega millions</span>
-                                            <h3 class="blog-post-title">
-                                                <a href='/blog-details'>Began a need detailed free.</a>
-                                            </h3>
-                                            <p>In it in more its bad got what's the based they world the on small where
-                                                them. Had the equally were so a in sign it like into the kind the found
-                                                been themselves go.</p>
+                                            <p>{{$post->description}}</p>
                                             <div class="post-info-stats">
                                                 <a href="#" class="post-creator">
                                                     <div class="creator-pic">
-                                                        <img src="assets/img/blog/user-3.jpg" alt="">
+                                                        <img src="{{asset('bet/logo.png')}}" alt="">
                                                     </div>
-                                                    <span class="creator-name">Peter Bowen</span>
+                                                    <span class="creator-name">Bettest</span>
                                                 </a>
-                                                <span class="posting-time">2 days ago</span>
-                                            </div>
-                                        </div>
-                                        <div class="part-img">
-                                            <img src="https://peredion.netlify.app/assets/img/blog/blog-post-3.jpg" alt="">
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-xl-12 col-lg-12 col-md-6" data-aos="fade-up" data-aos-delay="200"
-                                    data-aos-duration="500" data-aos-easing="ease-in">
-                                    <div class="single-blog">
-                                        <div class="part-img">
-                                            <img src="https://peredion.netlify.app/assets/img/blog/blog-post-2.jpg" alt="">
-                                        </div>
-                                        <div class="part-text">
-                                            <span class="post-category">online lotto</span>
-                                            <h3 class="blog-post-title">
-                                                <a href='/blog-details'>Similar empire for carpeting.</a>
-                                            </h3>
-                                            <p>In it in more its bad got what's the based they world the on small where
-                                                them. Had the equally were so a in sign it like into the kind the found
-                                                been themselves go.</p>
-                                            <div class="post-info-stats">
-                                                <a href="#0" class="post-creator">
-                                                    <div class="creator-pic">
-                                                        <img src="assets/img/blog/user-4.jpg" alt="">
-                                                    </div>
-                                                    <span class="creator-name">Amelie Flynn</span>
-                                                </a>
-                                                <span class="posting-time">1 months ago</span>
+                                                <span class="posting-time">{{$post->created_at}}</span>
                                             </div>
                                         </div>
                                     </div>
                                 </div>
-                                <div class="col-xl-12 col-lg-12 col-md-6" data-aos="fade-up" data-aos-delay="300"
-                                    data-aos-duration="500" data-aos-easing="ease-in">
-                                    <div class="single-blog right-sided-img">
-                                        <div class="part-text">
-                                            <span class="post-category">Us powerball</span>
-                                            <h3 class="blog-post-title">
-                                                <a href='/blog-details'>Heaven with as best academic.</a>
-                                            </h3>
-                                            <p>In it in more its bad got what's the based they world the on small where
-                                                them. Had the equally were so a in sign it like into the kind the found
-                                                been themselves go.</p>
-                                            <div class="post-info-stats">
-                                                <a href="#" class="post-creator">
-                                                    <div class="creator-pic">
-                                                        <img src="assets/img/blog/user-6.jpg" alt="">
-                                                    </div>
-                                                    <span class="creator-name">Mason Knight</span>
-                                                </a>
-                                                <span class="posting-time">2 years ago</span>
-                                            </div>
-                                        </div>
-                                        <div class="part-img">
-                                            <img src="https://peredion.netlify.app/assets/img/blog/blog-post-6.jpg" alt="">
-                                        </div>
-                                    </div>
-                                </div>
+                               @endif
+                               @endforeach
                             </div>
                         </div>
                         <div class="col-xl-4 col-lg-12">
                             <div class="row g-4">
-                                <div class="col-xl-12 col-lg-12 col-md-6" data-aos="fade-up" data-aos-delay="100"
+                                @foreach ($posts as $post)
+                                @if ($loop->index >= 4)
+                                <div class="col-xl-12 col-lg-12 col-md-6" data-aos="fade-up" data-aos-delay="{{$loop->index*100}}"
                                     data-aos-duration="500" data-aos-easing="ease-in">
                                     <div class="single-blog vertical-style">
                                         <div class="part-img">
-                                            <img src="https://peredion.netlify.app/assets/img/blog/blog-post-2.jpg" alt="">
+                                            <img src="{{$post->images->first()->url}}" alt="">
                                         </div>
                                         <div class="part-text">
-                                            <span class="post-category">super enalotto</span>
+                                            <span class="post-category">{{$post->categories->first()->name}}</span>
                                             <h3 class="blog-post-title">
-                                                <a href='/blog-details'>Titled concept box made to.</a>
+                                                <a href="{{route('post.detail', ['alias' => $post->slug])}}">{{$post->title}}</a>
                                             </h3>
-                                            <p>In it in more its bad got what's the based they world the on small where
-                                                them. Had the equally were so a in sign it like into the kind the found
-                                                been themselves go.</p>
+                                            <p>{{$post->description}}</p>
                                             <div class="post-info-stats">
                                                 <a href="#0" class="post-creator">
                                                     <div class="creator-pic">
-                                                        <img src="assets/img/blog/user-2.jpg" alt="">
+                                                        <img src="{{asset('bet/logo.png')}}" alt="">
                                                     </div>
-                                                    <span class="creator-name">Henry Butler</span>
+                                                    <span class="creator-name">Bettest</span>
                                                 </a>
-                                                <span class="posting-time">1 days ago</span>
+                                                <span class="posting-time">{{$post->created_at}}</span>
                                             </div>
                                         </div>
                                     </div>
                                 </div>
-                                <div class="col-xl-12 col-lg-12 col-md-6" data-aos="fade-up" data-aos-delay="150"
-                                    data-aos-duration="500" data-aos-easing="ease-in">
-                                    <div class="single-blog vertical-style">
-                                        <div class="part-img">
-                                            <img src="https://peredion.netlify.app/assets/img/blog/blog-post-5.jpg" alt="">
-                                        </div>
-                                        <div class="part-text">
-                                            <span class="post-category">premier bet</span>
-                                            <h3 class="blog-post-title">
-                                                <a href='/blog-details'>Entered hard couple seman.</a>
-                                            </h3>
-                                            <p>In it in more its bad got what's the based they world the on small where
-                                                them. Had the equally were so a in sign it like into the kind the found
-                                                been themselves go.</p>
-                                            <div class="post-info-stats">
-                                                <a href="#0" class="post-creator">
-                                                    <div class="creator-pic">
-                                                        <img src="assets/img/blog/user-5.jpg" alt="">
-                                                    </div>
-                                                    <span class="creator-name">Natasha Rowe</span>
-                                                </a>
-                                                <span class="posting-time">1 week ago</span>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
+                                @endif
+                                @endforeach
                             </div>
                         </div>
                     </div>
