@@ -45,7 +45,9 @@ function selectFileWithCKFinder(elementId) {
                 var file = evt.data.files.first();
                 var output = document.getElementById(elementId);
                 output.value = file.getUrl();
-                $(`.filename`).html( file.getUrl());
+                $(`#`+elementId).closest('.form-group').find('.filename').html( file.getUrl());
+                
+                console.log(elementId);
             });
 
             finder.on('file:choose:resizedImage', function(evt) {

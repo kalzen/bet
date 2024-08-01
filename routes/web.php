@@ -18,7 +18,7 @@ use App\Http\Controllers\Admin\TestimonialController;
 use App\Http\Controllers\Admin\TeamController;
 use App\Http\Controllers\Admin\BookerController;
 use App\Http\Controllers\Admin\CodeController;
-
+use App\Http\Controllers\Admin\TipController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -86,6 +86,8 @@ Route::middleware(['auth'])->name('admin.')->prefix('admin')->group(function () 
     Route::resource('booker', BookerController::class);
     //Code 
     Route::resource('code', CodeController::class);
+    //Tip 
+    Route::resource('tip', TipController::class);
     //Attribute
     Route::resource('attribute', AttributeController::class);
     Route::prefix('post')->name('post.')->group(function () {

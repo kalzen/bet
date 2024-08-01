@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use App\Models\Tip;
 use Illuminate\Http\Request;
+use DB;
 
 class TipController extends Controller
 {
@@ -16,6 +17,9 @@ class TipController extends Controller
     public function index()
     {
         //
+        $query = Tip::latest();
+        $records = $query->paginate();
+        return view('admin.tip.index', compact('records'));
     }
 
     /**
@@ -26,6 +30,8 @@ class TipController extends Controller
     public function create()
     {
         //
+      //  $record =[];
+        return view('admin.tip.form');
     }
 
     /**
@@ -37,6 +43,15 @@ class TipController extends Controller
     public function store(Request $request)
     {
         //
+        DB::beginTransaction();
+        try {
+            $tip = Tip::create($request->except(['_token']));
+            DB::commit();
+            return redirect()->route('admin.tip.index')->with('message', 'Thêm mới thành công');
+        } catch(Exception $ex) {
+            DB::rollback();
+            return back()->withInput();
+        }
     }
 
     /**
@@ -56,9 +71,10 @@ class TipController extends Controller
      * @param  \App\Models\Tip  $tip
      * @return \Illuminate\Http\Response
      */
-    public function edit(Tip $tip)
+    public function edit($id)
     {
-        //
+        $record = Tip::find($id);
+        return view('admin.tip.form',compact('record'));
     }
 
     /**
@@ -68,9 +84,19 @@ class TipController extends Controller
      * @param  \App\Models\Tip  $tip
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Tip $tip)
+    public function update(Request $request, $id)
     {
         //
+        DB::beginTransaction();
+        try {
+            $tip = Tip::find($id);
+            $tip->update($request->except(['_token']));
+            DB::commit();
+            return redirect()->route('admin.tip.index')->with('message', 'Cập nhật thành công');
+        }catch(Exception $ex) {
+            DB::rollback();
+            return back()->withInput();
+        }
     }
 
     /**
