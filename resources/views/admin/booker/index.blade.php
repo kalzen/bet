@@ -10,8 +10,8 @@
                     <thead>
                         <tr>
                             <th>#</th>
+                            <th>Tên booker</th>
                             <th>Ảnh</th>
-                            <th>Tên</th>
                             <th></th>
                         </tr>
                     </thead>
@@ -20,6 +20,10 @@
                         <tr>
                             <td>
                                 <input type="checkbox" name="ids[]" value="{{$record->id}}" class="form-input-styled">
+                            </td>
+                            <td>
+                                <a href="{{route('admin.booker.edit', $record->id)}}">{{ $record->name }}</a>
+                                
                             </td>
                             <td>
                                 @if($record->image)
