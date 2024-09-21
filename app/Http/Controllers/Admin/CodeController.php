@@ -90,12 +90,13 @@ class CodeController extends Controller
      */
     public function update(Request $request, Code $code)
     {
-        //
+        
+        $id = $code->id;
         DB::beginTransaction();
         try {
             $code = Code::find($id);
             $code->update($request->only(['description', 'url', 'content']));
-            $product->booker()->sync($request->booker_id);
+            $code->booker()->sync($request->booker_id);
             DB::commit();
             return redirect()->route('admin.code.index')->with('message', 'Cập nhật thành công');
         }catch(Exception $ex) {
