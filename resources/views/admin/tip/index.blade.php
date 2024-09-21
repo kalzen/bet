@@ -23,10 +23,12 @@
                                 <input type="checkbox" name="ids[]" value="{{$record->id}}" class="form-input-styled">
                             </td>
                             <td>
-                                @if($record->logo_team_1)
-                                <img src="{{$record->logo_team_1}}" height="50">
-                                {{$record->name_team_1}}
-                                @endif
+                                <a href="{{route('admin.tip.edit', $record->id)}}">
+                                    @if($record->logo_team_1)
+                                    <img src="{{$record->logo_team_1}}" height="50">
+                                    {{$record->name_team_1}}
+                                    @endif
+                                </a>
                             </td>
                             <td>
                                 @if($record->logo_team_2)
