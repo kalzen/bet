@@ -63,12 +63,20 @@
                         </span>
                     </a>
                 </li>
+                <li class="nav-item">
+                    <a href="{{route('admin.tip.index')}}" class="nav-link">
+                        <i class="icon-pushpin"></i>
+                        <span>
+                            Tips
+                        </span>
+                    </a>
+                </li>
                 <li class="nav-item nav-item-submenu">
                     <a href="javascript:;" class="nav-link"><i class="icon-color-sampler"></i> <span>Giao diện</span></a>
 
                     <ul class="nav nav-group-sub" data-submenu-title="Giao diện">
                         <li class="nav-item"><a href="javascript:;" class="nav-link active">Trang chủ</a></li>
-                        <li class="nav-item"><a href="{{route('admin.slide.index')}}" class="nav-link">Slide</a></li>
+                        <li class="nav-item"><a href="{{route('admin.slide.index')}}" class="nav-link">Slide/Banner</a></li>
                         <li class="nav-item"><a href="{{route('admin.menu.index')}}" class="nav-link">Menu</a></li>
                     </ul>
                 </li>
@@ -115,6 +123,14 @@
                     <ul class="nav nav-group-sub" data-submenu-title="Cài đặt">
                         <li class="nav-item"><a href="{{route('admin.setting.index')}}" class="nav-link">Tổng quan</a></li>
                     </ul>
+                </li>
+                <li class="nav-item">
+                    <a href="{{route('admin.code.index')}}" class="nav-link">
+                        <i class="icon-color-sampler"></i>
+                        <span>
+                            Codes
+                        </span>
+                    </a>
                 </li>
                 <li class="nav-item">
                     <a href="{{route('admin.team.index')}}" class="nav-link">
