@@ -189,7 +189,6 @@
                 @else
                 <div class="col-12">
                     <div class="alert alert-info text-center" role="alert">
-                        <b>No news available right now. Please check again later</b>
                         <b>Hiện không có tin mới. Hãy ghé thăm sau!</b>
                     </div>
                 </div>
