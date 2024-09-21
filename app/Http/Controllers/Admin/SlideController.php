@@ -24,13 +24,13 @@ class SlideController extends Controller
     {
         return view('admin.slide.form');
     }
-    
+
     public function store(SubmitSlideRequest $request)
     {
         DB::beginTransaction();
         try {
             request()->merge(['ordering'=>$request->ordering??0]);
-            $slide = Slide::create($request->only(['name','url','image','ordering']));
+            Slide::create($request->only(['name','button_name_1','button_name_2', 'button_url_1','button_url_2','ordering']));
             DB::commit();
             return redirect()->route('admin.slide.index')->with('message', 'Thêm mới thành công');
         } catch(Exception $ex) {
@@ -38,12 +38,12 @@ class SlideController extends Controller
             return back()->withInput();
         }
     }
-    
+
     public function show($id)
     {
         
     }
-    
+
     public function edit($id)
     {
         $record = Slide::find($id);
@@ -56,7 +56,7 @@ class SlideController extends Controller
         try {
             $slide = Slide::find($id);
             request()->merge(['ordering'=>$request->ordering??$slide->ordering]);
-            $slide->update($request->only(['name','url','image','ordering']));
+            $slide->update($request->only(['name','button_name_1','button_name_2', 'button_url_1','button_url_2','ordering']));
             DB::commit();
             return redirect()->route('admin.slide.index')->with('message', 'Cập nhật thành công');
         }catch(Exception $ex) {
