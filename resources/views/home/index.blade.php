@@ -12,10 +12,10 @@
             <h3 class="sub-title">Nhà Cái</h3>
             <h2 class="title">TopList Nhà Cái Cược Uy Tín</h2>
         </div>
-        <div class="container">
-            <div class="row">
-                @foreach($booker_hot as $booker)
-                <div class="row card shadow-lg p-3 mb-4 col-md-4 col-12 border-0" style="position: relative; border-radius: 20px;">
+        <div class="row">
+            @foreach($booker_hot as $booker)
+            <div class="col container col-md-4 col-12">
+                <div class="card shadow-lg p-3 mb-4 border-0" style="position: relative; border-radius: 20px;">
                     <!-- Circle number -->
                     <div class="position-absolute top-30 start-30  bg-danger rounded-circle" style="width: 60px; height: 60px; line-height: 60px; text-align: center; color: white; font-weight: bold; font-size: 30px">
                       {{ $loop->iteration }}
@@ -23,7 +23,7 @@
                     
                     <!-- Image section -->
                     <div class="text-center mb-3">
-                      <img src="{{$booker->image}}" alt="Logo" class="img-fluid">
+                      <img src="{{$booker->image}}" alt="Logo" class="img-fluid rounded-3">
                     </div>
                     
                     <!-- Title section -->
@@ -53,9 +53,9 @@
                         </a>
                     </div>
                   </div>
+                </div>
                 @endforeach
             </div>
-        </div>
     </div>
     <!-- end booker -->
 
