@@ -235,7 +235,7 @@
     </div>
     <!-- call to action end -->
 
-    <div class="sports-schedule pb-1">
+    <div class="sports-schedule">
         <div class="global-shape style-4">
             <img src="{{asset('bet/shape-1.png')}}" alt="" data-aos="fade-left" data-aos-duration="1500"
                 data-aos-delay="500" class="aos-init">
