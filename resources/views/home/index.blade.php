@@ -156,6 +156,9 @@
                             @if($loop->index <= 2)
                                 @continue;
                             @endif
+                            @if($loop->index > 5)
+                                @break;
+                            @endif
                         <div class="col-lg-4 mb-3">
                             <div class="card h-100 border-0">
                                 <div class="row g-0 h-100">
