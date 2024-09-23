@@ -45,7 +45,9 @@ class BookerController extends Controller
 
         DB::beginTransaction();
         try {
-            $booker = Booker::create($request->only(['name','image', 'sale_text', 'url']));
+            $is_hot = $request->has('is_hot') ? 1 : 0;
+            $booker = Booker::create($request->only(['name','image', 'sale_text', 'url','content']));
+            $booker->update(['is_hot' => $is_hot]);
             DB::commit();
             return redirect()->route('admin.booker.index')->with('message', 'Thêm mới thành công');
         } catch(Exception $ex) {
@@ -86,11 +88,12 @@ class BookerController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
         DB::beginTransaction();
         try {
             $booker = Booker::find($id);
+            $is_hot = $request->has('is_hot') ? 1 : 0;
             $booker->update($request->only(['name','image', 'sale_text', 'url', 'content']));
+            $booker->update(['is_hot' => $is_hot]);
             DB::commit();
             return redirect()->route('admin.booker.index')->with('message', 'Cập nhật thành công');
         }catch(Exception $ex) {
