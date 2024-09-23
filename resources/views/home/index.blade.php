@@ -112,17 +112,13 @@
                         <!-- Side Small Posts -->
                         <div class="col-lg-4">
                             <div class="row">
-                                @php
-                                    $posts = $posts->slice(1);
-                                @endphp
                                 @foreach($posts as $post)
-                                @if($loop->index >= 2)
-                                    @php
-                                        $posts = $posts->slice(1);
-                                        $posts = $posts->slice(1);
-                                    @endphp
-                                    @break;
-                                @endif
+                                    @if($loop->index == 0)
+                                        @continue;
+                                    @endif
+                                    @if($loop->index > 2)
+                                        @break;
+                                    @endif
                                 <div class="col-12 mb-3">
                                     <div class="card h-100 border-0">
                                         <div class="row g-0 h-100">
@@ -157,6 +153,9 @@
                     <!-- Bottom Posts (4-6 posts) -->
                     <div class="row">
                         @foreach($posts as $post)
+                            @if($loop->index <= 2)
+                                @continue;
+                            @endif
                         <div class="col-lg-4 mb-3">
                             <div class="card h-100 border-0">
                                 <div class="row g-0 h-100">
