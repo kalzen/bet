@@ -87,21 +87,11 @@
                         </ul>
                         <div class="footer-menu">
                             <ul>
-                                <li>
-                                    <a class="single-menu" href="#/">homepage</a>
-                                </li>
-                                <li>
-                                    <a class="single-menu" href="#/about">About Us</a>
-                                </li>
-                                <li>
-                                    <a href="#/lotteries.html" class="single-menu">Lotteries</a>
-                                </li>
-                                <li>
-                                    <a class="single-menu" href="#/blog-posts">Blog</a>
-                                </li>
-                                <li>
-                                    <a class="single-menu" href="#/contact">contact</a>
-                                </li>
+                                @foreach ($shared_nav_links->sortBy('ordering') as $nav)
+                                    <li>
+                                        <a class="single-menu" href="#/">{{ $nav->name }}</a>
+                                    </li>
+                                @endforeach
                             </ul>
                         </div>
                     </div>
