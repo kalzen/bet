@@ -248,6 +248,11 @@
                 <h3 class="sub-title">TIPS</h3>
                 <h2 class="title">Tips hôm nay</h2>
             </div>
+            @if($tips->isEmpty())
+                    <div class="alert alert-info text-center" role="alert">
+                        <b>Hiện không có tips mới. Hãy ghé thăm sau!</b>
+                    </div>
+                @endif
             @foreach ($tips as $tip)
             <div class="card mb-3 p-3 col-md-12 shadow-sm" style="border-radius: 20px;">
                 <div class="row d-md-flex justify-content-evenly align-items-center">
