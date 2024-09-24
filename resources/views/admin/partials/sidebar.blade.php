@@ -87,6 +87,13 @@
                         <li class="nav-item"><a href="{{route('admin.booker.index')}}" class="nav-link">Tất cả Bookers</a></li>
                         <li class="nav-item"><a href="{{route('admin.booker.create')}}" class="nav-link">Thêm Booker mới</a></li>
                         <li class="nav-item"><a href="{{route('admin.booker_category.index')}}" class="nav-link">Chuyên mục bookers</a></li>
+                        <li class="nav-item">
+                            <a href="{{route('admin.code.index')}}" class="nav-link">
+                                <span>
+                                    PROMO Codes
+                                </span>
+                            </a>
+                        </li>
                     </ul>
                 </li>
                 <li class="nav-item nav-item-submenu">
@@ -124,14 +131,6 @@
                     <ul class="nav nav-group-sub" data-submenu-title="Cài đặt">
                         <li class="nav-item"><a href="{{route('admin.setting.index')}}" class="nav-link">Tổng quan</a></li>
                     </ul>
-                </li>
-                <li class="nav-item">
-                    <a href="{{route('admin.code.index')}}" class="nav-link">
-                        <i class="icon-color-sampler"></i>
-                        <span>
-                            Codes
-                        </span>
-                    </a>
                 </li>
                 <li class="nav-item">
                     <a href="{{route('admin.team.index')}}" class="nav-link">
