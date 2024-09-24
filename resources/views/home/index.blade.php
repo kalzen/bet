@@ -45,7 +45,7 @@
                         @endforeach
                     </ul>
                     <div class="d-flex gap-2 justify-content-center align-items-center mt-3">
-                        <a href="{{$booker->url}}" class="prd-btn-1 d-flex">
+                        <a href="{{ route('booker.detail', $booker->id) }}" class="prd-btn-1 d-flex">
                             Chi tiết <i class="fa-duotone fa-arrow-right"></i>
                         </a>
                         <a href="{{$booker->url}}" class="prd-btn-2 d-flex">
