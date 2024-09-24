@@ -99,7 +99,11 @@ class BookerController extends Controller
         $categories = BookerCategory::query()->whereNull('parent_id')->orderBy('name','asc')->get();
         $document = new \DOMDocument();
         libxml_use_internal_errors(true);
-        $document->loadHTML($record->content);
+        try {
+            $document->loadHTML($record->content);
+        } catch (\Throwable $th) {
+            //throw $th;
+        }
         libxml_clear_errors();
         $a = $document->getElementsByTagName('a');
         $img = $document->getElementsByTagName('img');
