@@ -22,6 +22,7 @@ class CreateBookersTable extends Migration
             $table->text('content')->nullable();
             $table->integer('is_hot')->default(0);
             $table->integer('ordering')->default(0);
+            $table->unsignedBigInteger('booker_category_id')->nullable();
             $table->timestamps();
         });
     }

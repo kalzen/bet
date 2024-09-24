@@ -3,16 +3,17 @@
     <div class="card">
         <div class="card-body">
             @include('admin.partials.message')
-            <a class="btn mb-2 btn-success" href="{{route('admin.booker.create')}}"><i class="icon-plus-circle2"></i> Thêm mới</a>
+            <a class="btn mb-2 btn-success" href="{{route('admin.booker_category.create')}}"><i class="icon-plus-circle2"></i> Thêm mới</a>
             @if(count($records))
             <div class="card card-table table-responsive shadow-0 mb-0">
                 <table class="table table-bordered">
                     <thead>
                         <tr>
                             <th>#</th>
-                            <th>Tên booker</th>
-                            <th>Chuyên mục</th>
                             <th>Ảnh</th>
+                            <th>Tên</th>
+                            <th>Chuyên mục cha</th>
+                            <th>Thời gian</th>
                             <th></th>
                         </tr>
                     </thead>
@@ -23,19 +24,21 @@
                                 <input type="checkbox" name="ids[]" value="{{$record->id}}" class="form-input-styled">
                             </td>
                             <td>
-                                <a href="{{route('admin.booker.edit', $record->id)}}">{{ $record->name }}</a>
-                                
+                                <img src="{{$record->image->url??''}}" height="50">
                             </td>
                             <td>
-                                {{ $record->categories ? $record->categories->pluck('name')->join(', ') : '' }}
+                                <a href="{{route('admin.booker_category.edit', $record->id)}}">{{$record->name}}</a>
                             </td>
                             <td>
-                                @if($record->image)
-                                <img src="{{$record->image}}" height="50">
+                                {{$record->parent->name??''}}
+                            </td>
+                            <td>
+                                {{$record->created_at->diffForHumans()}}
+                                @if($record->updated_at)
+                                <br>({{$record->updated_at->diffForHumans()}})
                                 @endif
                             </td>
                             <td>
-                                <a href="{{route('admin.booker.edit', $record->id)}}">Sửa</a>
                                 <a href="javascript:;" class="js-delete text-danger" data-key="{{$record->id}}" title="Xóa"><i class="icon-trash"></i></a>
                             </td>
                         </tr>
@@ -43,13 +46,13 @@
                     </tbody>
                 </table>
             </div>
-            <div class="mt-2">
+            <div>
                 {{$records->links()}}
             </div>
             @else
             <div class="text-center p-5">
                 <img src="/assets/img/no-data.png" alt="" srcset="">
-                <p class="h4 mt-2 font-weight-semibold">Chưa có booker nào</p>
+                <p class="h4 mt-2 font-weight-semibold">Chưa có chuyên mục nào</p>
             </div>
             @endif
         </div>
@@ -72,10 +75,11 @@
         }).then(function (res) {
             if (res.value) {
                 $.ajax({
-                    url: '{{route('admin.booker.destroy','idx')}}'.replace(/idx/, id),
+                    url: '{{route('admin.booker_category.destroy','idx')}}'.replace(/idx/, id),
                     method:'DELETE',data:{_token:'{{csrf_token()}}'},dataType:'json',
                     success:function(resp) {
                         toastr[resp.success ? 'success' : 'danger'](resp.message)
+                        location.reload()
                     }
                 })
             }

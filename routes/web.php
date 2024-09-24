@@ -8,6 +8,7 @@ use App\Http\Controllers\Admin\PostController;
 use App\Http\Controllers\Admin\CategoryController;
 use App\Http\Controllers\Admin\ProductController;
 use App\Http\Controllers\Admin\AttributeController;
+use App\Http\Controllers\Admin\BookerCategoryController;
 use App\Http\Controllers\Admin\CatalogueController;
 use App\Http\Controllers\Admin\SettingController;
 use App\Http\Controllers\Admin\MenuController;
@@ -70,6 +71,8 @@ Route::middleware(['auth'])->name('admin.')->prefix('admin')->group(function () 
     Route::resource('order', OrderController::class);
     //Category
     Route::resource('category', CategoryController::class);
+    //Booker Category
+    Route::resource('booker_category', BookerCategoryController::class);
     //Catalogue
     Route::resource('catalogue', CatalogueController::class);
     //Attribute
@@ -92,6 +95,9 @@ Route::middleware(['auth'])->name('admin.')->prefix('admin')->group(function () 
     Route::resource('attribute', AttributeController::class);
     Route::prefix('post')->name('post.')->group(function () {
         Route::post('category', [PostController::class, 'category'])->name('category');
+    });
+    Route::prefix('booker')->name('booker.')->group(function () {
+        Route::post('category', [BookerController::class, 'category'])->name('category');
     });
     //Product
     Route::post('update_formula', [ProductController::class, 'updateFormula'])->name('product.updateFormula');

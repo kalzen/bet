@@ -17,4 +17,9 @@ class Booker extends Model
     {
         return $this->hasMany(Code::class);
     }
+
+    public function categories()
+    {
+        return $this->belongsTo(BookerCategory::class, 'booker_category_id');
+    }
 }

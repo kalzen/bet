@@ -87,9 +87,76 @@
                         </div>
 
                     </div>
+                    <div class="card">
+                        <div class="card-body" id="select_category">
+                            @include('admin.shared.select-category',['selected' => (isset($record) ? $record->categories->pluck('id')->all() : null)])
+                            @error('category_id')
+                            <label id="category_id-error" class="validation-invalid-label" for="category_id">{{$message}}</label>
+                            @enderror
+                            <button class="add-category btn btn-sm mt-2 btn-success" type="button">
+                                <i class="icon-plus-circle2"></i>
+                                Tạo chuyên mục
+                            </button>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
     </div>
 </form>
+<div id="modal_add_category" class="modal fade">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <form action="form_add_category">
+                @csrf
+                <div class="modal-body">
+                    <h3>Tạo mới chuyên mục</h3>
+                    <div class="form-group">
+                        <input type="text" name="name" placeholder="Tiêu đề" class="form-control" required maxlength="255">
+                    </div>
+
+                    <div class="form-group">
+                        @if(count($categories))
+                        <select name="parent_id" data-placeholder="Chuyên mục cha" class="form-control select" data-allow-clear="true">
+                            <option value="">Chuyên mục cha</option>
+                            @foreach($categories as $category)
+                            <option value="{{$category->id}}">{{$category->name}}</option>
+                            @endforeach
+                        </select>
+                        @endif
+                    </div>
+                    
+                </div>
+                
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-link" data-dismiss="modal">Đóng</button>
+                    <button type="submit" class="btn bg-primary">Lưu</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+<script>
+    $('#modal_add_category form').on('submit', function(e) {
+        e.preventDefault()
+        let selected = $('[name^=category_id]:checked').map(function(){return this.value;}).get()
+        $.ajax({
+            url:'{{route('admin.booker.category')}}',
+            method:'POST',data: new FormData(this),
+            contentType:false,processData:false,
+            success:function(resp) {
+                $('#modal_add_category').modal('hide')
+                $('#select_category').html(resp)
+                $('#select_category [name^=category_id]').each(function(){
+                    $(this).prop('checked', selected.includes(this.value))
+                })
+                $('#select_category .form-input-styled').uniform()
+                $.uniform.update()
+            }
+        })
+    })
+    $('body').on('click','.add-category', function() {
+        $('#modal_add_category').modal('show')
+    });
+</script>
 @endsection

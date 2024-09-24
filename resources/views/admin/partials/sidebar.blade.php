@@ -86,6 +86,7 @@
                     <ul class="nav nav-group-sub" data-submenu-title="Bài viết">
                         <li class="nav-item"><a href="{{route('admin.booker.index')}}" class="nav-link">Tất cả Bookers</a></li>
                         <li class="nav-item"><a href="{{route('admin.booker.create')}}" class="nav-link">Thêm Booker mới</a></li>
+                        <li class="nav-item"><a href="{{route('admin.booker_category.index')}}" class="nav-link">Chuyên mục bookers</a></li>
                     </ul>
                 </li>
                 <li class="nav-item nav-item-submenu">
