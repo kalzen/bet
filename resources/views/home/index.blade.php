@@ -222,7 +222,7 @@
                 <div class="col-md-3">
                     <div class="item-promo text-center">
                         <img src="{{ $code->booker->image }}" alt="">
-                        <span>{{ $code->description }} <br> {!! $code->content !!}</span>
+                        <span>{{ $code->description }}</span>
                         <div class="code mt-4 justify-content-center">
                             {{ $code->name }}
                         </div>
