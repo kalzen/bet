@@ -19,6 +19,7 @@ class CreateCodesTable extends Migration
             $table->string('description')->nullable();
             $table->string('content')->nullable();
             $table->text('url')->nullable();
+            $table->unsignedBigInteger('booker_id')->nullable();
             $table->timestamps();
         });
     }

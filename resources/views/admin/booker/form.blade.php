@@ -19,6 +19,13 @@
                             <label id="name-error" class="validation-invalid-label" for="name">{{$message}}</label>
                             @enderror
                         </div>
+                        <div class="form-group">
+                            <label class="font-weight-semibold">Mô tả <span class="required"></span></label>
+                            <input type="text" class="form-control" required id="description" name="description" value="{{ old('description') ?: ($record->description ?? '') }}">
+                            @error('description')
+                            <label id="description-error" class="validation-invalid-label" for="description">{{$message}}</label>
+                            @enderror
+                        </div>
 
                         <div class="form-group">
                             <label class="font-weight-semibold">Ảnh </label>

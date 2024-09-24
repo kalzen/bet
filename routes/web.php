@@ -39,6 +39,8 @@ Route::get('/', [HomeController::class, 'index'])->name('index');
 Route::get('/logout', [HomeController::class, 'logout'])->name('logout');
 Route::get('/tu-van', [HomeController::class, 'advise'])->name('advise');
 Route::any('/booker', [ClientBookerController::class, 'index'])->name('booker.list');
+Route::any('/booker/{alias}', [ClientBookerController::class, 'detail'])->name('booker.detail');
+Route::get('/bookers/filter', 'BookerController@filter')->name('bookers.filter');
 Route::any('/gioi-thieu', [HomeController::class, 'about'])->name('about');
 Route::get('/home', [HomeController::class, 'index'])->name('home');
 Route::any('/lien-he', [HomeController::class, 'contact'])->name('contact');

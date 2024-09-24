@@ -65,11 +65,8 @@ class BookerController extends Controller
         DB::beginTransaction();
         try {
             $is_hot = $request->has('is_hot') ? 1 : 0;
-            $booker = Booker::create($request->only(['name','image', 'sale_text', 'url','content']));
+            $booker = Booker::create($request->only(['name','image', 'sale_text', 'url','content','description']));
             $booker->categories()->sync($request->category_id);
-            // $booker->booker_category_id = $request->category_id;
-            // $booker->tags()->sync(collect(explode(', ',$request->tags))->map(function($item){return Tag::updateOrCreate(['name'=>$item]);})->pluck('id'));
-            // $booker->images()->create(['url' => $request->image]);
             $booker->update(['is_hot' => $is_hot]);
             DB::commit();
             return redirect()->route('admin.booker.index')->with('message', 'Thêm mới thành công');
@@ -100,7 +97,6 @@ class BookerController extends Controller
     {
         $record = Booker::find($id);
         $categories = BookerCategory::query()->whereNull('parent_id')->orderBy('name','asc')->get();
-        // $record = Post::find($id);
         $document = new \DOMDocument();
         libxml_use_internal_errors(true);
         $document->loadHTML($record->content);
@@ -164,12 +160,8 @@ class BookerController extends Controller
         {
             $issue=$issue.'<li class="issue_outlinks"><b>Các đường dẫn ra ngoài trang:</b> Cần thêm link dẫn tới trang ngoài!</li>';
         }
-       // $dom = HtmlDomParser::str_get_html($record->content);
-        //check inlinks
-       // $content = $record->content;
-        
+
         return view('admin.booker.form',compact('categories','record', 'success', 'issue'));
-        // return view('admin.booker.form',compact('record'));
     }
 
     /**
@@ -185,11 +177,8 @@ class BookerController extends Controller
         try {
             $booker = Booker::find($id);
             $is_hot = $request->has('is_hot') ? 1 : 0;
-            $booker->update($request->only(['name','image', 'sale_text', 'url', 'content']));
+            $booker->update($request->only(['name','image', 'sale_text', 'url', 'content','description']));
             $booker->categories()->sync($request->category_id);
-            // $booker->booker_category_id = $request->category_id;
-            // $booker->tags()->sync(collect(explode(', ',$request->tags))->map(function($item){return Tag::updateOrCreate(['name'=>$item]);})->pluck('id'));
-            // $booker->images()->first()->update(['url' => $request->image]);
             $booker->update(['is_hot' => $is_hot]);
             DB::commit();
             return redirect()->route('admin.booker.index')->with('message', 'Cập nhật thành công');
