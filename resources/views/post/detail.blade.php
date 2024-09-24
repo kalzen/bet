@@ -16,13 +16,22 @@
                     <div class="subtitle mb-15 font-size-15 fw-medium text-gray-dark">{{$post->categories->first()->name}} <!--<span class="sep-dot"></span> {{date('d/m/Y',strtotime($post->updated_at))}} --></div>
                     <h1 class="mb-20">{{$post->title}}</h1>
 				{!!$post->content!!}
+                <a href="#" class="d-inline-flex align-items-center">
+                    <div class="me-2">
+                        Tác giả:
+                    </div>
+                    <span class="line-height">{{ $post->user->name }}</span>
+                </a> <br>
                </div>
 			   <div class="col-lg-4">
 			   <h4 class="mrb-30 single-blog-widget-title">Danh mục</h4>
 							<ul class="list">
-                            @foreach($categories as $category)
-								<li><i class="fas fa-caret-right vertical-align-middle text-primary-color mrr-10"></i><a href="{{ route('post.category', ['alias' => $category->slug]) }}">{{ $category->name }}</a></li>
-							@endforeach
+                                <li><i class="fas fa-caret-right vertical-align-middle text-primary-color mrr-10"></i>
+                                    <a class="ms-1" href="{{ route('post.list') }}">Tất cả</a></li>
+                                @foreach($categories as $category)
+                                    <li><i class="fas fa-caret-right vertical-align-middle text-primary-color mrr-10"></i>
+                                        <a class="ms-1" href="{{ route('post.category', ['alias' => $category->slug]) }}">{{ $category->name }}</a></li>
+                                @endforeach
                             </ul>
 				</div>
 			</div>

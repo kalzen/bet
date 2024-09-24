@@ -19,7 +19,7 @@
 @endif
 @stop
 @section('content')
-<div class="body-page">
+<div class="body-page mt-5">
     <div class="container">
         <div class="row">
             <!-- breadcums -->
@@ -27,6 +27,7 @@
             <nav aria-label="breadcrumb">
                 <ol class="breadcrumb">
                     <li class="breadcrumb-item"><a href="{{ route('home') }}">Trang chủ</a></li>
+                    <li class="breadcrumb-item"><a href="{{ route('post.list') }}">Tin tức</a></li>
                     @if (isset($category_parent))
                     <li class="breadcrumb-item"><a href="{{ route('post.category', ['alias' => $category_parent->slug]) }}">{{$category_parent->name}}</a></li>
                     @endif
@@ -37,7 +38,7 @@
             <div class="col-lg-8">
                 @foreach ($posts as $post)
                 @if($loop->index == 0)
-                <article class="card card-post-2">
+                <article class="card card-post-2 border-0 rounded-3 shadow-lg p-3">
                     <a class="thumbnail  hover-overlay mb-3" href="{{$post->url}}">
                         <img class="thumbnail-img" loading="lazy" src="{{$post->images->first()->url}}" alt="{{$post->title}}">
                     </a>
@@ -46,6 +47,12 @@
                             <a href="{{$post->url}}">{{$post->title}}</a>
                         </h5>
                         <p class="card-text text-muted">{{ $post->description}}</p>
+                        <a href="#" class="d-inline-flex align-items-center">
+                            <div class="me-2">
+                                <img src="{{asset('bet/logo.png')}}" alt="" width="20px">
+                            </div>
+                            <span class="line-height">{{ $post->user->name }}</span>
+                        </a> <br>
                         <!--<div class="d-flex justify-content-between text-muted">
                             <p>{{ $post->created_at}}</p>
                             <p>{{ $post->viewed}} lượt xem</p>
@@ -58,7 +65,7 @@
                 <div class="list-post">
                 @foreach ($posts as $post)
                 @if($loop->index > 0)
-                    <article class="card card-post">
+                    <article class="card card-post border-0 rounded-3 shadow-lg p-3">
                         <div class="row g-3 gx-md-4">
                             <div class="col-sm-5">
                             <a class="thumbnail  hover-overlay mb-3" href="{{$post->url}}">
@@ -75,6 +82,12 @@
                                     </h5>
                                     <p class="card-text text-muted mb-2">{{ \Illuminate\Support\Str::limit($post->description, 150, $end='...') }}
                                     </p>
+                                    <a href="#" class="d-inline-flex align-items-center">
+                                        <div class="me-2">
+                                            <img src="{{asset('bet/logo.png')}}" alt="" width="20px">
+                                        </div>
+                                        <span class="line-height">{{ $post->user->name }}</span>
+                                    </a> <br>
                                     <a class="card-read-more text-muted mt-auto fs-sm"
                                         href="{{$post->url}}">Xem
                                         chi tiết
@@ -86,13 +99,24 @@
                     <hr>
                     @endif
                 @endforeach
-                </div>
             </div>
-            <div class="col-lg-4">
-                <div class="ads">
-                    <a href="#"><img src="{{ asset('hocvienielts/ads.jpg') }}" alt="quảng cáo"></a>
-                </div>
+        </div>
+        <div class="col-lg-4">
+            <h4 class="mrb-30 single-blog-widget-title">Danh mục</h4>
+            <ul class="list">
+                <li><i class="fas fa-caret-right vertical-align-middle text-primary-color mrr-10"></i>
+                    <a class="ms-1" href="{{ route('post.list') }}">Tất cả</a></li>
+                @foreach($categories as $category)
+                <li><i class="fas fa-caret-right vertical-align-middle text-primary-color mrr-10"></i>
+                    <a class="ms-1" href="{{ route('post.category', ['alias' => $category->slug]) }}">{{ $category->name }}</a></li>
+                @endforeach
+            </ul>
+        </div>
+        @if ($posts->count() <= 0)
+            <div class="alert alert-info text-center" role="alert">
+                <b>Hiện không có tin mới. Hãy ghé thăm sau!</b>
             </div>
+        @endif
         </div>
     </div>
 </div>
