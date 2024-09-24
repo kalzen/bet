@@ -20,6 +20,8 @@ use App\Http\Controllers\Admin\TeamController;
 use App\Http\Controllers\Admin\BookerController;
 use App\Http\Controllers\Admin\CodeController;
 use App\Http\Controllers\Admin\TipController;
+use App\Http\Controllers\BookerController as ClientBookerController;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -36,6 +38,7 @@ Auth::routes();
 Route::get('/', [HomeController::class, 'index'])->name('index');
 Route::get('/logout', [HomeController::class, 'logout'])->name('logout');
 Route::get('/tu-van', [HomeController::class, 'advise'])->name('advise');
+Route::any('/booker', [ClientBookerController::class, 'index'])->name('booker.list');
 Route::any('/gioi-thieu', [HomeController::class, 'about'])->name('about');
 Route::get('/home', [HomeController::class, 'index'])->name('home');
 Route::any('/lien-he', [HomeController::class, 'contact'])->name('contact');
