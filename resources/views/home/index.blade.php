@@ -226,8 +226,8 @@
                         <div class="code mt-4 justify-content-center">
                             {{ $code->name }}
                         </div>
-                        <a href="" class="prd-btn-1 d-flex mt-3">
-                            <span class="ms-auto me-auto">Claim<i class="fa-duotone fa-arrow-right"></i></span> 
+                        <a href="{{ route('booker.detail', $code->booker->id) }}" class="prd-btn-1 d-flex mt-3">
+                            <span class="ms-auto me-auto">XEM NGAY<i class="fa-duotone fa-arrow-right"></i></span> 
                             </a>
                     </div>
                 </div>
