@@ -47,16 +47,16 @@
                                         <img src="{{asset('bet/logo.png')}}" alt="" class="logo">
                                     </a>
                                 </div>
-                                <p data-aos="fade-up" data-aos-delay="150" data-aos-duration="500" data-aos-easing="ease-in" class="aos-init">This allows bettors to bet over or under the bookmaker's score,<br> and indicate what they believe the difference in points will be.</p>
+                                {{-- <p data-aos="fade-up" data-aos-delay="150" data-aos-duration="500" data-aos-easing="ease-in" class="aos-init">This allows bettors to bet over or under the bookmaker's score,<br> and indicate what they believe the difference in points will be.</p> --}}
                                 <ul class="importants-links">
                                     <li class="single-link aos-init" data-aos="fade-up" data-aos-delay="200" data-aos-duration="500" data-aos-easing="ease-in">
-                                        <a href="#0">policy</a>
+                                        <a href="#0">Chính sách</a>
                                     </li>
                                     <li class="single-link aos-init" data-aos="fade-up" data-aos-delay="250" data-aos-duration="500" data-aos-easing="ease-in">
-                                        <a href="#0">Terms</a>
+                                        <a href="#0">Điều kiện</a>
                                     </li>
                                     <li class="single-link aos-init" data-aos="fade-up" data-aos-delay="300" data-aos-duration="500" data-aos-easing="ease-in">
-                                        <a href="#0">license</a>
+                                        <a href="#0">Giấy phép</a>
                                     </li>
                                 </ul>
                             </div>
@@ -67,7 +67,7 @@
             <div class="footer-bottom"><div class="back-to-top-btn"><a href="#"><i class="fa-solid fa-arrow-turn-up"></i></a></div>
                 <div class="container">
                     <div class="footer-bottom-content">
-                        <p class="copyright-text">Copyright © 2023. All Right Reserved By Peredion</p>
+                        <p class="copyright-text">Copyright © 2024. All Right Reserved By Kalzen Media</p>
                         <ul class="social-link">
                             <li class="single-social">
                                 <a href="#0">
