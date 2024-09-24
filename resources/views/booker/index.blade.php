@@ -86,7 +86,7 @@
                                                     <span class="badge bg-success">{{ $category->name }}</span>
                                                 @endforeach
                                                 <h5 class="card-title">{{ $booker->name }}</h5>
-                                                <p class="card-text">Desc: {{ $booker->description }}</p>
+                                                <p class="card-text" style="word-wrap: break-word; overflow-wrap: break-word; max-width: 100px;">{{ $booker->description }}</p>
                                             </div>
                                             <div class="border rounded p-2 text-center">
                                                 <span>Code:</span>
@@ -126,10 +126,7 @@
                                                 <span class="badge bg-success">{{ $category->name }}</span>
                                             @endforeach
                                             <h5 class="card-title">{{ $booker->name }}</h5>
-                                                <p class="mt-2 mb-1"><strong>Desc: {{ $booker->description }}</strong></p>
-                                                <small class="text-muted">
-                                                    {{ Str::limit(strip_tags($booker->content), 100, '...') }}
-                                                </small>
+                                                <p class="mt-2 mb-1"><strong>{{ $booker->description }}</strong></p>
                                             </div>
                                 
                                             <div class="col-12 col-md-3 text-center mt-3 mt-md-0">
