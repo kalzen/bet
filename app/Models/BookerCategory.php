@@ -28,7 +28,7 @@ class BookerCategory extends Model
     }
     public function bookers()
     {
-        return $this->hasMany(Booker::class)->withTimestamps();
+        return $this->belongsToMany(Booker::class, 'bookers_categories');
     }
     public function getUrlAttribute()
     {

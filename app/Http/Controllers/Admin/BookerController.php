@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use App\Models\Booker;
 use App\Models\BookerCategory;
+use App\Models\Tag;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 use DB;
@@ -65,6 +66,10 @@ class BookerController extends Controller
         try {
             $is_hot = $request->has('is_hot') ? 1 : 0;
             $booker = Booker::create($request->only(['name','image', 'sale_text', 'url','content']));
+            $booker->categories()->sync($request->category_id);
+            // $booker->booker_category_id = $request->category_id;
+            // $booker->tags()->sync(collect(explode(', ',$request->tags))->map(function($item){return Tag::updateOrCreate(['name'=>$item]);})->pluck('id'));
+            // $booker->images()->create(['url' => $request->image]);
             $booker->update(['is_hot' => $is_hot]);
             DB::commit();
             return redirect()->route('admin.booker.index')->with('message', 'Thêm mới thành công');
@@ -163,7 +168,7 @@ class BookerController extends Controller
         //check inlinks
        // $content = $record->content;
         
-        return view('admin.post.form',compact('categories','record', 'success', 'issue'));
+        return view('admin.booker.form',compact('categories','record', 'success', 'issue'));
         // return view('admin.booker.form',compact('record'));
     }
 
@@ -181,6 +186,10 @@ class BookerController extends Controller
             $booker = Booker::find($id);
             $is_hot = $request->has('is_hot') ? 1 : 0;
             $booker->update($request->only(['name','image', 'sale_text', 'url', 'content']));
+            $booker->categories()->sync($request->category_id);
+            // $booker->booker_category_id = $request->category_id;
+            // $booker->tags()->sync(collect(explode(', ',$request->tags))->map(function($item){return Tag::updateOrCreate(['name'=>$item]);})->pluck('id'));
+            // $booker->images()->first()->update(['url' => $request->image]);
             $booker->update(['is_hot' => $is_hot]);
             DB::commit();
             return redirect()->route('admin.booker.index')->with('message', 'Cập nhật thành công');

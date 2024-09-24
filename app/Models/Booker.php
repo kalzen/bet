@@ -20,6 +20,6 @@ class Booker extends Model
 
     public function categories()
     {
-        return $this->belongsTo(BookerCategory::class, 'booker_category_id');
+        return $this->belongsToMany(BookerCategory::class, 'bookers_categories');
     }
 }
