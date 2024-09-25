@@ -20,20 +20,20 @@
             <div class="row justify-content-between">
                 <div class="col-xl-5 col-lg-5 col-md-7">
                     <div class="left-side">
-                        <div class="single-bar">
+                        {{-- <div class="single-bar">
                             <a class="dashboard-overview" href="#/dashboard-overview.html">
                                 <span class="part-icon">
                                     <i class="fa-regular fa-circle-user"></i>
                                 </span>
                                 <span class="part-text">hi, <span class="user-name">{{ $shared_config['address']['value'] }}</span></span>
                             </a>
-                        </div>
+                        </div> --}}
                         <div class="single-bar">
                             <a class="dashboard-overview" href="mailto:%20abc@example.com">
                                 <span class="part-icon">
                                     <i class="fa-regular fa-envelope"></i>
                                 </span>
-                                <span class="part-text">{{ $shared_config['email']['value'] }}</span>
+                                <span class="part-text">{{ $shared_config['email']['value']??'MAIL' }}</span>
                             </a>
                         </div>
                         <div class="single-bar dropdown">
@@ -42,10 +42,10 @@
                                 <span class="part-icon">
                                     <i class="fa-regular fa-globe"></i>
                                 </span>
-                                <span class="part-text lang-display">vn</span>
+                                <span class="part-text lang-display">Tiếng Việt</span>
                             </a>
                             <ul class="dropdown-menu lang-item" aria-labelledby="dropdownMenuLink">
-                                <li><a class="dropdown-item" href="#">VN</a></li>
+                                <li><a class="dropdown-item" href="#">Tiếng Việt</a></li>
                                 <li><a class="dropdown-item" href="#">English</a></li>
                                 <li><a class="dropdown-item" href="#">عربي</a></li>
                                 <li><a class="dropdown-item" href="#">हिन्दी</a></li>
@@ -134,7 +134,7 @@
                             </div>
                             <div class="col-2 col-lg-2 d-xl-block d-lg-block d-md-none">
                                 <div class="logo">
-                                    <a href="#/">
+                                    <a href="{{ route('home') }}">
                                         <img src="{{ asset('bet/logo.png') }}" alt="">
                                     </a>
                                 </div>

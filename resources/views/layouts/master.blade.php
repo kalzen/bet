@@ -43,7 +43,7 @@
                         <div class="col-xl-6 col-lg-6 col-md-8 col-sm-9">
                             <div class="part-about">
                                 <div class="footer-logo aos-init" data-aos="fade-up" data-aos-delay="100" data-aos-duration="500" data-aos-easing="ease-in">
-                                    <a href="#/">
+                                    <a href="{{ route('home') }}">
                                         <img src="{{asset('bet/logo.png')}}" alt="" class="logo">
                                     </a>
                                 </div>
