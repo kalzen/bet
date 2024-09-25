@@ -20,7 +20,12 @@
 @stop
 @section('content')
 <div class="body-page mt-5">
-    <div class="container">
+    <div class="container mt-3">
+        <div class="section-title aos-init" data-aos="fade-up" data-aos-delay="100" data-aos-duration="500"
+            data-aos-easing="ease-in">
+            <h3 class="sub-title pt-2">NEWS</h3>
+            <h2 class="title">Tin tức mới hôm nay</h2>
+        </div>
         <div class="row">
             <!-- breadcums -->
             @if (isset($category))
@@ -47,7 +52,7 @@
                             <a href="{{$post->url}}">{{$post->title}}</a>
                         </h5>
                         <p class="card-text text-muted">{{ $post->description}}</p>
-                        <a href="#" class="d-inline-flex align-items-center">
+                        <a href="{{ route('user.detail', ['id' => $post->user->id]) }}" class="d-inline-flex align-items-center">
                             <div class="me-2">
                                 <img src="{{asset('bet/logo.png')}}" alt="" width="20px">
                             </div>
@@ -82,7 +87,7 @@
                                     </h5>
                                     <p class="card-text text-muted mb-2">{{ \Illuminate\Support\Str::limit($post->description, 150, $end='...') }}
                                     </p>
-                                    <a href="#" class="d-inline-flex align-items-center">
+                                    <a href="{{ route('user.detail', ['id' => $post->user->id]) }}" class="d-inline-flex align-items-center">
                                         <div class="me-2">
                                             <img src="{{asset('bet/logo.png')}}" alt="" width="20px">
                                         </div>
