@@ -22,6 +22,7 @@ use App\Http\Controllers\Admin\CodeController;
 use App\Http\Controllers\Admin\TipController;
 use App\Http\Controllers\BookerController as ClientBookerController;
 use App\Http\Controllers\TipController as ClientTipController;
+use App\Http\Controllers\UserController as ClientUserController;
 
 /*
 |--------------------------------------------------------------------------
@@ -41,6 +42,7 @@ Route::get('/logout', [HomeController::class, 'logout'])->name('logout');
 Route::get('/tu-van', [HomeController::class, 'advise'])->name('advise');
 Route::get('/tip', [ClientTipController::class, 'index'])->name('tip.list');
 Route::any('/booker', [ClientBookerController::class, 'index'])->name('booker.list');
+Route::any('/user/{id}', [ClientUserController::class, 'detail'])->name('user.detail');
 Route::any('/booker/{alias}', [ClientBookerController::class, 'detail'])->name('booker.detail');
 Route::get('/bookers/filter', 'BookerController@filter')->name('bookers.filter');
 Route::any('/gioi-thieu', [HomeController::class, 'about'])->name('about');
