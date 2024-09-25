@@ -63,7 +63,12 @@
     
                 <!-- Right column for bookers -->
                 <div class="col-md-9 mt-3">
-                    <h1>{{isset($currentCategory->name)?'Danh sách nhà cái "'.$currentCategory->name.'"':'Danh sách nhà cái'}}</h1>
+                    {{-- <h1>{{isset($currentCategory->name)?'Danh sách nhà cái "'.$currentCategory->name.'"':'Danh sách nhà cái'}}</h1> --}}
+                    <div class="section-title aos-init" data-aos="fade-up" data-aos-delay="100" data-aos-duration="500"
+                        data-aos-easing="ease-in">
+                        <h3 class="sub-title pt-2">BOOKMAKERS</h3>
+                        <h2 class="title">Danh sách nhà cái</h2>
+                    </div>
                     <ol class="breadcrumb">
                         <li class="breadcrumb-item">
                             <a href="/">Trang chủ</a>
