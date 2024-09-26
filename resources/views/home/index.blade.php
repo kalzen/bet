@@ -26,7 +26,7 @@
                 <div class="col-xxl-5 col-xl-6 col-lg-6 col-md-12">
 
                     <div class="container col-md-12" id="cardContainer"
-                        style="z-index: 10;padding-top: 180px;margin-left: 50px">
+                        style="z-index: 10;padding-top: 200px;margin-left: 50px">
                         @foreach ($shared_bookers as $booker)
                             <div class="card mb-3" style="border-radius: 20px">
                                 <div class="position-absolute top-0 start-0 translate-middle bg-warning rounded-circle d-flex align-items-center justify-content-center text-dark fw-bold fs-6 shadow"
