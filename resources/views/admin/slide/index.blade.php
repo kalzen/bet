@@ -3,16 +3,15 @@
     <div class="card">
         <div class="card-body">
             @include('admin.partials.message')
-            <a class="btn mb-2 btn-success" href="{{route('admin.slide.create')}}"><i class="icon-plus-circle2"></i> Thêm mới</a>
             @if(count($records))
+            <a class="btn mb-2 btn-success disabled" href="#" tabindex="-1" role="button" aria-disabled="true"><i class="icon-plus-circle2"></i> Thêm mới</a>
             <div class="card card-table table-responsive shadow-0 mb-0">
                 <table class="table table-bordered">
                     <thead>
                         <tr>
-                            <th>#</th>
-                            <th>Ảnh</th>
                             <th>Text</th>
-                            <th>Link</th>
+                            <th>Tên button 1</th>
+                            <th>Tên button 2</th>
                             <th>Thời gian</th>
                             <th>STT</th>
                             <th></th>
@@ -22,18 +21,13 @@
                         @foreach($records as $record)
                         <tr>
                             <td>
-                                <input type="checkbox" name="ids[]" value="{{$record->id}}" class="form-input-styled">
-                            </td>
-                            <td>
-                                @if($record->image)
-                                <img src="{{$record->image}}" height="50">
-                                @endif
-                            </td>
-                            <td>
                                 <a href="{{route('admin.slide.edit', $record->id)}}">{{$record->name}}</a>
                             </td>
                             <td>
-                                {{$record->url}}
+                                {{$record->button_name_1}}
+                            </td>
+                            <td>
+                                {{$record->button_name_2}}
                             </td>
                             <td class="text-center">
                                 {{date('d/m/Y',strtotime($record->created_at))}}
@@ -54,6 +48,7 @@
                 {{$records->links()}}
             </div>
             @else
+            <a class="btn mb-2 btn-success" href="{{route('admin.slide.create')}}"><i class="icon-plus-circle2"></i> Thêm mới</a>
             <div class="text-center p-5">
                 <img src="/assets/img/no-data.png" alt="" srcset="">
                 <p class="h4 mt-2 font-weight-semibold">Chưa có slide nào</p>

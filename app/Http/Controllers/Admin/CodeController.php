@@ -46,8 +46,7 @@ class CodeController extends Controller
         //
         DB::beginTransaction();
         try {
-            $code = Code::create($request->only(['name','description', 'content', 'url']));
-            $code->booker()->sync($request->booker_id);
+            $code = Code::create($request->only(['name','description', 'content', 'url','booker_id']));
             DB::commit();
             return redirect()->route('admin.code.index')->with('message', 'Thêm mới thành công');
         } catch(Exception $ex) {
@@ -90,12 +89,12 @@ class CodeController extends Controller
      */
     public function update(Request $request, Code $code)
     {
-        //
+        
+        $id = $code->id;
         DB::beginTransaction();
         try {
             $code = Code::find($id);
-            $code->update($request->only(['description', 'url', 'content']));
-            $product->booker()->sync($request->booker_id);
+            $code->update($request->only(['description', 'url', 'content','booker_id']));
             DB::commit();
             return redirect()->route('admin.code.index')->with('message', 'Cập nhật thành công');
         }catch(Exception $ex) {

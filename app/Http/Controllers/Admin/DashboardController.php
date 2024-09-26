@@ -21,7 +21,9 @@ class DashboardController extends Controller
     {
         if ($request->isMethod('post')) {
             auth()->user()->update([
-                'name' => $request->name
+                'name' => $request->name,
+                'description' => $request->description,
+                'content' => $request->content
             ]);
             return redirect()->route('admin.profile')->with('message', 'Cập nhật thành công');
         }

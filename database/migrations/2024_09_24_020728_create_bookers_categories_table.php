@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateCodesTable extends Migration
+class CreateBookersCategoriesTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,13 +13,10 @@ class CreateCodesTable extends Migration
      */
     public function up()
     {
-        Schema::create('codes', function (Blueprint $table) {
+        Schema::create('bookers_categories', function (Blueprint $table) {
             $table->id();
-            $table->string('name');
-            $table->string('description')->nullable();
-            $table->string('content')->nullable();
-            $table->text('url')->nullable();
             $table->unsignedBigInteger('booker_id')->nullable();
+            $table->unsignedBigInteger('booker_category_id')->nullable();
             $table->timestamps();
         });
     }
@@ -31,6 +28,6 @@ class CreateCodesTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('codes');
+        Schema::dropIfExists('bookers_categories');
     }
 }

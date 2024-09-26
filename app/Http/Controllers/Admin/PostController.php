@@ -71,7 +71,9 @@ class PostController extends Controller
         $categories = Category::query()->whereNull('parent_id')->orderBy('name','asc')->get();
         $record = Post::find($id);
         $document = new \DOMDocument();
+        libxml_use_internal_errors(true);
         $document->loadHTML($record->content);
+        libxml_clear_errors();
         $a = $document->getElementsByTagName('a');
         $img = $document->getElementsByTagName('img');
         $alt = 1;

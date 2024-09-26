@@ -17,8 +17,12 @@ class CreateSlidesTable extends Migration
             $table->id();
             $table->string('name')->nullable()->default(null);
             $table->string('url')->nullable()->default(null);
-            $table->string('image');
-            $table->integer('ordering');
+            $table->string('button_url_1')->nullable()->default(null);
+            $table->string('button_url_2')->nullable()->default(null);
+            $table->string('button_name_1')->nullable()->default(null);
+            $table->string('button_name_2')->nullable()->default(null);
+            $table->string('image')->nullable();
+            $table->integer('ordering')->nullable();
             $table->timestamps();
         });
     }

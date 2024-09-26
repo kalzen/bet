@@ -15,20 +15,22 @@ use App\Models\Team;
 use App\Models\Package;
 use App\Models\Booker;
 use App\Models\Code;
+use App\Models\Menu;
+use App\Models\Tip;
 use DB;
 
 class HomeController extends Controller
 {
     public function index()
     {
-        $slides = Slide::orderBy('ordering','asc')->paginate();
         $catalogues = Catalogue::orderBy('id','asc')->take(5)->get();
         $testimonials = Testimonial::All();
-        $bookers = Booker::orderBy('ordering', 'desc')->take(5)->get();
+        $bookers = Booker::orderBy('ordering', 'desc')->take(6)->get();
         $codes = Code::orderBy('id', 'desc')->take(4)->get();
         $teams = Team::All();
-        $posts = Post::latest()->withCount(['images'])->having('images_count','>',0)->active()->take(5)->get();
-        return view('home.index',['slides'=> $slides, 'posts'=>$posts, 'testimonials' => $testimonials, 'teams' => $teams, 'catalogues' => $catalogues, 'booker_hot'=>$bookers, ]);
+        $posts = Post::latest()->withCount(['images'])->having('images_count','>',0)->active()->take(6)->get();
+        $tips = Tip::all();
+        return view('home.index',[ 'posts'=>$posts, 'testimonials' => $testimonials, 'teams' => $teams, 'catalogues' => $catalogues, 'booker_hot'=>$bookers, 'codes' => $codes, 'tips' => $tips]);
     }
     public function order()
     {

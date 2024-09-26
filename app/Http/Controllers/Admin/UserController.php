@@ -48,15 +48,16 @@ class UserController extends Controller
     
     public function update(UpdateUserRequest $request, $id)
     {
+        dd( $request->all() );
         try {
             $user = User::find($id);
             if ($request->password) {
                 $request->merge([
                     'password' => bcrypt($request->password),
                 ]);
-                $user->update($request->only(['name','password','status']));
+                $user->update($request->only(['name','password','status','description','content']));
             } else {
-                $user->update($request->only(['name','status']));
+                $user->update($request->only(['name','status','description','content']));
             }
             return redirect()->route('admin.user.index')->with('message', 'Cập nhật thành công');
         }catch(Exception $ex) {

@@ -8,6 +8,7 @@ use App\Http\Controllers\Admin\PostController;
 use App\Http\Controllers\Admin\CategoryController;
 use App\Http\Controllers\Admin\ProductController;
 use App\Http\Controllers\Admin\AttributeController;
+use App\Http\Controllers\Admin\BookerCategoryController;
 use App\Http\Controllers\Admin\CatalogueController;
 use App\Http\Controllers\Admin\SettingController;
 use App\Http\Controllers\Admin\MenuController;
@@ -19,6 +20,10 @@ use App\Http\Controllers\Admin\TeamController;
 use App\Http\Controllers\Admin\BookerController;
 use App\Http\Controllers\Admin\CodeController;
 use App\Http\Controllers\Admin\TipController;
+use App\Http\Controllers\BookerController as ClientBookerController;
+use App\Http\Controllers\TipController as ClientTipController;
+use App\Http\Controllers\UserController as ClientUserController;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -35,6 +40,11 @@ Auth::routes();
 Route::get('/', [HomeController::class, 'index'])->name('index');
 Route::get('/logout', [HomeController::class, 'logout'])->name('logout');
 Route::get('/tu-van', [HomeController::class, 'advise'])->name('advise');
+Route::get('/tip', [ClientTipController::class, 'index'])->name('tip.list');
+Route::any('/booker', [ClientBookerController::class, 'index'])->name('booker.list');
+Route::any('/user/{id}', [ClientUserController::class, 'detail'])->name('user.detail');
+Route::any('/booker/{alias}', [ClientBookerController::class, 'detail'])->name('booker.detail');
+Route::get('/bookers/filter', 'BookerController@filter')->name('bookers.filter');
 Route::any('/gioi-thieu', [HomeController::class, 'about'])->name('about');
 Route::get('/home', [HomeController::class, 'index'])->name('home');
 Route::any('/lien-he', [HomeController::class, 'contact'])->name('contact');
@@ -70,6 +80,8 @@ Route::middleware(['auth'])->name('admin.')->prefix('admin')->group(function () 
     Route::resource('order', OrderController::class);
     //Category
     Route::resource('category', CategoryController::class);
+    //Booker Category
+    Route::resource('booker_category', BookerCategoryController::class);
     //Catalogue
     Route::resource('catalogue', CatalogueController::class);
     //Attribute
@@ -92,6 +104,9 @@ Route::middleware(['auth'])->name('admin.')->prefix('admin')->group(function () 
     Route::resource('attribute', AttributeController::class);
     Route::prefix('post')->name('post.')->group(function () {
         Route::post('category', [PostController::class, 'category'])->name('category');
+    });
+    Route::prefix('booker')->name('booker.')->group(function () {
+        Route::post('category', [BookerController::class, 'category'])->name('category');
     });
     //Product
     Route::post('update_formula', [ProductController::class, 'updateFormula'])->name('product.updateFormula');
