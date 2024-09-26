@@ -36,9 +36,10 @@
                                 <div class="row g-0 align-items-center justify-content-evenly ps-3 py-0">
                                     <div class="col-md-1 col-2 px-0">
                                         <div class="image-container">
-                                            <img src="https://betting.com/wp-content/uploads/draftkings-logo-360x189.webp"
+                                            <img src="{{ $booker->image }}"
                                                 class="rounded-circle" alt="Card image"
-                                                style="max-width: 50px; height: 50px;">
+                                                style="max-width: 50px; height: 50px;"
+                                                style="object-fit: cover; object-position: center;">
                                         </div>
                                     </div>
                                     <div class="col-md-7 col-7">

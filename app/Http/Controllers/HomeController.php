@@ -25,7 +25,7 @@ class HomeController extends Controller
     {
         $catalogues = Catalogue::orderBy('id','asc')->take(5)->get();
         $testimonials = Testimonial::All();
-        $bookers = Booker::orderBy('ordering', 'desc')->take(5)->get();
+        $bookers = Booker::orderBy('ordering', 'desc')->take(6)->get();
         $codes = Code::orderBy('id', 'desc')->take(4)->get();
         $teams = Team::All();
         $posts = Post::latest()->withCount(['images'])->having('images_count','>',0)->active()->take(6)->get();
