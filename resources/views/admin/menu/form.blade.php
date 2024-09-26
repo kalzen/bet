@@ -55,16 +55,27 @@
 				</div>
             </div>
             @if(isset($record) && $record->children->count() == 0)
-            <div class="sidebar sidebar-light bg-transparent sidebar-component sidebar-component-right wmin-300 border-0 shadow-0 order-1 order-md-2 sidebar-expand-md">
-                <div class="sidebar-content">
-                    <div class="card">
-                        <div class="card-body">
-                            <label>MENU lớn</label>
-                            @include('admin.shared.select-parent-category',['selected' => (isset($record) ? $record->parent_id : null)])
+                <div class="sidebar sidebar-light bg-transparent sidebar-component sidebar-component-right wmin-300 border-0 shadow-0 order-1 order-md-2 sidebar-expand-md">
+                    <div class="sidebar-content">
+                        <div class="card">
+                            <div class="card-body">
+                                <label>MENU lớn</label>
+                                @include('admin.shared.select-parent-category',['selected' => (isset($record) ? $record->parent_id : null)])
+                            </div>
                         </div>
                     </div>
                 </div>
-            </div>
+            @elseif (!isset($record))
+                <div class="sidebar sidebar-light bg-transparent sidebar-component sidebar-component-right wmin-300 border-0 shadow-0 order-1 order-md-2 sidebar-expand-md">
+                    <div class="sidebar-content">
+                        <div class="card">
+                            <div class="card-body">
+                                <label>MENU lớn</label>
+                                @include('admin.shared.select-parent-category',['selected' => (isset($record) ? $record->parent_id : null)])
+                            </div>
+                        </div>
+                    </div>
+                </div>
             @endif
             <div class="sidebar sidebar-light bg-transparent sidebar-component sidebar-component-right wmin-300 border-0 shadow-0 order-1 order-md-2 sidebar-expand-md">
                 <div class="sidebar-content">
