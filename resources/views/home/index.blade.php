@@ -695,4 +695,11 @@
         </div>
     </div> --}}
 <!-- testimonial end -->
+<style>
+    @media (max-width: 992px) {
+        #cardContainer {
+            padding-top: 0px !important;
+            margin-left: 0px !important;
+        }
+    }</style>
 @endsection
