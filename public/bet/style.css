@@ -305,6 +305,12 @@ body.modal-open {
     line-height: 46px;
   }
 }
+@media (max-width: 992px) {
+  #cardContainer{
+    padding-top: 0px !important;
+    margin-left: 0px !important;
+}
+}
 @media (max-width: 575.98px) {
   .section-title.if-lines-break h2.title {
     font-size: 28px;

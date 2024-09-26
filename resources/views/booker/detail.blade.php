@@ -4,14 +4,29 @@
 <title>TOP BOOKER LIST</title>
 @endsection
 @section('content')
-<section class="inner-section single-banner">
-        <div class="container">
-            <h1 class="text-white">Chi tiết trang</h1>
-            <ol class="breadcrumb">
-                <li class="breadcrumb-item"><a href="/">Trang chủ</a></li>
-                <li class="breadcrumb-item active" aria-current="page">Chi tiết trang</li>
-            </ol>
+<div class="prd-breadcrumb">
+    <div class="container">
+        <div class="brd-content">
+            {{-- <div data-aos="fade-up" data-aos-delay="200" data-aos-duration="500" data-aos-easing="ease-in" class="aos-init aos-animate">
+                <span class="sub-title">blog details</span>
+            </div>    
+            <h2 class="title aos-init aos-animate" data-aos="fade-up" data-aos-delay="350" data-aos-duration="500" data-aos-easing="ease-in">Even more and setted see small seven to think...</h2> --}}
+            <div class="page-direction">
+                <ul>
+                    <li>
+                        <span class="icon"><i class="fa-solid fa-house"></i></span>
+                        <span class="text">Home</span>
+                    </li>
+                    <li>
+                        <span class="icon"><i class="fa-light fa-caret-right fa-xl"></i></span>
+                        <span class="text">Bookmaker details</span>
+                    </li>
+                </ul>
+            </div>
         </div>
+    </div>
+</div>
+<section class="inner-section single-banner">
     </section>
     <div class="section-title" data-aos="fade-up" data-aos-delay="100" data-aos-duration="500"
         data-aos-easing="ease-in">
@@ -22,9 +37,9 @@
         <div class="container">
             <div class="row justify-content-center">
                 <div class="col-md-4">
-                    <div class="card rounded-3 shadow-lg">
+                    <div class="card shadow-lg" style="border-radius: 20px">
                         <div class="text-center mb-3">
-                            <img src="{{$booker->image}}" alt="{{ $booker->name }}" class="img-fluid rounded-3 pt-3" style="max-width: 200px">
+                            <img src="{{$booker->image}}" alt="{{ $booker->name }}" class="img-fluid pt-3" style="max-width: 200px; border-radius: 20px" onerror="this.onerror=null; this.src='https://via.placeholder.com/400x300';">
                         </div>
                         <div class="card-body">
                             <h5 class="card-title">{{ $booker->name }}</h5>
@@ -43,7 +58,7 @@
     
                 <div class="col-md-8">
                     <h2 class="mb-4 mt-1">Thông tin về nhà cái</h2>
-                    <div class="card rounded-3 shadow-lg">
+                    <div class="card shadow-lg" style="border-radius: 20px">
                         <div class="card-body">
                             <h5 class="card-title">Giới thiệu</h5>
                             <p class="card-text">
@@ -51,7 +66,7 @@
                             </p>
                         </div>
                     </div>
-                    <div class="card mt-4 rounded-3 shadow-lg">
+                    <div class="card mt-4 shadow-lg" style="border-radius: 20px">
                         <div class="card-body">
                             <h5 class="card-title">Thông tin thêm:</h5>
                             <ul class="list-group list-group-flush">

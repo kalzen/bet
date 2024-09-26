@@ -5,7 +5,9 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Post;
 use App\Models\Category;
+use App\Models\Tag;
 use DB;
+use Illuminate\Support\Facades\DB as FacadesDB;
 
 class PostController extends Controller
 {
@@ -14,12 +16,13 @@ class PostController extends Controller
         $categories = Category::orderBy('name','asc')->get();
         $featured_posts = Post::active()->orderBy('viewed','desc')->paginate();
         $posts = Post::active()->paginate();
-        return view('post.index',compact('categories','posts','featured_posts'));
+        $tags = Tag::all();
+        return view('post.index', compact('categories', 'posts', 'featured_posts', 'tags'));
     }
     public function detail($alias)
     {
         $post = Post::active()->where('slug',$alias)->firstOrFail();
-        DB::table('posts')->where('id',$post->id)->increment('viewed');
+        FacadesDB::table('posts')->where('id',$post->id)->increment('viewed');
         $categories = Category::orderBy('name','asc')->whereNull('parent_id')->get();
         $most_view = Post::active()->orderBy('id','desc')->limit(5)->get();
         return view('post.detail',compact('post', 'categories', 'most_view'));
@@ -27,6 +30,7 @@ class PostController extends Controller
     public function category($alias)
     {
         $categories = Category::orderBy('name','asc')->get();
+        $tags = Tag::all();
         $category = Category::where('slug',$alias)->firstOrFail();
         if ($category->parent_id != '0')
         {
@@ -34,7 +38,7 @@ class PostController extends Controller
         }
         $posts = $category->posts()->active()->orderBy('id','desc')->paginate();
         $featured_posts = Post::active()->orderBy('id','desc')->paginate();
-        return view('post.index',compact('category','posts','categories','featured_posts', 'category_parent'));
+        return view('post.index',compact('category','posts','categories','featured_posts', 'category_parent' , 'tags'));
     }
     public function search()
     {

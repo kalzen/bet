@@ -15,7 +15,7 @@
 
 
 <div class="header animated">
-    <div class="top-bar topbar-transparent">
+    <div class="top-bar topbar-transparent" style="background: #161D35!important;">
         <div class="container">
             <div class="row justify-content-between">
                 <div class="col-xl-5 col-lg-5 col-md-7">
@@ -157,64 +157,3 @@
     </div>
 </div>
 <!-- header end -->
-
-<!-- banner begin -->
-<div class="banner-7">
-    <div class="container">
-        <div
-            class="row justify-content-xxl-between justify-content-xl-between justify-content-lg-between justify-content-md-center">
-            <div
-                class="col-xxl-5 col-xl-5 col-lg-5 col-md-8 d-xl-block d-lg-block d-md-flex d-block align-items-center">
-                <div class="banner-content">
-                    <h1 class="title" data-aos="fade-up" data-aos-delay="150" data-aos-duration="500"
-                        data-aos-easing="ease-in">
-                        <span> {{ ($slides->count() > 0) ? $slides[0]->name : 'Welcome!' }}</span>
-                    </h1>
-                    <div class="all-btn" data-aos="fade-up" data-aos-delay="300" data-aos-duration="500"
-                        data-aos-easing="ease-in">
-                        <a class='prd-btn-1' href='{{ ($slides->count() > 0) ? $slides[0]->button_url_1 :"/" }}'>{{ ($slides->count() > 0) ? $slides[0]->button_name_1 : 'Link 1' }}<i
-                                class="fa-duotone fa-arrow-right"></i></a>
-                        <a class='prd-btn-3' href='{{ ($slides->count() > 0) ? $slides[0]->button_url_2 :"/" }}'>{{ ($slides->count() > 0) ? $slides[0]->button_name_2 : 'Link 2' }}<i class="fa-duotone fa-arrow-right"></i></a>
-                    </div>
-                </div>
-            </div>
-            <div class="col-xxl-5 col-xl-6 col-lg-6 col-md-12">
-                <div class="part-img">
-                    <img src="{{ asset('bet/img-shape-7.png') }}" alt="" class="shape-img">
-                    <div class="glitch activate glitch--style-1 img-1">
-                        <div class="glitch__img"></div>
-                        <div class="glitch__img"></div>
-                        <div class="glitch__img"></div>
-                        <div class="glitch__img"></div>
-                        <div class="glitch__img"></div>
-                    </div>
-                    <div class="glitch activate glitch--style-1 img-2">
-                        <div class="glitch__img"></div>
-                        <div class="glitch__img"></div>
-                        <div class="glitch__img"></div>
-                        <div class="glitch__img"></div>
-                        <div class="glitch__img"></div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-    <div class="shape-1 banner-shape"></div>
-    <div class="shape-2 banner-shape"></div>
-</div>
-<!-- banner end -->
-
-<!-- scroll down button begin -->
-<div class="scroll-down">
-    <div class="container">
-        <a href="#0" class="scroll-down-btn">
-            <span class="straight-line"></span>
-            <span class="arrow-icon">
-                <i class="fa-light fa-angle-down"></i>
-                <i class="fa-light fa-angle-down"></i>
-                <i class="fa-light fa-angle-down"></i>
-            </span>
-        </a>
-    </div>
-</div>
-<!-- scroll down button end -->

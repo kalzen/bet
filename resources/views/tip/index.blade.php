@@ -1,5 +1,27 @@
 @extends('layouts.master')
 @section('content')
+<div class="prd-breadcrumb">
+    <div class="container">
+        <div class="brd-content">
+            {{-- <div data-aos="fade-up" data-aos-delay="200" data-aos-duration="500" data-aos-easing="ease-in" class="aos-init aos-animate">
+                <span class="sub-title">blog details</span>
+            </div>    
+            <h2 class="title aos-init aos-animate" data-aos="fade-up" data-aos-delay="350" data-aos-duration="500" data-aos-easing="ease-in">Even more and setted see small seven to think...</h2> --}}
+            <div class="page-direction">
+                <ul>
+                    <li>
+                        <span class="icon"><i class="fa-solid fa-house"></i></span>
+                        <span class="text">Home</span>
+                    </li>
+                    <li>
+                        <span class="icon"><i class="fa-light fa-caret-right fa-xl"></i></span>
+                        <span class="text">Tips</span>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
     <section class="inner-section blog-standard">
         <div class="container-fluid mt-5">
             <div class="row">

@@ -2,6 +2,7 @@
 
 namespace App\Providers;
 
+use App\Models\Booker;
 use Illuminate\Support\ServiceProvider;
 use Illuminate\Support\Facades\Schema;
 use Illuminate\Pagination\Paginator;
@@ -53,6 +54,7 @@ class AppServiceProvider extends ServiceProvider
         View::composer(['home.*', 'layouts.*'], function ($view) {
             View::share('shared_nav_links', Menu::all());
             View::share('slides', Slide::orderBy('ordering','asc')->get());
+            View::share('shared_bookers', Booker::take(4)->get());
         });
 
     }
