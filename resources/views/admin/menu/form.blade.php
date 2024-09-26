@@ -19,16 +19,21 @@
                             <label id="name-error" class="validation-invalid-label" for="name">{{$message}}</label>
                             @enderror
                         </div>
-
-                        <div class="form-group">
+                        <div class="form-group
+                            @if(isset($record) && $record->children->count() > 0) d-none
+                            @endif
+                        ">
                             <label class="font-weight-semibold">Link</label>
                             <input type="text" class="form-control" id="url" name="url" value="{{ old('url') ?: ($record->url ?? '') }}">
                             @error('url')
                             <label id="url-error" class="validation-invalid-label" for="url">{{$message}}</label>
                             @enderror
                         </div>
-
-                        <div class="form-group">
+                        @if(isset($record) && $record->children->count() > 0)
+                        {{-- @dd($record->children); --}}
+                            <label id="url-error" class="validation-invalid-label" for="url">Đây là menu lớn và sẽ không cần đường link</label>
+                        @endif
+                        {{-- <div class="form-group">
                             <label class="font-weight-semibold">Ảnh </label>
                             <input type="file" class="form-control-file" data-key="image" data-fouc>
                             @if(old('image'))
@@ -41,7 +46,7 @@
                             <input type="hidden" name="image" value="" id="image">
                             <img class="mt-2" id="image_preview" style="display:none;" height="100"/>
                             @endif
-                        </div>
+                        </div> --}}
 
                         <div class="text-right">
                             <button type="submit" class="btn btn-primary">Lưu <i class="icon-paperplane ml-2"></i></button>
@@ -49,13 +54,25 @@
                     </div>
 				</div>
             </div>
+            @if(isset($record) && $record->children->count() == 0)
+            <div class="sidebar sidebar-light bg-transparent sidebar-component sidebar-component-right wmin-300 border-0 shadow-0 order-1 order-md-2 sidebar-expand-md">
+                <div class="sidebar-content">
+                    <div class="card">
+                        <div class="card-body">
+                            <label>MENU lớn</label>
+                            @include('admin.shared.select-parent-category',['selected' => (isset($record) ? $record->parent_id : null)])
+                        </div>
+                    </div>
+                </div>
+            </div>
+            @endif
             <div class="sidebar sidebar-light bg-transparent sidebar-component sidebar-component-right wmin-300 border-0 shadow-0 order-1 order-md-2 sidebar-expand-md">
                 <div class="sidebar-content">
                     <div class="card">
                         <div class="card-body">
                             <div class="form-group">
                                 <label class="font-weight-semibold">Thứ tự</label>
-                                <input type="text" class="form-control mask-decimal" value="{{old('ordering')?:($record->ordering??'')}}" name="ordering">
+                                <input required type="text" class="form-control mask-decimal" value="{{old('ordering')?:($record->ordering??'')}}" name="ordering">
                             </div>
                         </div>
                     </div>

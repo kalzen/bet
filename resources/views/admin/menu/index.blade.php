@@ -10,8 +10,8 @@
                     <thead>
                         <tr>
                             <th>#</th>
-                            <th>Ảnh</th>
                             <th>Text</th>
+                            <th>MENU Lớn</th>
                             <th>Link</th>
                             <th>Thời gian</th>
                             <th>STT</th>
@@ -25,12 +25,10 @@
                                 <input type="checkbox" name="ids[]" value="{{$record->id}}" class="form-input-styled">
                             </td>
                             <td>
-                                @if($record->image)
-                                <img src="{{$record->image}}" height="50">
-                                @endif
+                                <a href="{{route('admin.menu.edit', $record->id)}}">{{$record->name}} @if($record->parent) (MENU con) @endif</a>
                             </td>
                             <td>
-                                <a href="{{route('admin.menu.edit', $record->id)}}">{{$record->name}}</a>
+                                {{$record->parent->name??''}}
                             </td>
                             <td>
                                 {{$record->url}}
