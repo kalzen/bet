@@ -125,29 +125,10 @@
                                 <h5 class="fw-bold">{{ $booker->name }}</h5>
                                 <small class="text-muted mb-0">{{ $booker->description }}</small>
                             </div>
-
-                            <!-- Features list section -->
-                            <ul class="list-unstyled mb-4 text-center">
-                                @foreach (explode(',', $booker->sale_text) as $sale_text)
-                                    <li class="d-flex justify-content-center align-items-center">
-                                        <svg xmlns="http://www.w3.org/2000/svg" x="0px" y="0px" width="30"
-                                            height="30" viewBox="0,0,300,270" style="fill:#40C057;">
-                                            <g fill="#40c057" fill-rule="nonzero" stroke="none" stroke-width="1"
-                                                stroke-linecap="butt" stroke-linejoin="miter" stroke-miterlimit="10"
-                                                stroke-dasharray="" stroke-dashoffset="0" font-family="none"
-                                                font-weight="none" font-size="none" text-anchor="none"
-                                                style="mix-blend-mode: normal">
-                                                <g transform="scale(10.66667,10.66667)">
-                                                    <path
-                                                        d="M12,2c-5.50804,0 -10,4.49196 -10,10c0,5.50804 4.49196,10 10,10c5.50804,0 10,-4.49196 10,-10c0,-5.50804 -4.49196,-10 -10,-10zM12,4.5c4.15695,0 7.5,3.34306 7.5,7.5c0,4.15694 -3.34305,7.5 -7.5,7.5c-4.15695,0 -7.5,-3.34306 -7.5,-7.5c0,-4.15694 3.34305,-7.5 7.5,-7.5zM15.22461,9.23828c-0.32482,0.00981 -0.63305,0.14571 -0.85937,0.37891l-3.36523,3.36328l-0.87891,-0.87695c-0.31352,-0.32654 -0.77908,-0.45808 -1.21713,-0.34388c-0.43805,0.1142 -0.78013,0.45628 -0.89433,0.89433c-0.1142,0.43805 0.01734,0.9036 0.34388,1.21713l1.76172,1.76367c0.23451,0.23493 0.55282,0.36695 0.88477,0.36695c0.33194,0 0.65026,-0.13202 0.88477,-0.36695l4.24805,-4.25c0.37007,-0.35931 0.48147,-0.90902 0.28048,-1.38405c-0.20099,-0.47503 -0.67311,-0.77785 -1.18868,-0.76243z">
-                                                    </path>
-                                                </g>
-                                            </g>
-                                        </svg>
-                                        {{ $sale_text }}
-                                    </li>
-                                @endforeach
-                            </ul>
+                            <div class="border rounded-3 p-2 d-flex justify-content-center align-items-center">
+                                <span class="me-2">Code:</span>
+                                <strong>{{ isset($booker->codes) && $booker->codes->isNotEmpty() ? $booker->codes->first()->name : 'Không' }}</strong>
+                            </div>
                             <div class="d-flex gap-2 justify-content-center align-items-center mt-3">
                                 <a href="{{ route('booker.detail', $booker->id) }}" class="prd-btn-1 d-flex">
                                     Chi tiết <i class="fa-duotone fa-arrow-right"></i>
@@ -160,31 +141,6 @@
                     </div>
                 @endforeach
             </div>
-                                {{-- @foreach($hot_bookers as $booker)
-                                    <div class="card card-scroll m-4 mb-5 border-0 shadow-lg" style="width: 300px; border-radius: 20px">
-                                        <img src="{{ $booker->image }}" class="card-img-top" alt="{{ $booker->name }}" style="max-height: 90px; object-fit: scale-down;">
-                                        <div class="card-body">
-                                            <div class="text-center">
-                                                @foreach ($booker->categories as $category)
-                                                    <span class="badge bg-success">{{ $category->name }}</span>
-                                                @endforeach
-                                                <h5 class="card-title">{{ $booker->name }}</h5>
-                                                <p class="card-text" style="word-wrap: break-word; overflow-wrap: break-word; max-width: 100px;">{{ $booker->description }}</p>
-                                            </div>
-                                            <div class="border rounded p-2 text-center">
-                                                <span>Code:</span>
-                                                <strong>{{ isset($booker->codes) && $booker->codes->isNotEmpty() ? $booker->codes->first()->name : 'Không' }}</strong>
-                                            </div>
-                                            
-                                            <div class="d-flex gap-2 justify-content-center align-items-center mt-3">
-                                                <a href="{{ route('booker.detail', $booker->id) }}" class="prd-btn-1 d-flex">
-                                                    Chi tiết <i class="fa-duotone fa-arrow-right"></i>
-                                                </a>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    
-                                @endforeach --}}
                             </div>
                         </div>
                     </div>
@@ -232,7 +188,7 @@
                                             <div class="col-12 col-md-3 text-center mt-3 mt-md-0">
                                                 {{-- <p><strong>Payout Speed</strong></p> --}}
                                                 {{-- <p>Up to 3 days</p> --}}
-                                                <div class="border rounded p-2">
+                                                <div class="border rounded-3 p-2">
                                                     <span>Code:</span>
                                                     <strong>{{ isset($booker->codes) && $booker->codes->isNotEmpty() ? $booker->codes->first()->name : 'Không' }}</strong>
                                                 </div>
