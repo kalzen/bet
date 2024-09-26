@@ -97,7 +97,7 @@
                     <div class="row top-hot-bookers">
                         <div class="col">
                             @if ($hot_bookers->count() > 0)
-                            <div class="section-title aos-init" data-aos="fade-up" data-aos-delay="100" data-aos-duration="500"
+                            <div class="section-title aos-init mb-1" data-aos="fade-up" data-aos-delay="100" data-aos-duration="500"
                             data-aos-easing="ease-in">
                             <h3 class="sub-title pt-2">HOT</h3>
                             <h2 class="title">Trang Nổi Bật</h2>
@@ -106,7 +106,7 @@
                             <div class="scrolling-wrapper" id="hotBookersScroll">
                                 <div class="row">
                 @foreach ($hot_bookers as $booker)
-                    <div class="col container col-md-4 col-12">
+                    <div class="col container col-md-4 col-12 pt-3">
                         <div class="card shadow-lg p-3 mb-4 border-0" style="position: relative; border-radius: 20px;">
                             <!-- Circle number -->
                             <div class="position-absolute top-30 start-30  bg-danger rounded-circle"
