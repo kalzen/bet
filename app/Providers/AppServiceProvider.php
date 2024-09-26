@@ -52,7 +52,7 @@ class AppServiceProvider extends ServiceProvider
             
         });
         View::composer(['home.*', 'layouts.*'], function ($view) {
-            View::share('shared_nav_links', Menu::all());
+            View::share('shared_nav_links', Menu::whereNull('parent_id')->with('children')->get());
             View::share('slides', Slide::orderBy('ordering','asc')->get());
             View::share('shared_bookers', Booker::take(5)->get());
         });
