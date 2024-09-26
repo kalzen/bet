@@ -22,14 +22,24 @@ class MenuController extends Controller
     
     public function create()
     {
-        return view('admin.menu.form');
+        $categories = Menu::query()->whereNull('parent_id')->orderBy('name','asc')->paginate();
+        return view('admin.menu.form',compact('categories'));
     }
     
     public function store(SubmitMenuRequest $request)
     {
+        // dd($request->all());
+        $validator = Validator::make($request->all(), [
+            'name' => 'required|max:255',
+            'parent_id' => 'nullable|integer',
+            'ordering' => 'required|integer',
+        ]);
+        if ($validator->fails()) {
+            return back()->withInput();
+        }
         DB::beginTransaction();
         try {
-            $menu = Menu::create($request->only(['name','url','image','ordering']));
+            $menu = Menu::create($request->only(['name','url','image','ordering','parent_id']));
             DB::commit();
             return redirect()->route('admin.menu.index')->with('message', 'Thêm mới thành công');
         } catch(Exception $ex) {
@@ -46,7 +56,8 @@ class MenuController extends Controller
     public function edit($id)
     {
         $record = Menu::find($id);
-        return view('admin.menu.form',compact('record'));
+        $categories = Menu::query()->whereNull('parent_id')->orderBy('name','asc')->paginate();
+        return view('admin.menu.form',compact('record','categories'));
     }
     
     public function update(SubmitMenuRequest $request, $id)
@@ -54,7 +65,7 @@ class MenuController extends Controller
         DB::beginTransaction();
         try {
             $menu = Menu::find($id);
-            $menu->update($request->only(['name','url','image','ordering']));
+            $menu->update($request->only(['name','url','image','ordering','parent_id']));
             DB::commit();
             return redirect()->route('admin.menu.index')->with('message', 'Cập nhật thành công');
         }catch(Exception $ex) {
