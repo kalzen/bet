@@ -82,7 +82,7 @@
                                 <div class="single-blog @if ($flip) right-side-img @endif">
                                     @if (!$flip)
                                         <div class="part-img">
-                                            <img src="{{ $posts[0]->images->first()->url ?? 'https://via.placeholder.com/400x300' }}"
+                                            <img src="{{ $post->images->first()->url ?? 'https://via.placeholder.com/400x300' }}"
                                                 alt="{{ $post->title }}"
                                                 onerror="this.onerror=null; this.src='https://via.placeholder.com/400x300';">
                                         </div>
@@ -92,7 +92,7 @@
                                         <h3 class="blog-post-title">
                                             <a href="{{ route('post.detail', ['alias' => $post->slug]) }}"> {{ $loop->index + 1 }}</a>
                                         </h3>
-                                        <p>{{ $post->description }}</p>
+                                            <p>{{ Str::limit($post->description, 100) }}</p>
                                         <div class="post-info-stats">
                                             <a href="{{ route('user.detail', ['id' => $post->user->id]) }}" class="post-creator">
                                                 <div class="creator-pic">
@@ -105,7 +105,7 @@
                                     </div>
                                     @if ($flip)
                                         <div class="part-img">
-                                            <img src="{{ $posts[0]->images->first()->url ?? 'https://via.placeholder.com/400x300' }}"
+                                            <img src="{{ $post->images->first()->url ?? 'https://via.placeholder.com/400x300' }}"
                                                 alt="{{ $post->title }}"
                                                 onerror="this.onerror=null; this.src='https://via.placeholder.com/400x300';">
                                         </div>
@@ -123,7 +123,7 @@
                                 data-aos-delay="100" data-aos-duration="500" data-aos-easing="ease-in">
                                 <div class="single-blog vertical-style">
                                     <div class="part-img">
-                                        <img src="{{ $posts[0]->images->first()->url ?? 'https://via.placeholder.com/400x300' }}"
+                                        <img src="{{ $post->images->first()->url ?? 'https://via.placeholder.com/400x300' }}"
                                                 alt="{{ $post->title }}"
                                                 onerror="this.onerror=null; this.src='https://via.placeholder.com/400x300';">
                                     </div>
@@ -132,7 +132,7 @@
                                         <h3 class="blog-post-title">
                                             <a href="{{ $post->url }}">{{ $post->title }}</a>
                                         </h3>
-                                        <p>{{ $post->description }}</p>
+                                        <p>{{ Str::limit($post->description, 100) }}</p>
                                         <div class="post-info-stats">
                                             <a href="{{ route('user.detail', ['id' => $post->user->id]) }}"
                                                 class="post-creator">
