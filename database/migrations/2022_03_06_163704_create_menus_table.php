@@ -19,6 +19,7 @@ class CreateMenusTable extends Migration
             $table->string('url')->nullable()->default(null);
             $table->string('image')->nullable()->default(null);
             $table->integer('ordering')->default(0);
+            $table->unsignedInteger('parent_id')->nullable()->default(null);
             $table->timestamps();
         });
     }
