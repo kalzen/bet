@@ -196,17 +196,14 @@
                                         <?php
                                         if (count($posts) > 0): 
                                             for ($i = 0; $i < count($posts); $i += 2): ?>
-                                        <div class="owl-item cloned" style="width: 329.328px;">
+                                        <div class="owl-item" style="width: 329.328px;">
                                             <div class="recent-posts">
 
                                                 <!-- First post -->
                                                 <?php if (isset($posts[$i])): 
                                                             $post1 = $posts[$i]; ?>
                                                 <div class="single-recent-post">
-                                                    <div class="part-img">
-                                                        <img src="<?= $post1->images->first()->url ?? 'https://via.placeholder.com/400x300' ?>"
-                                                            alt="<?= $post1->title ?>">
-                                                    </div>
+                                                    
                                                     <div class="part-text">
                                                         <h5 class="post-title">
                                                             <a href="<?= $post1->url ?>"><?= $post1->title ?></a>
@@ -229,10 +226,7 @@
                                                 <?php if (isset($posts[$i + 1])): 
                                                             $post2 = $posts[$i + 1]; ?>
                                                 <div class="single-recent-post">
-                                                    <div class="part-img">
-                                                        <img src="<?= $post2->images->first()->url ?? 'https://via.placeholder.com/400x300' ?>"
-                                                            alt="<?= $post2->title ?>">
-                                                    </div>
+                                                    
                                                     <div class="part-text">
                                                         <h5 class="post-title">
                                                             <a href="<?= $post2->url ?>"><?= $post2->title ?></a>
