@@ -82,7 +82,7 @@
                                 <div class="single-blog @if ($flip) right-side-img @endif">
                                     @if (!$flip)
                                         <div class="part-img">
-                                            <img src="{{ $post->images->first()->url ?? 'https://via.placeholder.com/400x300' }}"
+                                            <img class="img-fluid h-100 w-100 rounded-3" style="object-fit: cover; object-position: center;" src="{{ $post->images->first()->url ?? 'https://via.placeholder.com/400x300' }}"
                                                 alt="{{ $post->title }}"
                                                 onerror="this.onerror=null; this.src='https://via.placeholder.com/400x300';">
                                         </div>
@@ -105,7 +105,7 @@
                                     </div>
                                     @if ($flip)
                                         <div class="part-img">
-                                            <img src="{{ $post->images->first()->url ?? 'https://via.placeholder.com/400x300' }}"
+                                            <img class="img-fluid h-100 w-100 rounded-3" style="object-fit: cover; object-position: center;" src="{{ $post->images->first()->url ?? 'https://via.placeholder.com/400x300' }}"
                                                 alt="{{ $post->title }}"
                                                 onerror="this.onerror=null; this.src='https://via.placeholder.com/400x300';">
                                         </div>
@@ -123,7 +123,7 @@
                                 data-aos-delay="100" data-aos-duration="500" data-aos-easing="ease-in">
                                 <div class="single-blog vertical-style">
                                     <div class="part-img">
-                                        <img src="{{ $post->images->first()->url ?? 'https://via.placeholder.com/400x300' }}"
+                                        <img class="img-fluid h-100 w-100 rounded-3" style="object-fit: cover; object-position: center;" src="{{ $post->images->first()->url ?? 'https://via.placeholder.com/400x300' }}"
                                                 alt="{{ $post->title }}"
                                                 onerror="this.onerror=null; this.src='https://via.placeholder.com/400x300';">
                                     </div>
