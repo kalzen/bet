@@ -26,7 +26,7 @@
                 <div class="col-xxl-5 col-xl-6 col-lg-6 col-md-12">
 
                     <div class="container col-md-12" id="cardContainer"
-                        style="z-index: 10;padding-top: 150px;margin-left: 50px">
+                        style="z-index: 10;padding-top: 180px;margin-left: 50px">
                         @foreach ($shared_bookers as $booker)
                             <div class="card mb-3" style="border-radius: 20px">
                                 <div class="position-absolute top-0 start-0 translate-middle bg-warning rounded-circle d-flex align-items-center justify-content-center text-dark fw-bold fs-6 shadow"
@@ -114,25 +114,21 @@
                 @foreach ($booker_hot as $booker)
                     <div class="col container col-md-4 col-12">
                         <div class="card shadow-lg p-3 mb-4 border-0" style="position: relative; border-radius: 20px;">
-                            <!-- Circle number -->
                             <div class="position-absolute top-30 start-30  bg-danger rounded-circle"
                                 style="width: 60px; height: 60px; line-height: 60px; text-align: center; color: white; font-weight: bold; font-size: 30px">
                                 {{ $loop->iteration }}
                             </div>
 
-                            <!-- Image section -->
                             <div class="text-center mb-3">
                                 <img src="{{ $booker->image }}" alt="Logo" class="img-fluid rounded-3"
                                     onerror="this.onerror=null; this.src='https://via.placeholder.com/400x300';">
                             </div>
 
-                            <!-- Title section -->
                             <div class="text-center mb-3">
                                 <h5 class="fw-bold">{{ $booker->name }}</h5>
                                 <p class="text-warning mb-0">★ ★ ★ ★ ★</p>
                             </div>
 
-                            <!-- Features list section -->
                             <ul class="list-unstyled mb-4 text-center">
                                 @foreach (explode(',', $booker->sale_text) as $sale_text)
                                     <li class="d-flex justify-content-center align-items-center">
