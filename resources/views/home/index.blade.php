@@ -6,11 +6,11 @@
         <div class="container">
             <div
                 class="row justify-content-xxl-between justify-content-xl-between justify-content-lg-between justify-content-md-center">
-                <div class="col-xxl-5 col-xl-5 col-lg-5 col-md-8 d-xl-block d-lg-block d-md-flex d-block align-items-center">
+                <div class="col-xxl-5 col-xl-5 col-lg-5 col-md-8 d-xl-block d-lg-block d-md-flex d-block align-items-center banner-wrapper">
                     <div class="banner-content">
                         <h1 class="title" data-aos="fade-up" data-aos-delay="150" data-aos-duration="500"
                             data-aos-easing="ease-in">
-                            <span> {{ $slides->count() > 0 ? $slides[0]->name : 'Welcome!' }}</span>
+                            <span class="banner-text"> {{ $slides->count() > 0 ? $slides[0]->name : 'Welcome!' }}</span>
                         </h1>
                         <div class="all-btn" data-aos="fade-up" data-aos-delay="300" data-aos-duration="500"
                             data-aos-easing="ease-in">
@@ -23,10 +23,9 @@
                         </div>
                     </div>
                 </div>
-                <div class="col-xxl-5 col-xl-6 col-lg-6 col-md-12">
+                <div class="col-xxl-5 col-xl-6 col-lg-6 col-md-12 card-wrapper">
 
-                    <div class="container col-md-12" id="cardContainer"
-                        style="z-index: 10;padding-top: 200px;margin-left: 50px">
+                    <div class="container col-md-12" id="cardContainer">
                         @foreach ($shared_bookers as $booker)
                             <div class="card mb-3" style="border-radius: 20px">
                                 <div class="position-absolute top-0 start-0 translate-middle bg-warning rounded-circle d-flex align-items-center justify-content-center text-dark fw-bold fs-6 shadow"
@@ -36,15 +35,16 @@
                                 <div class="row g-0 align-items-center justify-content-evenly ps-3 py-0">
                                     <div class="col-md-1 col-2 px-0">
                                         <div class="image-container">
-                                            <img src="{{ $booker->image }}"
+                                            <div class="booker_mini_avt" style="{{ 'background-image: url(' . $booker->image . ')' }}"></div>
+                                            {{-- <img src="{{ $booker->image }}"
                                                 class="rounded-circle" alt="Card image"
                                                 style="max-width: 50px; height: 50px;"
-                                                style="object-fit: cover; object-position: center;">
+                                                style="object-fit: cover; object-position: center;"> --}}
                                         </div>
                                     </div>
                                     <div class="col-md-7 col-7">
                                         <div class="card-body py-1 pl-2">
-                                            <small class="card-text text-muted m-0">{{ $booker->name }}</small>
+                                            <small class="card-text text-muted m-0 fw-bold">{{ $booker->name }}</small>
                                             <p class="card-title p-0 m-0 font-weight-bold" style="font-size: 0.9em;">
                                                 {{ $booker->description }}</p>
                                             {{-- <small class="card-text text-muted m-0">This is a sample card text content.</small> --}}
@@ -64,7 +64,7 @@
 
                     <div class="part-img position-absolute top-0 w-100 overflow-hidden z-index-n1 d-none d-md-block">
                         <img src="{{ asset('bet/img-shape-7.png') }}" alt="" class="shape-img">
-                        <div class="glitch activate glitch--style-1 img-1">
+                        {{-- <div class="glitch activate glitch--style-1 img-1">
                             <div class="glitch__img"></div>
                             <div class="glitch__img"></div>
                             <div class="glitch__img"></div>
@@ -77,7 +77,7 @@
                             <div class="glitch__img"></div>
                             <div class="glitch__img"></div>
                             <div class="glitch__img"></div>
-                        </div>
+                        </div> --}}
                     </div>
                 </div>
             </div>
@@ -696,10 +696,82 @@
     </div> --}}
 <!-- testimonial end -->
 <style>
+    .shape-img {
+
+    }
+    .booker_mini_avt {
+        width: 50px;
+        height: 50px;
+        background-size: cover;
+        background-position: center;
+        border-radius: 100%;
+    }
+    .card-wrapper{
+        display: flex !important;
+        align-items: center;
+        padding-top: 10%;
+    }
+    #cardContainer {
+        z-index: 1;
+        margin-left: 50px;
+        padding-top: 0px !important;
+        margin-left: 0px !important;
+    }
+    .banner-text{
+        font-size: 3rem;
+        width: 120%;
+    }
+    .banner-7::after {
+        /* max-height: 90vh!important; */
+        position: absolute;
+        content: "";
+        left: 0;
+        top: 0;
+        width: 100%;
+        height: 100%;
+        background: url('https://peredion.netlify.app/assets/img/banner/banner-bg-4.jpg') center center no-repeat;
+        background-size: cover;
+        z-index: -1;
+        opacity: 0.35;
+        mix-blend-mode: luminosity;
+    }
+    @media (max-width: 1080) {
+    }
     @media (max-width: 992px) {
+        .banner-wrapper{
+            justify-content: space-around;
+        }
+        .banner-text{
+            width: 100%;
+        }
         #cardContainer {
             padding-top: 0px !important;
             margin-left: 0px !important;
         }
-    }</style>
+        
+        
+    }
+    
+    @media (max-width: 760px) {
+        #cardContainer {
+            padding: 0;
+        }
+
+    }
+    @media (max-width: 992px) {
+        .banner-wrapper{
+            justify-content: space-around;
+        }
+        .banner-text{
+            width: 100%;
+        }
+        #cardContainer {
+            padding-top: 0px !important;
+            margin-left: 0px !important;
+        }
+
+        
+    }
+
+</style>
 @endsection
