@@ -23,6 +23,9 @@
     font-size: 3rem;
     width: 120%;
 }
+.banner-btn{
+    text-wrap: nowrap;
+}
 .banner-7::after {
     /* max-height: 90vh!important; */
     position: absolute;

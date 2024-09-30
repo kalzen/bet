@@ -14,10 +14,10 @@
                         </h1>
                         <div class="all-btn" data-aos="fade-up" data-aos-delay="300" data-aos-duration="500"
                             data-aos-easing="ease-in">
-                            <a class='prd-btn-1'
+                            <a class='prd-btn-1 banner-btn'
                                 href='{{ $slides->count() > 0 ? $slides[0]->button_url_1 : '/' }}'>{{ $slides->count() > 0 ? $slides[0]->button_name_1 : 'Link 1' }}<i
                                     class="fa-duotone fa-arrow-right"></i></a>
-                            <a class='prd-btn-3'
+                            <a class='prd-btn-3 banner-btn'
                                 href='{{ $slides->count() > 0 ? $slides[0]->button_url_2 : '/' }}'>{{ $slides->count() > 0 ? $slides[0]->button_name_2 : 'Link 2' }}<i
                                     class="fa-duotone fa-arrow-right"></i></a>
                         </div>
