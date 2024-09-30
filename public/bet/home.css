@@ -24,7 +24,7 @@
     width: 120%;
 }
 .all-btn{
-    text-wrap-mode: nowrap;
+    white-space: nowrap;
 }
 .banner-7::after {
     /* max-height: 90vh!important; */
