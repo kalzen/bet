@@ -34,24 +34,26 @@ class PostController extends Controller
         $validator = Validator::make($request->all(), [
             'name' => 'required|max:255',
             'parent_id' => 'nullable|integer'
+        ],[
+            'name.required' => 'Tên là bắt buộc'
         ]);
- 
-        if ($validator->fails()) {
-            return response()->json($validator->messages(), 422);
-        }
+            
+            if ($validator->fails()) {
+                return response()->json($validator->messages(), 422);
+            }
         $created = Category::create($validator->validated());
         return view('admin.shared.select-category',[
             'categories'=>Category::query()->whereNull('parent_id')->orderBy('name','asc')->get()
-        ]);
-    }
+            ]);
+        }
     
-    public function store(SubmitPostRequest $request)
-    {
-        DB::beginTransaction();
-        try {
-            $post = Post::create($request->only(['title','description','content','status','is_promotion','keyword']));
-            $post->categories()->sync($request->category_id);
-            $post->tags()->sync(collect(explode(', ',$request->tags))->map(function($item){return Tag::updateOrCreate(['name'=>$item]);})->pluck('id'));
+        public function store(SubmitPostRequest $request)
+        {
+            DB::beginTransaction();
+            try {
+                $post = Post::create($request->only(['title','description','content','status','is_promotion','keyword']));
+                $post->categories()->sync($request->category_id);
+                $post->tags()->sync(collect(explode(', ',$request->tags))->map(function($item){return Tag::updateOrCreate(['name'=>$item]);})->pluck('id'));
             $post->images()->create(['url' => $request->image]);
             DB::commit();
             return redirect()->route('admin.post.index')->with('message', 'Thêm mới thành công');

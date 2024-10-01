@@ -37,7 +37,7 @@
                             <input type="hidden" name="image" value="{{$record->images->first()->url??''}}" id="image">
                             <img class="mt-2" id="image_preview" height="100" src="{{$record->images->first()->url??''}}"/>
                             @else
-                            <input type="hidden" name="image" value="{{asset('hocvienielts/images/no-image.jpg')}}" id="image">
+                            <input type="hidden" name="image" value="" id="image">
                             <img class="mt-2" id="image_preview" style="display:none;" height="100"/>
                             @endif
                             @error('image')

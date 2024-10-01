@@ -65,51 +65,78 @@
                         <div class="form-group">
                             <label class="font-weight-semibold">Score Team 1</label>
                             <input type="number" class="form-control" name="score_team_1" value="{{ old('score_team_1') ?: ($record->score_team_1 ?? '') }}">
+                            @error('score_team_1')
+                            <label id="score_team_1-error" class="validation-invalid-label" for="score_team_1">{{$message}}</label>
+                            @enderror
                         </div>
-
                         <div class="form-group">
                             <label class="font-weight-semibold">Score Team 2</label>
                             <input type="number" class="form-control" name="score_team_2" value="{{ old('score_team_2') ?: ($record->score_team_2 ?? '') }}">
+                            @error('score_team_2')
+                            <label id="score_team_2-error" class="validation-invalid-label" for="score_team_2">{{$message}}</label>
+                            @enderror
                         </div>
-
                         <div class="form-group">
                             <label class="font-weight-semibold">Home Bet</label>
                             <input type="text" class="form-control" name="home_bet" value="{{ old('home_bet') ?: ($record->home_bet ?? '') }}">
+                            @error('home_bet')
+                            <label id="home_bet-error" class="validation-invalid-label" for="home_bet">{{$message}}</label>
+                            @enderror
                         </div>
 
                         <div class="form-group">
                             <label class="font-weight-semibold">Home Bet Rate</label>
                             <input type="text" class="form-control" name="home_bet_rate" value="{{ old('home_bet_rate') ?: ($record->home_bet_rate ?? '') }}">
+                            @error('home_bet_rate')
+                            <label id="home_bet_rate-error" class="validation-invalid-label" for="home_bet_rate">{{$message}}</label>
+                            @enderror
                         </div>
-
                         <div class="form-group">
                             <label class="font-weight-semibold">Draw Bet</label>
                             <input type="text" class="form-control" name="draw_bet" value="{{ old('draw_bet') ?: ($record->draw_bet ?? '') }}">
+                            @error('draw_bet')
+                            <label id="draw_bet-error" class="validation-invalid-label" for="draw_bet">{{$message}}</label>
+                            @enderror
                         </div>
 
                         <div class="form-group">
                             <label class="font-weight-semibold">Draw Bet Rate</label>
                             <input type="text" class="form-control" name="draw_bet_rate" value="{{ old('draw_bet_rate') ?: ($record->draw_bet_rate ?? '') }}">
+                            @error('draw_bet_rate')
+                            <label id="draw_bet_rate-error" class="validation-invalid-label" for="draw_bet_rate">{{$message}}</label>
+                            @enderror
                         </div>
 
                         <div class="form-group">
                             <label class="font-weight-semibold">Guest Bet</label>
                             <input type="text" class="form-control" name="guest_bet" value="{{ old('guest_bet') ?: ($record->guest_bet ?? '') }}">
+                            @error('guest_bet')
+                            <label id="guest_bet-error" class="validation-invalid-label" for="guest_bet">{{$message}}</label>
+                            @enderror
                         </div>
 
                         <div class="form-group">
                             <label class="font-weight-semibold">Guest Bet Rate</label>
                             <input type="text" class="form-control" name="guest_bet_rate" value="{{ old('guest_bet_rate') ?: ($record->guest_bet_rate ?? '') }}">
+                            @error('guest_bet_rate')
+                            <label id="guest_bet_rate-error" class="validation-invalid-label" for="guest_bet_rate">{{$message}}</label>
+                            @enderror
                         </div>
 
                         <div class="form-group">
                             <label class="font-weight-semibold">Recommend</label>
                             <input type="text" class="form-control" name="recommend" value="{{ old('recommend') ?: ($record->recommend ?? '') }}">
+                            @error('recommend')
+                            <label id="recommend-error" class="validation-invalid-label" for="recommend">{{$message}}</label>
+                            @enderror
                         </div>
 
                         <div class="form-group">
                             <label class="font-weight-semibold">Recommend Rate</label>
                             <input type="text" class="form-control" name="recommend_rate" value="{{ old('recommend_rate') ?: ($record->recommend_rate ?? '') }}">
+                            @error('recommend_rate')
+                            <label id="recommend_rate-error" class="validation-invalid-label" for="recommend_rate">{{$message}}</label>
+                            @enderror
                         </div>
 
                         <div class="form-group">
@@ -119,6 +146,9 @@
                             @else
                             <input type="datetime-local" class="form-control" name="date" value="{{ old('date') ? : '' }}">
                             @endisset
+                            @error('date')
+                            <label id="date-error" class="validation-invalid-label" for="date">{{$message}}</label>
+                            @enderror
                         </div>
 
                         <div class="text-right">

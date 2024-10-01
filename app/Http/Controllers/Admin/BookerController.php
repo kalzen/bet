@@ -49,6 +49,7 @@ class BookerController extends Controller
      */
     public function create()
     {
+
         $categories = BookerCategory::query()->whereNull('parent_id')->orderBy('name','asc')->get();
         return view('admin.booker.form',compact('categories'));
     }
@@ -61,6 +62,23 @@ class BookerController extends Controller
      */
     public function store(Request $request)
     {
+        $validator = Validator::make($request->all(), [
+            'name' => 'required|max:255',
+            'image' => 'required',
+            'sale_text' => 'nullable',
+            'url' => 'required',
+            'content' => 'nullable',
+            'description' => 'nullable',
+        ], [
+            'name.required' => 'Vui lòng nhập tên.',
+            'name.max' => 'Tên không được vượt quá 255 ký tự.',
+            'image.required' => 'Vui lòng chọn hình ảnh.',
+            'url.required' => 'Vui lòng nhập URL.',
+        ]);
+
+        if ($validator->fails()) {
+            return redirect()->back()->withErrors($validator)->withInput();
+        }
 
         DB::beginTransaction();
         try {
@@ -177,6 +195,24 @@ class BookerController extends Controller
      */
     public function update(Request $request, $id)
     {
+        $validator = Validator::make($request->all(), [
+            'name' => 'required|max:255',
+            'image' => 'required',
+            'sale_text' => 'nullable',
+            'url' => 'required',
+            'content' => 'nullable',
+            'description' => 'nullable',
+        ], [
+            'name.required' => 'Vui lòng nhập tên.',
+            'name.max' => 'Tên không được vượt quá 255 ký tự.',
+            'image.required' => 'Vui lòng chọn hình ảnh.',
+            'url.required' => 'Vui lòng nhập URL.',
+        ]);
+
+        if ($validator->fails()) {
+            return redirect()->back()->withErrors($validator)->withInput();
+        }
+
         DB::beginTransaction();
         try {
             $booker = Booker::find($id);

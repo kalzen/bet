@@ -40,6 +40,9 @@
                             <input type="hidden" name="image" value="" id="image">
                             <img class="mt-2" id="image_preview" style="display:none;" height="100"/>
                             @endif
+                            @error('image')
+                            <div class="error-message text-danger">{{ $message }}</div>
+                            @enderror
                         </div>
                         <div class="form-group">
                             <label class="font-weight-semibold">Sale text</label>
@@ -50,17 +53,17 @@
                             @else
                             <input type="text" class="form-control tokenfield" value="" name="sale_text" data-fouc>
                             @endif
+                            @error('sale_text')
+                            <label id="sale_text-error" class="validation-invalid-label" for="sale_text">{{$message}}</label>
+                            @enderror
                         </div>
                         <div class="form-group">
                                 <label class="font-weight-semibold">Link</label>
-                                @if(old('url'))
-                                <input type="text" class="form-control" value="{{old('url')}}" name="url">
-                                @elseif(isset($record) && $record->url)
-                                <input type="text" class="form-control" value="{{$record->url}}" name="url">
-                                @else
-                                <input type="text" class="form-control" value="" name="url">
-                                @endif
-                            </div>
+                            <input type="text" class="form-control" name="url" value="{{ old('url') ?: ($record->url ?? '') }}">
+                            @error('url')
+                            <label id="url-error" class="validation-invalid-label" for="url">{{$message}}</label>
+                            @enderror
+                        </div>
                             <div class="form-group">
                             <label class="font-weight-semibold">Nội dung bài viết <span class="required"></span></label>
                             <textarea class="ckeditor form-control" id="content" name="content" required>{{ old('content') ?: ($record->content ?? '') }}</textarea>
