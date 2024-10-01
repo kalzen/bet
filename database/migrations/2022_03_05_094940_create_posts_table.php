@@ -24,7 +24,7 @@ class CreatePostsTable extends Migration
             $table->unsignedInteger('user_id')->nullable()->default(null);
             $table->unsignedInteger('status')->nullable()->default(Post::STATUS_ACTIVE);
             $table->unsignedInteger('is_promotion')->nullable()->default(Post::STATUS_INACTIVE);
-            $table->unsignedBigInteger('viewed')->nullable()->default(null);
+            $table->unsignedBigInteger('viewed')->nullable()->default(0);
             $table->softDeletes();
             $table->timestamps();
         });
