@@ -10,9 +10,11 @@ use Illuminate\Support\Facades\View;
 use App\Models\Catalogue;
 use App\Models\Category;
 use App\Models\Config;
+use App\Models\Lang;
 use App\Models\Menu;
 use App\Models\Order;
 use App\Models\Slide;
+use Illuminate\Support\Facades\App;
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -41,7 +43,7 @@ class AppServiceProvider extends ServiceProvider
         });
         View::composer('partials.header', function ($view) {
             View::share('shared_catalogues', Catalogue::orderBy('id','asc')->get());
-            
+            View::share('langs', Lang::orderBy('id','asc')->get());
         });
         View::composer(['contact.index','partials.*', 'layouts.*', 'home.*', 'contact.advise'], function ($view) {
             View::share('shared_config', Config::all()->keyBy('name'));
