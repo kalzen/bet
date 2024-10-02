@@ -9,7 +9,7 @@
                 <table class="table table-bordered">
                     <thead>
                         <tr>
-                            <th>#</th>
+                            {{-- <th>#</th> --}}
                             <th>Tên ngôn ngữ</th>
                             <th>Mã locale</th>
                         </tr>
@@ -17,14 +17,14 @@
                     <tbody>
                         @foreach($records as $record)
                         <tr>
-                            <td>
+                            {{-- <td>
                                 <input type="checkbox" name="ids[]" value="{{$record->id}}" class="form-input-styled">
+                            </td> --}}
+                            <td>
+                                <a href="{{route('admin.lang.edit', $record->id)}}">{{$record->name}}</a>
                             </td>
                             <td>
-                                <a href="{{route('admin.code.edit', $record->id)}}">{{$record->name}}</a>
-                            </td>
-                            <td>
-                                {{$record->booker->first()->name}}
+                                {{$record->locale}}
                             </td>
                         </tr>
                         @endforeach

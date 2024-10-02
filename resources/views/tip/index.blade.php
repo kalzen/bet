@@ -11,11 +11,11 @@
                 <ul>
                     <li>
                         <span class="icon"><i class="fa-solid fa-house"></i></span>
-                        <span class="text">Home</span>
+                        <span class="text">{{ __('tip.list.home') }}</span>
                     </li>
                     <li>
                         <span class="icon"><i class="fa-light fa-caret-right fa-xl"></i></span>
-                        <span class="text">Tips</span>
+                        <span class="text">{{ __('tip.list.tips') }}</span>
                     </li>
                 </ul>
             </div>
@@ -35,12 +35,12 @@
             <div class="container">
                 <div class="section-title aos-init" data-aos="fade-up" data-aos-delay="100" data-aos-duration="500"
                     data-aos-easing="ease-in">
-                    <h3 class="sub-title">TIPS</h3>
-                    <h2 class="title">Tổng hợp</h2>
+                    <h3 class="sub-title">{{ __('tip.list.tips') }}</h3>
+                    <h2 class="title">{{ __('tip.list.today_tips') }}</h2>
                 </div>
                 @if($tips->isEmpty())
                     <div class="alert alert-info text-center" role="alert">
-                        <b>Hiện không có tips mới. Hãy ghé thăm sau!</b>
+                        <b>{{ __('tip.list.no_tips') }}</b>
                     </div>
                 @endif
                 @foreach ($tips as $tip)
@@ -124,7 +124,7 @@
                         
                         <div class="col-md-2 text-center col-6 p-0">
                             <div class="d-inline-block">
-                                <span class="text-muted d-block d-md-none">Prediction</span>
+                                <span class="text-muted d-block d-md-none">{{ __('tip.list.prediction') }}</span>
                                 <div class="text-center py-2 px-4 mx-0 border"
                                 style="background-color: rgb(52, 53, 72); border-radius: 15px;">
                                     <span class="text-light">{{ $tip->recommend }}</span>
@@ -135,7 +135,7 @@
                         </div>
                         <div class="mt-3 d-block d-md-none"></div>
                         <div class="col-md-2 col-12">
-                            <a class="prd-btn-1 w-100" href="#/faq"><span class="ms-auto me-auto">BET</span> </a>
+                            <a class="prd-btn-1 w-100" href="#/faq"><span class="ms-auto me-auto">{{ __('tip.list.bet') }}</span> </a>
                         </div>
                     </div>
                 </div>

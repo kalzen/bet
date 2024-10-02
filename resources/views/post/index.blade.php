@@ -30,11 +30,11 @@
                 <ul>
                     <li>
                         <span class="icon"><i class="fa-solid fa-house"></i></span>
-                        <span class="text">Home</span>
+                        <span class="text">{{ __('post.list.home') }}</span>
                     </li>
                     <li>
                         <span class="icon"><i class="fa-light fa-caret-right fa-xl"></i></span>
-                        <span class="text">blog</span>
+                        <span class="text">{{ __('post.list.news') }}</span>
                     </li>
                 </ul>
             </div>
@@ -44,8 +44,8 @@
     <div class="blog-posts">
         <div class="section-title aos-init" data-aos="fade-up" data-aos-delay="0" data-aos-duration="200"
             data-aos-easing="ease-in">
-            <h3 class="sub-title pt-2">NEWS</h3>
-            <h2 class="title">Tin tức mới hôm nay</h2>
+            <h3 class="sub-title pt-2">{{ __('post.list.news') }}</h3>
+            <h2 class="title">{{ __('post.list.latest_news') }}</h2>
         </div>
         <div class="global-shape style-3">
             <img src="https://peredion.netlify.app/assets/img/shapes/shape-1.png" alt="" data-aos="fade-left"
@@ -90,7 +90,7 @@
                                     <div class="part-text">
                                         <span class="post-category">{{ $post->categories->first()->name }}</span>
                                         <h3 class="blog-post-title">
-                                            <a href="{{ route('post.detail', ['alias' => $post->slug]) }}"> {{ $loop->index + 1 }}</a>
+                                            <a href="{{ route('post.detail', ['alias' => $post->slug]) }}"> {{ $post->title }}</a>
                                         </h3>
                                             <p>{{ Str::limit($post->description, 100) }}</p>
                                         <div class="post-info-stats">
@@ -130,7 +130,7 @@
                                     <div class="part-text">
                                         <span class="post-category">{{ $post->categories->first()->name }}</span>
                                         <h3 class="blog-post-title">
-                                            <a href="{{ $post->url }}">{{ $post->title }}</a>
+                                            <a href="{{ route('post.detail', ['alias' => $post->slug]) }}"> {{ $post->title }}</a>
                                         </h3>
                                         <p>{{ Str::limit($post->description, 100) }}</p>
                                         <div class="post-info-stats">
@@ -187,7 +187,7 @@
                     <div class="col-xl-4 col-lg-12 aos-init" data-aos="fade-up" data-aos-delay="250"
                         data-aos-duration="500" data-aos-easing="ease-in">
                         <div class="single-element recent-postss">
-                            <h4 class="title">Recent posted</h4>
+                            <h4 class="title">{{ __('post.list.recent') }}</h4>
                             <div class="recent-post-slider owl-carousel owl-theme owl-loaded">
 
                                 <div class="owl-stage-outer">
@@ -206,16 +206,16 @@
                                                     
                                                     <div class="part-text">
                                                         <h5 class="post-title">
-                                                            <a href="<?= $post1->url ?>"><?= $post1->title ?></a>
+                                                            <a href="{{ route('post.detail', ['alias' => $post1->slug]) }}"><?= $post1->title ?></a>
                                                         </h5>
                                                         <div class="post-stats">
                                                             <span class="text">
-                                                                by <a class="posted-by"
+                                                                {{ __('post.list.by') }} <a class="posted-by"
                                                                     href="{{ route('user.detail', ['id' => $post1->user->id]) }}"><?= $post1->user->name ?></a>
                                                             </span>
                                                             <span class="text">
-                                                                in <a class="category-by"
-                                                                    href="{{ route('post.category', ['alias' => $post1->categories->first()->slug]) }}"><?= $post1->categories->first()->name ?? 'Uncategorized' ?></a>
+                                                                {{ __('post.list.in') }} <a class="category-by"
+                                                                    href="{{ route('post.category', ['alias' => $post1->categories->first()->slug]) }}"><?= $post1->categories->first()->name ?? __('post.list.uncategorized') ?></a>
                                                             </span>
                                                         </div>
                                                     </div>
@@ -229,16 +229,16 @@
                                                     
                                                     <div class="part-text">
                                                         <h5 class="post-title">
-                                                            <a href="<?= $post2->url ?>"><?= $post2->title ?></a>
+                                                            <a href="{{ route('post.detail', ['alias' => $post2->slug]) }}"><?= $post2->title ?></a>
                                                         </h5>
                                                         <div class="post-stats">
                                                             <span class="text">
-                                                                by <a class="posted-by"
+                                                                {{ __('post.list.by') }} <a class="posted-by"
                                                                     href="#"><?= $post2->user->name ?></a>
                                                             </span>
                                                             <span class="text">
-                                                                in <a class="category-by"
-                                                                    href="#"><?= $post2->categories->first()->name ?? 'Uncategorized' ?></a>
+                                                                {{ __('post.list.in') }} <a class="category-by"
+                                                                    href="#"><?= $post2->categories->first()->name ?? __('post.list.uncategorized') ?></a>
                                                             </span>
                                                         </div>
                                                     </div>
@@ -248,7 +248,7 @@
                                         </div>
                                         <?php endfor; 
                                         else: ?>
-                                        <p>No posts available</p>
+                                        <p>{{ __('post.list.empty') }}</p>
                                         <?php endif; ?>
 
                                     </div>
@@ -271,7 +271,7 @@
                             <div class="col-xl-6 col-lg-6 col-md-6 aos-init" data-aos="fade-up" data-aos-delay="300"
                                 data-aos-duration="500" data-aos-easing="ease-in">
                                 <div class="single-element posts-category">
-                                    <h4 class="title">posts category</h4>
+                                    <h4 class="title">{{ __('post.list.post_categories') }}</h4>
                                     <ul class="category-list">
                                         @foreach ($categories as $category)
                                             <li>
@@ -287,7 +287,7 @@
                             <div class="col-xl-6 col-lg-6 col-md-6 aos-init" data-aos="fade-up" data-aos-delay="350"
                                 data-aos-duration="500" data-aos-easing="ease-in">
                                 <div class="single-element tag-lines">
-                                    <h4 class="title">posts Tagline</h4>
+                                    <h4 class="title">{{ __('post.list.tagline') }}</h4>
                                     <div class="tag-words">
                                         @foreach($tags as $tag)
                                             <a href="#" class="single-tag">{{ $tag->name }}</a>
@@ -299,7 +299,7 @@
                         <div class="search-bar-element aos-init" data-aos="fade-up" data-aos-delay="400"
                             data-aos-duration="500" data-aos-easing="ease-in">
                             <form>
-                                <input type="text" placeholder="Search a Blog....">
+                                <input type="text" placeholder="{{ __('post.list.search_placeholder') }}">
                                 <button type="submit"><i class="fa-light fa-magnifying-glass"></i></button>
                             </form>
                         </div>

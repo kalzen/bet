@@ -20,11 +20,11 @@
                 <ul>
                     <li>
                         <span class="icon"><i class="fa-solid fa-house"></i></span>
-                        <span class="text">Home</span>
+                        <span class="text">{{ __('post.list.home') }}</span>
                     </li>
                     <li>
                         <span class="icon"><i class="fa-light fa-caret-right fa-xl"></i></span>
-                        <span class="text">blog details</span>
+                        <span class="text">{{ __('post.detail.news_detail') }}</span>
                     </li>
                 </ul>
             </div>
@@ -66,7 +66,7 @@
                     </div>
                     <div class="part-form">
                         <form>
-                            <input type="text" placeholder="Viết cảm nghĩ của bạn....">
+                            <input type="text" placeholder="{{ __('post.detail.write_comment') }}">
                             <button type="submit">
                                 <i class="fa-light fa-feather"></i>
                             </button>
@@ -76,7 +76,7 @@
                 <div class="all-comments aos-init aos-animate" data-aos="fade-up" data-aos-delay="600"
                     data-aos-duration="500" data-aos-easing="ease-in">
                     <h4 class="element-titl">
-                        <span>All comments ({{ count($post->comments) }})</span>
+                        <span>{{ __('post.detail.all_comments') }} ({{ count($post->comments) }})</span>
                     </h4>
                     <div>
                         @foreach ($post->comments as $comment)
@@ -86,7 +86,7 @@
                                 </div>
                                 <div class="part-comment-info">
                                     <div class="comment-stats">
-                                        <span class="commentator-name">{{ $comment->author ?? 'Anonymous' }}</span>
+                                        <span class="commentator-name">{{ $comment->author ?? __('post.detail.anonymous') }}</span>
                                         <span class="commented-time">{{ $comment->created_at->diffForHumans() }}</span>
                                     </div>
                                     <p>{{ $comment->body }}</p>
@@ -97,11 +97,11 @@
                                         </a>
                                         <a href="#0" class="single-social">
                                             <span class="icon comment-icon"><i class="fa-regular fa-comment"></i></span>
-                                            <span class="social-text">Reply</span>
+                                            <span class="social-text">{{ __('post.detail.reply') }}</span>
                                         </a>
                                         <a href="#0" class="single-social">
                                             <span class="icon share-icon"><i class="fa-regular fa-paper-plane"></i></span>
-                                            <span class="social-text">Share</span>
+                                            <span class="social-text">{{ __('post.detail.share') }}</span>
                                         </a>
                                     </div>
                                 </div>

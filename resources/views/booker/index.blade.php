@@ -59,11 +59,11 @@
                         <ul>
                             <li>
                                 <span class="icon"><i class="fa-solid fa-house"></i></span>
-                                <span class="text">Home</span>
+                                <span class="text">{{ __('booker.list.home') }}</span>
                             </li>
                             <li>
                                 <span class="icon"><i class="fa-light fa-caret-right fa-xl"></i></span>
-                                <span class="text">Bookmakers</span>
+                                <span class="text">{{ __('booker.list.bookmaker') }}</span>
                             </li>
                         </ul>
                     </div>
@@ -99,8 +99,8 @@
                             @if ($hot_bookers->count() > 0)
                             <div class="section-title aos-init mb-1" data-aos="fade-up" data-aos-delay="100" data-aos-duration="500"
                             data-aos-easing="ease-in">
-                            <h3 class="sub-title pt-2">HOT</h3>
-                            <h2 class="title">Trang Nổi Bật</h2>
+                            <h3 class="sub-title pt-2">{{ __('booker.list.hot') }}</h3>
+                            <h2 class="title">{{ __('booker.list.popular_page') }}</h2>
                         </div>
                             @endif
                             <div class="scrolling-wrapper" id="hotBookersScroll">
@@ -126,15 +126,15 @@
                                 <small class="text-muted mb-0">{{ $booker->description }}</small>
                             </div>
                             <div class="border rounded-3 p-2 d-flex justify-content-center align-items-center">
-                                <span class="me-2">Code:</span>
-                                <strong>{{ isset($booker->codes) && $booker->codes->isNotEmpty() ? $booker->codes->first()->name : 'Không' }}</strong>
+                                <span class="me-2">{{ __('booker.list.code') }}:</span>
+                                <strong>{{ isset($booker->codes) && $booker->codes->isNotEmpty() ? $booker->codes->first()->name : __('booker.list.no') }}</strong>
                             </div>
                             <div class="d-flex gap-2 justify-content-center align-items-center mt-3">
                                 <a href="{{ route('booker.detail', $booker->id) }}" class="prd-btn-1 d-flex">
-                                    Chi tiết <i class="fa-duotone fa-arrow-right"></i>
+                                    {{ __('booker.list.detail') }} <i class="fa-duotone fa-arrow-right"></i>
                                 </a>
                                 <a href="{{ $booker->url }}" class="prd-btn-2 d-flex">
-                                    Bet <i class="fa-duotone fa-arrow-right"></i>
+                                    {{ __('booker.list.bet') }} <i class="fa-duotone fa-arrow-right"></i>
                                 </a>
                             </div>
                         </div>
@@ -151,8 +151,8 @@
                             @if ($bookers->count() > 0)
                             <div class="section-title aos-init" data-aos="fade-up" data-aos-delay="100" data-aos-duration="500"
                             data-aos-easing="ease-in">
-                            <h3 class="sub-title pt-2">BOOKMAKERS</h3>
-                            <h2 class="title">Tham khảo thêm</h2>
+                            <h3 class="sub-title pt-2">{{ __('booker.list.bookmaker') }}</h3>
+                            <h2 class="title">{{ __('booker.list.more_bookmakers') }}</h2>
                         </div>
                             @endif
                             <div class="list-group">
@@ -189,8 +189,8 @@
                                                 {{-- <p><strong>Payout Speed</strong></p> --}}
                                                 {{-- <p>Up to 3 days</p> --}}
                                                 <div class="border rounded-3 p-2">
-                                                    <span>Code:</span>
-                                                    <strong>{{ isset($booker->codes) && $booker->codes->isNotEmpty() ? $booker->codes->first()->name : 'Không' }}</strong>
+                                                    <span>{{ __('booker.list.code') }}:</span>
+                                                    <strong>{{ isset($booker->codes) && $booker->codes->isNotEmpty() ? $booker->codes->first()->name : __('booker.list.no') }}</strong>
                                                 </div>
                                             </div>
                                 
@@ -198,7 +198,7 @@
                                                 {{-- <a href="#" class="btn btn-primary w-100 mb-2">Visit Site</a> --}}
                                                 {{-- <button class="btn btn-outline-secondary w-100">Show Details</button> --}}
                                                 <a href="{{ route('booker.detail', $booker->id) }}" class="prd-btn-1 d-flex">
-                                                    <span class="ms-auto me-auto">Chi tiết <i class="fa-duotone fa-arrow-right"></i></span>
+                                                    <span class="ms-auto me-auto">{{ __('booker.list.detail') }} <i class="fa-duotone fa-arrow-right"></i></span>
                                                 </a>
                                             </div>
                                         </div>

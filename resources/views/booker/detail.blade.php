@@ -1,7 +1,7 @@
 @extends('layouts.master')
 @section('meta')
-<title>Title</title>
-<title>TOP BOOKER LIST</title>
+<title>{{ __('booker.list.title') }}</title>
+<title>{{ __('booker.list.bookmaker_details') }}</title>
 @endsection
 @section('content')
 <div class="prd-breadcrumb">
@@ -15,11 +15,11 @@
                 <ul>
                     <li>
                         <span class="icon"><i class="fa-solid fa-house"></i></span>
-                        <span class="text">Home</span>
+                        <span class="text">{{ __('booker.list.home') }}</span>
                     </li>
                     <li>
                         <span class="icon"><i class="fa-light fa-caret-right fa-xl"></i></span>
-                        <span class="text">Bookmaker details</span>
+                        <span class="text">{{ __('booker.detail.bookmaker_details') }}</span>
                     </li>
                 </ul>
             </div>
@@ -30,7 +30,7 @@
     </section>
     <div class="section-title" data-aos="fade-up" data-aos-delay="100" data-aos-duration="500"
         data-aos-easing="ease-in">
-        <h3 class="sub-title">CHI TIẾT</h3>
+        <h3 class="sub-title">{{ __('booker.list.detail') }}</h3>
         <h2 class="title"></h2>
     </div>
     <section class="inner-section blog-details-part">
@@ -46,21 +46,21 @@
                             <p class="card-text">{{ $booker->description }}</p>
                         </div>
                         <ul class="list-group list-group-flush">
-                            <li class="list-group-item"><strong>Hạng mục:</strong> {{ $booker->categories->first() ? $booker->categories->first()->name : 'Không' }}</li>
+                            <li class="list-group-item"><strong>{{ __('booker.detail.category') }}:</strong> {{ $booker->categories->first() ? $booker->categories->first()->name : __('booker.list.no') }}</li>
                         </ul>
                         <div class="card-body">
                             <a href="{{$booker->url}}" class="prd-btn-2 d-flex">
-                                <span class="ms-auto me-auto">Bet<i class="fa-duotone fa-arrow-right"></i></span> 
+                                <span class="ms-auto me-auto">{{ __('booker.list.bet') }}<i class="fa-duotone fa-arrow-right"></i></span> 
                             </a>
                         </div>
                     </div>
                 </div>
     
                 <div class="col-md-8">
-                    <h2 class="mb-4 mt-1">Thông tin về nhà cái</h2>
+                    <h2 class="mb-4 mt-1">{{ __('booker.detail.bookmaker_details') }}</h2>
                     <div class="card shadow-lg" style="border-radius: 20px">
                         <div class="card-body">
-                            <h5 class="card-title">Giới thiệu</h5>
+                            <h5 class="card-title">{{ __('booker.detail.overview') }}</h5>
                             <p class="card-text">
                                 {!! $booker->content !!}
                             </p>
@@ -68,7 +68,7 @@
                     </div>
                     <div class="card mt-4 shadow-lg" style="border-radius: 20px">
                         <div class="card-body">
-                            <h5 class="card-title">Thông tin thêm:</h5>
+                            <h5 class="card-title">{{ __('booker.detail.additional_infos') }}:</h5>
                             <ul class="list-group list-group-flush">
                                 @foreach (explode(',', $booker->sale_text) as $sale_text)
                                 <li class="d-flex">
@@ -82,7 +82,7 @@
                             </ul>
                         </div>
                     </div>
-                    <h2 class="mb-0 mt-5">Các mã giảm giá của nhà cái</h2>
+                    <h2 class="mb-0 mt-5">{{ __('booker.detail.bookmaker_promo_codes') }}</h2>
                 </div>
                 <div class="col-12 pt-5 pb-5">
                     <div class="row aos-init" data-aos="fade-up" data-aos-delay="50">

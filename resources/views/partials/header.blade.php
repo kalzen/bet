@@ -42,17 +42,12 @@
                                 <span class="part-icon">
                                     <i class="fa-regular fa-globe"></i>
                                 </span>
-                                <span class="part-text lang-display">Tiếng Việt</span>
+                                <span class="part-text lang-display">{{ $langs->where('locale', App::getLocale())->first()->name }}</span>
                             </a>
                             <ul class="dropdown-menu lang-item" aria-labelledby="dropdownMenuLink">
-                                <li><a class="dropdown-item" href="#">Tiếng Việt</a></li>
-                                <li><a class="dropdown-item" href="#">English</a></li>
-                                <li><a class="dropdown-item" href="#">عربي</a></li>
-                                <li><a class="dropdown-item" href="#">हिन्दी</a></li>
-                                <li><a class="dropdown-item" href="#">Español</a></li>
-                                <li><a class="dropdown-item" href="#">贛語</a></li>
-                                <li><a class="dropdown-item" href="#">Հայերեն</a></li>
-                                <li><a class="dropdown-item" href="#">Ўзбек</a></li>
+                                @foreach ($langs as $lang)
+                                    <li><a class="dropdown-item" href="{{ route('change-language', ['locale' => $lang->locale]) }}">{{ $lang->name }}</a></li>
+                                @endforeach
                             </ul>
                         </div>
                     </div>

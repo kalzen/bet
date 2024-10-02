@@ -52,7 +52,7 @@
                                     </div>
                                     <div class="col-md-3 col-3 text-center">
                                         <a href="{{ route('booker.detail', $booker->id) }}" class="prd-btn-1"><small
-                                                class="text-small">Xem</small></a>
+                                                class="text-small">{{ __('home.view') }}</small></a>
                                         {{-- <a href="{{ route('booker.detail', $code->booker->id) }}" class="prd-btn-1 d-flex mt-3">
                                     <span class="ms-auto me-auto">XEM NGAY<i class="fa-duotone fa-arrow-right"></i></span> 
                                     </a> --}}
@@ -108,8 +108,8 @@
         <div class="container">
             <div class="section-title mb-3" data-aos="fade-up" data-aos-delay="100" data-aos-duration="500"
                 data-aos-easing="ease-in">
-                <h3 class="sub-title">Nhà Cái</h3>
-                <h2 class="title">TopList Nhà Cái Cược Uy Tín</h2>
+                <h3 class="sub-title">{{ __('home.bookmaker') }}</h3>
+                <h2 class="title">{{ __('home.top_bookmakers') }}</h2>
             </div>
             <div class="row">
                 @foreach ($booker_hot as $booker)
@@ -153,10 +153,10 @@
                             </ul>
                             <div class="d-flex gap-2 justify-content-center align-items-center mt-3">
                                 <a href="{{ route('booker.detail', $booker->id) }}" class="prd-btn-1 d-flex">
-                                    Chi tiết <i class="fa-duotone fa-arrow-right"></i>
+                                    {{ __('home.detail') }} <i class="fa-duotone fa-arrow-right"></i>
                                 </a>
                                 <a href="{{ $booker->url }}" class="prd-btn-2 d-flex">
-                                    Bet <i class="fa-duotone fa-arrow-right"></i>
+                                    {{ __('home.bet') }} <i class="fa-duotone fa-arrow-right"></i>
                                 </a>
                             </div>
                         </div>
@@ -179,8 +179,8 @@
             <div class="container">
                 <div class="section-title aos-init mb-3" data-aos="fade-up" data-aos-delay="100" data-aos-duration="500"
                     data-aos-easing="ease-in">
-                    <h3 class="sub-title">Tin Tức</h3>
-                    <h2 class="title mb-3">Tin Thể Thao Mới Nhất</h2>
+                    <h3 class="sub-title">{{ __('home.news') }}</h3>
+                    <h2 class="title mb-3">{{ __('home.latest_sport_news') }}</h2>
                 </div>
                 @if ($posts->count() > 0)
                     <div class="container mt-4">
@@ -220,7 +220,7 @@
                                                     <span class="line-height">{{ $posts[0]->user->name }}</span>
                                                 </a> <br>
                                                 <a href="{{ route('post.detail', ['alias' => $posts[0]->slug]) }}"
-                                                    class="btn btn-link text-muted text-decoration-none">Read more >></a>
+                                                    class="btn btn-link text-muted text-decoration-none">{{ __('home.read_more') }} >></a>
 
                                             </div>
                                         </div>
@@ -333,7 +333,7 @@
         @else
             <div class="col-12">
                 <div class="alert alert-info text-center" role="alert">
-                    <b>Hiện không có tin mới. Hãy ghé thăm sau!</b>
+                    <b>{{ __('home.no_posts') }}</b>
                 </div>
             </div>
         @endif
@@ -351,13 +351,13 @@
         <div
             class="col-xl-9 col-lg-9 col-md-7 col-sm-10 d-xl-flex d-lg-flex d-block align-items-center translate-middle-y">
             <div class="part-text">
-                <h4 class="title">Promo Code</h4>
+                <h4 class="title">{{ __('home.promo_code') }}</h4>
             </div>
         </div>
         <div
             class="col-xl-3 col-lg-3 col-md-5 d-xl-flex d-lg-flex d-md-flex d-block align-items-center translate-middle-y">
             <div class="part-btn">
-                <a class="prd-btn-1" href="#/faq">Trợ Giúp <i class="fa-regular fa-circle-info"></i></a>
+                <a class="prd-btn-1" href="#/faq">{{ __('home.help') }} <i class="fa-regular fa-circle-info"></i></a>
             </div>
         </div>
     </div>
@@ -372,7 +372,7 @@
                         {{ $code->name }}
                     </div>
                     <a href="{{ route('booker.detail', $code->booker->id) }}" class="prd-btn-1 d-flex mt-3">
-                        <span class="ms-auto me-auto">XEM NGAY<i class="fa-duotone fa-arrow-right"></i></span>
+                        <span class="ms-auto me-auto">{{ __('home.view_now') }}<i class="fa-duotone fa-arrow-right"></i></span>
                     </a>
                 </div>
             </div>
@@ -390,12 +390,12 @@
 <div class="container">
     <div class="section-title aos-init mb-3" data-aos="fade-up" data-aos-delay="100" data-aos-duration="500"
         data-aos-easing="ease-in">
-        <h3 class="sub-title">TIPS</h3>
-        <h2 class="title">Tips hôm nay</h2>
+        <h3 class="sub-title">{{ __('home.tips') }}</h3>
+        <h2 class="title">{{ __('home.today_tips') }}</h2>
     </div>
     @if ($tips->isEmpty())
         <div class="alert alert-info text-center" role="alert">
-            <b>Hiện không có tips mới. Hãy ghé thăm sau!</b>
+            <b>{{ __('home.no_tips') }}</b>
         </div>
     @endif
     @foreach ($tips as $tip)
@@ -485,7 +485,7 @@
 
                 <div class="col-md-2 text-center col-6 p-0">
                     <div class="d-inline-block">
-                        <span class="text-muted d-block d-md-none">Prediction</span>
+                        <span class="text-muted d-block d-md-none">{{ __('home.prediction') }}</span>
                         <div class="text-center py-2 px-4 mx-0 border"
                             style="background-color: rgb(52, 53, 72); border-radius: 15px;">
                             <span class="text-light">{{ $tip->recommend }}</span>
@@ -496,7 +496,7 @@
                 </div>
                 <div class="mt-3 d-block d-md-none"></div>
                 <div class="col-md-2 col-12">
-                    <a class="prd-btn-1 w-100" href="#/faq"><span class="ms-auto me-auto">BET</span> </a>
+                    <a class="prd-btn-1 w-100" href="#/faq"><span class="ms-auto me-auto">{{ __('home.bet') }}</span> </a>
                 </div>
             </div>
         </div>
