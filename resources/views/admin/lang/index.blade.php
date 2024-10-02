@@ -12,6 +12,7 @@
                             {{-- <th>#</th> --}}
                             <th>Tên ngôn ngữ</th>
                             <th>Mã locale</th>
+                            <th></th>
                         </tr>
                     </thead>
                     <tbody>
@@ -25,6 +26,9 @@
                             </td>
                             <td>
                                 {{$record->locale}}
+                            </td>
+                            <td>
+                                <a href="javascript:;" class="js-delete text-danger" data-key="{{$record->id}}" title="Xóa"><i class="icon-trash"></i></a>
                             </td>
                         </tr>
                         @endforeach
@@ -60,10 +64,13 @@
         }).then(function (res) {
             if (res.value) {
                 $.ajax({
-                    url: '{{route('admin.code.destroy','idx')}}'.replace(/idx/, id),
+                    url: '{{route('admin.lang.destroy','idx')}}'.replace(/idx/, id),
                     method:'DELETE',data:{_token:'{{csrf_token()}}'},dataType:'json',
                     success:function(resp) {
                         toastr[resp.success ? 'success' : 'danger'](resp.message)
+                        setTimeout(function() {
+                            location.reload();
+                        }, 1000);
                     }
                 })
             }

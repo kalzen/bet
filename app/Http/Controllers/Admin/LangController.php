@@ -115,7 +115,17 @@ class LangController extends Controller
      */
     public function destroy(Lang $lang)
     {
+        try {
         $lang->delete();
-        return response()->json(['success' => true, 'message' => 'Language deleted successfully.']);
+        return response()->json(['success' => true, 'message' => 'Đã xóa ngôn ngữ thành công.']);
+        } catch (\Illuminate\Database\QueryException $e) {
+            $errorCode = $e->errorInfo[1];
+            if ($errorCode == 1451) {
+                return response()->json(['success' => false, 'message' => 'Không thể xóa ngôn ngữ đang được sử dụng trên trang.'], 422);
+    }
+            return response()->json(['success' => false, 'message' => 'Không thể xóa ngôn ngữ này.'], 500);
+        } catch (\Exception $e) {
+            return response()->json(['success' => false, 'message' => 'Hiện không thể xóa ngôn ngữ này.'], 500);
+        }
     }
 }
