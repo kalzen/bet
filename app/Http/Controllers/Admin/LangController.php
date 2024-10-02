@@ -42,12 +42,20 @@ class LangController extends Controller
      */
     public function store(Request $request)
     {
+        $request->validate([
+            'name' => 'required',
+            'locale' => 'required|unique:langs,locale'
+        ],[
+            'locale.unique' => 'Mã vùng này đã tồn tại'
+        ]);
+
         DB::beginTransaction();
         try {
-            $code = Lang::create($request->all());
+            $lang = Lang::create($request->only( ['name','locale'] ));
             DB::commit();
             return redirect()->route('admin.lang.index')->with('message', 'Thêm mới thành công');
         } catch(Exception $ex) {
+            dd( 'got error: ' . $ex->getMessage() );
             DB::rollback();
             return back()->withInput();
         }
