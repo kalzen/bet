@@ -42,12 +42,22 @@
                                 <span class="part-icon">
                                     <i class="fa-regular fa-globe"></i>
                                 </span>
-                                <span class="part-text lang-display">{{ $langs->where('locale', App::getLocale())->first()->name }}</span>
+                                <span class="part-text lang-display">
+                                    @if($langs->where('locale', App::getLocale())->first())
+                                        {{ $langs->where('locale', App::getLocale())->first()->name }}
+                                    @else
+                                        {{ $langs->where('locale', 'en')->first()->name ?? Session::get('locale') }}
+                                    @endif
+                                </span>
                             </a>
                             <ul class="dropdown-menu lang-item" aria-labelledby="dropdownMenuLink">
                                 @foreach ($langs as $lang)
                                     <li><a class="dropdown-item" href="{{ route('change-language', ['locale' => $lang->locale]) }}">{{ $lang->name }}</a></li>
                                 @endforeach
+                                @if(!$langs->where('locale', App::getLocale())->first())
+                                    <li><a class="dropdown-item" href="{{ route('change-language', ['locale' => 'en']) }}">English</a></li>
+                                    <li><a class="dropdown-item" href="{{ route('change-language', ['locale' => 'vi']) }}">Tiếng Việt</a></li>
+                                @endif
                             </ul>
                         </div>
                     </div>

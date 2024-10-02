@@ -10,14 +10,25 @@ class LocaleController extends Controller
 {
     public function setLocale($locale)
     {
-        $lang = Lang::where('locale', $locale)->first();
+        $langs = Lang::all();
+        $lang = $langs->where('locale', $locale)->first();
         
         if ($lang) {
             $locale = $lang->locale;
             App::setLocale($locale);
             Session::put('locale', $locale);
         } else {
-            $locale = Session::get('locale', config('app.locale'));
+           Session::get('locale', config('app.locale'));
+        }
+        
+        if ($langs->isEmpty()) {
+            if ($locale === 'vi' || $locale === 'en') {
+                Session::put('locale', $locale);
+            } else {
+                Session::put('locale', 'en');
+            }
+            Session::get('locale', config('app.locale'));
+            App::setLocale($locale);
         }
         return redirect()->back();
     }
