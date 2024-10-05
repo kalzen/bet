@@ -18,7 +18,7 @@ class LangController extends Controller
      */
     public function index()
     {
-        $query = Lang::latest();
+        $query = Lang::withTrashed()->latest();
         $records = $query->paginate();
         return view('admin.lang.index', compact('records'));
     }
@@ -128,4 +128,22 @@ class LangController extends Controller
             return response()->json(['success' => false, 'message' => 'Hiện không thể xóa ngôn ngữ này.'], 500);
         }
     }
+    
+    /**
+     * Restore the specified soft-deleted language.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function restore(Request $request)
+    {
+        $lang = Lang::withTrashed()->find($request->id);
+        try {
+            $lang->restore();
+            return response()->json(['success' => true, 'message' => 'Đã khôi phục ngôn ngữ thành công.']);
+        } catch (\Exception $e) {
+            return response()->json(['success' => false, 'message' => 'Không thể khôi phục ngôn ngữ này.']);
+        }
+    }
 }
+

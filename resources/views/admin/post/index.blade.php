@@ -96,7 +96,7 @@
                     url: '{{route('admin.post.destroy','idx')}}'.replace(/idx/, id),
                     method:'DELETE',data:{_token:'{{csrf_token()}}'},dataType:'json',
                     success:function(resp) {
-                        toastr[resp.success ? 'success' : 'danger'](resp.message)
+                        toastr[resp.success ? 'success' : 'error'](resp.message)
                         setTimeout(function() {
                             location.reload();
                         }, 1000);

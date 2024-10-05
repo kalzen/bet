@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use App\Models\Booker;
 use App\Models\BookerCategory;
+use App\Models\Lang;
 use App\Models\Tag;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
@@ -21,7 +22,7 @@ class BookerController extends Controller
     public function index()
     {
         //
-        $query = Booker::latest();
+        $query = Booker::whereNull('lang_parent_id')->latest();
         $records = $query->paginate();
         return view('admin.booker.index', compact('records'));
     }
@@ -42,6 +43,46 @@ class BookerController extends Controller
         ]);
     }
 
+    public function removeBind(Request $request)
+    {
+
+        $record = Booker::find($request->id);
+        $record->lang_parent_id = null;
+        $record->save();
+
+        return response()->json(['success' => true, 'message' => 'Đã loại bỏ ràng buộc.']);
+    }
+
+    public function lang(Request $request)
+    {
+        $validator = Validator::make($request->all(), [
+            'name' => 'nullable|max:255',
+            'lang_id' => 'required|integer',
+            'lang_parent_id' => 'required|integer'
+            ]);
+        $parentBooker = Booker::find($request->lang_parent_id);
+            
+        if ($validator->fails()) {
+            return response()->json($validator->messages(), 422);
+        }
+        $created = Booker::create(
+            [
+            'lang_id' => $request->lang_id,
+            'lang_parent_id' => $request->lang_parent_id,
+            'name' => $request->name ?? $parentBooker->name,
+            'image' => $parentBooker->image,
+            'sale_text' => $request->sale_text ?? $parentBooker->sale_text,
+            'url' => $request->url ?? $parentBooker->url,
+            'content' => $request->content ?? $parentBooker->content,
+            'description' => $request->description ?? $parentBooker->description,
+            'is_hot' => $parentBooker->is_hot
+            ]
+        );
+        return view('admin.shared.select-lang',[
+            'record'=> Booker::find($request->lang_parent_id)
+        ]);
+    }
+
     /**
      * Show the form for creating a new resource.
      *
@@ -49,9 +90,10 @@ class BookerController extends Controller
      */
     public function create()
     {
-
+        $langs = Lang::all();
+        $allLangs = $langs;
         $categories = BookerCategory::query()->whereNull('parent_id')->orderBy('name','asc')->get();
-        return view('admin.booker.form',compact('categories'));
+        return view('admin.booker.form',compact('categories','langs','allLangs'));
     }
 
     /**
@@ -63,6 +105,7 @@ class BookerController extends Controller
     public function store(Request $request)
     {
         $validator = Validator::make($request->all(), [
+            'lang_id' => 'required',
             'name' => 'required|max:255',
             'image' => 'required',
             'sale_text' => 'nullable',
@@ -83,7 +126,7 @@ class BookerController extends Controller
         DB::beginTransaction();
         try {
             $is_hot = $request->has('is_hot') ? 1 : 0;
-            $booker = Booker::create($request->only(['name','image', 'sale_text', 'url','content','description']));
+            $booker = Booker::create($request->only(['name','image', 'sale_text', 'url','content','description','lang_id']));
             $booker->categories()->sync($request->category_id);
             $booker->update(['is_hot' => $is_hot]);
             DB::commit();
@@ -113,6 +156,7 @@ class BookerController extends Controller
      */
     public function edit($id)
     {
+        $langs = Lang::all();
         $record = Booker::find($id);
         $categories = BookerCategory::query()->whereNull('parent_id')->orderBy('name','asc')->get();
         $document = new \DOMDocument();
@@ -183,7 +227,7 @@ class BookerController extends Controller
             $issue=$issue.'<li class="issue_outlinks"><b>Các đường dẫn ra ngoài trang:</b> Cần thêm link dẫn tới trang ngoài!</li>';
         }
 
-        return view('admin.booker.form',compact('categories','record', 'success', 'issue'));
+        return view('admin.booker.form',compact('categories','record', 'success', 'issue', 'langs'));
     }
 
     /**
@@ -196,6 +240,7 @@ class BookerController extends Controller
     public function update(Request $request, $id)
     {
         $validator = Validator::make($request->all(), [
+            'lang_id' => 'required',
             'name' => 'required|max:255',
             'image' => 'required',
             'sale_text' => 'nullable',
@@ -217,7 +262,7 @@ class BookerController extends Controller
         try {
             $booker = Booker::find($id);
             $is_hot = $request->has('is_hot') ? 1 : 0;
-            $booker->update($request->only(['name','image', 'sale_text', 'url', 'content','description']));
+            $booker->update($request->only(['name','image', 'sale_text', 'url', 'content','description','lang_id']));
             $booker->categories()->sync($request->category_id);
             $booker->update(['is_hot' => $is_hot]);
             DB::commit();
@@ -236,7 +281,6 @@ class BookerController extends Controller
      */
     public function destroy(Booker $booker)
     {
-        //
         $booker->delete();
         return response()->json(['success' => true, 'message' => 'Booker deleted successfully.']);
     }

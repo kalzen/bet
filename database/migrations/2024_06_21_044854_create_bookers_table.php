@@ -15,6 +15,8 @@ class CreateBookersTable extends Migration
     {
         Schema::create('bookers', function (Blueprint $table) {
             $table->id();
+            $table->unsignedInteger('lang_parent_id')->nullable()->default(null);
+            $table->unsignedInteger('lang_id')->nullable()->default(null);
             $table->string('name');
             $table->text('image');
             $table->text('sale_text')->nullable();
@@ -23,6 +25,7 @@ class CreateBookersTable extends Migration
             $table->text('description')->nullable();
             $table->integer('is_hot')->default(0);
             $table->integer('ordering')->default(0);
+            $table->foreign('lang_id')->references('id')->on('langs');
             $table->timestamps();
         });
     }

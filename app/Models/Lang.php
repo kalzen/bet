@@ -7,9 +7,21 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 class Lang extends Model
 {
-    use HasFactory, SoftDeletes;
+    use SoftDeletes;
 
     protected $table = 'langs';
 
     protected $fillable = ['name', 'locale'];
+    
+    protected $guarded = [];
+
+    public function bookers()
+    {
+        return $this->hasMany(Booker::class);
+    }
+    
+    public function posts()
+    {
+        return $this->hasMany(Post::class);
+    }
 }

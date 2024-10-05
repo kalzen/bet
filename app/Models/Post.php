@@ -34,6 +34,18 @@ class Post extends Model
     {
         return $this->belongsTo(User::class);
     }
+    public function langs()
+    {
+        return $this->belongsTo(Lang::class,'lang_id');
+    }
+    public function langParent()
+    {
+        return $this->belongsTo(Post::class,'lang_parent_id');
+    }
+    public function langChildren()
+    {
+        return $this->hasMany(Post::class,'lang_parent_id');
+    }
     public function images()
     {
         return $this->belongsToMany(Image::class)->withTimestamps();

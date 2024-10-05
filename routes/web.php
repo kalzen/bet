@@ -109,6 +109,7 @@ Route::middleware(['auth'])->name('admin.')->prefix('admin')->group(function () 
     Route::resource('tip', TipController::class);
     //Lang
     Route::resource('lang', AdminLangController::class);
+    Route::post('lang/restore', [AdminLangController::class, 'restore'])->name('lang.restore');
     //Attribute
     Route::resource('attribute', AttributeController::class);
     Route::prefix('post')->name('post.')->group(function () {
@@ -116,6 +117,8 @@ Route::middleware(['auth'])->name('admin.')->prefix('admin')->group(function () 
     });
     Route::prefix('booker')->name('booker.')->group(function () {
         Route::post('category', [BookerController::class, 'category'])->name('category');
+        Route::post('lang', [BookerController::class, 'lang'])->name('lang');
+        Route::post('remove-bind', [BookerController::class, 'removeBind'])->name('removeBind');
     });
     //Product
     Route::post('update_formula', [ProductController::class, 'updateFormula'])->name('product.updateFormula');

@@ -16,6 +16,8 @@ class CreatePostsTable extends Migration
     {
         Schema::create('posts', function (Blueprint $table) {
             $table->id();
+            $table->unsignedInteger('lang_parent_id')->nullable()->default(null);
+            $table->unsignedInteger('lang_id')->nullable()->default(null);
             $table->text('title')->nullable()->default(null);
             $table->text('slug')->nullable()->default(null);
             $table->text('keyword')->nullable()->default(null);
@@ -25,6 +27,7 @@ class CreatePostsTable extends Migration
             $table->unsignedInteger('status')->nullable()->default(Post::STATUS_ACTIVE);
             $table->unsignedInteger('is_promotion')->nullable()->default(Post::STATUS_INACTIVE);
             $table->unsignedBigInteger('viewed')->nullable()->default(0);
+            $table->foreign('lang_id')->references('id')->on('langs');
             $table->softDeletes();
             $table->timestamps();
         });

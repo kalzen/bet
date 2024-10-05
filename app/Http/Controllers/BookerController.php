@@ -12,8 +12,20 @@ class BookerController extends Controller
 
     public function index()
     {
-        $bookers = Booker::where('is_hot', 0)->orderBy('ordering', 'desc')->get();
-        $hot_bookers = Booker::where('is_hot', 1)->orderBy('ordering', 'desc')->get();
+        $locale = app()->getLocale();
+        $bookers = Booker::where('is_hot', 0)
+            ->whereHas('langs', function($query) use ($locale) {
+                $query->where('locale', $locale);
+            })
+            ->orderBy('ordering', 'desc')
+            ->get();
+        $hot_bookers = Booker::where('is_hot', 1)
+            ->whereHas('langs', function($query) use ($locale) {
+                $query->where('locale', $locale);
+            })
+            ->orderBy('ordering', 'desc')
+            ->get();
+
         $categories = BookerCategory::orderBy('name', 'asc')->get();
 
         return view('booker.index', compact('bookers', 'hot_bookers', 'categories'));

@@ -22,4 +22,17 @@ class Booker extends Model
     {
         return $this->belongsToMany(BookerCategory::class, 'bookers_categories');
     }
+
+    public function langs()
+    {
+        return $this->belongsTo(Lang::class,'lang_id');
+    }
+    public function langParent()
+    {
+        return $this->belongsTo(Booker::class,'lang_parent_id');
+    }
+    public function langChildren()
+    {
+        return $this->hasMany(Booker::class,'lang_parent_id');
+    }
 }

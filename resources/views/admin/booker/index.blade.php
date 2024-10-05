@@ -12,6 +12,8 @@
                             <th>#</th>
                             <th>Tên booker</th>
                             <th>Chuyên mục</th>
+                            <th>Ngôn ngữ gốc</th>
+                            <th>Ngôn ngữ khác</th>
                             <th>Ảnh</th>
                             <th></th>
                         </tr>
@@ -30,12 +32,30 @@
                                 {{ $record->categories ? $record->categories->pluck('name')->join(', ') : '' }}
                             </td>
                             <td>
+                                <a href="{{route('admin.booker.edit', $record->id)}}">
+                                    <span class="badge bg-info">
+                                        {{ $record->langs->name }}
+                                    </span>
+                                </a>
+                            </td>
+                            <td>
+                                @php
+                                    $langNames = [];
+                                @endphp
+                                @foreach($record->langChildren as $child)
+                                    @php
+                                        $langNames[] = '<a href="' . route('admin.booker.edit', $child->id) . '"><span class="badge bg-success">' . ($child->langs ? $child->langs->name : '') . '</span></a>';
+                                    @endphp
+                                @endforeach
+                                {!! implode(' ', $langNames) !!}
+                            </td>
+                            <td>
                                 @if($record->image)
                                 <img src="{{$record->image}}" height="50">
                                 @endif
                             </td>
                             <td>
-                                <a href="{{route('admin.booker.edit', $record->id)}}">Sửa</a>
+                                <a href="{{route('admin.booker.edit', $record->id)}}">Sửa </a>
                                 <a href="javascript:;" class="js-delete text-danger" data-key="{{$record->id}}" title="Xóa"><i class="icon-trash"></i></a>
                             </td>
                         </tr>
@@ -75,7 +95,7 @@
                     url: '{{route('admin.booker.destroy','idx')}}'.replace(/idx/, id),
                     method:'DELETE',data:{_token:'{{csrf_token()}}'},dataType:'json',
                     success:function(resp) {
-                        toastr[resp.success ? 'success' : 'danger'](resp.message)
+                        toastr[resp.success ? 'success' : 'error'](resp.message)
                         setTimeout(function() {
                             location.reload();
                         }, 1000);

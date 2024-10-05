@@ -97,7 +97,7 @@
                     url: '{{route('admin.product.destroy','idx')}}'.replace(/idx/, id),
                     method:'DELETE',data:{_token:'{{csrf_token()}}'},dataType:'json',
                     success:function(resp) {
-                        toastr[resp.success ? 'success' : 'danger'](resp.message)
+                        toastr[resp.success ? 'success' : 'error'](resp.message)
                         setTimeout(function() {
                             location.reload();
                         }, 1000);
@@ -115,7 +115,7 @@
                     url: '{{route('admin.product.updateFormula')}}',
                     method:'POST',data:{_token:'{{csrf_token()}}', formula:value, id:product},dataType:'json',
                     success:function(resp) {
-                        //toastr[resp.success ? 'success' : 'danger'](resp.message)
+                        //toastr[resp.success ? 'success' : 'error'](resp.message)
                         setTimeout(function() {
                             location.reload();
                         }, 1000);
