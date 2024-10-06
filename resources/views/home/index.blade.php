@@ -115,7 +115,7 @@
                     <h2 class="title">{{ __('home.top_bookmakers') }}</h2>
                 </div>
                     @endif
-                    @include('booker.hot-bookers-slider')
+                    @include('booker.hot-booker-slider')
                 </div>
             </div>
         </div>

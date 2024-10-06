@@ -58,7 +58,7 @@
                                     </div>
                                 @endif
 
-                                @include('booker.hot-bookers-slider')
+                                @include('booker.hot-booker-slider')
                                 
                             </div>
                         </div>
