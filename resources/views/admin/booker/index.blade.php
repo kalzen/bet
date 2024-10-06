@@ -34,7 +34,7 @@
                             <td>
                                 <a href="{{route('admin.booker.edit', $record->id)}}">
                                     <span class="badge bg-info">
-                                        {{ $record->langs->name }}
+                                        {{ $record->langs ? $record->langs->name : '' }}
                                     </span>
                                 </a>
                             </td>
