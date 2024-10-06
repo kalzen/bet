@@ -59,22 +59,8 @@
         <span class="visually-hidden">Next</span>
     </button>
 </div>
+<script src="{{asset('bet/jquery-3.6.0.min.js')}}"></script>
 <script>
-    // document.addEventListener('DOMContentLoaded', function() {
-    //     const scrollContainer = document.getElementById('hotBookersScroll');
-
-    //     scrollContainer.addEventListener('wheel', function(e) {
-    //         if (
-    //             (e.deltaY > 0 && scrollContainer.scrollLeft < scrollContainer.scrollWidth -
-    //                 scrollContainer.clientWidth) ||
-    //             (e.deltaY < 0 && scrollContainer.scrollLeft > 0)
-    //         ) {
-    //             e.preventDefault();
-    //             scrollContainer.scrollLeft += e.deltaY;
-    //         }
-    //     });
-    // });
-
     $(document).ready(function() {
         var minPerSlide = 6; // Minimum items per slide
 
