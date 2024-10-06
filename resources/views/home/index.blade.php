@@ -27,22 +27,22 @@
 
                     <div class="container col-md-12" id="cardContainer">
                         @foreach ($shared_bookers as $booker)
-                            <div class="card mb-3" style="border-radius: 20px">
+                            <div class="card mb-3" style="border-radius: 10px">
                                 <div class="position-absolute top-0 start-0 translate-middle bg-warning rounded-circle d-flex align-items-center justify-content-center text-dark fw-bold fs-6 shadow"
                                     style="width: 1.5rem; height: 1.5rem;">
                                     {{ $loop->iteration }}
                                 </div>
-                                <div class="row g-0 align-items-center justify-content-evenly ps-3 py-0">
-                                    <div class="col-md-1 col-2 px-0">
+                                <div class="booker-wrapper row g-0 align-items-center justify-content-evenly py-0 ps-3">
+                                    <div class="col-lg-1 col-md-1 col-1 px-0">
                                         <div class="image-container">
-                                            <div class="booker_mini_avt" style="{{ 'background-image: url(' . $booker->image . ')' }}"></div>
+                                            <div class="booker_mini_avt" style="{{ 'background-image: url(' . $booker->image . ') !important' }}"></div>
                                             {{-- <img src="{{ $booker->image }}"
                                                 class="rounded-circle" alt="Card image"
                                                 style="max-width: 50px; height: 50px;"
                                                 style="object-fit: cover; object-position: center;"> --}}
                                         </div>
                                     </div>
-                                    <div class="col-md-7 col-7">
+                                    <div class="col-lg-7 col-md-7 off-set-md-0 offset-1 col-7 ps-0">
                                         <div class="card-body py-1 pl-2">
                                             <small class="card-text text-muted m-0 fw-bold">{{ $booker->name }}</small>
                                             <p class="card-title p-0 m-0 font-weight-bold" style="font-size: 0.9em;">
@@ -50,7 +50,7 @@
                                             {{-- <small class="card-text text-muted m-0">This is a sample card text content.</small> --}}
                                         </div>
                                     </div>
-                                    <div class="col-md-3 col-3 text-center">
+                                    <div class="col-lg-3 col-md-3 col-3 text-end pe-3">
                                         <a href="{{ route('booker.detail', $booker->id) }}" class="prd-btn-1"><small
                                                 class="text-small">{{ __('home.view') }}</small></a>
                                         {{-- <a href="{{ route('booker.detail', $code->booker->id) }}" class="prd-btn-1 d-flex mt-3">

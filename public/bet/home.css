@@ -2,11 +2,12 @@
     transform: translateX(5%);
 }
 .booker_mini_avt {
-    width: 50px;
-    height: 50px;
-    background-size: cover;
+    width: 75px;
+    height: 46px;
+    background-size: contain;
     background-position: center;
-    border-radius: 100%;
+    border-radius: 20px;
+    background-repeat: no-repeat;
 }
 .card-wrapper{
     display: flex !important;
@@ -40,9 +41,15 @@
     opacity: 0.35;
     mix-blend-mode: luminosity;
 }
-@media (max-width: 1080) {
+@media (max-width: 1280) {
+    .booker-wrapper{
+        padding: 20px !important;
+    }
 }
 @media (max-width: 992px) {
+    .booker_mini_avt {
+        width: 100px;
+    }
     .banner-wrapper{
         justify-content: space-around;
     }
@@ -57,11 +64,26 @@
     
 }
 
-@media (max-width: 760px) {
+@media (max-width: 460px) {
+    .image-container{
+        margin-left: 0px;
+    }
+    .booker-wrapper{
+        padding: 0px !important;
+    }
+
+}
+@media (max-width: 767px) {
     #cardContainer {
         padding: 0;
     }
 
+    .booker_mini_avt {
+        width: 61px;
+    }
+    .image-container{
+        margin-left: 5px;
+    }
 }
 @media (max-width: 992px) {
     .banner-wrapper{
@@ -74,6 +96,6 @@
         padding-top: 0px !important;
         margin-left: 0px !important;
     }
-
+    
     
 }
