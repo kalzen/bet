@@ -30,7 +30,8 @@ class HomeController extends Controller
         $teams = Team::All();
         $posts = Post::latest()->withCount(['images'])->having('images_count','>',0)->active()->take(6)->get();
         $tips = Tip::all();
-        return view('home.index',[ 'posts'=>$posts, 'testimonials' => $testimonials, 'teams' => $teams, 'catalogues' => $catalogues, 'booker_hot'=>$bookers, 'codes' => $codes, 'tips' => $tips]);
+        $hot_bookers = Booker::orderBy('ordering', 'desc')->take(6)->get();
+        return view('home.index',[ 'posts'=>$posts, 'testimonials' => $testimonials, 'teams' => $teams, 'catalogues' => $catalogues, 'booker_hot'=>$bookers, 'codes' => $codes, 'tips' => $tips, 'hot_bookers' => $hot_bookers]);
     }
     public function order()
     {

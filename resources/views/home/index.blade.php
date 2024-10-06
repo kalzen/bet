@@ -46,7 +46,7 @@
                                         <div class="card-body py-1 pl-2">
                                             <small class="card-text text-muted m-0 fw-bold">{{ $booker->name }}</small>
                                             <p class="card-title p-0 m-0 font-weight-bold" style="font-size: 0.9em;">
-                                                {{ $booker->description }}</p>
+                                                {{ Str::limit($booker->description, 48, '...') }}</p>
                                             {{-- <small class="card-text text-muted m-0">This is a sample card text content.</small> --}}
                                         </div>
                                     </div>
@@ -86,7 +86,7 @@
         <div class="shape-2 banner-shape"></div>
     </div>
     <!-- banner end -->
-    <div class="scroll-down">
+    <div class="scroll-down d-none">
         <div class="container">
             <a href="#0" class="scroll-down-btn">
                 <span class="straight-line"></span>
@@ -100,68 +100,23 @@
     </div>
 
     <!-- booker -->
-    <div class="booker playing-bet placing-bet-page pb-0 pt-5 mt-4" id="booker">
+    <div class="booker playing-bet placing-bet-page pb-0 pt-4 mt-1" id="booker">
         <div class="global-shape style-3">
             <img src="assets/img/shapes/shape-1.png" alt="" data-aos="fade-left" data-aos-duration="700"
                 data-aos-delay="200">
         </div>
         <div class="container">
-            <div class="section-title mb-3" data-aos="fade-up" data-aos-delay="100" data-aos-duration="500"
-                data-aos-easing="ease-in">
-                <h3 class="sub-title">{{ __('home.bookmaker') }}</h3>
-                <h2 class="title">{{ __('home.top_bookmakers') }}</h2>
-            </div>
-            <div class="row">
-                @foreach ($booker_hot as $booker)
-                    <div class="col container col-md-4 col-12">
-                        <div class="card shadow-lg p-3 mb-4 border-0" style="position: relative; border-radius: 20px;">
-                            <div class="position-absolute top-30 start-30  bg-danger rounded-circle"
-                                style="width: 60px; height: 60px; line-height: 60px; text-align: center; color: white; font-weight: bold; font-size: 30px">
-                                {{ $loop->iteration }}
-                            </div>
-
-                            <div class="text-center mb-3">
-                                <img src="{{ $booker->image }}" alt="Logo" class="img-fluid rounded-3"
-                                    onerror="this.onerror=null; this.src='https://via.placeholder.com/400x300';">
-                            </div>
-
-                            <div class="text-center mb-3">
-                                <h5 class="fw-bold">{{ $booker->name }}</h5>
-                                <p class="text-warning mb-0">★ ★ ★ ★ ★</p>
-                            </div>
-
-                            <ul class="list-unstyled mb-4 text-center">
-                                @foreach (explode(',', $booker->sale_text) as $sale_text)
-                                    <li class="d-flex justify-content-center align-items-center">
-                                        <svg xmlns="http://www.w3.org/2000/svg" x="0px" y="0px" width="30"
-                                            height="30" viewBox="0,0,300,270" style="fill:#40C057;">
-                                            <g fill="#40c057" fill-rule="nonzero" stroke="none" stroke-width="1"
-                                                stroke-linecap="butt" stroke-linejoin="miter" stroke-miterlimit="10"
-                                                stroke-dasharray="" stroke-dashoffset="0" font-family="none"
-                                                font-weight="none" font-size="none" text-anchor="none"
-                                                style="mix-blend-mode: normal">
-                                                <g transform="scale(10.66667,10.66667)">
-                                                    <path
-                                                        d="M12,2c-5.50804,0 -10,4.49196 -10,10c0,5.50804 4.49196,10 10,10c5.50804,0 10,-4.49196 10,-10c0,-5.50804 -4.49196,-10 -10,-10zM12,4.5c4.15695,0 7.5,3.34306 7.5,7.5c0,4.15694 -3.34305,7.5 -7.5,7.5c-4.15695,0 -7.5,-3.34306 -7.5,-7.5c0,-4.15694 3.34305,-7.5 7.5,-7.5zM15.22461,9.23828c-0.32482,0.00981 -0.63305,0.14571 -0.85937,0.37891l-3.36523,3.36328l-0.87891,-0.87695c-0.31352,-0.32654 -0.77908,-0.45808 -1.21713,-0.34388c-0.43805,0.1142 -0.78013,0.45628 -0.89433,0.89433c-0.1142,0.43805 0.01734,0.9036 0.34388,1.21713l1.76172,1.76367c0.23451,0.23493 0.55282,0.36695 0.88477,0.36695c0.33194,0 0.65026,-0.13202 0.88477,-0.36695l4.24805,-4.25c0.37007,-0.35931 0.48147,-0.90902 0.28048,-1.38405c-0.20099,-0.47503 -0.67311,-0.77785 -1.18868,-0.76243z">
-                                                    </path>
-                                                </g>
-                                            </g>
-                                        </svg>
-                                        {{ $sale_text }}
-                                    </li>
-                                @endforeach
-                            </ul>
-                            <div class="d-flex gap-2 justify-content-center align-items-center mt-3">
-                                <a href="{{ route('booker.detail', $booker->id) }}" class="prd-btn-1 d-flex">
-                                    {{ __('home.detail') }} <i class="fa-duotone fa-arrow-right"></i>
-                                </a>
-                                <a href="{{ $booker->url }}" class="prd-btn-2 d-flex">
-                                    {{ __('home.bet') }} <i class="fa-duotone fa-arrow-right"></i>
-                                </a>
-                            </div>
-                        </div>
-                    </div>
-                @endforeach
+            <div class="row top-hot-bookers">
+                <div class="col">
+                    @if ($hot_bookers->count() > 0)
+                    <div class="section-title mb-3" data-aos="fade-up" data-aos-delay="100" data-aos-duration="500"
+                    data-aos-easing="ease-in">
+                    <h3 class="sub-title">{{ __('home.bookmaker') }}</h3>
+                    <h2 class="title">{{ __('home.top_bookmakers') }}</h2>
+                </div>
+                    @endif
+                    @include('booker.hot-bookers-slider')
+                </div>
             </div>
         </div>
         <!-- end booker -->
@@ -202,7 +157,7 @@
                                                 <h5 class="card-title"><a
                                                         href="{{ route('post.detail', ['alias' => $posts[0]->slug]) }}">
                                                         {{ $posts[0]->title }}</a></h5>
-                                                <p class="card-text">{{ $posts[0]->description }}</p>
+                                                {{ Str::limit($posts[0]->description, 130, '...') }}</p>
                                                 <p class="card-text"><small class="text-muted">
                                                         <svg xmlns="http://www.w3.org/2000/svg" x="0px" y="0px"
                                                             width="19" height="19" viewBox="0 0 24 28">
