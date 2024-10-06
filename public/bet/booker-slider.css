@@ -1,103 +1,95 @@
-#myCarousel {
-    margin-top: 50px;
+/* .swiper {
+    width: 600px;
+    height: 300px;
+} */
+
+.card-wrapper {
+    max-width: 1100px;
+    margin: 0 60px 35px;
+    padding: 20px 10px;
+    /* overflow: hidden; */
 }
 
-@media (max-width: 768px) {
-    .carousel-inner .carousel-item>div {
-        display: none;
-    }
-
-    .carousel-inner .carousel-item>div:first-child {
-        display: block;
-    }
+.card-list .card-item {
+    list-style: none;
 }
 
-.carousel-inner .carousel-item.active,
-.carousel-inner .carousel-item-start,
-.carousel-inner .carousel-item-next,
-.carousel-inner .carousel-item-prev {
-    display: flex;
+.card-list .card-item .card-link {
+    /* width: 400px; */
+    user-select: none;
+    display: block;
+    background: #fff;
+    padding: 18px;
+    border-radius: 20px;
+    text-decoration: none;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    transition: 0.2s ease;
+}   
 
+.card-list .card-item .card-link:hover {
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+    border-color: #e0e0e0;
+    
 }
 
-@media (min-width: 768px) {
-
-    .carousel-inner .carousel-item-right.active,
-    .carousel-inner .carousel-item-next,
-    .carousel-item-next:not(.carousel-item-start) {
-        transform: translateX(25%) !important;
-    }
-
-    .carousel-inner .carousel-item-left.active,
-    .carousel-item-prev:not(.carousel-item-end),
-    .active.carousel-item-start,
-    .carousel-item-prev:not(.carousel-item-end) {
-        transform: translateX(-25%) !important;
-    }
-
-    .carousel-item-next.carousel-item-start,
-    .active.carousel-item-end {
-        transform: translateX(0) !important;
-    }
-
-    .carousel-inner .carousel-item-prev,
-    .carousel-item-prev:not(.carousel-item-end) {
-        transform: translateX(-25%) !important;
-    }
+.card-list .card-link .card-image {
+    width: 100%;
+    aspect-ratio: 16 / 9;
+    object-fit: cover;
+    border-radius: 10px;
 }
 
-.carousel-control-prev-icon,
-.carousel-control-next-icon {
-    background-color: black;
-    /* Change to any color you want */
-    border-radius: 15px;
-    /* Optional: make it round */
-    width: 50px;
-    height: 50px;
+.card-list .card-link .badge {
+    color: blueviolet;
+    padding: 8px 16px;
+    font-size: 0.95rem;
+    font-weight: 500;
+    margin: 16px 0 18px;
+    background: azure;
+    width: fit-content;
+    border-radius: 50px;
 }
 
-
-.carousel-item {
-    transition: transform 0.25s ease !important;
-    /* Adjust 0.5s for faster/slower transition */
+.card-list .card-link .card-title {
+    font-size: 1.19rem;
+    color: #000;
+    font-weight: 600;
 }
 
-.carousel-control-prev,
-.carousel-control-next {
-    position: absolute;
-    top: 50%;
-    transform: translateY(-50%);
-    width: 40px;
-    /* Adjust size as needed */
-    height: 40px;
-    background-color: rgba(255, 255, 255, 0.7);
-    /* Adjust background color */
+.card-list .card-link .card-button {
+    height: 35px;
+    width: 35px;
+    color: #5372f0;
     border-radius: 50%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
+    margin: 30px 0 5px;
+    background: none;
+    cursor: pointer;
+    border: 2px solid #5372f0;
+    transform: rotate(-45deg);
+    transition: 0.4s ease;
 }
 
-.carousel-control-prev {
-    left: 0;
-    /* Stick to the left edge */
+.card-list .card-link:hover .card-button {
+    color: #fff;
+    background: #5372f0;
 }
 
-.carousel-control-next {
-    right: 0;
-    /* Stick to the right edge */
+.card-wrapper .swiper-pagination-bullet {
+    width: 10px;
+    height: 10px;
+    text-align: center;
+    line-height: 10px;
+    font-size: 12px;
+    color: #000;
+    opacity: 1;
+    background: rgba(0, 0, 0, 0.2);
 }
 
-.carousel-control-prev:hover,
-.carousel-control-next:hover {
-    background-color: rgba(0, 0, 0, 0.1);
-    /* Hover effect */
+.card-wrapper .swiper-pagination-bullet-active {
+    color: #fff;
+    background: #f05353;
 }
 
-.carousel-control-prev-icon,
-.carousel-control-next-icon {
-    font-size: 30px;
-    /* Adjust icon size */
-    color: black;
-    /* Icon color */
+.swiper-button-next, .swiper-button-prev {
+    color: #f05353 !important;
 }
