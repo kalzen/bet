@@ -3,18 +3,18 @@
     height: 300px;
 } */
 
-.card-wrapper {
+.card-booker-wrapper {
     max-width: 1100px;
     margin: 0 60px 35px;
     padding: 20px 10px;
-    /* overflow: hidden; */
+    overflow: hidden;
 }
 
-.card-list .card-item {
+.card-booker-list .card-booker-item {
     list-style: none;
 }
 
-.card-list .card-item .card-link {
+.card-booker-list .card-booker-item .card-booker-link {
     /* width: 400px; */
     user-select: none;
     display: block;
@@ -26,20 +26,20 @@
     transition: 0.2s ease;
 }   
 
-.card-list .card-item .card-link:hover {
+.card-booker-list .card-booker-item .card-booker-link:hover {
     box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
     border-color: #e0e0e0;
     
 }
 
-.card-list .card-link .card-image {
+.card-booker-list .card-booker-link .card-booker-image {
     width: 100%;
     aspect-ratio: 16 / 9;
     object-fit: cover;
     border-radius: 10px;
 }
 
-.card-list .card-link .badge {
+.card-booker-list .card-booker-link .badge {
     color: blueviolet;
     padding: 8px 16px;
     font-size: 0.95rem;
@@ -50,13 +50,13 @@
     border-radius: 50px;
 }
 
-.card-list .card-link .card-title {
+.card-booker-list .card-booker-link .card-booker-title {
     font-size: 1.19rem;
     color: #000;
     font-weight: 600;
 }
 
-.card-list .card-link .card-button {
+.card-booker-list .card-booker-link .card-booker-button {
     height: 35px;
     width: 35px;
     color: #5372f0;
@@ -69,12 +69,12 @@
     transition: 0.4s ease;
 }
 
-.card-list .card-link:hover .card-button {
+.card-booker-list .card-booker-link:hover .card-booker-button {
     color: #fff;
     background: #5372f0;
 }
 
-.card-wrapper .swiper-pagination-bullet {
+.card-booker-wrapper .swiper-pagination-bullet {
     width: 10px;
     height: 10px;
     text-align: center;
@@ -85,7 +85,7 @@
     background: rgba(0, 0, 0, 0.2);
 }
 
-.card-wrapper .swiper-pagination-bullet-active {
+.card-booker-wrapper .swiper-pagination-bullet-active {
     color: #fff;
     background: #f05353;
 }

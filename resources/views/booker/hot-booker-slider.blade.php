@@ -1,11 +1,12 @@
 <link rel="stylesheet" href="{{ asset('bet/booker-slider.css') }}">
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Swiper/11.0.5/swiper-bundle.min.css">
+{{-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Swiper/11.0.5/swiper-bundle.min.css"> --}}
+<link rel="stylesheet" href="{{asset('bet/swiper/swiper-bundle.min.css')}}">
 <div class="container swiper mt-3 mb-3">
-    <div class="card-wrapper">
-        <ul class="card-list swiper-wrapper">
+    <div class="card-booker-wrapper">
+        <ul class="card-booker-list swiper-wrapper">
             @foreach ($hot_bookers as $booker)
-                <li class="card-item swiper-slide">
-                    <div class="card-link">
+                <li class="card-booker-item swiper-slide">
+                    <div class="card-booker-link">
                                 <!-- Circle number -->
                                 <div class="position-absolute top-30 start-30  bg-danger rounded-circle"
                                     style="width: 30px; height: 30px; line-height: 30px; text-align: center; color: white; font-weight: bold; font-size: 15px">
@@ -42,8 +43,8 @@
                 </li>
             @endforeach
             @foreach ($hot_bookers as $booker)
-                <li class="card-item swiper-slide">
-                    <div class="card-link">
+                <li class="card-booker-item swiper-slide">
+                    <div class="card-booker-link">
                                 <!-- Circle number -->
                                 <div class="position-absolute top-30 start-30  bg-danger rounded-circle"
                                     style="width: 30px; height: 30px; line-height: 30px; text-align: center; color: white; font-weight: bold; font-size: 15px">
@@ -85,9 +86,11 @@
         <div class="swiper-button-next"></div>
     </div>
 </div>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/Swiper/11.0.5/swiper-bundle.min.js"></script>
+{{-- <script src="https://cdnjs.cloudflare.com/ajax/libs/Swiper/11.0.5/swiper-bundle.min.js"></script> --}}
+<!-- swiper js -->
+<script src="{{asset('bet/swiper/swiper-bundle.min.js')}}"></script>
 <script>
-    new Swiper('.card-wrapper', {
+    new Swiper('.card-booker-wrapper', {
         // Optional parameters
         // direction: 'vertical',
         loop: true,
