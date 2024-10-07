@@ -7,10 +7,10 @@
 <div class="prd-breadcrumb">
     <div class="container">
         <div class="brd-content">
-            {{-- <div data-aos="fade-up" data-aos-delay="200" data-aos-duration="500" data-aos-easing="ease-in" class="aos-init aos-animate">
-                <span class="sub-title">blog details</span>
+            <div data-aos="fade-up" data-aos-delay="200" data-aos-duration="500" data-aos-easing="ease-in" class="aos-init aos-animate">
+                <span class="sub-title">{{ __('booker.list.bookmaker') }}</span>
             </div>    
-            <h2 class="title aos-init aos-animate" data-aos="fade-up" data-aos-delay="350" data-aos-duration="500" data-aos-easing="ease-in">Even more and setted see small seven to think...</h2> --}}
+            <h2 class="title aos-init aos-animate" data-aos="fade-up" data-aos-delay="350" data-aos-duration="500" data-aos-easing="ease-in">{{ __('booker.detail.bookmaker_details') }}</h2>
             <div class="page-direction">
                 <ul>
                     <li>
@@ -19,7 +19,7 @@
                     </li>
                     <li>
                         <span class="icon"><i class="fa-light fa-caret-right fa-xl"></i></span>
-                        <span class="text">{{ __('booker.detail.bookmaker_details') }}</span>
+                        <span class="text">{{ __('booker.list.detail') }}</span>
                     </li>
                 </ul>
             </div>
@@ -57,7 +57,7 @@
                 </div>
     
                 <div class="col-md-8">
-                    <h2 class="mb-4 mt-1">{{ __('booker.detail.bookmaker_details') }}</h2>
+                    {{-- <h2 class="mb-4 mt-1">{{ __('booker.detail.bookmaker_details') }}</h2> --}}
                     <div class="card shadow-lg" style="border-radius: 20px">
                         <div class="card-body">
                             <h5 class="card-title">{{ __('booker.detail.overview') }}</h5>
@@ -82,7 +82,9 @@
                             </ul>
                         </div>
                     </div>
-                    <h2 class="mb-0 mt-5">{{ __('booker.detail.bookmaker_promo_codes') }}</h2>
+                    @if ($booker->codes->count() > 0)
+                        <h2 class="mb-0 pt-5 mt-5">{{ __('booker.detail.bookmaker_promo_codes') }}</h2>
+                    @endif
                 </div>
                 <div class="col-12 pt-5 pb-5">
                     <div class="row aos-init" data-aos="fade-up" data-aos-delay="50">

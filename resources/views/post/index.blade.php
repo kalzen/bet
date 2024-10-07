@@ -22,10 +22,10 @@
 <div class="prd-breadcrumb">
     <div class="container">
         <div class="brd-content">
-            {{-- <div data-aos="fade-up" data-aos-delay="200" data-aos-duration="500" data-aos-easing="ease-in" class="aos-init aos-animate">
-                <span class="sub-title">blog details</span>
+            <div data-aos="fade-up" data-aos-delay="200" data-aos-duration="500" data-aos-easing="ease-in" class="aos-init aos-animate">
+                <span class="sub-title">{{ __('post.list.news') }}</span>
             </div>    
-            <h2 class="title aos-init aos-animate" data-aos="fade-up" data-aos-delay="350" data-aos-duration="500" data-aos-easing="ease-in">Even more and setted see small seven to think...</h2> --}}
+            <h2 class="title aos-init aos-animate" data-aos="fade-up" data-aos-delay="350" data-aos-duration="500" data-aos-easing="ease-in">{{ __('post.list.latest_news') }}</h2>
             <div class="page-direction">
                 <ul>
                     <li>
@@ -42,11 +42,11 @@
     </div>
 </div>
     <div class="blog-posts">
-        <div class="section-title aos-init" data-aos="fade-up" data-aos-delay="0" data-aos-duration="200"
+        {{-- <div class="section-title aos-init" data-aos="fade-up" data-aos-delay="0" data-aos-duration="200"
             data-aos-easing="ease-in">
             <h3 class="sub-title pt-2">{{ __('post.list.news') }}</h3>
             <h2 class="title">{{ __('post.list.latest_news') }}</h2>
-        </div>
+        </div> --}}
         <div class="global-shape style-3">
             <img src="https://peredion.netlify.app/assets/img/shapes/shape-1.png" alt="" data-aos="fade-left"
                 data-aos-duration="500" data-aos-offset="200" data-aos-easing="ease-in" data-aos-delay="400"

@@ -8,10 +8,10 @@
 <div class="prd-breadcrumb">
     <div class="container">
         <div class="brd-content">
-            {{-- <div data-aos="fade-up" data-aos-delay="200" data-aos-duration="500" data-aos-easing="ease-in" class="aos-init aos-animate">
-                <span class="sub-title">blog details</span>
+            <div data-aos="fade-up" data-aos-delay="200" data-aos-duration="500" data-aos-easing="ease-in" class="aos-init aos-animate">
+                <span class="sub-title">{{ __('user.detail.overview') }}</span>
             </div>    
-            <h2 class="title aos-init aos-animate" data-aos="fade-up" data-aos-delay="350" data-aos-duration="500" data-aos-easing="ease-in">Even more and setted see small seven to think...</h2> --}}
+            <h2 class="title aos-init aos-animate" data-aos="fade-up" data-aos-delay="350" data-aos-duration="500" data-aos-easing="ease-in">{{ __('user.detail.user_details') }}</h2>
             <div class="page-direction">
                 <ul>
                     <li>
@@ -28,10 +28,10 @@
     </div>
 </div>
     <div class="section-title" data-aos="fade-up" data-aos-delay="100" data-aos-duration="500"
-                        data-aos-easing="ease-in">
-                        <h3 class="sub-title">{{ __('user.detail.detail') }}</h3>
-                        <h2 class="title"></h2>
-                    </div>
+        data-aos-easing="ease-in">
+        <h3 class="sub-title">{{ __('user.detail.detail') }}</h3>
+        <h2 class="title"></h2>
+    </div>
     <section class="inner-section blog-details-part">
         <div class="container">
             <div class="row justify-content-center">
@@ -49,7 +49,7 @@
                 </div>
     
                 <div class="col-md-8">
-                    <h2 class="mb-4">{{ __('user.detail.user_details') }}</h2>
+                    {{-- <h2 class="mb-4">{{ __('user.detail.user_details') }}</h2> --}}
                     <div class="card shadow-lg" style="border-radius: 20px">
                         <div class="card-body">
                             <h5 class="card-title">{{ __('user.detail.overview') }}</h5>

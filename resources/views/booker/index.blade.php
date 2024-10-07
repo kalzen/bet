@@ -5,10 +5,10 @@
         <div class="prd-breadcrumb">
             <div class="container">
                 <div class="brd-content">
-                    {{-- <div data-aos="fade-up" data-aos-delay="200" data-aos-duration="500" data-aos-easing="ease-in" class="aos-init aos-animate">
-                        <span class="sub-title">blog details</span>
+                    <div data-aos="fade-up" data-aos-delay="200" data-aos-duration="500" data-aos-easing="ease-in" class="aos-init aos-animate">
+                        <span class="sub-title">{{ __('booker.list.bookmaker') }}</span>
                     </div>    
-                    <h2 class="title aos-init aos-animate" data-aos="fade-up" data-aos-delay="350" data-aos-duration="500" data-aos-easing="ease-in">Even more and setted see small seven to think...</h2> --}}
+                    <h2 class="title aos-init aos-animate" data-aos="fade-up" data-aos-delay="350" data-aos-duration="500" data-aos-easing="ease-in">{{ __('booker.list.popular_page') }}</h2>
                     <div class="page-direction">
                         <ul>
                             <li>
@@ -24,7 +24,7 @@
                 </div>
             </div>
         </div>
-        <div class="container-fluid mt-5">
+        <div class="container-fluid mt-3">
             <div class="row">
                 <!-- Left column for categories -->
                 {{-- <div class="col-md-3 bg-light p-3">
@@ -38,7 +38,7 @@
                 </div> --}}
 
                 <!-- Right column for bookers -->
-                <div class="col-md-12 mt-3">
+                <div class="col-md-12">
                     {{-- <h1>{{isset($currentCategory->name)?'Danh sách nhà cái "'.$currentCategory->name.'"':'Danh sách nhà cái'}}</h1> --}}
 
                     {{-- <ol class="breadcrumb">
@@ -51,14 +51,14 @@
                         <div class="row top-hot-bookers">
                             <div class="col">
                                 @if ($hot_bookers->count() > 0)
-                                    <div class="section-title aos-init mb-1" data-aos="fade-up" data-aos-delay="1"
+                                    {{-- <div class="section-title aos-init mb-1" data-aos="fade-up" data-aos-delay="1"
                                         data-aos-duration="500" data-aos-easing="ease-in">
                                         <h3 class="sub-title pt-2">{{ __('booker.list.hot') }}</h3>
                                         <h2 class="title">{{ __('booker.list.popular_page') }}</h2>
-                                    </div>
+                                    </div> --}}
+                                    
+                                    @include('booker.hot-booker-slider')
                                 @endif
-
-                                @include('booker.hot-booker-slider')
                                 
                             </div>
                         </div>
@@ -71,6 +71,10 @@
                                     data-aos-duration="500" data-aos-easing="ease-in">
                                     <h3 class="sub-title pt-2">{{ __('booker.list.bookmaker') }}</h3>
                                     <h2 class="title">{{ __('booker.list.more_bookmakers') }}</h2>
+                                </div>
+                            @else
+                                <div class="alert alert-info text-center" role="alert">
+                                    <b>{{ __('booker.list.no_bookmakers') }}</b>
                                 </div>
                             @endif
                             <div class="list-group">

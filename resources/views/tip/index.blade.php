@@ -3,10 +3,10 @@
 <div class="prd-breadcrumb">
     <div class="container">
         <div class="brd-content">
-            {{-- <div data-aos="fade-up" data-aos-delay="200" data-aos-duration="500" data-aos-easing="ease-in" class="aos-init aos-animate">
-                <span class="sub-title">blog details</span>
+            <div data-aos="fade-up" data-aos-delay="200" data-aos-duration="500" data-aos-easing="ease-in" class="aos-init aos-animate">
+                <span class="sub-title">{{ __('tip.list.tips') }}</span>
             </div>    
-            <h2 class="title aos-init aos-animate" data-aos="fade-up" data-aos-delay="350" data-aos-duration="500" data-aos-easing="ease-in">Even more and setted see small seven to think...</h2> --}}
+            <h2 class="title aos-init aos-animate" data-aos="fade-up" data-aos-delay="350" data-aos-duration="500" data-aos-easing="ease-in">{{ __('tip.list.today_tips') }}</h2>
             <div class="page-direction">
                 <ul>
                     <li>
@@ -23,7 +23,7 @@
     </div>
 </div>
     <section class="inner-section blog-standard">
-        <div class="container-fluid mt-5">
+        <div class="container-fluid">
             <div class="row">
             </div>
         </div>
@@ -33,11 +33,11 @@
                     data-aos-delay="500" class="aos-init">
             </div>
             <div class="container">
-                <div class="section-title aos-init" data-aos="fade-up" data-aos-delay="100" data-aos-duration="500"
+                {{-- <div class="section-title aos-init" data-aos="fade-up" data-aos-delay="100" data-aos-duration="500"
                     data-aos-easing="ease-in">
                     <h3 class="sub-title">{{ __('tip.list.tips') }}</h3>
                     <h2 class="title">{{ __('tip.list.today_tips') }}</h2>
-                </div>
+                </div> --}}
                 @if($tips->isEmpty())
                     <div class="alert alert-info text-center" role="alert">
                         <b>{{ __('tip.list.no_tips') }}</b>
