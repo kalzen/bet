@@ -171,7 +171,7 @@
                                                             class="badge bg-warning text-dark mb-1 mt-1">{{ $post->categories->first()->name }}</span>
                                                         <h6 class="card-title">
                                                             <a href="{{ route('post.detail', ['alias' => $post->slug]) }}">{{ $post->title }}</a>
-                                                            <span class="small-post-description">{{ Str::limit($post->description, 130, '...') }}</span>
+                                                            <span class="small-post-description">{{ Str::limit($post->description, 60, '...') }}</span>
                                                         </h6>
                                                         <p class="card-text">
                                                             <small class="text-muted">
@@ -214,7 +214,7 @@
                                             <h5 class="card-title">
                                                 <a href="{{ route('post.detail', ['alias' => $posts[0]->slug]) }}">{{ $posts[0]->title }}</a>
                                             </h5>
-                                            <span>{{ Str::limit($posts[0]->description, 130, '...') }}</span>
+                                            <span>{{ Str::limit($posts[0]->description, 255, '...') }}</span>
                                             <p class="card-text">
                                                 <small class="text-muted">
                                                     <svg xmlns="http://www.w3.org/2000/svg" x="0px" y="0px"
@@ -271,7 +271,7 @@
                                                         class="badge bg-warning text-dark mb-1 mt-1">{{ $post->categories->first()->name }}</span>
                                                     <h6 class="card-title">
                                                         <a href="{{ route('post.detail', ['alias' => $post->slug]) }}">{{ $post->title }}</a>
-                                                        <span class="small-post-description">{{ Str::limit($post->description, 130, '...') }}</span>
+                                                        <span class="small-post-description">{{ Str::limit($post->description, 60, '...') }}</span>
                                                     </h6>
                                                     <p class="card-text">
                                                         <small class="text-muted">
