@@ -68,6 +68,13 @@
     max-width: 120%;
 }
 
+.small-post-description{
+    display: none;
+    font-size: .9em;
+    font-weight: 100;
+    margin-bottom: 5px;
+}
+
 .main-post-content .card-title{
     margin-bottom: 4px;
 }
@@ -105,7 +112,18 @@
     }
 }
 
-@media (max-width: 992px) {
+@media (max-width: 1199px) {
+    .side-small-post-content .card-body .card-title a{
+        font-size: 10px;
+        max-width: 100%;
+    }
+    .main-post-content .card-title a{
+        font-size: 15px;
+        max-width: 130%;
+    }
+}
+
+@media (max-width: 991px) {
     .booker_mini_avt {
         width: 100px;
     }
@@ -130,6 +148,67 @@
         padding-top: 0px !important;
         margin-left: 0px !important;
     }
+
+    /* small posts */
+    .small-post-description{
+        display: block;
+    }
+    .side-small-post-content .card-body .badge{
+        font-size: 1em;
+        margin-bottom: 5px;
+        margin-top: 5px;
+    }
+
+    .side-small-post-content .card-body{
+        font-size: .8em;
+        line-height: 0px;
+        padding-top: 0px;
+        padding-bottom: 0px;
+    }
+    
+    .side-small-post-content .card-text{
+        line-height: unset;
+    }
+    
+    .side-small-post-content .card-body .card-title{
+        margin-bottom: auto;
+    }
+    
+    .side-small-post-content .card-body .card-title a{
+        font-size: 1.2em;
+        max-width: 180%;
+    }
+    
+    /* main posts */
+    .main-post-content .card-title a{
+        font-size: 1.2em;
+        max-width: 180%;
+    }
+    .main-post-content .card-title{
+        margin-bottom: 4px;
+    }
+    
+    .main-post-content span{
+        font-size: 1.1em;
+    }
+    
+    .main-post-content .badge{
+        font-size: 1em;
+        margin-bottom: 5px;
+        margin-top: 5px;
+    }
+    
+    .main-post-content .card-text{
+        margin: 0;
+        padding-top: 5px;
+        padding-bottom: 5px;
+        line-height: unset;
+    }
+    
+    .main-post-content{
+        font-size: .8em;
+        padding-top: 5px;
+    }
 }
 
 @media (max-width: 767px) {
@@ -143,9 +222,46 @@
     .image-container{
         margin-left: 5px;
     }
+    /* small posts */
+    .small-post-description{
+        display: block;
+    }
+    .side-small-post-content .card-body .badge{
+        font-size: .9em;
+        margin-bottom: 5px;
+        margin-top: 5px;
+    }
+
+    .side-small-post-content .card-body{
+        font-size: .8em;
+        line-height: 0px;
+        padding-top: 0px;
+        padding-bottom: 0px;
+    }
+    
+    .side-small-post-content .card-text{
+        line-height: unset;
+    }
+    
+    .side-small-post-content .card-body .card-title{
+        margin-bottom: auto;
+    }
+    
+    .side-small-post-content .card-body .card-title a{
+        font-size: 1.1em;
+        max-width: 160%;
+    }
 }
 
 @media (max-width: 460px) {
+    .small-post-description{
+        display: block;
+        font-size: 0.8em;
+    }
+    .side-small-post-content .card-body .card-title a{
+        font-size: 0.9em;
+        max-width: 160%;
+    }
     .image-container{
         margin-left: 0px;
     }
