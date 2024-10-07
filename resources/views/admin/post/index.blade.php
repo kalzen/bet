@@ -9,10 +9,12 @@
                 <table class="table table-bordered">
                     <thead>
                         <tr>
-                            <th>#</th>
+                            {{-- <th>#</th> --}}
                             <th>Ảnh</th>
                             <th>Tiêu đề</th>
                             <th>Chuyên mục</th>
+                            <th>Ngôn ngữ gốc</th>
+                            <th>Ngôn ngữ khác</th>
                             <th>Từ khóa</th>
                             <th>Thời gian</th>
                             <th>Lượt xem</th>
@@ -23,9 +25,9 @@
                     <tbody>
                         @foreach($records as $record)
                         <tr>
-                            <td>
+                            {{-- <td>
                                 <input type="checkbox" name="ids[]" value="{{$record->id}}" class="form-input-styled">
-                            </td>
+                            </td> --}}
                             <td>
                                 @if($record->images->count())
                                 <img src="{{$record->images->first()->url}}" height="50">
@@ -36,6 +38,24 @@
                             </td>
                             <td>
                                 {{$record->categories->pluck('name')->join(', ')}}
+                            </td>
+                            <td>
+                                <a href="{{route('admin.post.edit', $record->id)}}">
+                                    <span class="badge bg-info">
+                                        {{ $record->langs ? $record->langs->name : '' }}
+                                    </span>
+                                </a>
+                            </td>
+                            <td>
+                                @php
+                                    $langNames = [];
+                                @endphp
+                                @foreach($record->langChildren as $child)
+                                    @php
+                                        $langNames[] = '<a href="' . route('admin.post.edit', $child->id) . '"><span class="badge bg-success">' . ($child->langs ? $child->langs->name : '') . '</span></a>';
+                                    @endphp
+                                @endforeach
+                                {!! implode(' ', $langNames) !!}
                             </td>
                             <td>
                                 {{$record->tags->pluck('name')->join(', ')}}

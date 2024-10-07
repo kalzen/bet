@@ -114,6 +114,8 @@ Route::middleware(['auth'])->name('admin.')->prefix('admin')->group(function () 
     Route::resource('attribute', AttributeController::class);
     Route::prefix('post')->name('post.')->group(function () {
         Route::post('category', [PostController::class, 'category'])->name('category');
+        Route::post('lang', [PostController::class, 'lang'])->name('lang');
+        Route::post('remove-bind', [PostController::class, 'removeBind'])->name('removeBind');
     });
     Route::prefix('booker')->name('booker.')->group(function () {
         Route::post('category', [BookerController::class, 'category'])->name('category');

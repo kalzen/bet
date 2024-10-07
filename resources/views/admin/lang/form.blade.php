@@ -12,7 +12,9 @@
             <div class="col-md-6 col-12 overflow-auto order-2 order-md-1">
 				<div class="card">
 					<div class="card-body">
-                        <div class="form-group">
+                        
+                        @include('admin.shared.locale-country-codes')
+                        {{-- <div class="form-group">
                             <label class="font-weight-semibold">Name <span class="required"></span></label>
                             <input type="text" class="form-control" required id="name" name="name" value="{{ old('name') ?: ($record->name ?? '') }}" placeholder="VD: Tiếng Việt">
                             @error('name')
@@ -25,7 +27,7 @@
                             @error('locale')
                             <label id="locale-error" class="validation-invalid-label" for="locale">{{$message}}</label>
                             @enderror
-                        </div>
+                        </div> --}}
                         <div class="text-right">
                             <button type="submit" class="btn btn-primary">Lưu <i class="icon-paperplane ml-2"></i></button>
                         </div>
