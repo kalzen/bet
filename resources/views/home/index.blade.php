@@ -165,22 +165,14 @@
                                                             onerror="this.onerror=null; this.src='https://via.placeholder.com/400x300';">
                                                     </div>
                                                 </div>
-                                                <div class="col-5">
-                                                    <div class="card-body"
-                                                        style="
-                                                        font-size: .5em;
-                                                        line-height: 0px;
-                                                        padding-top: 0px;
-                                                        padding-bottom: 0px;">
+                                                <div class="col-5 side-small-post-content">
+                                                    <div class="card-body">
                                                         <span
                                                             class="badge bg-warning text-dark mb-1 mt-1">{{ $post->categories->first()->name }}</span>
-                                                        <h6 class="card-title" style="margin-bottom: auto;"><a
-                                                                style="
-                                                                    font-size: 10px;
-                                                                    max-width: 120%;"
-                                                                href="{{ route('post.detail', ['alias' => $post->slug]) }}">{{ $post->title }}</a>
+                                                        <h6 class="card-title">
+                                                            <a href="{{ route('post.detail', ['alias' => $post->slug]) }}">{{ $post->title }}</a>
                                                         </h6>
-                                                        <p class="card-text" style="line-height: unset;">
+                                                        <p class="card-text">
                                                             <small class="text-muted">
                                                                 <svg xmlns="http://www.w3.org/2000/svg" x="0px" y="0px"
                                                                     width="10" height="10"
@@ -215,24 +207,14 @@
                                         </div>
                                     </div>
                                     <div class="col-md-12">
-                                        <div class="card-body"
-                                            style="
-                                                font-size: .8em;
-                                                padding-top: 5px;">
+                                        <div class="card-body main-post-content">
                                             <span
                                                 class="badge bg-warning text-dark">{{ $posts[0]->categories->first()->name }}</span>
-                                            <h6 class="card-title">
-                                                <a
-                                                    href="{{ route('post.detail', ['alias' => $posts[0]->slug]) }}">{{ $posts[0]->title }}</a>
-                                            </h6>
-                                            <span
-                                                style="font-size: inherit">{{ Str::limit($posts[0]->description, 130, '...') }}</span>
-                                            <p class="card-text"
-                                                style="
-                                                    margin: 0;
-                                                    padding-top: 5px;
-                                                    padding-bottom: 5px;
-                                                    line-height: unset;">
+                                            <h5 class="card-title">
+                                                <a href="{{ route('post.detail', ['alias' => $posts[0]->slug]) }}">{{ $posts[0]->title }}</a>
+                                            </h5>
+                                            <span>{{ Str::limit($posts[0]->description, 130, '...') }}</span>
+                                            <p class="card-text">
                                                 <small class="text-muted">
                                                     <svg xmlns="http://www.w3.org/2000/svg" x="0px" y="0px"
                                                         width="19" height="19" viewBox="0 0 24 28">
@@ -282,22 +264,14 @@
                                                         onerror="this.onerror=null; this.src='https://via.placeholder.com/400x300';">
                                                 </div>
                                             </div>
-                                            <div class="col-5">
-                                                <div class="card-body"
-                                                    style="
-                                                font-size: .5em;
-                                                line-height: 0px;
-                                                padding-top: 0px;
-                                                padding-bottom: 0px;">
+                                            <div class="col-5 side-small-post-content">
+                                                <div class="card-body">
                                                     <span
                                                         class="badge bg-warning text-dark mb-1 mt-1">{{ $post->categories->first()->name }}</span>
-                                                    <h6 class="card-title" style="margin-bottom: auto;"><a
-                                                            style="
-                                                            font-size: 10px;
-                                                            max-width: 120%;"
-                                                            href="{{ route('post.detail', ['alias' => $post->slug]) }}">{{ $post->title }}</a>
+                                                    <h6 class="card-title">
+                                                        <a href="{{ route('post.detail', ['alias' => $post->slug]) }}">{{ $post->title }}</a>
                                                     </h6>
-                                                    <p class="card-text" style="line-height: unset;">
+                                                    <p class="card-text">
                                                         <small class="text-muted">
                                                             <svg xmlns="http://www.w3.org/2000/svg" x="0px" y="0px"
                                                                 width="10" height="10"
