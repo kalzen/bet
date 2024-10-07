@@ -171,7 +171,7 @@
                                                             class="badge bg-warning text-dark mb-1 mt-1">{{ Str::limit($post->categories->first()->name, 60, '...') }}</span>
                                                         <h6 class="card-title">
                                                             <a href="{{ route('post.detail', ['alias' => $post->slug]) }}">{{ $post->title }}</a>
-                                                            <span class="small-post-description">{{ Str::limit($post->description, 60, '...') }}</span>
+                                                            <span class="small-post-description">{{ Str::limit($post->description, 50, '...') }}</span>
                                                         </h6>
                                                         <p class="card-text">
                                                             <small class="text-muted">
@@ -271,7 +271,7 @@
                                                         class="badge bg-warning text-dark mb-1 mt-1">{{ Str::limit($post->categories->first()->name, 60, '...') }}</span>
                                                     <h6 class="card-title">
                                                         <a href="{{ route('post.detail', ['alias' => $post->slug]) }}">{{ $post->title }}</a>
-                                                        <span class="small-post-description">{{ Str::limit($post->description, 60, '...') }}</span>
+                                                        <span class="small-post-description">{{ Str::limit($post->description, 50, '...') }}</span>
                                                     </h6>
                                                     <p class="card-text">
                                                         <small class="text-muted">
