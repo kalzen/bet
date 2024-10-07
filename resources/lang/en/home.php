@@ -17,4 +17,5 @@ return [
     "latest_sport_news" => "Latest Sport News",
     "no_posts" => "No news available. Please check again later!",
     "no_tips" => "No new tips available. Please check again later!",
+    "no_bookmakers" => "No bookmakers available. Please check again later!",
 ];

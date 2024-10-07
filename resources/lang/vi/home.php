@@ -17,6 +17,7 @@ return [
     "latest_sport_news" => "Tin Thể Thao Mới Nhất",
     "no_posts" => "Hiện không có tin mới. Hãy ghé thăm sau!",
     "no_tips" => "Hiện không có tips mới. Hãy ghé thăm sau!",
+    "no_bookmakers" => "Hiện không có nhà cái. Hãy ghé thăm sau!",
     // "service" => [
     //     "title1" => "An Extensive Selection",
     //     "subtitle1" => "goods daily",

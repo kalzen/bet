@@ -11,6 +11,7 @@ return [
         "bet" => __('home.bet'),
         "code" => __('home.promo_code'),
         "no" => 'No',
+        "no_bookmakers" => __('home.no_bookmakers'),
     ],
     "detail" => [
         "title" => "Title",

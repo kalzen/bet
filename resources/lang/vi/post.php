@@ -12,7 +12,7 @@ return [
         "empty" => 'Không có bài viết nào',
         "post_categories" => 'Danh mục bài viết',
         "tagline" => 'Các Thẻ của bài viết',
-        "search_placeholder" => 'Tìm kiếm Blog....',
+        "search_placeholder" => 'Tìm kiếm tin tức....',
     ],
     "detail" => [
         "news_detail" => 'Đọc tin tức',

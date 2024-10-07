@@ -12,7 +12,7 @@ return [
         "empty" => 'No news available',
         "post_categories" => 'Posts category',
         "tagline" => 'Post tagline',
-        "search_placeholder" => 'Search a Blog....',
+        "search_placeholder" => 'Search news....',
     ],
     "detail" => [
         "news_detail" => 'Read news',

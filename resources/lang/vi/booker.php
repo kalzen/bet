@@ -11,11 +11,13 @@ return [
         "bet" => __('home.bet'),
         "code" => __('home.promo_code'),
         "no" => __('Không'),
+        "no_bookmakers" => __('home.no_bookmakers'),
     ],
     "detail" => [
         "title" => "Tiêu đề",
         "category" => 'Hạng mục',
         "overview" => 'Giới thiệu',
+        "bookmaker_details" => 'Chi tiết nhà cái',
         "additional_infos" => 'Thông tin thêm',
         "bookmaker_promo_codes" => 'Các mã giảm giá của nhà cái',
     ],
