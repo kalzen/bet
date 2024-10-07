@@ -65,7 +65,7 @@
                         @endforeach
                     </div>
 
-                    <div class="part-img position-absolute top-0 w-100 overflow-hidden z-index-n1 d-none d-md-block">
+                    <div class="part-img position-absolute w-100 z-index-n1 d-none d-md-block">
                         <img src="{{ asset('bet/img-shape-7.png') }}" alt="" class="shape-img">
                         {{-- <div class="glitch activate glitch--style-1 img-1">
                             <div class="glitch__img"></div>

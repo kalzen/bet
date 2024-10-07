@@ -124,6 +124,9 @@
 }
 
 @media (max-width: 991px) {
+    .shape-img {
+        display: none;
+    }
     .booker_mini_avt {
         width: 100px;
     }
@@ -132,6 +135,7 @@
     }
     .banner-text{
         width: 100%;
+        transform: translateX(-13px);
     }
     #cardContainer {
         padding-top: 0px !important;
@@ -140,9 +144,6 @@
     
     .banner-wrapper{
         justify-content: space-around;
-    }
-    .banner-text{
-        width: 100%;
     }
     #cardContainer {
         padding-top: 0px !important;
@@ -212,6 +213,7 @@
 }
 
 @media (max-width: 767px) {
+    
     #cardContainer {
         padding: 0;
     }
