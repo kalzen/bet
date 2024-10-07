@@ -45,12 +45,13 @@ class PostController extends Controller
         $featured_posts = Post::active()->orderBy('viewed','desc')->paginate();
         $categories = Category::orderBy('name','asc')->get();
         $query = Post::latest()->active()->with(['tags','images']);
+        $tags = Tag::all();
         $posts = $query->where(function($p){
             $p->where('title','like','%'.request('keyword').'%')
             ->orWhereHas('categories',function($q){
                 $q->where('name','like','%'.request('keyword').'%');
             });
         })->paginate();
-        return view('post.index',compact('posts','categories','featured_posts'));
+        return view('post.index',compact('posts','categories','featured_posts','tags'));
     }
 }
