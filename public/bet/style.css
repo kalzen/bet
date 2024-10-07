@@ -517,6 +517,9 @@ a.prd-btn-1, button.prd-btn-1 {
   outline: none;
   border: none;
 }
+.prd-btn-1 span{
+  white-space: nowrap;
+}
 a.prd-btn-1.medium, button.prd-btn-1.medium {
   line-height: 45px;
   height: 45px;

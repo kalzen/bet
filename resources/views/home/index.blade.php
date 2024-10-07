@@ -6,7 +6,8 @@
         <div class="container">
             <div
                 class="row justify-content-xxl-between justify-content-xl-between justify-content-lg-between justify-content-md-center">
-                <div class="col-xxl-5 col-xl-5 col-lg-5 col-md-8 d-xl-block d-lg-block d-md-flex d-block align-items-center banner-wrapper">
+                <div
+                    class="col-xxl-5 col-xl-5 col-lg-5 col-md-8 d-xl-block d-lg-block d-md-flex d-block align-items-center banner-wrapper">
                     <div class="banner-content">
                         <h1 class="title" data-aos="fade-up" data-aos-delay="150" data-aos-duration="500"
                             data-aos-easing="ease-in">
@@ -35,7 +36,9 @@
                                 <div class="booker-wrapper row g-0 align-items-center justify-content-evenly py-0 ps-3">
                                     <div class="col-lg-1 col-md-1 col-1 px-0">
                                         <div class="image-container">
-                                            <div class="booker_mini_avt" style="{{ 'background-image: url(' . $booker->image . ') !important' }}"></div>
+                                            <div class="booker_mini_avt"
+                                                style="{{ 'background-image: url(' . $booker->image . ') !important' }}">
+                                            </div>
                                             {{-- <img src="{{ $booker->image }}"
                                                 class="rounded-circle" alt="Card image"
                                                 style="max-width: 50px; height: 50px;"
@@ -109,11 +112,11 @@
             <div class="row top-hot-bookers">
                 <div class="col">
                     @if ($hot_bookers->count() > 0)
-                    <div class="section-title mb-3" data-aos="fade-up" data-aos-delay="100" data-aos-duration="500"
-                    data-aos-easing="ease-in">
-                    <h3 class="sub-title">{{ __('home.bookmaker') }}</h3>
-                    <h2 class="title">{{ __('home.top_bookmakers') }}</h2>
-                </div>
+                        <div class="section-title mb-3" data-aos="fade-up" data-aos-delay="100" data-aos-duration="500"
+                            data-aos-easing="ease-in">
+                            <h3 class="sub-title">{{ __('home.bookmaker') }}</h3>
+                            <h2 class="title">{{ __('home.top_bookmakers') }}</h2>
+                        </div>
                     @endif
                     @include('booker.hot-booker-slider')
                 </div>
@@ -140,49 +143,6 @@
                 @if ($posts->count() > 0)
                     <div class="container mt-4">
                         <div class="row">
-                            <!-- Main Post -->
-                            <div class="col-lg-8 mb-4">
-                                <div class="card h-100 border-0">
-                                    <div class="row g-0 h-100">
-                                        <div class="col-md-6">
-                                            <img src="{{ $posts[0]->images->first()->url ?? 'https://via.placeholder.com/400x300' }}"
-                                                class="img-fluid h-100 w-100 rounded-3 shadow-sm"
-                                                alt="{{ $posts[0]->images->first()->title }}" style="object-fit: cover;"
-                                                onerror="this.onerror=null; this.src='https://via.placeholder.com/400x300';">
-                                        </div>
-                                        <div class="col-md-6">
-                                            <div class="card-body">
-                                                <span
-                                                    class="badge bg-warning text-dark mb-2">{{ $posts[0]->categories->first()->name }}</span>
-                                                <h5 class="card-title"><a
-                                                        href="{{ route('post.detail', ['alias' => $posts[0]->slug]) }}">
-                                                        {{ $posts[0]->title }}</a></h5>
-                                                {{ Str::limit($posts[0]->description, 130, '...') }}</p>
-                                                <p class="card-text"><small class="text-muted">
-                                                        <svg xmlns="http://www.w3.org/2000/svg" x="0px" y="0px"
-                                                            width="19" height="19" viewBox="0 0 24 28">
-                                                            <path
-                                                                d="M 12 2 C 6.4889971 2 2 6.4889971 2 12 C 2 17.511003 6.4889971 22 12 22 C 17.511003 22 22 17.511003 22 12 C 22 6.4889971 17.511003 2 12 2 z M 12 4 C 16.430123 4 20 7.5698774 20 12 C 20 16.430123 16.430123 20 12 20 C 7.5698774 20 4 16.430123 4 12 C 4 7.5698774 7.5698774 4 12 4 z M 11 6 L 11 12.414062 L 15.292969 16.707031 L 16.707031 15.292969 L 13 11.585938 L 13 6 L 11 6 z">
-                                                            </path>
-                                                        </svg>
-                                                        {{ $posts[0]->created_at->diffForHumans() }}</small></p>
-                                                <a href="{{ route('user.detail', ['id' => $posts[0]->user->id]) }}"
-                                                    class="d-inline-flex align-items-center">
-                                                    <div class="me-2">
-                                                        <img src="{{ asset('bet/logo.png') }}" alt=""
-                                                            width="20px">
-                                                    </div>
-                                                    <span class="line-height">{{ $posts[0]->user->name }}</span>
-                                                </a> <br>
-                                                <a href="{{ route('post.detail', ['alias' => $posts[0]->slug]) }}"
-                                                    class="btn btn-link text-muted text-decoration-none">{{ __('home.read_more') }} >></a>
-
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-
                             <!-- Side Small Posts -->
                             <div class="col-lg-4">
                                 <div class="row">
@@ -190,42 +150,47 @@
                                         @if ($loop->index == 0)
                                             @continue;
                                         @endif
-                                        @if ($loop->index > 2)
+                                        @if ($loop->index > 3)
                                         @break;
                                     @endif
                                     <div class="col-12 mb-3">
-                                        <div class="card h-100 border-0">
-                                            <div class="row g-0 h-100">
-                                                <div class="col-4">
-                                                    <img src="{{ $post->images->first()->url ?? 'https://via.placeholder.com/150x100' }}"
-                                                        class="img-fluid h-100 w-100 rounded-3 shadow-sm"
-                                                        alt="Small Post Image" style="object-fit: cover;"
-                                                        onerror="this.onerror=null; this.src='https://via.placeholder.com/400x300';">
+                                        <div class="card border-0">
+                                            <div class="row g-0">
+                                                <div class="col-7">
+                                                    <div class="position-relative"
+                                                        style="width: 100%; padding-top: 56.25%;">
+                                                        <img src="{{ $post->images->first()->url ?? 'https://via.placeholder.com/150x100' }}"
+                                                            class="position-absolute top-0 start-0 w-100 h-100 rounded-3 shadow-sm"
+                                                            alt="Small Post Image" style="object-fit: cover;"
+                                                            onerror="this.onerror=null; this.src='https://via.placeholder.com/400x300';">
+                                                    </div>
                                                 </div>
-                                                <div class="col-8">
-                                                    <div class="card-body">
+                                                <div class="col-5">
+                                                    <div class="card-body"
+                                                        style="
+                                                        font-size: .5em;
+                                                        line-height: 0px;
+                                                        padding-top: 0px;
+                                                        padding-bottom: 0px;">
                                                         <span
-                                                            class="badge bg-warning text-dark mb-2">{{ $post->categories->first()->name }}</span>
-                                                        <h6 class="card-title"><a
+                                                            class="badge bg-warning text-dark mb-1 mt-1">{{ $post->categories->first()->name }}</span>
+                                                        <h6 class="card-title" style="margin-bottom: auto;"><a
+                                                                style="
+                                                                    font-size: 10px;
+                                                                    max-width: 120%;"
                                                                 href="{{ route('post.detail', ['alias' => $post->slug]) }}">{{ $post->title }}</a>
                                                         </h6>
-                                                        <p class="card-text"><small class="text-muted">
+                                                        <p class="card-text" style="line-height: unset;">
+                                                            <small class="text-muted">
                                                                 <svg xmlns="http://www.w3.org/2000/svg" x="0px" y="0px"
-                                                                    width="19" height="19"
+                                                                    width="10" height="10"
                                                                     viewBox="0 0 24 28">
                                                                     <path
                                                                         d="M 12 2 C 6.4889971 2 2 6.4889971 2 12 C 2 17.511003 6.4889971 22 12 22 C 17.511003 22 22 17.511003 22 12 C 22 6.4889971 17.511003 2 12 2 z M 12 4 C 16.430123 4 20 7.5698774 20 12 C 20 16.430123 16.430123 20 12 20 C 7.5698774 20 4 16.430123 4 12 C 4 7.5698774 7.5698774 4 12 4 z M 11 6 L 11 12.414062 L 15.292969 16.707031 L 16.707031 15.292969 L 13 11.585938 L 13 6 L 11 6 z">
                                                                     </path>
                                                                 </svg>
-                                                                {{ $post->created_at->diffForHumans() }}</small></p>
-                                                        <a href="{{ route('user.detail', ['id' => $post->user->id]) }}"
-                                                            class="d-inline-flex align-items-center">
-                                                            <div class="me-2">
-                                                                <img src="{{ asset('bet/logo.png') }}" alt=""
-                                                                    width="20px">
-                                                            </div>
-                                                            <span class="line-height">{{ $post->user->name }}</span>
-                                                        </a> <br>
+                                                                {{ $post->created_at->diffForHumans() }}</small>
+                                                        </p>
                                                     </div>
                                                 </div>
                                             </div>
@@ -234,55 +199,123 @@
                                 @endforeach
                             </div>
                         </div>
-                    </div>
-
-                    <!-- Bottom Posts (4-6 posts) -->
-                    <div class="row">
-                        @foreach ($posts as $post)
-                            @if ($loop->index <= 2)
-                                @continue;
-                            @endif
-                            @if ($loop->index > 5)
-                            @break;
-                        @endif
-                        <div class="col-lg-4 mb-3">
-                            <div class="card h-100 border-0">
-                                <div class="row g-0 h-100">
-                                    <div class="col-4">
-                                        <img src="{{ $post->images->first()->url ?? 'https://via.placeholder.com/150x100' }}"
-                                            class="img-fluid h-100 w-100 rounded-3 shadow-sm"
-                                            alt="Small Post Image" style="object-fit: cover;"
-                                            onerror="this.onerror=null; this.src='https://via.placeholder.com/400x300';">
+                        <!-- Main Post -->
+                        <div class="col-lg-4 mb-4">
+                            <div class="card border-0">
+                                <div class="row g-0"
+                                    style="
+                                        flex-direction: column;
+                                        flex-wrap: nowrap;">
+                                    <div class="col-md-12">
+                                        <div class="position-relative" style="width: 100%; padding-top: 56.25%;">
+                                            <img src="{{ $posts[0]->images->first()->url ?? 'https://via.placeholder.com/150x100' }}"
+                                                class="position-absolute top-0 start-0 w-100 h-100 rounded-3 shadow-sm"
+                                                alt="Small Post Image" style="object-fit: cover;"
+                                                onerror="this.onerror=null; this.src='https://via.placeholder.com/400x300';">
+                                        </div>
                                     </div>
-                                    <div class="col-8">
-                                        <div class="card-body">
+                                    <div class="col-md-12">
+                                        <div class="card-body"
+                                            style="
+                                                font-size: .8em;
+                                                padding-top: 5px;">
                                             <span
-                                                class="badge bg-warning text-dark mb-2">{{ $post->categories->first()->name }}</span>
-                                            <h6 class="card-title"><a
-                                                    href="{{ route('post.detail', ['alias' => $post->slug]) }}">{{ $post->title }}</a>
+                                                class="badge bg-warning text-dark">{{ $posts[0]->categories->first()->name }}</span>
+                                            <h6 class="card-title">
+                                                <a
+                                                    href="{{ route('post.detail', ['alias' => $posts[0]->slug]) }}">{{ $posts[0]->title }}</a>
                                             </h6>
-                                            <p class="card-text"><small class="text-muted">
+                                            <span
+                                                style="font-size: inherit">{{ Str::limit($posts[0]->description, 130, '...') }}</span>
+                                            <p class="card-text"
+                                                style="
+                                                    margin: 0;
+                                                    padding-top: 5px;
+                                                    padding-bottom: 5px;
+                                                    line-height: unset;">
+                                                <small class="text-muted">
                                                     <svg xmlns="http://www.w3.org/2000/svg" x="0px" y="0px"
                                                         width="19" height="19" viewBox="0 0 24 28">
                                                         <path
                                                             d="M 12 2 C 6.4889971 2 2 6.4889971 2 12 C 2 17.511003 6.4889971 22 12 22 C 17.511003 22 22 17.511003 22 12 C 22 6.4889971 17.511003 2 12 2 z M 12 4 C 16.430123 4 20 7.5698774 20 12 C 20 16.430123 16.430123 20 12 20 C 7.5698774 20 4 16.430123 4 12 C 4 7.5698774 7.5698774 4 12 4 z M 11 6 L 11 12.414062 L 15.292969 16.707031 L 16.707031 15.292969 L 13 11.585938 L 13 6 L 11 6 z">
                                                         </path>
                                                     </svg>
-                                                    {{ $post->created_at->diffForHumans() }}</small></p>
-                                            <a href="{{ route('user.detail', ['id' => $post->user->id]) }}"
-                                                class="d-inline-flex align-items-center">
-                                                <div class="me-2">
-                                                    <img src="{{ asset('bet/logo.png') }}" alt=""
-                                                        width="20px">
-                                                </div>
-                                                <span class="line-height">{{ $post->user->name }}</span>
-                                            </a> <br>
+                                                    {{ $posts[0]->created_at->diffForHumans() }}
+                                                </small>
+                                            </p>
+                                            {{-- <a href="{{ route('user.detail', ['id' => $posts[0]->user->id]) }}"
+                                                    class="d-inline-flex align-items-center">
+                                                    <div class="me-2">
+                                                        <img src="{{ asset('bet/logo.png') }}" alt=""
+                                                            width="20px">
+                                                    </div>
+                                                    <span class="line-height">{{ $posts[0]->user->name }}</span>
+                                                </a> --}}
+                                            {{-- <a href="{{ route('post.detail', ['alias' => $posts[0]->slug]) }}"
+                                                    class="btn btn-link text-muted text-decoration-none">{{ __('home.read_more') }} >></a> --}}
+
                                         </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
-                    @endforeach
+
+                        {{-- size right posts --}}
+                        <div class="col-lg-4">
+                            <div class="row">
+                                @foreach ($posts as $post)
+                                    @if ($loop->index <= 3)
+                                        @continue;
+                                    @endif
+                                    @if ($loop->index > 6)
+                                    @break;
+                                @endif
+                                <div class="col-12 mb-3">
+                                    <div class="card border-0">
+                                        <div class="row g-0">
+                                            <div class="col-7">
+                                                <div class="position-relative"
+                                                    style="width: 100%; padding-top: 56.25%;">
+                                                    <img src="{{ $post->images->first()->url ?? 'https://via.placeholder.com/150x100' }}"
+                                                        class="position-absolute top-0 start-0 w-100 h-100 rounded-3 shadow-sm"
+                                                        alt="Small Post Image" style="object-fit: cover;"
+                                                        onerror="this.onerror=null; this.src='https://via.placeholder.com/400x300';">
+                                                </div>
+                                            </div>
+                                            <div class="col-5">
+                                                <div class="card-body"
+                                                    style="
+                                                font-size: .5em;
+                                                line-height: 0px;
+                                                padding-top: 0px;
+                                                padding-bottom: 0px;">
+                                                    <span
+                                                        class="badge bg-warning text-dark mb-1 mt-1">{{ $post->categories->first()->name }}</span>
+                                                    <h6 class="card-title" style="margin-bottom: auto;"><a
+                                                            style="
+                                                            font-size: 10px;
+                                                            max-width: 120%;"
+                                                            href="{{ route('post.detail', ['alias' => $post->slug]) }}">{{ $post->title }}</a>
+                                                    </h6>
+                                                    <p class="card-text" style="line-height: unset;">
+                                                        <small class="text-muted">
+                                                            <svg xmlns="http://www.w3.org/2000/svg" x="0px" y="0px"
+                                                                width="10" height="10"
+                                                                viewBox="0 0 24 28">
+                                                                <path
+                                                                    d="M 12 2 C 6.4889971 2 2 6.4889971 2 12 C 2 17.511003 6.4889971 22 12 22 C 17.511003 22 22 17.511003 22 12 C 22 6.4889971 17.511003 2 12 2 z M 12 4 C 16.430123 4 20 7.5698774 20 12 C 20 16.430123 16.430123 20 12 20 C 7.5698774 20 4 16.430123 4 12 C 4 7.5698774 7.5698774 4 12 4 z M 11 6 L 11 12.414062 L 15.292969 16.707031 L 16.707031 15.292969 L 13 11.585938 L 13 6 L 11 6 z">
+                                                                </path>
+                                                            </svg>
+                                                            {{ $post->created_at->diffForHumans() }}</small>
+                                                    </p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            @endforeach
+                        </div>
+                    </div>
                 </div>
             </div>
         @else
@@ -312,22 +345,24 @@
         <div
             class="col-xl-3 col-lg-3 col-md-5 d-xl-flex d-lg-flex d-md-flex d-block align-items-center translate-middle-y">
             <div class="part-btn">
-                <a class="prd-btn-1" href="#/faq">{{ __('home.help') }} <i class="fa-regular fa-circle-info"></i></a>
+                <a class="prd-btn-1" href="#/faq">{{ __('home.help') }} <i
+                        class="fa-regular fa-circle-info"></i></a>
             </div>
         </div>
     </div>
     <div class="row aos-init" data-aos="fade-up" data-aos-delay="50">
         @foreach ($codes as $code)
             <div class="col-md-3">
-                <div class="item-promo text-center">
+                <div class="item-promo text-center mx-3 mb-3">
                     <img src="{{ $code->booker->image }}" alt=""
                         onerror="this.onerror=null; this.src='https://via.placeholder.com/400x300';">
-                    <span>{{ $code->description ?? $code->booker->description }}</span>
+                    <span style="min-height: 50px; ">{{ $code->description ?? $code->booker->description }}</span>
                     <div class="code mt-4 justify-content-center">
                         {{ $code->name }}
                     </div>
                     <a href="{{ route('booker.detail', $code->booker->id) }}" class="prd-btn-1 d-flex mt-3">
-                        <span class="ms-auto me-auto">{{ __('home.view_now') }}<i class="fa-duotone fa-arrow-right"></i></span>
+                        <span class="ms-auto me-auto">{{ __('home.view_now') }}<i
+                                class="fa-duotone fa-arrow-right"></i></span>
                     </a>
                 </div>
             </div>
@@ -451,7 +486,8 @@
                 </div>
                 <div class="mt-3 d-block d-md-none"></div>
                 <div class="col-md-2 col-12">
-                    <a class="prd-btn-1 w-100" href="#/faq"><span class="ms-auto me-auto">{{ __('home.bet') }}</span> </a>
+                    <a class="prd-btn-1 w-100" href="#/faq"><span
+                            class="ms-auto me-auto">{{ __('home.bet') }}</span> </a>
                 </div>
             </div>
         </div>
