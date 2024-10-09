@@ -43,7 +43,6 @@ class CodeController extends Controller
      */
     public function store(Request $request)
     {
-        //
         DB::beginTransaction();
         try {
             $code = Code::create($request->only(['name','description', 'content', 'url','booker_id']));

@@ -1,10 +1,10 @@
 @extends('layouts.admin')
 @section('content')
 @if (isset($record))
-<form method="POST" action="{{route('admin.lang.update',$record->id)}}">
+<form method="POST" action="{{route('admin.code.update',$record->id)}}">
     @method('PUT')
 @else
-<form method="POST" action="{{route('admin.lang.store')}}">
+<form method="POST" action="{{route('admin.code.store')}}">
 @endif
     @csrf
     <div class="content">
