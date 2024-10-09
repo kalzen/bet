@@ -61,6 +61,8 @@ Route::middleware(['localization'])->group(function () {
     Route::get('/news-category/{alias}', [App\Http\Controllers\PostController::class, 'category'])->name('post.category');
     Route::get('/news/search', [App\Http\Controllers\PostController::class, 'search'])->name('post.search');
     Route::get('/news/{alias}', [App\Http\Controllers\PostController::class, 'detail'])->name('post.detail');
+    Route::any('/livescore', [App\Http\Controllers\LiveScoreController::class, 'index'])->name('livescore.index');
+    Route::any('/leaderboard', [App\Http\Controllers\BXHController::class, 'index'])->name('bxh.index');
     // Route::get('/crawl', [App\Http\Controllers\ProductController::class, 'crawl'])->name('product.crawl');
     // Route::get('/getPrice', [App\Http\Controllers\ProductController::class, 'getPrice'])->name('getPrice');
     // Route::get('/getThumb', [App\Http\Controllers\ProductController::class, 'getThumb'])->name('getThumb');
