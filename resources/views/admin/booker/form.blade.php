@@ -146,9 +146,9 @@
                                 @if (isset($record) && !$record->langParent)
                                     <ul class="list-group">
                                         @if ($record->langChildren->count())
-                                        <span id="select_lang">
-                                            @include('admin.shared.select-lang')
-                                        </span>
+                                            <span id="select_lang">
+                                                @include('admin.shared.select-lang')
+                                            </span>
                                         @else
                                             <li class="list-group-item">Hiện không có ngôn ngữ bổ sung nào</li>
                                         @endif
@@ -157,7 +157,7 @@
                                             @if(isset($record) && $record->langParent && $record->langParent->langs)
                                                 <a href="{{ route('admin.booker.edit', $record->langParent->id) }}">{{ $record->langParent->langs->name }}</a>
                                             @else
-                                                <span>No parent language record found</span>
+                                                <span class="px-1">Ngôn ngữ gốc đã bị xóa</span>
                                             @endif
                                         </li>
                                 @endif
@@ -257,7 +257,7 @@
                                 </select>
                             @endif
                             <p class="pt-1">Không tìm thấy ngôn ngữ bạn cần? <a
-                                    href="{{ route('admin.lang.index') }}">Bấm vào đây để thêm mới</a></p>
+                                href="{{ route('admin.lang.index') }}">Bấm vào đây để thêm mới</a></p>
                         </div>
 
 
@@ -405,7 +405,7 @@
                         success: function(resp) {
                             toastr[resp.success ? 'success' : 'error'](resp.message)
                             setTimeout(function() {
-                                location.reload();
+                                location.href = '{{ route('admin.booker.index') }}';
                             }, 1000);
 
                         }

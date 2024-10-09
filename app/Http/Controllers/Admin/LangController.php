@@ -8,9 +8,17 @@ use Exception;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\App;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Validator;
 
 class LangController extends Controller
 {
+    private $locales;
+
+    public function __construct()
+    {
+        $this->locales = include base_path('config/locales.php');
+    }
+
     /**
      * Display a listing of the resource.
      *
@@ -24,6 +32,29 @@ class LangController extends Controller
     }
 
     /**
+     * Exclude languages from the config locales
+     *
+     * @param Collection $exclude
+     * @param array $original
+     * @return array
+     */
+    private function excludeLangs($exclude, $original)
+    {
+        $config_locales = $original;
+        $twoCharKeys = array_map(function ($key) {
+            return substr($key, 0, 2);
+        }, array_keys($config_locales));
+        foreach ($exclude as $values) {
+            $foundIndex = array_search($values->locale, $twoCharKeys);
+            if ($foundIndex !== false) {
+                $originalKey = array_keys($config_locales)[$foundIndex];
+                unset($config_locales[$originalKey]);
+            }
+        }
+        return $config_locales;
+    }
+
+    /**
      * Show the form for creating a new resource.
      *
      * @return \Illuminate\Http\Response
@@ -31,7 +62,8 @@ class LangController extends Controller
     public function create()
     {
         $langs = Lang::all();
-        return view('admin.lang.form', compact('langs'));
+        $locales = $this->excludeLangs($langs,$this->locales);
+        return view('admin.lang.form', compact('locales'));
     }
 
     /**
@@ -42,20 +74,41 @@ class LangController extends Controller
      */
     public function store(Request $request)
     {
-        $request->validate([
-            'name' => 'required',
-            'locale' => 'required|unique:langs,locale'
-        ],[
-            'locale.unique' => 'Mã vùng này đã tồn tại'
-        ]);
+        $locale = $request->get('locale');
+        $localeKey = array_search($locale, array_keys($this->locales));
+        if ($localeKey !== false) {
+            $localeKey = array_keys($this->locales)[$localeKey];
+        } else {
+            return back()->withErrors(['locale' => 'Mã vùng không hợp lệ, vui lòng chọn ở trên'])->withInput();
+        }
+
+        $locale = substr($locale, 0, 2);
+        $name = $this->locales[$localeKey];
+
+        $validator = Validator::make(
+            ['locale' => $locale],
+            [
+                'locale' => 'required|unique:langs,locale'
+            ],
+            [
+                'locale.unique' => 'Mã vùng này đã tồn tại'
+            ]
+        );
+
+        if ($validator->fails()) {
+            return back()->withErrors($validator)->withInput();
+        }
 
         DB::beginTransaction();
         try {
-            $lang = Lang::create($request->only( ['name','locale'] ));
+            $lang = Lang::create([
+                'name' => $name,
+                'locale' => $locale
+            ]);
             DB::commit();
             return redirect()->route('admin.lang.index')->with('message', 'Thêm mới thành công');
-        } catch(Exception $ex) {
-            dd( 'got error: ' . $ex->getMessage() );
+        } catch (Exception $ex) {
+            dd('got error: ' . $ex->getMessage());
             DB::rollback();
             return back()->withInput();
         }
@@ -82,7 +135,14 @@ class LangController extends Controller
     {
         //
         $record = Lang::find($id);
-        return view('admin.lang.form',compact('record'));
+        $langs = Lang::where('locale', '!=', $record->locale)->get();
+        $locales = $this->excludeLangs($langs,$this->locales);
+        $twoCharKeys = array_map(function ($key) {
+            return substr($key, 0, 2);
+        }, array_keys($this->locales));
+        $foundIndex = array_search($record->locale, $twoCharKeys);
+        $originalKey = array_keys($this->locales)[$foundIndex];
+        return view('admin.lang.form', compact('record','locales','originalKey'));
     }
 
     /**
@@ -95,13 +155,26 @@ class LangController extends Controller
     public function update(Request $request, Lang $lang)
     {
         $id = $lang->id;
+        $locale = $request->get('locale');
+        $localeKey = array_search($locale, array_keys($this->locales));
+        if ($localeKey !== false) {
+            $localeKey = array_keys($this->locales)[$localeKey];
+        } else {
+            return back()->withErrors(['locale' => 'Mã vùng không hợp lệ, vui lòng chọn ở trên'])->withInput();
+        }
+        $locale = substr($locale, 0, 2);
+        $name = $this->locales[$localeKey];
+
         DB::beginTransaction();
         try {
             $code = Lang::find($id);
-            $code->update($request->all());
+            $code->update([
+                'name' => $name,
+                'locale' => $locale
+            ]);
             DB::commit();
             return redirect()->route('admin.lang.index')->with('message', 'Cập nhật thành công');
-        }catch(Exception $ex) {
+        } catch (Exception $ex) {
             DB::rollback();
             return back()->withInput();
         }
@@ -116,19 +189,36 @@ class LangController extends Controller
     public function destroy(Lang $lang)
     {
         try {
-        $lang->delete();
-        return response()->json(['success' => true, 'message' => 'Đã xóa ngôn ngữ thành công.']);
+            $lang->delete();
+            return response()->json(['success' => true, 'message' => 'Đã xóa ngôn ngữ thành công.']);
         } catch (\Illuminate\Database\QueryException $e) {
             $errorCode = $e->errorInfo[1];
             if ($errorCode == 1451) {
-                return response()->json(['success' => false, 'message' => 'Không thể xóa ngôn ngữ đang được sử dụng trên trang.'], 422);
-    }
-            return response()->json(['success' => false, 'message' => 'Không thể xóa ngôn ngữ này.'], 500);
+                return response()->json(['success' => false, 'message' => 'Không thể xóa ngôn ngữ đang được sử dụng trên trang.']);
+            }
+            return response()->json(['success' => false, 'message' => 'Không thể xóa ngôn ngữ này.']);
         } catch (\Exception $e) {
-            return response()->json(['success' => false, 'message' => 'Hiện không thể xóa ngôn ngữ này.'], 500);
+            return response()->json(['success' => false, 'message' => 'Hiện không thể xóa ngôn ngữ này.']);
         }
     }
-    
+
+    public function forceDestroy(Request $request)
+    {
+        try {
+            $lang = Lang::withTrashed()->findOrFail($request->id);
+            $lang->forceDelete();
+            return response()->json(['success' => true, 'message' => 'Đã xóa ngôn ngữ thành công.']);
+        } catch (\Illuminate\Database\QueryException $e) {
+            $errorCode = $e->errorInfo[1];
+            if ($errorCode == 1451) {
+                return response()->json(['success' => false, 'message' => 'Không thể xóa ngôn ngữ đang được sử dụng trên trang.']);
+            }
+            return response()->json(['success' => false, 'message' => 'Không thể xóa ngôn ngữ này.']);
+        } catch (\Exception $e) {
+            return response()->json(['success' => false, 'message' => 'Hiện không thể xóa ngôn ngữ này.']);
+        }
+    }
+
     /**
      * Restore the specified soft-deleted language.
      *
@@ -146,4 +236,3 @@ class LangController extends Controller
         }
     }
 }
-

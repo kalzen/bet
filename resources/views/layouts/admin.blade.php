@@ -21,10 +21,11 @@
 	<!-- /global stylesheets -->
 
 	<!-- Core JS files -->
-	<script src="{{ asset('global_assets/js/main/jquery.min.js')}}"></script>
+	{{-- <script src="{{ asset('global_assets/js/main/jquery.min.js')}}"></script> --}}
+	<script src="https://code.jquery.com/jquery-3.7.1.js" integrity="sha256-eKhayi8LEQwp4NKxN+CfCh+3qOVUtJn3QNZ0TciWLP4=" crossorigin="anonymous"></script>
 	<script src="{{ asset('global_assets/js/main/bootstrap.bundle.min.js')}}"></script>
 	<script src="{{ asset('global_assets/js/plugins/loaders/blockui.min.js')}}"></script>
-	<script src="{{ asset('global_assets/js/plugins/ui/ripple.min.js')}}"></script>
+	{{-- <script src="{{ asset('global_assets/js/plugins/ui/ripple.min.js')}}"></script> --}}
 	<!-- /core JS files -->
 
 	<!-- Theme JS files -->

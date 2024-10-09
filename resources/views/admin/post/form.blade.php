@@ -173,7 +173,7 @@
                                             @if(isset($record) && $record->langParent && $record->langParent->langs)
                                                 <a href="{{ route('admin.booker.edit', $record->langParent->id) }}">{{ $record->langParent->langs->name }}</a>
                                             @else
-                                                <span>No parent language record found</span>
+                                                <span class="px-1">Ngôn ngữ gốc đã bị xóa</span>
                                             @endif
                                         </li>
                                 @endif

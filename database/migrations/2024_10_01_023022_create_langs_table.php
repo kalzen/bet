@@ -18,6 +18,7 @@ class CreateLangsTable extends Migration
             $table->string('name');
             $table->string('locale')->unique();
             $table->string('status')->default(1);
+            $table->string('locale');
             $table->softDeletes();
             $table->timestamps();
         });

@@ -6,3 +6,5 @@
             {{ isset($record['lang_id']) && $record['lang_id'] == $lang->id ? 'selected' : '' }}>{{ $lang->name }}</option>
     @endforeach
 </select>
+<p class="pt-1">Không tìm thấy ngôn ngữ bạn cần? <a
+    href="{{ route('admin.lang.index') }}">Bấm vào đây để thêm mới</a>. Hoặc tải lại trang</p>

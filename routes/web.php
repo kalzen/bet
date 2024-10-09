@@ -110,6 +110,7 @@ Route::middleware(['auth'])->name('admin.')->prefix('admin')->group(function () 
     //Lang
     Route::resource('lang', AdminLangController::class);
     Route::post('lang/restore', [AdminLangController::class, 'restore'])->name('lang.restore');
+    Route::post('lang/forceDelete', [AdminLangController::class, 'forceDestroy'])->name('lang.forceDelete');
     //Attribute
     Route::resource('attribute', AttributeController::class);
     Route::prefix('post')->name('post.')->group(function () {

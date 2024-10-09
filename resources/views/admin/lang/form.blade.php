@@ -9,7 +9,7 @@
     @csrf
     <div class="content">
         <div class="d-flex align-items-start flex-column flex-md-row">
-            <div class="col-md-6 col-12 overflow-auto order-2 order-md-1">
+            <div class="col-md-6 col-12 overflow-visible order-2 order-md-1">
 				<div class="card">
 					<div class="card-body">
                         

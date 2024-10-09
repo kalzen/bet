@@ -39,12 +39,15 @@
                                     <td>
                                         @if ($record->deleted_at == null)
                                             <a href="javascript:;" class="js-delete text-danger"
-                                                data-key="{{ $record->id }}" title="Xóa"><i class="icon-trash"></i></a>
+                                                data-key="{{ $record->id }}" title="Vô hiệu hóa"><i
+                                                    class="icon-blocked"></i></a>
                                         @else
                                             <a href="javascript:;" class="js-restore text-success"
                                                 data-key="{{ $record->id }}" title="Khôi phục"><i
                                                     class="icon-reply"></i></a>
                                         @endif
+                                        <a href="javascript:;" class="js-forceDelete text-danger"
+                                                data-key="{{ $record->id }}" title="Xóa"><i class="icon-trash"></i></a>
                                     </td>
                                 </tr>
                             @endforeach
@@ -67,13 +70,13 @@
         $('.js-delete').on('click', function() {
             let id = $(this).data('key')
             swal({
-                title: 'Bạn chắc chắn muốn xóa?',
-                text: "Thao tác sẽ không thể hoàn tác!",
+                title: 'Bạn chắc chắn muốn tắt ngôn ngữ?',
+                text: "Thao tác này sẽ làm cho ngôn ngữ và bài viết liên quan biến mất tạm thời khỏi trang web, bạn sẽ có thể khôi phục sau",
                 type: 'warning',
                 showCancelButton: true,
-                confirmButtonText: 'Xác nhận xóa!',
+                confirmButtonText: 'Xác nhận tắt!',
                 cancelButtonText: 'Hủy',
-                confirmButtonClass: 'btn btn-danger',
+                confirmButtonClass: 'btn btn-warning',
                 cancelButtonClass: 'btn btn-default',
                 buttonsStyling: false
             }).then(function(res) {
@@ -96,6 +99,39 @@
             }, function(dismiss) {});
         });
 
+        $('.js-forceDelete').on('click', function() {
+            let id = $(this).data('key')
+            swal({
+                title: 'Bạn chắc chắn muốn xóa?',
+                text: "Bạn sẽ phải thêm lại toàn bộ bài viết liên quan đến ngôn ngữ này nếu cần thiết trong tương lai. Nếu chỉ muốn tắt tạm thời, bạn có thể sử dụng nút vô hiệu hóa (tắt) thay vì nút xóa!",
+                type: 'error',
+                showCancelButton: true,
+                confirmButtonText: 'Xác nhận xóa!',
+                cancelButtonText: 'Hủy',
+                confirmButtonClass: 'btn btn-danger',
+                cancelButtonClass: 'btn btn-default',
+                buttonsStyling: false
+            }).then(function(res) {
+                if (res.value) {
+                    $.ajax({
+                        url: '{{ route('admin.lang.forceDelete') }}',
+                        method: 'POST',
+                        data: {
+                            _token: '{{ csrf_token() }}',
+                            id: id
+                        },
+                        dataType: 'json',
+                        success: function(resp) {
+                            toastr[resp.success ? 'success' : 'error'](resp.message)
+                            setTimeout(function() {
+                                location.reload();
+                            }, 1500);
+                        }
+                    })
+                }
+            }, function(dismiss) {});
+        });
+
         $('.js-restore').on('click', function() {
             let id = $(this).data('key')
             swal({
@@ -105,7 +141,7 @@
                 showCancelButton: true,
                 confirmButtonText: 'Khôi phục!',
                 cancelButtonText: 'Hủy',
-                confirmButtonClass: 'btn btn-warning',
+                confirmButtonClass: 'btn btn-info',
                 cancelButtonClass: 'btn btn-default',
                 buttonsStyling: false
             }).then(function(res) {
