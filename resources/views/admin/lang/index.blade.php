@@ -102,11 +102,11 @@
         $('.js-forceDelete').on('click', function() {
             let id = $(this).data('key')
             swal({
-                title: 'Bạn chắc chắn muốn xóa?',
-                text: "Bạn sẽ phải thêm lại toàn bộ bài viết liên quan đến ngôn ngữ này nếu cần thiết trong tương lai. Nếu chỉ muốn tắt tạm thời, bạn có thể sử dụng nút vô hiệu hóa (tắt) thay vì nút xóa!",
+                title: 'Bạn có chắc chắn muốn xóa không?',
+                text: "Bạn sẽ phải sửa lại mục ngôn ngữ cho các bài viết từng chọn ngôn ngữ này (khi tạo bài mới). Nếu chỉ muốn tắt tạm thời, bạn có thể sử dụng nút vô hiệu hóa (tắt) thay vì xóa vĩnh viễn!",
                 type: 'error',
                 showCancelButton: true,
-                confirmButtonText: 'Xác nhận xóa!',
+                confirmButtonText: 'Xóa vĩnh viễn!',
                 cancelButtonText: 'Hủy',
                 confirmButtonClass: 'btn btn-danger',
                 cancelButtonClass: 'btn btn-default',
@@ -136,7 +136,7 @@
             let id = $(this).data('key')
             swal({
                 title: 'Bạn có muốn khôi phục?',
-                text: "Hành động này sẽ khôi phục ngôn ngữ",
+                text: "Hành động này sẽ khôi phục ngôn ngữ và các bài viết liên quan sẽ được hiển thị",
                 type: 'info',
                 showCancelButton: true,
                 confirmButtonText: 'Khôi phục!',
