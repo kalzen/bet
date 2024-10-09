@@ -25,7 +25,6 @@ class CreateBookersTable extends Migration
             $table->text('description')->nullable();
             $table->integer('is_hot')->default(0);
             $table->integer('ordering')->default(0);
-            $table->foreign('lang_id')->references('id')->on('langs');
             $table->timestamps();
         });
     }
