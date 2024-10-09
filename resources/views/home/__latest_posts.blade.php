@@ -16,6 +16,11 @@
                     </div>
                     <div class="order-3 col-span-12 grid grid-cols-1 gap-8 lg:order-2 lg:col-span-8 lg:row-span-2 lg:grid-cols-3 xl:col-span-9"
                         x-ref="news-grid" data-bt="news-tabs-block-tabs-content">
+                        @if($posts->isEmpty())
+                            <h2 class="mt-4 text-4xl font-bold text-green-100 lg:text-gray-95 lg:mt-0 lg:text-2xl">
+                                {{ __('home.no_posts') }}
+                            </h2>
+                        @else
                         <div class="lg:order-2 lg:col-span-2 flex flex-col gap-8">
                             <a href="{{ route('post.detail', ['alias' => $posts[0]->slug]) }}"
                                 title="{{ $posts[0]->title }}" class="group !no-underline "
@@ -135,6 +140,7 @@
                             </div>
                             @endforeach
                         </div>
+                        @endif
                     </div>
                     <div class="post-border order-4 col-span-12 gap-8 articles lg:order-3 lg:col-span-4 lg:border-b-2 lg:border-solid lg:border-black lg:pb-8 xl:col-span-3"
                         style="
@@ -292,5 +298,4 @@
             </div>
         </div>
     </div>
-
 </div>
