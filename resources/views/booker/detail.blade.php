@@ -86,7 +86,11 @@
                         <h2 class="mb-0 pt-5 mt-5">{{ __('booker.detail.bookmaker_promo_codes') }}</h2>
                     @endif
                 </div>
-                <div class="col-12 pt-5 pb-5">
+                @php
+                    $codes = $booker->codes;
+                @endphp
+                @include('partials.promo-code-slider')
+                {{-- <div class="col-12 pt-5 pb-5">
                     <div class="row aos-init" data-aos="fade-up" data-aos-delay="50">
                         @foreach( $booker->codes as $code )
                         <div class="col-md-3">
@@ -100,7 +104,7 @@
                         </div>
                         @endforeach
                     </div>
-                </div>
+                </div> --}}
             </div>
         </div>
     </section>

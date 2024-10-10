@@ -141,30 +141,13 @@
                 </div>
                 <div
                     class="col-xl-3 col-lg-3 col-md-5 d-xl-flex d-lg-flex d-md-flex d-block align-items-center translate-middle-y">
-                    <div class="part-btn">
+                    {{-- <div class="part-btn">
                         <a class="prd-btn-1" href="#/faq">{{ __('home.help') }} <i
                                 class="fa-regular fa-circle-info"></i></a>
-                    </div>
+                    </div> --}}
                 </div>
             </div>
-            <div class="row aos-init" data-aos="fade-up" data-aos-delay="50">
-                @foreach ($codes as $code)
-                    <div class="col-md-3">
-                        <div class="item-promo text-center mx-3 mb-3">
-                            <img src="{{ $code->booker->image }}" alt=""
-                                onerror="this.onerror=null; this.src='https://via.placeholder.com/400x300';">
-                            <span style="min-height: 50px; ">{{ $code->description ?? $code->booker->description }}</span>
-                            <div class="code mt-4 justify-content-center">
-                                {{ $code->name }}
-                            </div>
-                            <a href="{{ route('booker.detail', $code->booker->id) }}" class="prd-btn-1 d-flex mt-3">
-                                <span class="ms-auto me-auto">{{ __('home.view_now') }}<i
-                                        class="fa-duotone fa-arrow-right"></i></span>
-                            </a>
-                        </div>
-                    </div>
-                @endforeach
-            </div>
+            @include('partials.promo-code-slider')
         </div>
     </div>
     <!-- call to action end -->
