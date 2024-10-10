@@ -106,7 +106,7 @@
                         <li class="nav-item"><a href="{{route('admin.category.index')}}" class="nav-link">Chuyên mục</a></li>
                     </ul>
                 </li>
-                <li class="nav-item nav-item-submenu">
+                {{-- <li class="nav-item nav-item-submenu">
                     <a href="javascript:;" class="nav-link"><i class="icon-bag"></i> <span>Sản phẩm</span></a>
 
                     <ul class="nav nav-group-sub" data-submenu-title="Sản phẩm">
@@ -116,7 +116,7 @@
                         <li class="nav-item"><a href="{{route('admin.order.index')}}" class="nav-link">Đơn hàng ({{$shared_orders_count}})</a></li>
                         <li class="nav-item"><a href="{{route('admin.catalogue.index')}}" class="nav-link">Danh mục</a></li>
                     </ul>
-                </li> 
+                </li>  --}}
                 <li class="nav-item nav-item-submenu">
                     <a href="javascript:;" class="nav-link"><i class="icon-users"></i> <span>Thành viên</span></a>
 
@@ -133,14 +133,14 @@
                         <li class="nav-item"><a href="{{route('admin.setting.index')}}" class="nav-link">Tổng quan</a></li>
                     </ul>
                 </li>
-                <li class="nav-item">
+                {{-- <li class="nav-item">
                     <a href="{{route('admin.team.index')}}" class="nav-link">
                         <i class="icon-users2"></i>
                         <span>
                             Đội ngũ
                         </span>
                     </a>
-                </li>
+                </li> --}}
                 <li class="nav-item">
                     <a href="{{route('admin.message.index')}}" class="nav-link">
                         <i class="icon-mailbox"></i>
@@ -149,14 +149,14 @@
                         </span>
                     </a>
                 </li>
-                <li class="nav-item">
+                {{-- <li class="nav-item">
                     <a href="{{route('admin.testimonial.index')}}" class="nav-link">
                         <i class="icon-lasso2"></i>
                         <span>
                             Quản lý phản hồi
                         </span>
                     </a>
-                </li>
+                </li> --}}
             </ul>
         </div>
         <!-- /main navigation -->
