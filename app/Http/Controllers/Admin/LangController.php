@@ -47,8 +47,13 @@ class LangController extends Controller
         foreach ($exclude as $values) {
             $foundIndex = array_search($values->locale, $twoCharKeys);
             if ($foundIndex !== false) {
-                $originalKey = array_keys($config_locales)[$foundIndex];
-                unset($config_locales[$originalKey]);
+                try {
+                    $originalKey = array_keys($original)[$foundIndex];
+                    unset($twoCharKeys[$foundIndex]);
+                    unset($config_locales[$originalKey]);
+                } catch (\Throwable $th) {
+                    continue;
+                }
             }
         }
         return $config_locales;
