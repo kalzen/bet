@@ -23,14 +23,14 @@ class HomeController extends Controller
 {
     public function index()
     {
-        $catalogues = Catalogue::orderBy('id','asc')->take(5)->get();
-        $testimonials = Testimonial::All();
-        $bookers = Booker::orderBy('ordering', 'desc')->take(6)->get();
+        $catalogues = Catalogue::orderBy('id', 'asc')->take(5)->get();
+        $testimonials = Testimonial::get();
+        $bookers = Booker::whereNull('lang_parent_id')->orderBy('ordering', 'desc')->take(6)->get();
         $codes = Code::orderBy('id', 'desc')->take(4)->get();
-        $teams = Team::All();
-        $posts = Post::latest()->withCount(['images'])->having('images_count','>',0)->active()->take(10)->get();
-        $tips = Tip::all();
-        $hot_bookers = Booker::orderBy('ordering', 'desc')->take(6)->get();
+        $teams = Team::get();
+        $posts = Post::whereNull('lang_parent_id')->latest()->withCount(['images'])->having('images_count', '>', 0)->active()->take(10)->get();
+        $tips = Tip::get();
+        $hot_bookers = Booker::whereNull('lang_parent_id')->orderBy('ordering', 'desc')->take(6)->get();
         return view('home.index',[ 'posts'=>$posts, 'testimonials' => $testimonials, 'teams' => $teams, 'catalogues' => $catalogues, 'booker_hot'=>$bookers, 'codes' => $codes, 'tips' => $tips, 'hot_bookers' => $hot_bookers]);
     }
     public function order()

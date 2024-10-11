@@ -11,15 +11,15 @@
                     <div class="banner-content">
                         <h1 class="title" data-aos="fade-up" data-aos-delay="150" data-aos-duration="500"
                             data-aos-easing="ease-in">
-                            <span class="banner-text"> {{ $slides->count() > 0 ? $slides[0]->name : 'Welcome!' }}</span>
+                            <span class="banner-text"> {{ $slides->count() > 0 ? $slides[0]->getAvailableLang()->name : 'Welcome!' }}</span>
                         </h1>
                         <div class="all-btn" data-aos="fade-up" data-aos-delay="300" data-aos-duration="500"
                             data-aos-easing="ease-in">
                             <a class='prd-btn-1 banner-btn'
-                                href='{{ $slides->count() > 0 ? $slides[0]->button_url_1 : '/' }}'>{{ $slides->count() > 0 ? $slides[0]->button_name_1 : 'Link 1' }}<i
+                                href='{{ $slides->count() > 0 ? $slides[0]->getAvailableLang()->button_url_1 : '/' }}'>{{ $slides->count() > 0 ? $slides[0]->getAvailableLang()->button_name_1 : 'Link 1' }}<i
                                     class="fa-duotone fa-arrow-right"></i></a>
                             <a class='prd-btn-3 banner-btn'
-                                href='{{ $slides->count() > 0 ? $slides[0]->button_url_2 : '/' }}'>{{ $slides->count() > 0 ? $slides[0]->button_name_2 : 'Link 2' }}<i
+                                href='{{ $slides->count() > 0 ? $slides[0]->getAvailableLang()->button_url_2 : '/' }}'>{{ $slides->count() > 0 ? $slides[0]->getAvailableLang()->button_name_2 : 'Link 2' }}<i
                                     class="fa-duotone fa-arrow-right"></i></a>
                         </div>
                     </div>
@@ -28,6 +28,10 @@
 
                     <div class="container col-md-12" id="cardContainer">
                         @foreach ($shared_bookers as $booker)
+                            @if($booker->getAvailableLang())
+                            @php
+                                $booker = $booker->getAvailableLang();
+                            @endphp
                             <div class="card mb-3" style="border-radius: 10px">
                                 <div class="position-absolute top-0 start-0 translate-middle bg-warning rounded-circle d-flex align-items-center justify-content-center text-dark fw-bold fs-6 shadow"
                                     style="width: 1.5rem; height: 1.5rem;">
@@ -62,6 +66,7 @@
                                     </div>
                                 </div>
                             </div>
+                            @endif
                         @endforeach
                     </div>
 

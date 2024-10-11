@@ -47,6 +47,10 @@
                                 </div>
                             </a>
                             @foreach ($posts as $post)
+                            @if($post->getAvailableLang())
+                                @php
+                                    $post = $post->getAvailableLang();
+                                @endphp
                                 @if ($loop->index == 0)
                                     @continue;
                                 @endif
@@ -91,10 +95,15 @@
                                         </div>
                                     </a>
                                 </div>
+                                @endif
                             @endforeach
                         </div>
                         <div class="lg:order-1 flex flex-col gap-8">
                             @foreach ($posts as $post)
+                                @if($post->getAvailableLang())
+                            @php
+                                $post = $post->getAvailableLang();
+                            @endphp
                                 @if ($loop->index <= 2)
                                         @continue;
                                 @endif
@@ -138,6 +147,7 @@
                                     </div>
                                 </a>
                             </div>
+                            @endif
                             @endforeach
                         </div>
                         @endif
@@ -156,6 +166,10 @@
                             </div>
                         @endif
                         @foreach ($posts as $post)
+                            @if($post->getAvailableLang())
+                            @php
+                                $post = $post->getAvailableLang();
+                            @endphp
                             @if ($loop->index <= 5)
                                     @continue;
                             @endif
@@ -174,6 +188,7 @@
                             <div class="mt-1 text-base font-semibold text-gray-95 group-hover:underline lg:line-clamp-3"
                                 data-bt="tiles-news-xs-title">{{ $post->title }}</div>
                         </a>
+                        @endif
                         @endforeach
                     </div>
                     <div class="order-3 col-span-12 sport-books lg:col-span-4 lg:order-4 xl:col-span-3"
@@ -183,6 +198,10 @@
                         </h2>
                         <div class="mt-3 flex flex-col gap-2">
                             @foreach ($hot_bookers as $booker) @if ($loop->index > 3) @break @endif
+                                @if($booker->getAvailableLang())
+                            @php
+                                $booker = $booker->getAvailableLang();
+                            @endphp
                             <a href="{{ route('booker.detail', $booker->id) }}" target="_blank" rel="nofollow noopener"
                                 title="{{ $booker->name }}"
                                 class="flex flex-grow flex-row items-center bg-white p-2 shadow group hover:no-underline "
@@ -218,6 +237,7 @@
                                     </div>
                                 </div>
                             </a>
+                            @endif
                             @endforeach
                         </div>
                     </div>

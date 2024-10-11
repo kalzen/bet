@@ -79,6 +79,10 @@
                             @endif
                             <div class="list-group">
                                 @foreach ($bookers as $booker)
+                                @if($booker->getAvailableLang())
+                                    @php
+                                        $booker = $booker->getAvailableLang();
+                                    @endphp
                                     <div class="container mb-4">
                                         <!-- Promo Card -->
                                         <div class="card p-3 border-0 shadow-lg" style="border-radius: 20px">
@@ -130,6 +134,7 @@
                                             </div>
                                         </div>
                                     </div>
+                                    @endif
                                 @endforeach
                             </div>
                         </div>

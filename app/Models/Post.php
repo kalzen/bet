@@ -67,4 +67,24 @@ class Post extends Model
             $post->slug = Str::slug($post->title);
         });
     }
+    public function getAvailableLang()
+    {
+        $locale = app()->getLocale();
+        if($this->langParent == null){
+            if ($this->langs->locale == $locale) {
+                return $this;
+            } else {
+                $allChildren = $this->langChildren;
+                foreach ($allChildren as $child) {
+                    if ($child->langs->locale == $locale) {
+                        return $child;
+                    }
+                }
+            }
+        } else if ($this->langChildren()->count() > 0) {
+            $upperParent = $this->langParent;
+            return $upperParent->getAvailableLang();
+        }
+        return null;
+    }
 }

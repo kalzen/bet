@@ -14,15 +14,11 @@ class BookerController extends Controller
     {
         $locale = app()->getLocale();
         $bookers = Booker::where('is_hot', 0)
-            ->whereHas('langs', function($query) use ($locale) {
-                $query->where('locale', $locale);
-            })
+            ->whereNull('lang_parent_id')
             ->orderBy('ordering', 'desc')
             ->get();
         $hot_bookers = Booker::where('is_hot', 1)
-            ->whereHas('langs', function($query) use ($locale) {
-                $query->where('locale', $locale);
-            })
+            ->whereNull('lang_parent_id')
             ->orderBy('ordering', 'desc')
             ->get();
 

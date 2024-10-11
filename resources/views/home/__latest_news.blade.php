@@ -22,6 +22,10 @@
             <div class="blog-cont">
                 <div id="blog-grid">
                     @foreach($latest_news as $post)
+                    @if($post->getAvailableLang())
+                        @php
+                            $post = $post->getAvailableLang();
+                        @endphp
                     <div class="blog-grid-i" >
                         <div class="blog-i">
                             <a href="{{$post->url}}" class="blog-img">
@@ -35,6 +39,7 @@
                             <p>{{substr(strip_tags($post->description),0,100)}} <a href="{{$post->url}}">Chi tiết</a></p>
                         </div>
                     </div>
+                    @endif
                     @endforeach
                 </div>
 

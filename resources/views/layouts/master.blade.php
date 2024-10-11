@@ -89,7 +89,7 @@
                             <ul>
                                 @foreach ($shared_nav_links->sortBy('ordering') as $nav)
                                     <li>
-                                        <a class="single-menu" href="{{ $nav->url }}">{{ $nav->name }}</a>
+                                        <a class="single-menu" href="{{ $nav->getAvailableLang()->url }}">{{ $nav->getAvailableLang()->name }}</a>
                                     </li>
                                 @endforeach
                             </ul>
