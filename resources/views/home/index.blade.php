@@ -11,16 +11,37 @@
                     <div class="banner-content">
                         <h1 class="title" data-aos="fade-up" data-aos-delay="150" data-aos-duration="500"
                             data-aos-easing="ease-in">
-                            <span class="banner-text"> {{ $slides->count() > 0 ? $slides[0]->getAvailableLang()->name : 'Welcome!' }}</span>
+                        <span class="banner-text">
+                            @if ($slides->count() > 0 && $slides[0]->getAvailableLang())
+                                {{ $slides[0]->getAvailableLang()->name }}
+                            @else
+                                {{ __('Welcome!') }}
+                            @endif
+                        </span>
                         </h1>
                         <div class="all-btn" data-aos="fade-up" data-aos-delay="300" data-aos-duration="500"
                             data-aos-easing="ease-in">
-                            <a class='prd-btn-1 banner-btn'
-                                href='{{ $slides->count() > 0 ? $slides[0]->getAvailableLang()->button_url_1 : '/' }}'>{{ $slides->count() > 0 ? $slides[0]->getAvailableLang()->button_name_1 : 'Link 1' }}<i
-                                    class="fa-duotone fa-arrow-right"></i></a>
-                            <a class='prd-btn-3 banner-btn'
-                                href='{{ $slides->count() > 0 ? $slides[0]->getAvailableLang()->button_url_2 : '/' }}'>{{ $slides->count() > 0 ? $slides[0]->getAvailableLang()->button_name_2 : 'Link 2' }}<i
-                                    class="fa-duotone fa-arrow-right"></i></a>
+                            @if ($slides->count() > 0 && $slides[0]->getAvailableLang())
+                                                        <a class='prd-btn-1 banner-btn'
+                                    href='{{ $slides[0]->getAvailableLang()->button_url_1 ?? '/' }}'>
+                                    {{ $slides[0]->getAvailableLang()->button_name_1 ?? 'Link 1' }}
+                                    <i class="fa-duotone fa-arrow-right"></i>
+                                </a>
+                                                        <a class='prd-btn-3 banner-btn'
+                                    href='{{ $slides[0]->getAvailableLang()->button_url_2 ?? '/' }}'>
+                                    {{ $slides[0]->getAvailableLang()->button_name_2 ?? 'Link 2' }}
+                                    <i class="fa-duotone fa-arrow-right"></i>
+                                </a>
+                            @else
+                                <a class='prd-btn-1 banner-btn' href='/'>
+                                    Link 1
+                                    <i class="fa-duotone fa-arrow-right"></i>
+                                </a>
+                                <a class='prd-btn-3 banner-btn' href='/'>
+                                    Link 2
+                                    <i class="fa-duotone fa-arrow-right"></i>
+                                </a>
+                            @endif
                         </div>
                     </div>
                 </div>
