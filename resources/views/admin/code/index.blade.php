@@ -12,6 +12,7 @@
                             <th>#</th>
                             <th>Promo Code</th>
                             <th>Thuộc về Booker</th>
+                            <th></th>
                         </tr>
                     </thead>
                     <tbody>
@@ -25,6 +26,9 @@
                             </td>
                             <td>
                                 {{ $record->booker ? $record->booker->name : 'N/A' }}
+                            </td>
+                            <td>
+                                <a href="javascript:;" class="js-delete text-danger" data-key="{{$record->id}}" title="Xóa"><i class="icon-trash"></i></a>
                             </td>
                         </tr>
                         @endforeach
