@@ -91,6 +91,7 @@ Route::middleware(['auth'])->name('admin.')->prefix('admin')->group(function () 
     Route::resource('order', OrderController::class);
     //Category
     Route::resource('category', CategoryController::class);
+    Route::post('category/lang', [CategoryController::class, 'lang'])->name('category.lang');
     //Booker Category
     Route::resource('booker_category', BookerCategoryController::class);
     Route::post('booker_category/lang', [BookerCategoryController::class, 'lang'])->name('booker_category.lang');

@@ -13,6 +13,8 @@
                             <th>Ảnh</th>
                             <th>Tên</th>
                             <th>Chuyên mục cha</th>
+                            <th>Ngôn ngữ gốc</th>
+                            <th>Ngôn ngữ khác</th>
                             <th>Thời gian</th>
                             <th></th>
                         </tr>
@@ -31,6 +33,24 @@
                             </td>
                             <td>
                                 {{$record->parent->name??''}}
+                            </td>
+                            <td>
+                                <a href="{{route('admin.category.edit', $record->id)}}">
+                                    <span class="badge bg-info">
+                                        {{ $record->langs ? $record->langs->name : 'Không có sẵn' }}
+                                    </span>
+                                </a>
+                            </td>
+                            <td>
+                                @php
+                                    $langNames = [];
+                                @endphp
+                                @foreach($record->langChildren as $child)
+                                    @php
+                                        $langNames[] = '<a href="' . route('admin.category.edit', $child->id) . '"><span class="badge bg-success">' . ($child->langs ? $child->langs->name : 'Không có sẵn') . '</span></a>';
+                                    @endphp
+                                @endforeach
+                                {!! implode(' ', $langNames) !!}
                             </td>
                             <td>
                                 {{$record->created_at->diffForHumans()}}

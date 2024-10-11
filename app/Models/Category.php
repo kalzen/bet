@@ -14,6 +14,15 @@ class Category extends Model
     public function parent() {
         return $this->belongsTo(Category::class, 'parent_id');
     }
+    public function langs() {
+        return $this->belongsTo(Lang::class, 'lang_id');
+    }
+    public function langChildren() {
+        return $this->hasMany(Category::class, 'lang_parent_id');
+    }
+    public function langParent() {
+        return $this->belongsTo(Category::class, 'lang_parent_id');
+    }
     public function tags()
     {
         return $this->morphToMany(Tag::class, 'taggable')->withTimestamps();
