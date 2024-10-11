@@ -6,10 +6,10 @@
                 <div class="brd-content">
                     <div data-aos="fade-up" data-aos-delay="200" data-aos-duration="500" data-aos-easing="ease-in"
                         class="aos-init aos-animate">
-                        <span class="sub-title">{{ __('Livescore') }}</span>
+                        <span class="sub-title">{{ __('home.livescore') }}</span>
                     </div>
                     <h2 class="title aos-init aos-animate" data-aos="fade-up" data-aos-delay="350" data-aos-duration="500"
-                        data-aos-easing="ease-in">{{ __('Điểm số trực tiếp') }}</h2>
+                        data-aos-easing="ease-in">{{ __('home.livescore') }}</h2>
                     <div class="page-direction">
                         <ul>
                             <li>
@@ -18,7 +18,7 @@
                             </li>
                             <li>
                                 <span class="icon"><i class="fa-light fa-caret-right fa-xl"></i></span>
-                                <span class="text">{{ __('Livescore') }}</span>
+                                <span class="text">{{ __('home.livescore') }}</span>
                             </li>
                         </ul>
                     </div>

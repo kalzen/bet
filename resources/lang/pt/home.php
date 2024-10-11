@@ -1,7 +1,7 @@
 <?php
 
 return [
-    "loading" => "Loading...",
+    "loading" => "Carregando...",
     "bet" => "Aposta",
     "view" => "Info",
     "tips" => "DICAS",
@@ -19,4 +19,5 @@ return [
     "no_posts" => "Nenhuma notícia disponível. Por favor, verifique novamente mais tarde!",
     "no_tips" => "Nenhuma nova dica disponível. Por favor, verifique novamente mais tarde!",
     "no_bookmakers" => "Nenhuma casa de apostas disponível. Por favor, verifique novamente mais tarde!",
+    "livescore" => "Placar ao vivo",
 ];
