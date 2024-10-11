@@ -1,6 +1,7 @@
 <?php
 
 return [
+    "loading" => "Đang tải...",
     "bet" => "Bet",
     "view" => "Xem",
     "tips" => "TIPS",

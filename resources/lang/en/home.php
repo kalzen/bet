@@ -1,6 +1,7 @@
 <?php
 
 return [
+    "loading" => "Loading...",
     "bet" => "Bet",
     "view" => "Info",
     "tips" => "TIPS",

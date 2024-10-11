@@ -25,7 +25,7 @@
                 </div>
             </div>
         </div>
-        <div class="container mt-3">
+        <div class="container-fluid mt-3">
             <div class="row">
                 <!-- Left column for categories -->
                 {{-- <div class="col-md-3 bg-light p-3">
@@ -59,8 +59,25 @@
 
                     <div class="row all-bookers">
                         <div class="col">
-
                             <div class="list-group">
+                            <div id="loading-notify" class="alert alert-info text-center mt-5" style="display: none;">
+                                {{ __('home.loading') }}
+                            </div>
+
+                            <script>
+                                document.addEventListener('DOMContentLoaded', function() {
+                                    var loadingNotify = document.getElementById('loading-notify');
+                                    loadingNotify.style.display = 'block';
+                                    setTimeout(function() {
+                                        loadingNotify.style.display = 'none';
+                                    }, 3000);
+                                });
+                            </script>
+
+                            @if (App::getLocale() != 'vi')
+                                <iframe src="https://www.scorebat.com/embed/livescore/?token=MTU4NTk2XzE3MjgzNTU0MzdfM2UyMmVmZDNlZTZlZjljOTI5MWIwODgwMTk1MzdkNTgwYWJjNzg3Ng==" frameborder="0" width="100%" height="760" allowfullscreen allow='autoplay; fullscreen' style="width:100%;height:1760px;overflow:show;display:block;padding-top:10px" class="_scorebatEmbeddedPlayer_ container-fluid"></iframe>
+                                <script>(function(d, s, id) { var js, fjs = d.getElementsByTagName(s)[0]; if (d.getElementById(id)) return; js = d.createElement(s); js.id = id; js.src = 'https://www.scorebat.com/embed/embed.js?v=arrv'; fjs.parentNode.insertBefore(js, fjs); }(document, 'script', 'scorebat-jssdk'));</script>
+                            @else
                                 {{-- <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.min.js"
                                     integrity="sha384-cuYeSxntonz0PPNlHhBs68uyIAVpIIOZZ5JqeqvYYIcEL727kskC66kF92t6Xl2V" crossorigin="anonymous">
                                 </script> --}}
@@ -93,7 +110,8 @@
                                 </p>
                                 <link rel="stylesheet"
                                     href="https://free-livescore.com/wp-content/plugins/all-in-football/public/assets/main.css">
-                                <div id="app"></div>
+                                <div id="app" class="container-fluid"></div>
+                                @endif
                             </div>
                         </div>
                     </div>
