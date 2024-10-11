@@ -30,6 +30,18 @@ class BookerCategory extends Model
     {
         return $this->belongsToMany(Booker::class, 'bookers_categories');
     }
+    public function langs()
+    {
+        return $this->belongsTo(Lang::class,'lang_id');
+    }
+    public function langParent()
+    {
+        return $this->belongsTo(BookerCategory::class,'lang_parent_id');
+    }
+    public function langChildren()
+    {
+        return $this->hasMany(BookerCategory::class,'lang_parent_id');
+    }
     public function getUrlAttribute()
     {
         return '/danh-muc-booker/' . $this->slug;

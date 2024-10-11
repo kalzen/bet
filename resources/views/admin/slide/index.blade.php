@@ -10,10 +10,11 @@
                     <thead>
                         <tr>
                             <th>Text</th>
-                            <th>Tên button 1</th>
-                            <th>Tên button 2</th>
+                            <th>Tên các nút</th>
+                            <th>Ngôn ngữ gốc</th>
+                            <th>Ngôn ngữ khác</th>
                             <th>Thời gian</th>
-                            <th>STT</th>
+                            {{-- <th>STT</th> --}}
                             <th></th>
                         </tr>
                     </thead>
@@ -24,10 +25,25 @@
                                 <a href="{{route('admin.slide.edit', $record->id)}}">{{$record->name}}</a>
                             </td>
                             <td>
-                                {{$record->button_name_1}}
+                                {{$record->button_name_1}}, {{$record->button_name_2}}
                             </td>
                             <td>
-                                {{$record->button_name_2}}
+                                <a href="{{route('admin.slide.edit', $record->id)}}">
+                                    <span class="badge bg-info">
+                                        {{ $record->langs ? $record->langs->name : 'Không có sẵn' }}
+                                    </span>
+                                </a>
+                            </td>
+                            <td>
+                                @php
+                                    $langNames = [];
+                                @endphp
+                                @foreach($record->langChildren as $child)
+                                    @php
+                                        $langNames[] = '<a href="' . route('admin.slide.edit', $child->id) . '"><span class="badge bg-success">' . ($child->langs ? $child->langs->name : 'Không có sẵn') . '</span></a>';
+                                    @endphp
+                                @endforeach
+                                {!! implode(' ', $langNames) !!}
                             </td>
                             <td class="text-center">
                                 {{date('d/m/Y',strtotime($record->created_at))}}
@@ -35,7 +51,7 @@
                                 <br>({{date('d/m/Y',strtotime($record->updated_at))}})
                                 @endif
                             </td>
-                            <td class="text-center">{{$record->ordering}}</td>
+                            {{-- <td class="text-center">{{$record->ordering}}</td> --}}
                             <td>
                                 <a href="javascript:;" class="js-delete text-danger" data-key="{{$record->id}}" title="Xóa"><i class="icon-trash"></i></a>
                             </td>
@@ -63,7 +79,7 @@
         let id = $(this).data('key')
         swal({
             title: 'Bạn chắc chắn muốn xóa?',
-            text: "Thao tác sẽ không thể hoàn tác!",
+            text: "Bạn có thể sửa nội dung slide thay vì xóa!",
             type: 'warning',
             showCancelButton: true,
             confirmButtonText: 'Xác nhận xóa!',

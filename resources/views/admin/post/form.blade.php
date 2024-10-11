@@ -261,11 +261,11 @@
                 <div class="modal-body">
                     <h3>Thêm ngôn ngữ khác cho bài viết hiện tại</h3>
                     <div class="form-group">
-                        @if (count($langs))
+                        @if (count($modalLangs))
                             <select required name="lang_id" data-placeholder="Chọn ngôn ngữ"
                                 class="form-control select" data-allow-clear="true">
                                 <option value="">Chọn ngôn ngữ</option>
-                                @foreach ($langs as $lang)
+                                @foreach ($modalLangs as $lang)
                                     <option value="{{ $lang->id }}">{{ $lang->name }}</option>
                                 @endforeach
                             </select>

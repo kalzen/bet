@@ -34,7 +34,7 @@
                             <td>
                                 <a href="{{route('admin.booker.edit', $record->id)}}">
                                     <span class="badge bg-info">
-                                        {{ $record->langs ? $record->langs->name : 'Ngôn ngữ đã bị xóa' }}
+                                        {{ $record->langs ? $record->langs->name : 'Không có sẵn' }}
                                     </span>
                                 </a>
                             </td>
@@ -44,7 +44,7 @@
                                 @endphp
                                 @foreach($record->langChildren as $child)
                                     @php
-                                        $langNames[] = '<a href="' . route('admin.booker.edit', $child->id) . '"><span class="badge bg-success">' . ($child->langs ? $child->langs->name : 'Ngôn ngữ đã bị xóa') . '</span></a>';
+                                        $langNames[] = '<a href="' . route('admin.booker.edit', $child->id) . '"><span class="badge bg-success">' . ($child->langs ? $child->langs->name : 'Không có sẵn') . '</span></a>';
                                     @endphp
                                 @endforeach
                                 {!! implode(' ', $langNames) !!}

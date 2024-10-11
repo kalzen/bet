@@ -139,62 +139,64 @@
                     </div>
                     <div class="card">
                         @if (isset($record))
-                        <div class="card-body">
+                            <div class="card-body">
 
-                            <label class="font-weight-semibold">Ngôn ngữ khác của bài viết này</label> <br>
-                            <div class="form-group">
-                                @if (isset($record) && !$record->langParent)
-                                    <ul class="list-group">
-                                        @if ($record->langChildren->count())
-                                            <span id="select_lang">
-                                                @include('admin.shared.select-lang')
-                                            </span>
-                                        @else
-                                            <li class="list-group-item">Hiện không có ngôn ngữ bổ sung nào</li>
-                                        @endif
-                                    @else
-                                        <li class="list-group-item">Đây là một bài viết phụ của bài viết: <br>
-                                            @if(isset($record) && $record->langParent && $record->langParent->langs)
-                                                <a href="{{ route('admin.booker.edit', $record->langParent->id) }}">{{ $record->langParent->langs->name }}</a>
+                                <label class="font-weight-semibold">Ngôn ngữ khác của bài viết này</label> <br>
+                                <div class="form-group">
+                                    @if (isset($record) && !$record->langParent)
+                                        <ul class="list-group">
+                                            @if ($record->langChildren->count())
+                                                <span id="select_lang">
+                                                    @include('admin.shared.select-lang')
+                                                </span>
                                             @else
-                                                <span class="px-1">Ngôn ngữ gốc đã bị xóa</span>
+                                                <li class="list-group-item">Hiện không có ngôn ngữ bổ sung nào</li>
                                             @endif
-                                        </li>
-                                @endif
-                                </ul>
-                            </div>
-                            @error('lang_id')
-                                <label id="lang_id-error" class="validation-invalid-label"
-                                    for="lang_id">{{ $message }}</label>
-                            @enderror
-                            @if (isset($record) && !$record->langParent)
-                                <button class="add-lang btn btn-sm mt-2 btn-success" type="button">
-                                    <i class="icon-plus-circle2"></i>
-                                    Thêm ngôn ngữ
-                                </button>
-                            @else
-                            @if(isset($record))
-                                <button class="remove-bind btn btn-sm btn-warning" type="button" data-key="{{ $record->id }}">
-                            @endif
+                                        @else
+                                            <li class="list-group-item">Đây là một bài viết phụ của bài viết: <br>
+                                                @if (isset($record) && $record->langParent && $record->langParent->langs)
+                                                    <a
+                                                        href="{{ route('admin.booker.edit', $record->langParent->id) }}">{{ $record->langParent->langs->name }}</a>
+                                                @else
+                                                    <span class="px-1">Ngôn ngữ gốc đã bị xóa</span>
+                                                @endif
+                                            </li>
+                                    @endif
+                                    </ul>
+                                </div>
+                                @error('lang_id')
+                                    <label id="lang_id-error" class="validation-invalid-label"
+                                        for="lang_id">{{ $message }}</label>
+                                @enderror
+                                @if (isset($record) && !$record->langParent)
+                                    <button class="add-lang btn btn-sm mt-2 btn-success" type="button">
+                                        <i class="icon-plus-circle2"></i>
+                                        Thêm ngôn ngữ
+                                    </button>
+                                @else
+                                    @if (isset($record))
+                                        <button class="remove-bind btn btn-sm btn-warning" type="button"
+                                            data-key="{{ $record->id }}">
+                                    @endif
                                     <i class="icon-minus-circle2"></i>
                                     Chuyển thành bài viết độc lập
-                                </button>
-                            @endif
-                            {{-- @foreach ($record->langChildren as $child)
+                                    </button>
+                                @endif
+                                {{-- @foreach ($record->langChildren as $child)
                             {{ $child->langs ? $child->langs->name : '' }}
                             @endforeach --}}
 
-                            {{-- @foreach ($record->langChildren as $child) --}}
-                            {{-- <label class="form-check-label">
+                                {{-- @foreach ($record->langChildren as $child) --}}
+                                {{-- <label class="form-check-label">
                                 <input type="radio" name="lang_id" class="form-input-styled" value="{{$lang->id}}" 
                                 {{ isset($selected) && in_array($lang->id, $selected) ? 'checked' : '' }} data-fouc>
                                 {{$lang->name}}
                             </label> --}}
 
-                            {{-- @endforeach --}}
+                                {{-- @endforeach --}}
 
 
-                        </div>
+                            </div>
                         @endif
                     </div>
                 </div>
@@ -241,23 +243,23 @@
             <div class="modal-content">
                 <form action="form_add_lang">
                     @csrf
-                    @if(isset($record))
+                    @if (isset($record))
                         <input type="hidden" name="lang_parent_id" value="{{ $record->id }}">
                     @endif
                     <div class="modal-body">
                         <h3>Thêm ngôn ngữ khác cho bài viết hiện tại</h3>
                         <div class="form-group">
-                            @if (count($langs))
+                            @if (count($modalLangs))
                                 <select required name="lang_id" data-placeholder="Chọn ngôn ngữ"
                                     class="form-control select" data-allow-clear="true">
                                     <option value="">Chọn ngôn ngữ</option>
-                                    @foreach ($langs as $lang)
+                                    @foreach ($modalLangs as $lang)
                                         <option value="{{ $lang->id }}">{{ $lang->name }}</option>
                                     @endforeach
                                 </select>
                             @endif
                             <p class="pt-1">Không tìm thấy ngôn ngữ bạn cần? <a
-                                href="{{ route('admin.lang.index') }}">Bấm vào đây để thêm mới</a></p>
+                                    href="{{ route('admin.lang.index') }}">Bấm vào đây để thêm mới</a></p>
                         </div>
 
 
@@ -325,7 +327,7 @@
             </div>
         </div>
     </div>
-    
+
     <script>
         $('#modal_add_category form').on('submit', function(e) {
             e.preventDefault()
@@ -367,7 +369,7 @@
                     $('#modal_add_lang').modal('hide')
                     $('#select_lang').html(resp)
                     // $('#select_lang [name^=lang_id]').each(function() {
-                        // $(this).prop('checked', selected.includes(this.value))
+                    // $(this).prop('checked', selected.includes(this.value))
                     // })
                     // $('#select_lang .form-input-styled').uniform()
                     $.uniform.update()
@@ -390,9 +392,9 @@
                 cancelButtonClass: 'btn btn-default',
                 buttonsStyling: false
             }).then(function(res) {
-                console.log('removing bind: '+id);
+                console.log('removing bind: ' + id);
                 console.log(res);
-                
+
                 if (res.value) {
                     $.ajax({
                         url: '{{ route('admin.booker.removeBind', 'idx') }}'.replace(/idx/, id),
@@ -447,8 +449,7 @@
             window.location.href = '{{ route('admin.booker.edit', 'idx') }}'.replace(/idx/, id)
         }
         console.log('loaded all scripts');
-        
     </script>
 
-    
+
 @endsection

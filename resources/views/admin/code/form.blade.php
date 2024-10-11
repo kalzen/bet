@@ -20,7 +20,7 @@
                             @enderror
                         </div>
                         
-                        <div class="form-group">
+                        {{-- <div class="form-group">
                             <label class="font-weight-semibold">Mô tả</label>
                             @if(old('description'))
                             <input type="text" class="form-control tokenfield" value="{{old('description')}}" name="description" data-fouc>
@@ -29,7 +29,7 @@
                             @else
                             <input type="text" class="form-control tokenfield" value="" name="description" data-fouc>
                             @endif
-                        </div>
+                        </div> --}}
                         <div class="form-group">
                     <label for="booker_id">Booker</label>
                     <select class="form-control" id="booker_id" name="booker_id" required>
@@ -49,7 +49,7 @@
                         <div class="text-danger">{{ $message }}</div>
                     @enderror
                 </div>
-                        <div class="form-group">
+                        <div class="form-group d-none">
                                 <label class="font-weight-semibold">Link</label>
                                 @if(old('url'))
                                 <input type="text" class="form-control" value="{{old('url')}}" name="url">
@@ -59,13 +59,13 @@
                                 <input type="text" class="form-control" value="" name="url">
                                 @endif
                             </div>
-                            <div class="form-group">
+                            {{-- <div class="form-group">
                             <label class="font-weight-semibold">Nội dung bài viết </label>
                             <textarea class="ckeditor form-control" id="content" name="content" >{{ old('content') ?: ($record->content ?? '') }}</textarea>
                             @error('content')
                             <label id="content-error" class="validation-invalid-label" for="content">{{$message}}</label>
                             @enderror
-                        </div>
+                        </div> --}}
 
                         <div class="text-right">
                             <button type="submit" class="btn btn-primary">Lưu <i class="icon-paperplane ml-2"></i></button>

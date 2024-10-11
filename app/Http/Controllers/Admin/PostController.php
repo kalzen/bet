@@ -12,11 +12,17 @@ use App\Models\Lang;
 use Illuminate\Support\Facades\Validator;
 use Log;
 use DB;
+use Illuminate\Support\Facades\App;
 use Sunra\PhpSimple\HtmlDomParser;
 use Illuminate\Support\Str;
 
 class PostController extends Controller
 {
+    private $sharedHelper;
+    public function __construct()
+    {
+        $this->sharedHelper = app(SharedHelper::class);
+    }
     public function index(Request $request)
     {
         $query = Post::whereNull('lang_parent_id')->latest();
@@ -27,9 +33,10 @@ class PostController extends Controller
     public function create()
     {
         $langs = Lang::all();
-        $allLangs = $langs;
+        $formLangs = $langs;
+        $modalLangs = $langs;
         $categories = Category::query()->whereNull('parent_id')->orderBy('name', 'asc')->get();
-        return view('admin.post.form', compact('categories', 'langs', 'allLangs'));
+        return view('admin.post.form', compact('categories', 'modalLangs', 'formLangs'));
     }
 
     public function removeBind(Request $request)
@@ -122,9 +129,15 @@ class PostController extends Controller
 
     public function edit($id)
     {
-        $langs = Lang::all();
+        // $langs = Lang::all();
         $categories = Category::query()->whereNull('parent_id')->orderBy('name', 'asc')->get();
         $record = Post::find($id);
+        if($record == null){
+            return redirect()->route('admin.post.index');
+        }
+        $formLangs = $this->sharedHelper->getExcludedFormLangs($record);
+        $modalLangs = $this->sharedHelper->getExcludedModalLangs($record);
+
         $document = new \DOMDocument();
         libxml_use_internal_errors(true);
         $document->loadHTML($record->content);
@@ -174,7 +187,7 @@ class PostController extends Controller
         //check inlinks
         // $content = $record->content;
 
-        return view('admin.post.form', compact('categories', 'record', 'success', 'issue', 'inlinks', 'langs'));
+        return view('admin.post.form', compact('categories', 'record', 'success', 'issue', 'inlinks', 'formLangs','modalLangs'));
     }
 
     public function update(SubmitPostRequest $request, $id)
@@ -198,7 +211,11 @@ class PostController extends Controller
 
     public function destroy($id)
     {
-        Post::find($id)->delete();
+        $record = Post::find($id);
+        if ($record) {
+            Post::where('lang_parent_id', $id)->delete();
+            $record->delete();
+        }
         return response()->json(['success' => true, 'message' => 'Xóa thành công']);
     }
 }

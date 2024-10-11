@@ -19,6 +19,8 @@ class CreateBookerCategoriesTable extends Migration
             $table->string('slug')->nullable()->default(null);
             $table->unsignedInteger('parent_id')->nullable()->default(null);
             $table->string('description')->nullable()->default(null);
+            $table->unsignedBigInteger('lang_parent_id')->nullable()->default(null);
+            $table->unsignedBigInteger('lang_id')->nullable()->default(null);
             $table->timestamps();
         });
     }

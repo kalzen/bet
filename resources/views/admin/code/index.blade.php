@@ -10,8 +10,8 @@
                     <thead>
                         <tr>
                             <th>#</th>
-                            <th>Code</th>
-                            <th>Booker</th>
+                            <th>Promo Code</th>
+                            <th>Thuộc về Booker</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -24,7 +24,7 @@
                                 <a href="{{route('admin.code.edit', $record->id)}}">{{$record->name}}</a>
                             </td>
                             <td>
-                                {{$record->booker->first()->name}}
+                                {{$record->booker->name}}
                             </td>
                         </tr>
                         @endforeach

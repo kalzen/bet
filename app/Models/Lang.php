@@ -5,6 +5,8 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
+use Illuminate\Support\Collection;
+
 class Lang extends Model
 {
     use SoftDeletes;
@@ -24,4 +26,10 @@ class Lang extends Model
     {
         return $this->hasMany(Post::class);
     }
+
+    // public function except(Collection $exception)
+    // {
+    //     $allLangs = Lang::all();
+    //     dd($allLangs);
+    // }
 }

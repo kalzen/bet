@@ -12,6 +12,8 @@
                             <th>#</th>
                             <th>Text</th>
                             <th>MENU Lớn</th>
+                            <th>Ngôn ngữ gốc</th>
+                            <th>Ngôn ngữ khác</th>
                             <th>Link</th>
                             <th>Thời gian</th>
                             <th>STT</th>
@@ -29,6 +31,24 @@
                             </td>
                             <td>
                                 {{$record->parent->name??''}}
+                            </td>
+                            <td>
+                                <a href="{{route('admin.menu.edit', $record->id)}}">
+                                    <span class="badge bg-info">
+                                        {{ $record->langs ? $record->langs->name : 'Không có sẵn' }}
+                                    </span>
+                                </a>
+                            </td>
+                            <td>
+                                @php
+                                    $langNames = [];
+                                @endphp
+                                @foreach($record->langChildren as $child)
+                                    @php
+                                        $langNames[] = '<a href="' . route('admin.menu.edit', $child->id) . '"><span class="badge bg-success">' . ($child->langs ? $child->langs->name : 'Không có sẵn') . '</span></a>';
+                                    @endphp
+                                @endforeach
+                                {!! implode(' ', $langNames) !!}
                             </td>
                             <td>
                                 {{$record->url}}

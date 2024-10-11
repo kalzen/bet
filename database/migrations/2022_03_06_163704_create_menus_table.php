@@ -20,6 +20,8 @@ class CreateMenusTable extends Migration
             $table->string('image')->nullable()->default(null);
             $table->integer('ordering')->default(0);
             $table->unsignedInteger('parent_id')->nullable()->default(null);
+            $table->unsignedBigInteger('lang_parent_id')->nullable()->default(null);
+            $table->unsignedBigInteger('lang_id')->nullable()->default(null);
             $table->timestamps();
         });
     }

@@ -83,14 +83,17 @@ Route::middleware(['auth'])->name('admin.')->prefix('admin')->group(function () 
     Route::resource('user', UserController::class);
     //Slide
     Route::resource('slide', SlideController::class);
+    Route::post('slide/lang', [SlideController::class, 'lang'])->name('slide.lang');
     //Menu
     Route::resource('menu', MenuController::class);
+    Route::post('menu/lang', [MenuController::class, 'lang'])->name('menu.lang');
     //Order
     Route::resource('order', OrderController::class);
     //Category
     Route::resource('category', CategoryController::class);
     //Booker Category
     Route::resource('booker_category', BookerCategoryController::class);
+    Route::post('booker_category/lang', [BookerCategoryController::class, 'lang'])->name('booker_category.lang');
     //Catalogue
     Route::resource('catalogue', CatalogueController::class);
     //Attribute

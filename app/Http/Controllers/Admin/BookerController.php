@@ -14,6 +14,11 @@ use Illuminate\Support\Str;
 
 class BookerController extends Controller
 {
+    private $sharedHelper;
+    public function __construct()
+    {
+        $this->sharedHelper = app(SharedHelper::class);
+    }
     /**
      * Display a listing of the resource.
      *
@@ -91,9 +96,10 @@ class BookerController extends Controller
     public function create()
     {
         $langs = Lang::all();
-        $allLangs = $langs;
+        $formLangs = $langs;
+        $modalLangs = $langs;
         $categories = BookerCategory::query()->whereNull('parent_id')->orderBy('name','asc')->get();
-        return view('admin.booker.form',compact('categories','langs','allLangs'));
+        return view('admin.booker.form',compact('categories','modalLangs','formLangs'));
     }
 
     /**
@@ -156,8 +162,12 @@ class BookerController extends Controller
      */
     public function edit($id)
     {
-        $langs = Lang::all();
+        // $langs = Lang::all();
         $record = Booker::find($id);
+
+        $formLangs = $this->sharedHelper->getExcludedFormLangs($record);
+        $modalLangs = $this->sharedHelper->getExcludedModalLangs($record);
+
         $categories = BookerCategory::query()->whereNull('parent_id')->orderBy('name','asc')->get();
         $document = new \DOMDocument();
         libxml_use_internal_errors(true);
@@ -227,7 +237,7 @@ class BookerController extends Controller
             $issue=$issue.'<li class="issue_outlinks"><b>Các đường dẫn ra ngoài trang:</b> Cần thêm link dẫn tới trang ngoài!</li>';
         }
 
-        return view('admin.booker.form',compact('categories','record', 'success', 'issue', 'langs'));
+        return view('admin.booker.form',compact('categories','record', 'success', 'issue','formLangs','modalLangs'));
     }
 
     /**
@@ -281,7 +291,10 @@ class BookerController extends Controller
      */
     public function destroy(Booker $booker)
     {
-        $booker->delete();
+        if ($booker) {
+            Booker::where('lang_parent_id', $booker->id)->delete();
+            $booker->delete();
+        }
         return response()->json(['success' => true, 'message' => 'Booker deleted successfully.']);
     }
 }

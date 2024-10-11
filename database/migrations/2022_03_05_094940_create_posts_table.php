@@ -16,8 +16,8 @@ class CreatePostsTable extends Migration
     {
         Schema::create('posts', function (Blueprint $table) {
             $table->id();
-            $table->unsignedInteger('lang_parent_id')->nullable()->default(null);
-            $table->unsignedInteger('lang_id')->nullable()->default(null);
+            $table->unsignedBigInteger('lang_parent_id')->nullable()->default(null);
+            $table->unsignedBigInteger('lang_id')->nullable()->default(null);
             $table->text('title')->nullable()->default(null);
             $table->text('slug')->nullable()->default(null);
             $table->text('keyword')->nullable()->default(null);
