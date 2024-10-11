@@ -24,7 +24,7 @@
                                 <a href="{{route('admin.code.edit', $record->id)}}">{{$record->name}}</a>
                             </td>
                             <td>
-                                {{$record->booker->name}}
+                                {{ $record->booker ? $record->booker->name : 'N/A' }}
                             </td>
                         </tr>
                         @endforeach

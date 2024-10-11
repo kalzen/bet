@@ -9,16 +9,27 @@
             </div> --}}
                 <li class="card-promo-code-item swiper-slide">
                     <div class="item-promo text-center mr-3 mb-3">
-                        <img src="{{ $code->booker->image }}" alt=""
+                        @if($code->booker)
+                            <img src="{{ $code->booker->image }}" alt=""
                             onerror="this.onerror=null; this.src='https://via.placeholder.com/400x300';">
-                        <span style="line-height: 50px;">{{ $code->description ?? $code->booker->description }}</span>
+                        @else
+                            <img src="https://via.placeholder.com/400x300" alt="">
+                        @endif
+                        <span style="line-height: 50px;">{{ $code->description ?? ($code->booker->description ?? 'No description available') }}</span>
                         <div class="code mt-4 justify-content-center">
                             {{ $code->name }}
-                        </div>
-                        <a href="{{ route('booker.detail', $code->booker->id) }}" class="prd-btn-1 d-flex mt-3">
-                            <span class="ms-auto me-auto">{{ __('home.view_now') }}<i
-                                    class="fa-duotone fa-arrow-right"></i></span>
-                        </a>
+                    </div>
+                        @if($code->booker)
+                            <a href="{{ route('booker.detail', $code->booker->id) }}" class="prd-btn-1 d-flex mt-3">
+                                <span class="ms-auto me-auto">{{ __('home.view_now') }}<i
+                                        class="fa-duotone fa-arrow-right"></i></span>
+                            </a>
+                        @else
+                            <span class="prd-btn-1 d-flex mt-3 disabled">
+                                <span class="ms-auto me-auto">{{ __('home.view_now') }}<i
+                                        class="fa-duotone fa-arrow-right"></i></span>
+                            </span>
+                        @endif
                     </div>
                 </li>
             @endforeach
