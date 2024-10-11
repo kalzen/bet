@@ -39,6 +39,9 @@ class Booker extends Model
     public function getAvailableLang()
     {
         $locale = app()->getLocale();
+        if ($this->langs === null) {
+            return null;
+        }
         if($this->langParent == null){
             if ($this->langs->locale == $locale) {
                 return $this;
