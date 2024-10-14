@@ -81,21 +81,21 @@
                                 @foreach ($bookers as $booker)
                                 @if($booker->getAvailableLang())
                                     @php
-                                        $booker = $booker->getAvailableLang();
+                                        $lang_booker = $booker->getAvailableLang();
                                     @endphp
                                     <div class="container mb-4">
                                         <!-- Promo Card -->
                                         <div class="card p-3 border-0 shadow-lg" style="border-radius: 20px">
                                             <div class="row align-items-center">
                                                 <div class="col-5 col-md-2 text-center">
-                                                    <img src="{{ $booker->image }}" alt="Dafabet Logo" class="img-fluid">
+                                                    <img src="{{ $lang_booker->image }}" alt="Dafabet Logo" class="img-fluid">
                                                 </div>
                                                 <div class="col-7 col-md-7">
                                                     @foreach ($booker->categories as $category)
                                                         <span class="badge bg-success">{{ $category->name }}</span>
                                                     @endforeach
-                                                    <h5 class="card-title">{{ $booker->name }}</h5>
-                                                    <p class="mt-2 mb-1"><strong>{{ Str::limit($booker->description, 130, '...') }}</strong></p>
+                                                    <h5 class="card-title">{{ $lang_booker->name }}</h5>
+                                                    <p class="mt-2 mb-1"><strong>{{ Str::limit($lang_booker->description, 130, '...') }}</strong></p>
                                                 </div>
 
                                                 {{-- <div class="col-12 col-md-3 text-center mt-3 mt-md-0">
@@ -118,7 +118,7 @@
                                                         <span>{{ __('booker.list.code') }}:</span>
                                                         <strong>{{ isset($booker->codes) && $booker->codes->isNotEmpty() ? $booker->codes->first()->name : __('booker.list.no') }}</strong>
                                                     </div>
-                                                    <a href="{{ route('booker.detail', $booker->id) }}"
+                                                    <a href="{{ route('booker.detail', $lang_booker->id) }}"
                                                         class="prd-btn-1 d-flex mt-1">
                                                         <span class="ms-auto me-auto"
                                                             style="white-space: nowrap;">{{ __('booker.list.detail') }} <i

@@ -1,12 +1,16 @@
 @extends('layouts.master')
+@php
+    $post = $post->langParent ?? $post;
+    $lang_post = $post->getAvailableLang() ?? $post;
+@endphp
 @section('meta')
-    <title>{{ $post->title }}</title>
+    <title>{{ $lang_post->title }}</title>
     <meta name="keywords" content="{{ collect($post->tags)->pluck('name')->join(',') }}" />
-    <meta name="description" content="{{ substr(strip_tags($post->description), 0, 300) }}" />
-    <meta property="og:image" content="{{ $post->images()->first()->url ?? '' }}">
+    <meta name="description" content="{{ substr(strip_tags($lang_post->description), 0, 300) }}" />
+    <meta property="og:image" content="{{ $lang_post->images()->first()->url ?? '' }}">
     <meta property="og:type" content="article">
-    <meta property="og:title" content="{{ $post->title }}">
-    <meta property="og:description" content="{{ substr(strip_tags($post->description), 0, 300) }}">
+    <meta property="og:title" content="{{ $lang_post->title }}">
+    <meta property="og:description" content="{{ substr(strip_tags($lang_post->description), 0, 300) }}">
 @stop
 @section('content')
 <div class="prd-breadcrumb">
@@ -44,7 +48,7 @@
                     <span class="posted-time">{{ $post->created_at->diffForHumans() }}</span>
                 </div>
                 <h2 class="post-title aos-init aos-animate" data-aos="fade-up" data-aos-delay="150" data-aos-duration="500"
-                    data-aos-easing="ease-in"><span>{{ $post->title }}</span></h2>
+                    data-aos-easing="ease-in"><span>{{ $lang_post->title }}</span></h2>
                 <div class="author-info aos-init aos-animate" data-aos="fade-up" data-aos-delay="200"
                     data-aos-duration="500" data-aos-easing="ease-in">
                     <div class="author-pic">
@@ -56,7 +60,7 @@
                         <span class="auth-designation">{{ $post->user->email }}</span>
                     </div>
                 </div>
-                {!! $post->content !!}
+                {!! $lang_post->content !!}
             </div>
             <div class="post-comment-element">
                 <div class="post-comment-form aos-init aos-animate" data-aos="fade-up" data-aos-delay="550"
@@ -76,10 +80,10 @@
                 <div class="all-comments aos-init aos-animate" data-aos="fade-up" data-aos-delay="600"
                     data-aos-duration="500" data-aos-easing="ease-in">
                     <h4 class="element-titl">
-                        <span>{{ __('post.detail.all_comments') }} ({{ count($post->comments) }})</span>
+                        <span>{{ __('post.detail.all_comments') }} ({{ count($lang_post->comments) }})</span>
                     </h4>
                     <div>
-                        @foreach ($post->comments as $comment)
+                        @foreach ($lang_post->comments as $comment)
                             <div class="single-comment">
                                 <div class="commentor-pic">
                                     <img src="assets/img/blog/random-user.png" alt="">

@@ -1,4 +1,8 @@
 @extends('layouts.master')
+@php
+    $booker = $booker->langParent ?? $booker;
+    $lang_booker = $booker->getAvailableLang() ?? $booker;
+@endphp
 @section('meta')
 <title>{{ __('booker.list.title') }}</title>
 <title>{{ __('booker.list.bookmaker_details') }}</title>
@@ -39,17 +43,17 @@
                 <div class="col-md-4">
                     <div class="card shadow-lg" style="border-radius: 20px">
                         <div class="text-center mb-3">
-                            <img src="{{$booker->image}}" alt="{{ $booker->name }}" class="img-fluid pt-3" style="max-width: 200px; border-radius: 20px" onerror="this.onerror=null; this.src='https://via.placeholder.com/400x300';">
+                            <img src="{{$lang_booker->image}}" alt="{{ $lang_booker->name }}" class="img-fluid pt-3" style="max-width: 200px; border-radius: 20px" onerror="this.onerror=null; this.src='https://via.placeholder.com/400x300';">
                         </div>
                         <div class="card-body">
-                            <h5 class="card-title">{{ $booker->name }}</h5>
-                            <p class="card-text">{{ $booker->description }}</p>
+                            <h5 class="card-title">{{ $lang_booker->name }}</h5>
+                            <p class="card-text">{{ $lang_booker->description }}</p>
                         </div>
                         <ul class="list-group list-group-flush">
                             <li class="list-group-item"><strong>{{ __('booker.detail.category') }}:</strong> {{ $booker->categories->first() ? $booker->categories->first()->name : __('booker.list.no') }}</li>
                         </ul>
                         <div class="card-body">
-                            <a href="{{$booker->url}}" class="prd-btn-2 d-flex">
+                            <a href="{{$lang_booker->url}}" class="prd-btn-2 d-flex">
                                 <span class="ms-auto me-auto">{{ __('booker.list.bet') }}<i class="fa-duotone fa-arrow-right"></i></span> 
                             </a>
                         </div>
@@ -62,7 +66,7 @@
                         <div class="card-body">
                             <h5 class="card-title">{{ __('booker.detail.overview') }}</h5>
                             <p class="card-text">
-                                {!! $booker->content !!}
+                                {!! $lang_booker->content !!}
                             </p>
                         </div>
                     </div>
@@ -70,7 +74,7 @@
                         <div class="card-body">
                             <h5 class="card-title">{{ __('booker.detail.additional_infos') }}:</h5>
                             <ul class="list-group list-group-flush">
-                                @foreach (explode(',', $booker->sale_text) as $sale_text)
+                                @foreach (explode(',', $lang_booker->sale_text) as $sale_text)
                                 <li class="d-flex">
                                     <svg xmlns="http://www.w3.org/2000/svg" x="0px" y="0px" width="30" height="30" viewBox="0,0,300,270"
                                         style="fill:#40C057;">

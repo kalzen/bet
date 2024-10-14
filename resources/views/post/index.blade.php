@@ -72,6 +72,11 @@
                         @endphp
                         {{-- post 1 - horizonal side image left --}}
                         @foreach ($leftSidePosts as $post)
+                            @if($post->getAvailableLang())
+                            @php
+                                $lang_post = $post->getAvailableLang();
+                            @endphp
+                            
                             @if (($loop->index + 1) % 2 == 0)
                                 @php $flip = true; @endphp
                             @else
@@ -83,59 +88,18 @@
                                     @if (!$flip)
                                         <div class="part-img">
                                             <img class="img-fluid h-100 w-100 rounded-3" style="object-fit: cover; object-position: center;" src="{{ $post->images->first()->url ?? 'https://via.placeholder.com/400x300' }}"
-                                                alt="{{ $post->title }}"
+                                                alt="{{ $post->lang_post }}"
                                                 onerror="this.onerror=null; this.src='https://via.placeholder.com/400x300';">
                                         </div>
                                     @endif
                                     <div class="part-text">
                                         <span class="post-category">{{ $post->categories->first()->name }}</span>
                                         <h3 class="blog-post-title">
-                                            <a href="{{ route('post.detail', ['alias' => $post->slug]) }}"> {{ $post->title }}</a>
+                                            <a href="{{ route('post.detail', ['alias' => $lang_post->slug]) }}"> {{ $lang_post->title }}</a>
                                         </h3>
-                                            <p>{{ Str::limit($post->description, 100) }}</p>
+                                            <p>{{ Str::limit($lang_post->description, 100) }}</p>
                                         <div class="post-info-stats">
                                             <a href="{{ route('user.detail', ['id' => $post->user->id]) }}" class="post-creator">
-                                                <div class="creator-pic">
-                                                    <img src="{{ asset('bet/logo.png') }}" alt="{{ $post->user->name }}">
-                                                </div>
-                                                <span class="creator-name">{{ $post->user->name }}</span>
-                                            </a>
-                                            <span class="posting-time">{{ $posts[0]->created_at->diffForHumans() }}</span>
-                                        </div>
-                                    </div>
-                                    @if ($flip)
-                                        <div class="part-img">
-                                            <img class="img-fluid h-100 w-100 rounded-3" style="object-fit: cover; object-position: center;" src="{{ $post->images->first()->url ?? 'https://via.placeholder.com/400x300' }}"
-                                                alt="{{ $post->title }}"
-                                                onerror="this.onerror=null; this.src='https://via.placeholder.com/400x300';">
-                                        </div>
-                                    @endif
-                                </div>
-                            </div>
-                        @endforeach
-                    </div>
-                </div>
-                <div class="col-xl-4 col-lg-12">
-                    <div class="row g-4">
-                        {{-- post 3 - vertical side --}}
-                        @foreach ($rightSidePosts as $post)
-                            <div class="col-xl-12 col-lg-12 col-md-6 aos-init aos-animate" data-aos="fade-up"
-                                data-aos-delay="100" data-aos-duration="500" data-aos-easing="ease-in">
-                                <div class="single-blog vertical-style">
-                                    <div class="part-img">
-                                        <img class="img-fluid h-100 w-100 rounded-3" style="object-fit: cover; object-position: center;" src="{{ $post->images->first()->url ?? 'https://via.placeholder.com/400x300' }}"
-                                                alt="{{ $post->title }}"
-                                                onerror="this.onerror=null; this.src='https://via.placeholder.com/400x300';">
-                                    </div>
-                                    <div class="part-text">
-                                        <span class="post-category">{{ $post->categories->first()->name }}</span>
-                                        <h3 class="blog-post-title">
-                                            <a href="{{ route('post.detail', ['alias' => $post->slug]) }}"> {{ $post->title }}</a>
-                                        </h3>
-                                        <p>{{ Str::limit($post->description, 100) }}</p>
-                                        <div class="post-info-stats">
-                                            <a href="{{ route('user.detail', ['id' => $post->user->id]) }}"
-                                                class="post-creator">
                                                 <div class="creator-pic">
                                                     <img src="{{ asset('bet/logo.png') }}" alt="{{ $post->user->name }}">
                                                 </div>
@@ -144,8 +108,56 @@
                                             <span class="posting-time">{{ $post->created_at->diffForHumans() }}</span>
                                         </div>
                                     </div>
+                                    @if ($flip)
+                                        <div class="part-img">
+                                            <img class="img-fluid h-100 w-100 rounded-3" style="object-fit: cover; object-position: center;" src="{{ $lang_post->images->first()->url ?? 'https://via.placeholder.com/400x300' }}"
+                                                alt="{{ $lang_post->title }}"
+                                                onerror="this.onerror=null; this.src='https://via.placeholder.com/400x300';">
+                                        </div>
+                                    @endif
                                 </div>
                             </div>
+                            @endif
+                        @endforeach
+                    </div>
+                </div>
+                <div class="col-xl-4 col-lg-12">
+                    <div class="row g-4">
+                        {{-- post 3 - vertical side --}}
+                        @foreach ($rightSidePosts as $post)
+                        @if($post->getAvailableLang())
+                            @php
+                                $lang_post = $post->getAvailableLang();
+                            @endphp
+                        
+                            <div class="col-xl-12 col-lg-12 col-md-6 aos-init aos-animate" data-aos="fade-up"
+                                data-aos-delay="100" data-aos-duration="500" data-aos-easing="ease-in">
+                                <div class="single-blog vertical-style">
+                                    <div class="part-img">
+                                        <img class="img-fluid h-100 w-100 rounded-3" style="object-fit: cover; object-position: center;" src="{{ $lang_post->images->first()->url ?? 'https://via.placeholder.com/400x300' }}"
+                                                alt="{{ $lang_post->title }}"
+                                                onerror="this.onerror=null; this.src='https://via.placeholder.com/400x300';">
+                                    </div>
+                                    <div class="part-text">
+                                        <span class="post-category">{{ $post->categories->first()->name }}</span>
+                                        <h3 class="blog-post-title">
+                                            <a href="{{ route('post.detail', ['alias' => $lang_post->slug]) }}"> {{ $lang_post->title }}</a>
+                                        </h3>
+                                        <p>{{ Str::limit($lang_post->description, 100) }}</p>
+                                        <div class="post-info-stats">
+                                            <a href="{{ route('user.detail', ['id' => $post->user->id]) }}"
+                                                class="post-creator">
+                                                <div class="creator-pic">
+                                                    <img src="{{ asset('bet/logo.png') }}" alt="{{ $post->user->name }}">
+                                                </div>
+                                                <span class="creator-name">{{ $post->user->name }}</span>
+                                            </a>
+                                            <span class="posting-time">{{ $lang_post->created_at->diffForHumans() }}</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            @endif
                         @endforeach
                         {{-- end post 3 --}}
 
@@ -215,7 +227,7 @@
                                                             </span>
                                                             <span class="text">
                                                                 {{ __('post.list.in') }} <a class="category-by"
-                                                                    href="{{ route('post.category', ['alias' => $post1->categories->first()->slug]) }}"><?= $post1->categories->first()->name ?? __('post.list.uncategorized') ?></a>
+                                                                    href="{{ $post1->categories->first() ? route('post.category', ['alias' => $post1->categories->first()->slug]) : '#' }}"><?= $post1->categories->first() ? $post1->categories->first()->name : __('post.list.uncategorized') ?></a>
                                                             </span>
                                                         </div>
                                                     </div>

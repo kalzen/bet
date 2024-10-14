@@ -21,31 +21,36 @@
                                 {{ __('home.no_posts') }}
                             </h2>
                         @else
+                        @if($posts[0]->getAvailableLang())
+                                @php
+                                    $first_post = $posts[0]->getAvailableLang();
+                                @endphp
                         <div class="lg:order-2 lg:col-span-2 flex flex-col gap-8">
-                            <a href="{{ route('post.detail', ['alias' => $posts[0]->slug]) }}"
-                                title="{{ $posts[0]->title }}" class="group !no-underline "
+                            <a href="{{ route('post.detail', ['alias' => $first_post->slug]) }}"
+                                title="{{ $first_post->title }}" class="group !no-underline "
                                 data-bt="tiles-any-cpt-xl">
                                 <img sizes="720px"
-                                    src="{{ $posts[0]->images->first()->url ?? 'https://via.placeholder.com/150x100' }}"
-                                    alt="{{ $posts[0]->title }}" width="628" height="353"
+                                    src="{{ $first_post->images->first()->url ?? 'https://via.placeholder.com/150x100' }}"
+                                    alt="{{ $first_post->title }}" width="628" height="353"
                                     class="object-cover object-center bg-cover bg-center aspect-video h-auto w-full"
                                     style=" " loading="lazy">
                                 <div class="flex items-center gap-2 mt-4 text-xs text-gray-40">
                                     <span class="font-semibold text-red-100" data-bt="tiles-any-cpt-xl-label">{{ $posts[0]->categories->first()->name ?? __('post.list.uncategorized') }}</span>
                                     •
-                                    <span data-bt="tiles-any-cpt-xl-published-at"> {{ $posts[0]->created_at->diffForHumans() }}</span>
+                                    <span data-bt="tiles-any-cpt-xl-published-at"> {{ $first_post->created_at->diffForHumans() }}</span>
                                 </div>
                                 <div class="mt-2 block text-2xl font-semibold text-gray-95 group-hover:underline"
                                     data-bt="tiles-any-cpt-xl-title">
-                                    {{ $posts[0]->title }}
+                                    {{ $first_post->title }}
                                 </div>
                                 <p class="mt-2 hidden lg:block text-sm text-gray-95" data-bt="tiles-any-cpt-xl-content">
-                                    {{ Str::limit($posts[0]->description, 255, '...') }}
+                                    {{ Str::limit($first_post->description, 255, '...') }}
                                 </p>
                                 <div class="mt-2 text-xs text-gray-40" data-bt="tiles-any-cpt-xl-author">
                                     {{ __('post.list.by') . ' '. $posts[0]->user->name }}
                                 </div>
                             </a>
+                            @endif
                             @foreach ($posts as $post)
                             @if($post->getAvailableLang())
                                 @php

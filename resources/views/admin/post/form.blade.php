@@ -171,7 +171,7 @@
                                     @else
                                         <li class="list-group-item">Đây là một bài viết phụ của bài viết: <br>
                                             @if(isset($record) && $record->langParent && $record->langParent->langs)
-                                                <a href="{{ route('admin.booker.edit', $record->langParent->id) }}">{{ $record->langParent->langs->name }}</a>
+                                                <a href="{{ route('admin.post.edit', $record->langParent->id) }}">{{ $record->langParent->langs->name }}</a>
                                             @else
                                                 <span class="px-1">Ngôn ngữ gốc đã bị xóa</span>
                                             @endif
