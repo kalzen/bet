@@ -24,7 +24,8 @@
                                 <input type="checkbox" name="ids[]" value="{{$record->id}}" class="form-input-styled">
                             </td> --}}
                                     <td>
-                                        <a href="{{ route('admin.lang.edit', $record->id) }}">{{ $record->name }}</a>
+                                        <p>{{ $record->name }}</p>
+                                        <a class="d-none" href="{{ route('admin.lang.edit', $record->id) }}">{{ $record->name }}</a>
                                     </td>
                                     <td>
                                         {{ $record->locale }}
