@@ -78,7 +78,7 @@
                         <li class="nav-item"><a href="javascript:;" class="nav-link active">Trang chủ</a></li>
                         <li class="nav-item"><a href="{{route('admin.slide.index')}}" class="nav-link">Slide/Banner</a></li>
                         <li class="nav-item"><a href="{{route('admin.menu.index')}}" class="nav-link">Menu</a></li>
-                        <li class="nav-item d-none"><a href="{{route('admin.lang.index')}}" class="nav-link">Ngôn ngữ trang</a></li>
+                        <li class="nav-item"><a href="{{route('admin.lang.index')}}" class="nav-link">Ngôn ngữ hiện tại</a></li>
                     </ul>
                 </li>
                 <li class="nav-item nav-item-submenu">

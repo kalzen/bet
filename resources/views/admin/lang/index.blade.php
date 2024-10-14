@@ -3,7 +3,7 @@
     <div class="card">
         <div class="card-body">
             @include('admin.partials.message')
-            <a class="btn mb-2 btn-success" href="{{ route('admin.lang.create') }}"><i class="icon-plus-circle2"></i> Thêm
+            <a class="btn mb-2 btn-success d-none" href="{{ route('admin.lang.create') }}"><i class="icon-plus-circle2"></i> Thêm
                 mới</a>
             @if (count($records))
                 <div class="card card-table table-responsive shadow-0 mb-0">
@@ -46,7 +46,7 @@
                                                 data-key="{{ $record->id }}" title="Khôi phục"><i
                                                     class="icon-reply"></i></a>
                                         @endif
-                                        <a href="javascript:;" class="js-forceDelete text-danger"
+                                        <a href="javascript:;" class="d-none js-forceDelete text-danger"
                                                 data-key="{{ $record->id }}" title="Xóa"><i class="icon-trash"></i></a>
                                     </td>
                                 </tr>
