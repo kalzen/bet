@@ -93,7 +93,7 @@
                             toastr[resp.success ? 'success' : 'error'](resp.message)
                             setTimeout(function() {
                                 location.reload();
-                            }, 1500);
+                            }, 500);
                         }
                     })
                 }
@@ -126,7 +126,7 @@
                             toastr[resp.success ? 'success' : 'error'](resp.message)
                             setTimeout(function() {
                                 location.reload();
-                            }, 1500);
+                            }, 500);
                         }
                     })
                 }
@@ -159,7 +159,7 @@
                             toastr[resp.success ? 'success' : 'error'](resp.message)
                             setTimeout(function() {
                                 location.reload();
-                            }, 1000);
+                            }, 500);
                         }
                     })
                 }
