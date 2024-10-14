@@ -8,7 +8,7 @@
 
     <div class="navbar-collapse collapse" id="navbar-footer">
         <span class="navbar-text">
-            &copy; 2022 <a href="#">Học viện ielts</a> by <a href="https://kalzen.com" target="_blank">Kalzen Media</a>
+            &copy; 2024 <a href="#">Trang cược bettests</a> by <a href="https://kalzen.com" target="_blank">Kalzen Media</a>
         </span>
 
       
