@@ -347,6 +347,9 @@
                     })
                     $('#select_category .form-input-styled').uniform()
                     $.uniform.update()
+                    setTimeout(function() {
+                                location.reload();
+                            }, 1000);
                 }
             })
         })
@@ -372,6 +375,9 @@
                     // })
                     // $('#select_lang .form-input-styled').uniform()
                     $.uniform.update()
+                    setTimeout(function() {
+                                location.reload();
+                            }, 1000);
                 }
             })
         })
@@ -437,7 +443,9 @@
                         dataType: 'json',
                         success: function(resp) {
                             toastr[resp.success ? 'success' : 'error'](resp.message)
-
+                            setTimeout(function() {
+                                location.reload();
+                            }, 1000);
                         }
                     })
                 }
