@@ -171,8 +171,7 @@
                         @else
                             <span class="text-danger">Hiện đã sử dụng hết ngôn ngữ có sẵn.</span>
                         @endif
-                        <p class="pt-1">Không tìm thấy ngôn ngữ bạn cần? <a
-                                href="{{ route('admin.lang.index') }}">Bấm vào đây để thêm mới</a></p>
+                        <p class="pt-1">Không tìm thấy ngôn ngữ bạn cần? Có thể một bài viết với ngôn ngữ đó đã và đang tồn tại!</p>
                     </div>
 
 

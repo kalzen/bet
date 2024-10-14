@@ -8,5 +8,4 @@
         @endforeach
     @endif
 </select>
-<p class="pt-1">Không tìm thấy ngôn ngữ bạn cần? <a
-    href="{{ route('admin.lang.index') }}">Bấm vào đây để thêm mới</a>. Hoặc xóa ngôn ngữ phụ và tải lại trang</p>
+<p class="pt-1">Không tìm thấy ngôn ngữ bạn cần? Có thể một bài viết với ngôn ngữ đó đã và đang tồn tại! Hoặc xóa ngôn ngữ phụ và tải lại trang</p>
