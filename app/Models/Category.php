@@ -2,12 +2,18 @@
 
 namespace App\Models;
 
+use App\Http\Controllers\Admin\SharedHelper;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Str;
 
 class Category extends Model
 {
     protected $guarded = [];
+    public function getAvailableLang()
+    {
+        $sharedHelper = app(SharedHelper::class);
+        return $sharedHelper->getAvailableLang($this);
+    }
     public function children() {
         return $this->hasMany(Category::class, 'parent_id');
     }

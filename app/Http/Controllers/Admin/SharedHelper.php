@@ -5,6 +5,29 @@ use App\Models\Lang;
 
 class SharedHelper
 {
+    public function getAvailableLang($lang = null)
+    {
+        $locale = app()->getLocale();
+        if ($lang->langs === null) {
+            return null;
+        }
+        if($lang->langParent == null){
+            if ($lang->langs->locale == $locale) {
+                return $lang;
+            } else {
+                $allChildren = $lang->langChildren;
+                foreach ($allChildren as $child) {
+                    if ($child->langs->locale == $locale) {
+                        return $child;
+                    }
+                }
+            }
+        } else if ($lang->langChildren()->count() > 0) {
+            $upperParent = $lang->langParent;
+            return $upperParent->getAvailableLang();
+        }
+        return null;
+    }
     public function getExcludedFormLangs($record)
     {
         $formLangs = collect([]);

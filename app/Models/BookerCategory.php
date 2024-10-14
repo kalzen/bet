@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Http\Controllers\Admin\SharedHelper;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Str;
 
@@ -12,6 +13,11 @@ class BookerCategory extends Model
     // {
     //     return $this->hasMany(Booker::class, 'booker_category_id');
     // }
+    public function getAvailableLang()
+    {
+        $sharedHelper = app(SharedHelper::class);
+        return $sharedHelper->getAvailableLang($this);
+    }
     public function children() {
         return $this->hasMany(Category::class, 'parent_id');
     }

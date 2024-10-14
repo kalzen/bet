@@ -16,6 +16,7 @@ class SubmitMenuRequest extends FormRequest
         return [
             'name' => 'required|max:255',
             'url' => 'required|url',
+            'lang_id' => 'required|numeric',
         ];
     }
 }

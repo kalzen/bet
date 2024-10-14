@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Http\Controllers\Admin\SharedHelper;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Support\Str;
@@ -12,6 +13,11 @@ class Post extends Model
     const STATUS_ACTIVE = 1;
     const STATUS_INACTIVE = 0;
     protected $guarded = [];
+    public function getAvailableLang()
+    {
+        $sharedHelper = app(SharedHelper::class);
+        return $sharedHelper->getAvailableLang($this);
+    }
     public function getUrlAttribute()
     {
         return '/tin-tuc/'.$this->slug;
@@ -66,28 +72,5 @@ class Post extends Model
         {
             $post->slug = Str::slug($post->title);
         });
-    }
-    public function getAvailableLang()
-    {
-        $locale = app()->getLocale();
-        if ($this->langs === null) {
-            return null;
-        }
-        if($this->langParent == null){
-            if ($this->langs->locale == $locale) {
-                return $this;
-            } else {
-                $allChildren = $this->langChildren;
-                foreach ($allChildren as $child) {
-                    if ($child->langs->locale == $locale) {
-                        return $child;
-                    }
-                }
-            }
-        } else if ($this->langChildren()->count() > 0) {
-            $upperParent = $this->langParent;
-            return $upperParent->getAvailableLang();
-        }
-        return null;
     }
 }
