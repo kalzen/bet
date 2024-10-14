@@ -88,13 +88,14 @@
                         <div class="footer-menu">
                             <ul>
                                 @foreach ($shared_nav_links->sortBy('ordering') as $nav)
-                                    <li>
                                     @if($nav->getAvailableLang())
-                                        <a class="single-menu" href="{{ $nav->getAvailableLang()->url }}">{{ $nav->getAvailableLang()->name }}</a>
-                                    @else
-                                        <a class="single-menu" href="#">{{ $nav->name ?? 'Untitled' }}</a>
+                                    @php
+                                        $nav = $nav->getAvailableLang();
+                                    @endphp
+                                        <li>
+                                            <a class="single-menu" href="{{ $nav->url }}">{{ $nav->name }}</a>
+                                        </li>
                                     @endif
-                                    </li>
                                 @endforeach
                             </ul>
                         </div>

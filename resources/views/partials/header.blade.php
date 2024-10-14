@@ -112,44 +112,38 @@
             <nav class="navbar navbar-expand-lg">
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <div class="scalation">
+
                         <div class="row">
                             <div class="col-xl-5 col-lg-5">
                                 <ul class="navbar-nav nn-left">
-                                    @php
-                                        $nav_links = $shared_nav_links->sortBy('ordering');
-                                        $seen_orderings = [];
-                                        $nav_links = $nav_links->map(function ($nav_link) use (&$seen_orderings) {
-                                            $original_ordering = $nav_link->ordering;
-                                            while (in_array($nav_link->ordering, $seen_orderings)) {
-                                                $nav_link->ordering++;
-                                            }
-                                            $seen_orderings[] = $nav_link->ordering;
-                                            return $nav_link;
-                                        });
-                                        $nav_chunks = $nav_links->chunk(ceil($nav_links->count() / 2));
-                                        $nav_chunks = array_pad($nav_chunks->toArray(), 2, []);
-                                    @endphp
-                                    @foreach ($nav_chunks[0] as $nav_link)
+                                    @foreach ($shared_nav_links->sortBy('ordering')->take(ceil(count($shared_nav_links) / 2)) as $nav_link)
+                                        @php
+                                            $lang_nav_link = $nav_link->getAvailableLang();
+                                        @endphp
+                                        @if (!$lang_nav_link)
+                                            @continue
+                                        @endif
                                         @if ($nav_link['children'] != null)
-                                            {{-- @dd($nav_link['children']); --}}
                                             <li class="nav-item dropdown">
-                                                <a class="nav-link dropdown-toggle" href="#" id="pagesDropdown"
-                                                    role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                                                    {{ strtoupper($nav_link['name']) }}
+                                                <a class="nav-link dropdown-toggle" href="#" id="pagesDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                                    {{ strtoupper($lang_nav_link['name']) }}
                                                 </a>
-                                                <ul class="dropdown-menu custom-dropdown"
-                                                    aria-labelledby="pagesDropdown">
+                                                <ul class="dropdown-menu custom-dropdown" aria-labelledby="pagesDropdown">
+                                                    {{-- @dd($nav_link->langChildren()); --}}
                                                     @foreach ($nav_link['children'] as $child)
-                                                        <li><a class="dropdown-item"
-                                                                href="{{ $child['url'] }}">{{ $child['name'] }}</a>
-                                                        </li>
+                                                        @php
+                                                            $lang_child = $child->getAvailableLang();
+                                                        @endphp
+                                                        @if (!$lang_child)
+                                                            @continue
+                                                        @endif
+                                                        <li><a class="dropdown-item" href="{{ $lang_child['url'] }}">{{ $lang_child['name'] }}</a></li>
                                                     @endforeach
                                                 </ul>
                                             </li>
                                         @elseif ($nav_link['parent_id'] == null)
                                             <li class="nav-item">
-                                                <a class="nav-link"
-                                                    href="{{ $nav_link['url'] }}">{{ strtoupper($nav_link['name']) }}</a>
+                                                <a class="nav-link" href="{{ $lang_nav_link['url'] }}">{{ strtoupper($nav_link['name']) }}</a>
                                             </li>
                                         @endif
                                     @endforeach
@@ -164,32 +158,31 @@
                             </div>
                             <div class="col-xl-5 col-lg-5">
                                 <ul class="navbar-nav nn-right">
-                                    @foreach ($nav_chunks[1] as $nav_link)
+                                    @foreach ($shared_nav_links->sortBy('ordering')->skip(ceil(count($shared_nav_links) / 2)) as $nav_link)
+                                        @php
+                                            $nav_link = $nav_link->getAvailableLang();
+                                        @endphp
                                         @if ($nav_link['children'] != null)
                                             <li class="nav-item dropdown">
-                                                <a class="nav-link dropdown-toggle" href="#" id="pagesDropdown"
-                                                    role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                                <a class="nav-link dropdown-toggle" href="#" id="pagesDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                                                     {{ strtoupper($nav_link['name']) }}
                                                 </a>
-                                                <ul class="dropdown-menu custom-dropdown"
-                                                    aria-labelledby="pagesDropdown">
+                                                <ul class="dropdown-menu custom-dropdown" aria-labelledby="pagesDropdown">
                                                     @foreach ($nav_link['children'] as $child)
-                                                        <li><a class="dropdown-item"
-                                                                href="{{ $child['url'] }}">{{ $child['name'] }}</a>
-                                                        </li>
+                                                        <li><a class="dropdown-item" href="{{ $child['url'] }}">{{ $child['name'] }}</a></li>
                                                     @endforeach
                                                 </ul>
                                             </li>
                                         @elseif ($nav_link['parent_id'] == null)
                                             <li class="nav-item">
-                                                <a class="nav-link"
-                                                    href="{{ $nav_link['url'] }}">{{ strtoupper($nav_link['name']) }}</a>
+                                                <a class="nav-link" href="{{ $nav_link['url'] }}">{{ strtoupper($nav_link['name']) }}</a>
                                             </li>
                                         @endif
                                     @endforeach
                                 </ul>
                             </div>
                         </div>
+                        
                     </div>
                 </div>
             </nav>
