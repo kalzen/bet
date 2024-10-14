@@ -143,7 +143,7 @@
                                             </li>
                                         @elseif ($nav_link['parent_id'] == null)
                                             <li class="nav-item">
-                                                <a class="nav-link" href="{{ $lang_nav_link['url'] }}">{{ strtoupper($nav_link['name']) }}</a>
+                                                <a class="nav-link" href="{{ $lang_nav_link['url'] }}">{{ strtoupper($lang_nav_link['name']) }}</a>
                                             </li>
                                         @endif
                                     @endforeach
@@ -160,22 +160,31 @@
                                 <ul class="navbar-nav nn-right">
                                     @foreach ($shared_nav_links->sortBy('ordering')->skip(ceil(count($shared_nav_links) / 2)) as $nav_link)
                                         @php
-                                            $nav_link = $nav_link->getAvailableLang();
+                                            $lang_nav_link = $nav_link->getAvailableLang();
                                         @endphp
+                                        @if (!$lang_nav_link)
+                                            @continue
+                                        @endif
                                         @if ($nav_link['children'] != null)
                                             <li class="nav-item dropdown">
                                                 <a class="nav-link dropdown-toggle" href="#" id="pagesDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                                                    {{ strtoupper($nav_link['name']) }}
+                                                    {{ strtoupper($lang_nav_link['name']) }}
                                                 </a>
                                                 <ul class="dropdown-menu custom-dropdown" aria-labelledby="pagesDropdown">
                                                     @foreach ($nav_link['children'] as $child)
-                                                        <li><a class="dropdown-item" href="{{ $child['url'] }}">{{ $child['name'] }}</a></li>
+                                                        @php
+                                                            $lang_child = $child->getAvailableLang();
+                                                        @endphp
+                                                        @if (!$lang_child)
+                                                            @continue
+                                                        @endif
+                                                        <li><a class="dropdown-item" href="{{ $lang_child['url'] }}">{{ $lang_child['name'] }}</a></li>
                                                     @endforeach
                                                 </ul>
                                             </li>
                                         @elseif ($nav_link['parent_id'] == null)
                                             <li class="nav-item">
-                                                <a class="nav-link" href="{{ $nav_link['url'] }}">{{ strtoupper($nav_link['name']) }}</a>
+                                                <a class="nav-link" href="{{ $lang_nav_link['url'] }}">{{ strtoupper($lang_nav_link['name']) }}</a>
                                             </li>
                                         @endif
                                     @endforeach
