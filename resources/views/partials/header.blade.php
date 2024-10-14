@@ -123,7 +123,8 @@
                                         @if (!$lang_nav_link)
                                             @continue
                                         @endif
-                                        @if ($nav_link['children'] != null)
+                                        
+                                        @if ($nav_link->children->count() > 0)
                                             <li class="nav-item dropdown">
                                                 <a class="nav-link dropdown-toggle" href="#" id="pagesDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                                                     {{ strtoupper($lang_nav_link['name']) }}
@@ -141,7 +142,7 @@
                                                     @endforeach
                                                 </ul>
                                             </li>
-                                        @elseif ($nav_link['parent_id'] == null)
+                                        @else
                                             <li class="nav-item">
                                                 <a class="nav-link" href="{{ $lang_nav_link['url'] }}">{{ strtoupper($lang_nav_link['name']) }}</a>
                                             </li>
@@ -165,7 +166,7 @@
                                         @if (!$lang_nav_link)
                                             @continue
                                         @endif
-                                        @if ($nav_link['children'] != null)
+                                        @if ($nav_link->children->count() > 0)
                                             <li class="nav-item dropdown">
                                                 <a class="nav-link dropdown-toggle" href="#" id="pagesDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                                                     {{ strtoupper($lang_nav_link['name']) }}
@@ -182,7 +183,7 @@
                                                     @endforeach
                                                 </ul>
                                             </li>
-                                        @elseif ($nav_link['parent_id'] == null)
+                                        @else
                                             <li class="nav-item">
                                                 <a class="nav-link" href="{{ $lang_nav_link['url'] }}">{{ strtoupper($lang_nav_link['name']) }}</a>
                                             </li>
