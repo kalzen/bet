@@ -16,10 +16,10 @@
 <div class="prd-breadcrumb">
     <div class="container">
         <div class="brd-content">
-            {{-- <div data-aos="fade-up" data-aos-delay="200" data-aos-duration="500" data-aos-easing="ease-in" class="aos-init aos-animate">
-                <span class="sub-title">blog details</span>
+            <div data-aos="fade-up" data-aos-delay="200" data-aos-duration="500" data-aos-easing="ease-in" class="aos-init aos-animate">
+                <span class="sub-title">{{ __('post.list.news') }}</span>
             </div>    
-            <h2 class="title aos-init aos-animate" data-aos="fade-up" data-aos-delay="350" data-aos-duration="500" data-aos-easing="ease-in">Even more and setted see small seven to think...</h2> --}}
+            <h2 class="title aos-init aos-animate" data-aos="fade-up" data-aos-delay="350" data-aos-duration="500" data-aos-easing="ease-in">{{ $lang_post->title }}</h2>
             <div class="page-direction">
                 <ul>
                     <li>
@@ -44,7 +44,7 @@
             <div class="post-element">
                 <div class="post-stats aos-init aos-animate" data-aos="fade-up" data-aos-delay="100" data-aos-duration="500"
                     data-aos-easing="ease-in">
-                    <span class="category-name">{{ $post->categories->first()->name }}</span>
+                    <span class="category-name">{{ $post->categories[0]->getAvailableLang()->name ?? __('post.list.uncategorized') }}</span>
                     <span class="posted-time">{{ $post->created_at->diffForHumans() }}</span>
                 </div>
                 <h2 class="post-title aos-init aos-animate" data-aos="fade-up" data-aos-delay="150" data-aos-duration="500"
