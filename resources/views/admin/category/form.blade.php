@@ -253,7 +253,7 @@
                 // $('#select_lang [name^=lang_id]').each(function() {
                 // $(this).prop('checked', selected.includes(this.value))
                 // })
-                // $('#select_lang .form-input-styled').uniform()
+                $('#select_lang .form-input-styled').uniform()
                 $.uniform.update()
                 setTimeout(function() {
                     location.reload();
