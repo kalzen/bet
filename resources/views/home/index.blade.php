@@ -59,6 +59,9 @@
                             @php
                                 $count++;
                             @endphp
+                            @if ($count > 5)
+                                @break;
+                            @endif
                             <div class="card mb-3" style="border-radius: 10px">
                                 <div class="position-absolute top-0 start-0 translate-middle bg-warning rounded-circle d-flex align-items-center justify-content-center text-dark fw-bold fs-6 shadow"
                                     style="width: 1.5rem; height: 1.5rem;">
