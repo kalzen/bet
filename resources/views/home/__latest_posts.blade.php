@@ -52,7 +52,7 @@
                                             style=" " loading="lazy">
                                         <div class="flex items-center gap-2 mt-4 text-xs text-gray-40">
                                             <span class="font-semibold text-red-100"
-                                                data-bt="tiles-any-cpt-xl-label">{{ $posts[0]->categories->first()->name ?? __('post.list.uncategorized') }}</span>
+                                                data-bt="tiles-any-cpt-xl-label">{{ $posts[0]->categories[0]->getAvailableLang()->name ?? __('post.list.uncategorized') }}</span>
                                             •
                                             <span data-bt="tiles-any-cpt-xl-published-at">
                                                 {{ $first_post->created_at->diffForHumans() }}</span>
@@ -111,7 +111,7 @@
                                             <div
                                                 class="flex flex-col sm:flex-row sm:items-center gap-1 md:gap-2 text-xs text-gray-40">
                                                 <span class="font-semibold text-red-100"
-                                                    data-bt="tiles-any-cpt-lg-label">{{ $post->categories->first()->name ?? __('post.list.uncategorized') }}</span>
+                                                    data-bt="tiles-any-cpt-lg-label">{{ $post->categories[0]->getAvailableLang()->name ?? __('post.list.uncategorized') }}</span>
                                                 <span data-bt="tiles-any-cpt-lg-published-at">
                                                     <span class="hidden sm:inline">•</span>
                                                     {{ $post->created_at->diffForHumans() }}</span>
@@ -173,7 +173,7 @@
                                         <div
                                             class="flex flex-col sm:flex-row sm:items-center gap-1 md:gap-2 text-xs text-gray-40">
                                             <span class="font-semibold text-red-100"
-                                                data-bt="tiles-any-cpt-md-label">{{ $post->categories->first()->name ?? __('post.list.uncategorized') }}</span>
+                                                data-bt="tiles-any-cpt-md-label">{{ $post->categories[0]->getAvailableLang()->name ?? __('post.list.uncategorized') }}</span>
                                             <span data-bt="tiles-any-cpt-md-published-at">
                                                 <span class="hidden sm:inline">•</span>
                                                 {{ $post->created_at->diffForHumans() }}</span>
@@ -234,7 +234,7 @@
                     data-bt="tiles-news-xs">
                     <div class="flex items-center gap-2 text-xs text-gray-40">
                         <span class="font-semibold text-red-100"
-                            data-bt="tiles-news-xs-label">{{ $post->categories->first()->name ?? __('post.list.uncategorized') }}</span>
+                            data-bt="tiles-news-xs-label">{{ $post->categories[0]->getAvailableLang()->name ?? __('post.list.uncategorized') }}</span>
                         •
                         <span
                             data-bt="tiles-news-xs-published-at">{{ $post->created_at->diffForHumans() }}</span>
