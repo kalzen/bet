@@ -101,7 +101,6 @@
                         setTimeout(function() {
                             location.reload();
                         }, 1000);
-                        location.reload()
                     }
                 })
             }
@@ -118,8 +117,7 @@
                         //toastr[resp.success ? 'success' : 'error'](resp.message)
                         setTimeout(function() {
                             location.reload();
-                        }, 1000);
-                        location.reload();
+                        }, 1000);;
                     }
                 })
     });

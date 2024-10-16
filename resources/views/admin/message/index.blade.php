@@ -89,7 +89,6 @@
                         setTimeout(function() {
                             location.reload();
                         }, 1000);
-                        location.reload()
                     }
                 })
             }
