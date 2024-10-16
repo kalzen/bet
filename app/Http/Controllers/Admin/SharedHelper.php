@@ -26,7 +26,7 @@ class SharedHelper
             $upperParent = $lang->langParent;
             return $upperParent->getAvailableLang();
         }
-        return $lang;
+        return null;
     }
     public function getExcludedFormLangs($record)
     {

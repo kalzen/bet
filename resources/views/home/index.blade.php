@@ -48,15 +48,21 @@
                 <div class="col-xxl-5 col-xl-6 col-lg-6 col-md-12 card-wrapper">
 
                     <div class="container col-md-12" id="cardContainer">
+                        @php
+                            $count = 0;
+                        @endphp
                         @foreach ($shared_bookers as $booker)
                             @if($booker->getAvailableLang())
                             @php
                                 $booker = $booker->getAvailableLang();
                             @endphp
+                            @php
+                                $count++;
+                            @endphp
                             <div class="card mb-3" style="border-radius: 10px">
                                 <div class="position-absolute top-0 start-0 translate-middle bg-warning rounded-circle d-flex align-items-center justify-content-center text-dark fw-bold fs-6 shadow"
                                     style="width: 1.5rem; height: 1.5rem;">
-                                    {{ $loop->iteration }}
+                                    {{ $count }}
                                 </div>
                                 <div class="booker-wrapper row g-0 align-items-center justify-content-evenly py-0 ps-3">
                                     <div class="col-lg-1 col-md-1 col-1 px-0">

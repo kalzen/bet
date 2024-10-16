@@ -25,12 +25,28 @@ class HomeController extends Controller
     {
         $catalogues = Catalogue::orderBy('id', 'asc')->take(5)->get();
         $testimonials = Testimonial::get();
-        $bookers = Booker::whereNull('lang_parent_id')->orderBy('ordering', 'desc')->take(6)->get();
         $codes = Code::orderBy('id', 'desc')->take(4)->get();
         $teams = Team::get();
-        $posts = Post::whereNull('lang_parent_id')->latest()->withCount(['images'])->having('images_count', '>', 0)->active()->take(10)->get();
         $tips = Tip::get();
-        $hot_bookers = Booker::whereNull('lang_parent_id')->orderBy('ordering', 'desc')->take(6)->get();
+
+        $hot_bookers = cache()->remember('hot_bookers', 3600, function () {
+            return Booker::whereNull('lang_parent_id')->with('langs','langChildren','langChildren.langs','langParent')->orderBy('ordering', 'desc')->get();
+        });
+
+        $bookers = cache()->remember('bookers', 3600, function () {
+            return Booker::whereNull('lang_parent_id')->with('langs','langChildren','langChildren.langs','langParent')->orderBy('ordering', 'desc')->get();
+        });
+
+        $posts = cache()->remember('posts', 3600, function () {
+            return Post::whereNull('lang_parent_id')
+                ->latest()
+                ->with('langs','langChildren','langChildren.langs','langParent')
+                ->withCount(['images'])
+                ->having('images_count', '>', 0)
+                ->active()
+                ->get();
+        });
+
         return view('home.index',[ 'posts'=>$posts, 'testimonials' => $testimonials, 'teams' => $teams, 'catalogues' => $catalogues, 'booker_hot'=>$bookers, 'codes' => $codes, 'tips' => $tips, 'hot_bookers' => $hot_bookers]);
     }
     public function order()

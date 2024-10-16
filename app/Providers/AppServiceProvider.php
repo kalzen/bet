@@ -63,7 +63,7 @@ class AppServiceProvider extends ServiceProvider
             }));
 
             View::share('shared_bookers', cache()->remember('shared_bookers', now()->addMinutes(60), function () {
-                return Booker::take(5)->whereNull('lang_parent_id')->with('langs','langChildren','langChildren.langs','langParent')->get();
+                return Booker::whereNull('lang_parent_id')->with('langs','langChildren','langChildren.langs','langParent')->get();
             }));
         });
 

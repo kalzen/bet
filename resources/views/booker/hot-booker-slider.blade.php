@@ -3,17 +3,23 @@
 <div class="container swiper mt-3 mb-3">
     <div class="card-booker-wrapper">
         <ul class="card-booker-list swiper-wrapper">
+            @php
+                $count = 0;
+            @endphp
             @foreach ($hot_bookers as $booker)
             @if($booker->getAvailableLang())
             @php
                 $booker = $booker->getAvailableLang();
             @endphp
+                @php
+                    $count++;
+                @endphp
                 <li class="card-booker-item swiper-slide">
                     <div class="card-booker-link">
                         <!-- Circle number -->
                         <div class="position-absolute top-30 start-30  bg-danger rounded-circle"
                             style="width: 30px; height: 30px; line-height: 30px; text-align: center; color: white; font-weight: bold; font-size: 15px">
-                            {{ $loop->iteration }}
+                            {{ $count }}
                         </div>
 
                         <!-- Image section -->
