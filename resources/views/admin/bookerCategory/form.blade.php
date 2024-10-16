@@ -269,6 +269,9 @@
             let selected = $('[name^=lang_id]:checked').map(function() {
                 return this.value;
             }).get()
+            for (instance in CKEDITOR.instances) {
+                CKEDITOR.instances[instance].updateElement();
+            }
             $.ajax({
                 url: '{{ route('admin.booker_category.lang') }}',
                 method: 'POST',
