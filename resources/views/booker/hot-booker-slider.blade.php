@@ -18,7 +18,7 @@
 
                         <!-- Image section -->
                         <div class="text-center mb-3">
-                            <img src="{{ $booker->image }}" alt="Logo" class="img-fluid rounded-3"
+                            <img class="slider_item_img" src="{{ $booker->image }}" alt="Logo" class="img-fluid rounded-3"
                                 onerror="this.onerror=null; this.src='https://via.placeholder.com/400x300';">
                         </div>
 

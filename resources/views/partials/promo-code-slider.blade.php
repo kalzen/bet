@@ -10,12 +10,12 @@
                 <li class="card-promo-code-item swiper-slide">
                     <div class="item-promo text-center mr-3 mb-3">
                         @if($code->booker)
-                            <img src="{{ $code->booker->image }}" alt=""
+                            <img class="slider_item_img" src="{{ $code->booker->image }}" alt=""
                             onerror="this.onerror=null; this.src='https://via.placeholder.com/400x300';">
                         @else
-                            <img src="https://via.placeholder.com/400x300" alt="">
+                            <img class="slider_item_img" src="https://via.placeholder.com/400x300" alt="">
                         @endif
-                        <span style="line-height: 50px;">{{ $code->description ?? ($code->booker->description ?? 'No description available') }}</span>
+                        <span>{{ $code->description ?? ($code->booker->description ?? 'No description available') }}</span>
                         <div class="code mt-4 justify-content-center">
                             {{ $code->name }}
                     </div>
