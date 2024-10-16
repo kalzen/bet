@@ -7,7 +7,7 @@
     height: 46px;
     background-size: contain;
     background-position: center;
-    border-radius: 20px;
+    border-radius: 8px;
     background-repeat: no-repeat;
 }
 
@@ -220,6 +220,7 @@
 
     .booker_mini_avt {
         width: 61px;
+        margin-left: 8px;
     }
     .image-container{
         margin-left: 5px;
