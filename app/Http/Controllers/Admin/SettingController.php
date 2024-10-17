@@ -18,7 +18,7 @@ class SettingController extends Controller
     {
         DB::beginTransaction();
         try {
-            Config::create(['name'=>'facebook','value'=>'']);
+
             if ($request->image) {
                 Config::where('name','logo')->update(['value'=>$request->image]);
             }
