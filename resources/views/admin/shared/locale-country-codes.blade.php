@@ -10,18 +10,6 @@
     <span class="text-danger">{{ $message }}</span>
 @enderror
 
-{{-- <div class="form-group">
-    <label for="languageDataList" class="form-label">Chọn ngôn ngữ</label>
-    <input class="form-control" list="languageOptions" id="languageDataList" name="lang_id" placeholder="Nhập để tìm kiếm..."
-        required>
-    <datalist id="languageOptions">
-        @foreach ($locales as $lang => $name)
-            <option value="{{ $lang }}">{{ }}</option>
-        @endforeach
-    </datalist>
-</div> --}}
-
-
 <script src="https://cdn.jsdelivr.net/npm/choices.js/public/assets/scripts/choices.min.js"></script>
 
 <script>
