@@ -7,6 +7,7 @@ use App\Models\Code;
 use App\Models\Booker;
 use Illuminate\Http\Request;
 use DB;
+use Illuminate\Support\Facades\Validator;
 
 class CodeController extends Controller
 {
@@ -31,7 +32,7 @@ class CodeController extends Controller
     public function create()
     {
         //
-        $bookers = Booker::all();
+        $bookers = Booker::whereNull('lang_parent_id')->get();
         return view('admin.code.form', compact('bookers'));
     }
 
@@ -43,12 +44,23 @@ class CodeController extends Controller
      */
     public function store(Request $request)
     {
+        $validator = Validator::make($request->all(), [
+            'name' => 'required|max:32',
+            'booker_id' => 'required|integer'
+        ],[
+            'booker_id.required' => 'Vui lòng chọn booker!'
+        ]);
+
+        if ($validator->fails()) {
+            return redirect()->back()->withErrors($validator)->withInput();
+        }
+
         DB::beginTransaction();
         try {
-            $code = Code::create($request->only(['name','booker_id']));
+            $code = Code::create($request->only(['name', 'booker_id']));
             DB::commit();
             return redirect()->route('admin.code.index')->with('message', 'Thêm mới thành công');
-        } catch(Exception $ex) {
+        } catch (Exception $ex) {
             DB::rollback();
             return back()->withInput();
         }
@@ -75,8 +87,8 @@ class CodeController extends Controller
     {
         //
         $record = Code::find($id);
-        $bookers = Booker::all();
-        return view('admin.code.form',compact('record', 'bookers'));
+        $bookers = Booker::whereNull('lang_parent_id')->get();
+        return view('admin.code.form', compact('record', 'bookers'));
     }
 
     /**
@@ -88,12 +100,22 @@ class CodeController extends Controller
      */
     public function update(Request $request, Code $code)
     {
+        $validator = Validator::make($request->all(), [
+            'name' => 'required|max:32',
+            'booker_id' => 'required|integer'
+        ],[
+            'booker_id.required' => 'Vui lòng chọn booker!'
+        ]);
+
+        if ($validator->fails()) {
+            return redirect()->back()->withErrors($validator)->withInput();
+        }
         DB::beginTransaction();
         try {
-            $code->update($request->only(['name','booker_id']));
+            $code->update($request->only(['name', 'booker_id']));
             DB::commit();
             return redirect()->route('admin.code.index')->with('message', 'Cập nhật thành công');
-        }catch(\Exception $ex) {
+        } catch (\Exception $ex) {
             dd('error');
             DB::rollback();
             return back()->withInput();

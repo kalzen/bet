@@ -25,7 +25,7 @@
                                 <a href="{{route('admin.code.edit', $record->id)}}">{{$record->name}}</a>
                             </td>
                             <td>
-                                {{ $record->booker ? $record->booker->name : 'N/A' }}
+                                <a href="{{route('admin.booker.edit', $record->booker ? $record->booker->id : '0')}}">{{ $record->booker ? $record->booker->name : 'N/A' }}</a>
                             </td>
                             <td>
                                 <a href="javascript:;" class="js-delete text-danger" data-key="{{$record->id}}" title="Xóa"><i class="icon-trash"></i></a>

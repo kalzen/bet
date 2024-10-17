@@ -4,23 +4,29 @@
     <div class="row aos-init card-promo-code-wrapper" data-aos="fade-up" data-aos-delay="50">
         <ul class="card-promo-code-list swiper-wrapper">
             @foreach ($codes as $code)
-                {{-- <div class="col-md-3">
-                
-            </div> --}}
+            @if (!$code->booker->getAvailableLang())
+                @continue
+            @endif
+            {{-- @dd($code); --}}
+            @php
+                $booker = $code->booker->getAvailableLang()??$code->booker;
+            @endphp
                 <li class="card-promo-code-item swiper-slide">
+
+
                     <div class="item-promo text-center mr-3 mb-3">
                         @if($code->booker)
-                            <img class="slider_item_img rounded-3" src="{{ $code->booker->image }}" alt=""
+                            <img class="slider_item_img rounded-3" src="{{ $booker->image }}" alt=""
                             onerror="this.onerror=null; this.src='https://via.placeholder.com/400x300';">
                         @else
                             <img class="slider_item_img" src="https://via.placeholder.com/400x300" alt="">
                         @endif
-                        <span>{{ $code->description ?? ($code->booker->getAvailableLang()->description ?? '') }}</span>
+                        <span>{{ $code->description ?? ($booker->description ?? '') }}</span>
                         <div class="code mt-4 justify-content-center">
                             {{ $code->name }}
                     </div>
-                        @if($code->booker)
-                            <a href="{{ route('booker.detail', $code->booker->id) }}" class="prd-btn-1 d-flex mt-3">
+                        @if($booker)
+                            <a href="{{ route('booker.detail', $booker->langParent??$booker->langParent->id??$booker->id) }}" class="prd-btn-1 d-flex mt-3">
                                 <span class="ms-auto me-auto">{{ __('home.view_now') }}<i
                                         class="fa-duotone fa-arrow-right"></i></span>
                             </a>
