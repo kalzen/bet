@@ -43,7 +43,7 @@
                                         @break;
                                     @endif
                                     <a 
-                                        href="{{ route('post.detail', ['alias' => $first_post->slug ?? $first_post->id]) }}"
+                                        href="{{ route('post.detail', ['alias' => $first_post->slug ?? $post->id]) }}"
                                         title="{{ $first_post->title }}" class="group !no-underline "
                                         data-bt="tiles-any-cpt-xl">
                                         <img sizes="720px"
