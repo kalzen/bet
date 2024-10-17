@@ -119,7 +119,7 @@
                         </div>
 
                     </div>
-                    @if(isset($record) && $record->langChildren->count() > 0)
+                    @if(isset($record) && $record->langChildren->count() > 0 || !isset($record))
                         <div class="card">
                             <div class="card-body" id="select_category">
                                 @include('admin.shared.select-category', [
