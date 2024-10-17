@@ -46,7 +46,7 @@ class SettingController extends Controller
             // if ($request->image) {
             //     Config::where('name','contact_title')->update(['value'=>$request->contact_title]);
             // }
-            if ($request->hotline) {
+            if ($request->facebook) {
                 Config::where('name','facebook')->update(['value'=>$request->facebook]);
             }
             // if ($request->address) {
