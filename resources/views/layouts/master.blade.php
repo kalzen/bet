@@ -74,7 +74,7 @@
                                     <i class="fa-brands fa-facebook-f"></i>
                                 </a>
                             </li>
-                            <li class="single-social">
+                            {{-- <li class="single-social">
                                 <a href="#0">
                                     <i class="fa-brands fa-twitter"></i>
                                 </a>
@@ -83,7 +83,7 @@
                                 <a href="#0">
                                     <i class="fa-brands fa-pinterest-p"></i>
                                 </a>
-                            </li>
+                            </li> --}}
                         </ul>
                         <div class="footer-menu">
                             <ul>
