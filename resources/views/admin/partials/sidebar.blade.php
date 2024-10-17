@@ -117,7 +117,7 @@
                         <li class="nav-item"><a href="{{route('admin.catalogue.index')}}" class="nav-link">Danh mục</a></li>
                     </ul>
                 </li>  --}}
-                <li class="nav-item nav-item-submenu">
+                {{-- <li class="nav-item nav-item-submenu">
                     <a href="javascript:;" class="nav-link"><i class="icon-users"></i> <span>Thành viên</span></a>
 
                     <ul class="nav nav-group-sub" data-submenu-title="Thành viên">
@@ -125,7 +125,7 @@
                         <li class="nav-item"><a href="{{route('admin.user.create')}}" class="nav-link">Thêm mới</a></li>
                         <li class="nav-item"><a href="{{route('admin.profile')}}" class="nav-link">Hồ sơ</a></li>
                     </ul>
-                </li>
+                </li> --}}
                 <li class="nav-item nav-item-submenu">
                     <a href="javascript:;" class="nav-link"><i class="icon-cog5"></i> <span>Cài đặt</span></a>
 
@@ -141,14 +141,14 @@
                         </span>
                     </a>
                 </li> --}}
-                <li class="nav-item">
+                {{-- <li class="nav-item">
                     <a href="{{route('admin.message.index')}}" class="nav-link">
                         <i class="icon-mailbox"></i>
                         <span>
                             Quản lý liên hệ
                         </span>
                     </a>
-                </li>
+                </li> --}}
                 {{-- <li class="nav-item">
                     <a href="{{route('admin.testimonial.index')}}" class="nav-link">
                         <i class="icon-lasso2"></i>

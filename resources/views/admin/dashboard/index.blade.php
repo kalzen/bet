@@ -64,7 +64,7 @@
 
             <div class="col-xl-4">
                 <!-- My messages -->
-                <div class="card">
+                {{-- <div class="card">
                     <div class="card-header header-elements-inline">
                         <h6 class="card-title">Tin nhắn</h6>
                         <div class="header-elements">
@@ -116,12 +116,12 @@
                     </div>
                     <!-- /tabs content -->
 
-                </div>
+                </div> --}}
                 <!-- /my messages -->
 
 
                 <!-- Daily financials -->
-                <div class="card">
+                {{-- <div class="card">
                     <div class="card-header header-elements-inline">
                         <h6 class="card-title">Sản phẩm xem nhiều nhất</h6>
                     </div>
@@ -143,7 +143,7 @@
                             @endforeach
                         </ul>
                     </div>
-                </div>
+                </div> --}}
                 <!-- /daily financials -->
 
             </div>
