@@ -108,7 +108,7 @@
                                                 <a href="{{ route('user.detail', ['id' => $post->user->id]) }}"
                                                     class="post-creator">
                                                     <div class="creator-pic">
-                                                        <img src="{{ asset('bet/logo.png') }}"
+                                                        <img src="{{ $shared_config['logo']['value'] }}"
                                                             alt="{{ $post->user->name }}">
                                                     </div>
                                                     <span class="creator-name">{{ $post->user->name }}</span>
@@ -162,7 +162,7 @@
                                                 <a href="{{ route('user.detail', ['id' => $post->user->id]) }}"
                                                     class="post-creator">
                                                     <div class="creator-pic">
-                                                        <img src="{{ asset('bet/logo.png') }}"
+                                                        <img src="{{ $shared_config['logo']['value'] }}"
                                                             alt="{{ $post->user->name }}">
                                                     </div>
                                                     <span class="creator-name">{{ $post->user->name }}</span>

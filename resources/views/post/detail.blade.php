@@ -52,7 +52,7 @@
                 <div class="author-info aos-init aos-animate" data-aos="fade-up" data-aos-delay="200"
                     data-aos-duration="500" data-aos-easing="ease-in">
                     <div class="author-pic">
-                        <img src="{{ asset('bet/logo.png') }}" alt="">
+                        <img src="{{ $shared_config['logo']['value'] }}" alt="">
                     </div>
                     <div class="author-descr">
                         <span class="auth-name">{{ $post->user->name }}</span>

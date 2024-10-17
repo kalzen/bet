@@ -60,12 +60,12 @@
                         <!-- Teams -->
                         <div class="col-md-3 border-start border-end">
                             <div class="d-flex justify-content-around align-items-center">
-                                <img src="{{ asset('bet/logo.png') }}" alt="Team 1" class="me-2" width="30" height="30">
+                                <img src="{{ $shared_config['logo']['value'] }}" alt="Team 1" class="me-2" width="30" height="30">
                                 <span class="w-75">{{ $tip->name_team_1 }}</span>
                                 <span>{{ $tip->score_team_1 }}</span>
                             </div>
                             <div class="d-flex justify-content-around align-items-center mt-2">
-                                <img src="{{ asset('bet/logo.png') }}" alt="Team 2" class="me-2" width="30" height="30">
+                                <img src="{{ $shared_config['logo']['value'] }}" alt="Team 2" class="me-2" width="30" height="30">
                                 <span class="w-75">{{ $tip->name_team_2 }}</span>
                                 <span>{{ $tip->score_team_2 }}</span>
                             </div>

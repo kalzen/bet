@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Models\Config;
 use DB;
+use Illuminate\Support\Facades\Validator;
 
 class SettingController extends Controller
 {
@@ -16,6 +17,17 @@ class SettingController extends Controller
     }
     public function update(Request $request)
     {
+        $validator = Validator::make($request->all(), [
+            'image' => 'required',
+            'facebook' => 'required|url',
+        ], [
+            'image.required' => 'Vui lòng chọn hình ảnh.',
+            'facebook.required' => 'Vui lòng nhập Link.',
+            'facebook.url' => 'Vui lòng nhập URL/link hợp lệ'
+        ]);
+        if ($validator->fails()) {
+            return redirect()->back()->withErrors($validator)->withInput();
+        }
         DB::beginTransaction();
         try {
 

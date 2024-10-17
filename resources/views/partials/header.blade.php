@@ -29,7 +29,7 @@
                             </a>
                         </div> --}}
                         <div class="single-bar">
-                            <a class="dashboard-overview" href="mailto:%20abc@example.com">
+                            <a class="dashboard-overview" href="mailto:%20{{ $shared_config['email']['value'] ?? 'null' }}">
                                 <span class="part-icon">
                                     <i class="fa-regular fa-envelope"></i>
                                 </span>
@@ -91,7 +91,7 @@
             <div class="row">
                 <div class="col-6 col-xl-none col-lg-none col-md-block d-flex align-items-center">
                     <a class="mobile-logo" href="#/">
-                        <img src="{{ asset('bet/logo.png') }}" alt="">
+                        <img src="{{ $shared_config['logo']['value'] }}" alt="">
                     </a>
                 </div>
                 <div class="col-6 col-xl-none col-lg-none col-lg-block">
@@ -153,7 +153,7 @@
                             <div class="col-2 col-lg-2 d-xl-block d-lg-block d-md-none">
                                 <div class="logo">
                                     <a href="{{ route('home') }}">
-                                        <img src="{{ asset('bet/logo.png') }}" alt="">
+                                        <img src="{{ $shared_config['logo']['value'] }}" alt="">
                                     </a>
                                 </div>
                             </div>

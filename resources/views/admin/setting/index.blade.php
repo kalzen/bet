@@ -30,6 +30,10 @@
                     <input type="email" class="form-control" id="email" name="email" value="">
                     @endif
                 </div>
+                @error('email')
+                    <label id="url-error" class="validation-invalid-label"
+                        for="email">{{ $message }}</label>
+                @enderror
                 {{-- <div class="form-group">
                     <label class="font-weight-semibold">Địa chỉ </label>
                     @if(old('address'))
@@ -87,7 +91,11 @@
                     <label class="font-weight-semibold">Facebook </label>
                     <input type="text" class="form-control" id="facebook" name="facebook" value="{{ old('facebook')?? $config['facebook']->value }}">
                 </div>
-                
+                @error('facebook')
+                    <label id="url-error" class="validation-invalid-label"
+                        for="facebook">{{ $message }}</label>
+                @enderror
+
                 {{-- <div class="form-group">
                     <label class="font-weight-semibold">Instagram </label>
                     <input type="text" class="form-control" id="instagram" name="instagram" value="{{ old('instagram')?? $config['instagram']->value }}">

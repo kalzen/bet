@@ -44,7 +44,7 @@
                             <div class="part-about">
                                 <div class="footer-logo aos-init" data-aos="fade-up" data-aos-delay="100" data-aos-duration="500" data-aos-easing="ease-in">
                                     <a href="{{ route('home') }}">
-                                        <img src="{{asset('bet/logo.png')}}" alt="" class="logo">
+                                        <img src="{{$shared_config['logo']['value']}}" alt="" class="logo">
                                     </a>
                                 </div>
                                 {{-- <p data-aos="fade-up" data-aos-delay="150" data-aos-duration="500" data-aos-easing="ease-in" class="aos-init">This allows bettors to bet over or under the bookmaker's score,<br> and indicate what they believe the difference in points will be.</p> --}}
@@ -70,7 +70,7 @@
                         <p class="copyright-text">{{ __('layout.copyright') }}</p>
                         <ul class="social-link">
                             <li class="single-social">
-                                <a href="#0">
+                                <a href="{{ $shared_config['facebook']['value'] }}">
                                     <i class="fa-brands fa-facebook-f"></i>
                                 </a>
                             </li>
