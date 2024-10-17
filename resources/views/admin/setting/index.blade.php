@@ -30,7 +30,7 @@
                     <input type="email" class="form-control" id="email" name="email" value="">
                     @endif
                 </div>
-                <div class="form-group">
+                {{-- <div class="form-group">
                     <label class="font-weight-semibold">Địa chỉ </label>
                     @if(old('address'))
                     <input type="text" class="form-control" id="address" name="address" value="{{ old('address') }}">
@@ -77,23 +77,25 @@
                 <div class="form-group">
                     <label class="font-weight-semibold">Link video khối giới thiệu (youtube)</label>
                     <input type="text" class="form-control" id="about_video" name="about_video" value="{{ old('about_video')?? $config['about_video']->value }}">
-                </div>
-                <div class="form-group">
+                </div> --}}
+
+                {{-- <div class="form-group">
                     <label class="font-weight-semibold">Tiêu đề trang tư vấn </label>
                     <input type="text" class="form-control" id="contact_title" name="contact_title" value="{{ old('contact_title')?? $config['contact_title']->value }}">
-                </div>
+                </div> --}}
                 <div class="form-group">
                     <label class="font-weight-semibold">Facebook </label>
                     <input type="text" class="form-control" id="facebook" name="facebook" value="{{ old('facebook')?? $config['facebook']->value }}">
                 </div>
-                <div class="form-group">
+                
+                {{-- <div class="form-group">
                     <label class="font-weight-semibold">Instagram </label>
                     <input type="text" class="form-control" id="instagram" name="instagram" value="{{ old('instagram')?? $config['instagram']->value }}">
                 </div>
                 <div class="form-group">
                     <label class="font-weight-semibold">Youtube </label>
                     <input type="text" class="form-control" id="youtube" name="youtube" value="{{ old('youtube')?? $config['youtube']->value }}">
-                </div>
+                </div> --}}
                 <div class="text-right">
                     <button type="submit" class="btn btn-primary">Lưu <i class="icon-paperplane ml-2"></i></button>
                 </div>
