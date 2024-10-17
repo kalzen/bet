@@ -18,6 +18,7 @@
 	<link href="{{ asset('assets/css/colors.min.css')}}" rel="stylesheet" type="text/css">
 	<link href="{{ asset('assets/css/custom.css')}}" rel="stylesheet" type="text/css">
     <link type="text/css" rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.css">
+	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/choices.js/public/assets/styles/choices.min.css" />
 	<!-- /global stylesheets -->
 
 	<!-- Core JS files -->
@@ -39,6 +40,7 @@
 	<script src="{{ asset('global_assets/js/plugins/forms/inputs/jquery.inputmask.bundle.min.js')}}"></script>
 	<script src="{{ asset('global_assets/js/plugins/notifications/sweet_alert.min.js')}}"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
+	<script src="https://cdn.jsdelivr.net/npm/choices.js/public/assets/scripts/choices.min.js"></script>
 	<script src="{{ asset('ckeditor/ckeditor.js')}}"></script>
 
 	<script src="{{ asset('assets/js/app.js')}}"></script>
