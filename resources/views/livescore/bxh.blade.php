@@ -6,10 +6,10 @@
                 <div class="brd-content">
                     <div data-aos="fade-up" data-aos-delay="200" data-aos-duration="500" data-aos-easing="ease-in"
                         class="aos-init aos-animate">
-                        <span class="sub-title">{{ __('Leaderboard') }}</span>
+                        <span class="sub-title">{{ __('home.leaderboard') }}</span>
                     </div>
                     <h2 class="title aos-init aos-animate" data-aos="fade-up" data-aos-delay="350" data-aos-duration="500"
-                        data-aos-easing="ease-in">{{ __('Bảng xếp hạng') }}</h2>
+                        data-aos-easing="ease-in">{{ __('home.live_leaderboard') }}</h2>
                     <div class="page-direction">
                         <ul>
                             <li>
@@ -18,7 +18,7 @@
                             </li>
                             <li>
                                 <span class="icon"><i class="fa-light fa-caret-right fa-xl"></i></span>
-                                <span class="text">{{ __('Leaderboard') }}</span>
+                                <span class="text">{{ __('home.leaderboard') }}</span>
                             </li>
                         </ul>
                     </div>

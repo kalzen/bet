@@ -20,4 +20,6 @@ return [
     "no_tips" => "Nenhuma nova dica disponível. Por favor, verifique novamente mais tarde!",
     "no_bookmakers" => "Nenhuma casa de apostas disponível. Por favor, verifique novamente mais tarde!",
     "livescore" => "Placar ao vivo",
+    "leaderboard" => "Tabela de classificação",
+    "live_leaderboard" => "Tabela de classificação ao vivo",
 ];

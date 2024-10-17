@@ -20,4 +20,6 @@ return [
     "no_tips" => "No new tips available. Please check again later!",
     "no_bookmakers" => "No bookmakers available. Please check again later!",
     "livescore" => "Live Scores",
+    "leaderboard" => "Leaderboard",
+    "live_leaderboard" => "Live leaderboard",
 ];
