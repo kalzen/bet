@@ -51,7 +51,7 @@
                 </table>
             </div>
             <div class="mt-2">
-                {{$records->links()}}
+                {{$records->links('pagination::simple-bootstrap-4')}}
             </div>
             @else
             <div class="text-center p-5">

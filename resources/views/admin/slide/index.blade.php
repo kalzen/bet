@@ -61,7 +61,7 @@
                 </table>
             </div>
             <div class="mt-2">
-                {{$records->links()}}
+                {{$records->links('pagination::simple-bootstrap-4')}}
             </div>
             @else
             <a class="btn mb-2 btn-success" href="{{route('admin.slide.create')}}"><i class="icon-plus-circle2"></i> Thêm mới</a>
