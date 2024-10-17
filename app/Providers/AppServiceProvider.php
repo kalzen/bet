@@ -45,7 +45,7 @@ class AppServiceProvider extends ServiceProvider
             View::share('shared_catalogues', Catalogue::orderBy('id','asc')->get());
             View::share('langs', Lang::orderBy('id','asc')->get());
         });
-        View::composer(['contact.index','partials.*', 'layouts.*', 'home.*', 'contact.advise'], function ($view) {
+        View::composer(['*'], function ($view) {
             View::share('shared_config', Config::all()->keyBy('name'));
             
         });
