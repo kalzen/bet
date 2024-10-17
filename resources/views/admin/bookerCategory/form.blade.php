@@ -73,14 +73,14 @@
             </div>
             <div class="sidebar sidebar-light bg-transparent sidebar-component sidebar-component-right wmin-300 border-0 shadow-0 order-1 order-md-2 sidebar-expand-md">
                 @if(isset($record) && !$record->langParent)
-                <div class="sidebar-content">
+                {{-- <div class="sidebar-content">
                     <div class="card">
                         <div class="card-body">
                             <label>Chuyên mục cha</label>
                             @include('admin.shared.select-parent-category',['selected' => (isset($record) ? $record->parent_id : null)])
                         </div>
                     </div>
-                </div>
+                </div> --}}
                 @endif
                 <div class="card">
                     @if (isset($record))

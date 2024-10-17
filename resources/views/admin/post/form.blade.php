@@ -142,18 +142,20 @@
                         </div>
                     </div>
                     <div class="card">
-                        <div class="card-body" id="select_category">
-                            @include('admin.shared.select-category', [
-                                'selected' => old('category_id') ?? (isset($record) ? $record->categories?->pluck('id')->all() : null)
-                            ])
-                            @error('category_id')
-                            <label id="category_id-error" class="validation-invalid-label" for="category_id">{{$message}}</label>
-                            @enderror
-                            <button class="add-category btn btn-sm mt-2 btn-success" type="button">
-                                <i class="icon-plus-circle2"></i>
-                                Tạo chuyên mục
-                            </button>
-                        </div>
+                        @if(isset($record) && $record->langChildren->count() > 0)
+                            <div class="card-body" id="select_category">
+                                @include('admin.shared.select-category', [
+                                    'selected' => old('category_id') ?? (isset($record) ? $record->categories?->pluck('id')->all() : null)
+                                ])
+                                @error('category_id')
+                                <label id="category_id-error" class="validation-invalid-label" for="category_id">{{$message}}</label>
+                                @enderror
+                                <button class="add-category btn btn-sm mt-2 btn-success" type="button">
+                                    <i class="icon-plus-circle2"></i>
+                                    Tạo chuyên mục
+                                </button>
+                            </div>
+                        @endif
                     </div>
                     <div class="card">
                         @if (isset($record))

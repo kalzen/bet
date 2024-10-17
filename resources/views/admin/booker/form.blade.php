@@ -119,25 +119,27 @@
                         </div>
 
                     </div>
-                    <div class="card">
-                        <div class="card-body" id="select_category">
-                            @include('admin.shared.select-category', [
-                            'selected' => old('category_id') ?: (
-                                    isset($record) && isset($record->categories)
-                                        ? $record->categories->pluck('id')->all()
-                                    : null
-                            ),
-                            ])
-                            @error('category_id')
-                                <label id="category_id-error" class="validation-invalid-label"
-                                    for="category_id">{{ $message }}</label>
-                            @enderror
-                            <button class="add-category btn btn-sm mt-2 btn-success" type="button">
-                                <i class="icon-plus-circle2"></i>
-                                Tạo chuyên mục
-                            </button>
+                    @if(isset($record) && $record->langChildren->count() > 0)
+                        <div class="card">
+                            <div class="card-body" id="select_category">
+                                @include('admin.shared.select-category', [
+                                'selected' => old('category_id') ?: (
+                                        isset($record) && isset($record->categories)
+                                            ? $record->categories->pluck('id')->all()
+                                        : null
+                                ),
+                                ])
+                                @error('category_id')
+                                    <label id="category_id-error" class="validation-invalid-label"
+                                        for="category_id">{{ $message }}</label>
+                                @enderror
+                                <button class="add-category btn btn-sm mt-2 btn-success" type="button">
+                                    <i class="icon-plus-circle2"></i>
+                                    Tạo chuyên mục
+                                </button>
+                            </div>
                         </div>
-                    </div>
+                    @endif
                     <div class="card">
                         @if (isset($record))
                             <div class="card-body">
