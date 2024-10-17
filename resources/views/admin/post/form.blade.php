@@ -142,7 +142,7 @@
                         </div>
                     </div>
                     <div class="card">
-                        @if(isset($record) && $record->langChildren->count() > 0 || !isset($record))
+                        @if(isset($record) && !$record->langParent || !isset($record))
                             <div class="card-body" id="select_category">
                                 @include('admin.shared.select-category', [
                                     'selected' => old('category_id') ?? (isset($record) ? $record->categories?->pluck('id')->all() : null)
