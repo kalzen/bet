@@ -44,7 +44,7 @@ class BookerController extends Controller
         }
         $created = BookerCategory::create($validator->validated());
         return view('admin.shared.select-category',[
-            'categories'=>BookerCategory::query()->whereNull('parent_id')->orderBy('name','asc')->get()
+            'categories'=>BookerCategory::query()->whereNull('parent_id')->whereNull('lang_parent_id')->orderBy('name','asc')->get()
         ]);
     }
 
@@ -98,7 +98,7 @@ class BookerController extends Controller
         $langs = Lang::all();
         $formLangs = $langs;
         $modalLangs = $langs;
-        $categories = BookerCategory::query()->whereNull('parent_id')->orderBy('name','asc')->get();
+        $categories = BookerCategory::query()->whereNull('parent_id')->whereNull('lang_parent_id')->orderBy('name','asc')->get();
         return view('admin.booker.form',compact('categories','modalLangs','formLangs'));
     }
 
@@ -168,7 +168,7 @@ class BookerController extends Controller
         $formLangs = $this->sharedHelper->getExcludedFormLangs($record);
         $modalLangs = $this->sharedHelper->getExcludedModalLangs($record);
 
-        $categories = BookerCategory::query()->whereNull('parent_id')->orderBy('name','asc')->get();
+        $categories = BookerCategory::query()->whereNull('parent_id')->whereNull('lang_parent_id')->orderBy('name','asc')->get();
         $document = new \DOMDocument();
         libxml_use_internal_errors(true);
         try {

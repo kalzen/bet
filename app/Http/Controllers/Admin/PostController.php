@@ -35,7 +35,7 @@ class PostController extends Controller
         $langs = Lang::all();
         $formLangs = $langs;
         $modalLangs = $langs;
-        $categories = Category::query()->whereNull('parent_id')->orderBy('name', 'asc')->get();
+        $categories = Category::query()->whereNull('parent_id')->whereNull('lang_parent_id')->orderBy('name', 'asc')->get();
         return view('admin.post.form', compact('categories', 'modalLangs', 'formLangs'));
     }
 
@@ -103,7 +103,7 @@ class PostController extends Controller
         }
         $created = Category::create($validator->validated());
         return view('admin.shared.select-category', [
-            'categories' => Category::query()->whereNull('parent_id')->orderBy('name', 'asc')->get()
+            'categories' => Category::query()->whereNull('parent_id')->whereNull('lang_parent_id')->orderBy('name', 'asc')->get()
         ]);
     }
 
@@ -130,7 +130,7 @@ class PostController extends Controller
     public function edit($id)
     {
         // $langs = Lang::all();
-        $categories = Category::query()->whereNull('parent_id')->orderBy('name', 'asc')->get();
+        $categories = Category::query()->whereNull('parent_id')->whereNull('lang_parent_id')->orderBy('name', 'asc')->get();
         $record = Post::find($id);
         if($record == null){
             return redirect()->route('admin.post.index');
