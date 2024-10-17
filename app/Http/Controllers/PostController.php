@@ -21,7 +21,10 @@ class PostController extends Controller
     }
     public function detail($alias)
     {
-        $post = Post::active()->where('slug',$alias)->firstOrFail();
+        $post = Post::active()->where('slug', $alias)->first();
+        if (!$post) {
+            $post = Post::active()->findOrFail($alias);
+        }
         FacadesDB::table('posts')->where('id',$post->id)->increment('viewed');
         $categories = Category::orderBy('name','asc')->whereNull('parent_id')->get();
         $most_view = Post::active()->orderBy('id','desc')->limit(5)->get();
