@@ -143,7 +143,9 @@
                     </div>
                     <div class="card">
                         <div class="card-body" id="select_category">
-                            @include('admin.shared.select-category',['selected' => (isset($record) ? $record->categories?->pluck('id')->all() : null)])
+                            @include('admin.shared.select-category', [
+                                'selected' => old('category_id') ?? (isset($record) ? $record->categories?->pluck('id')->all() : null)
+                            ])
                             @error('category_id')
                             <label id="category_id-error" class="validation-invalid-label" for="category_id">{{$message}}</label>
                             @enderror

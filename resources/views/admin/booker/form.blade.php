@@ -122,10 +122,11 @@
                     <div class="card">
                         <div class="card-body" id="select_category">
                             @include('admin.shared.select-category', [
-                                'selected' =>
+                            'selected' => old('category_id') ?: (
                                     isset($record) && isset($record->categories)
                                         ? $record->categories->pluck('id')->all()
-                                        : null,
+                                    : null
+                            ),
                             ])
                             @error('category_id')
                                 <label id="category_id-error" class="validation-invalid-label"
