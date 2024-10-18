@@ -14,11 +14,7 @@ use DB;
 
 class MenuController extends Controller
 {
-    private $sharedHelper;
-    public function __construct()
-    {
-        $this->sharedHelper = app(SharedHelper::class);
-    }
+    
     public function index(Request $request)
     {
         $query = Menu::whereNull('lang_parent_id')->latest();
@@ -90,8 +86,8 @@ class MenuController extends Controller
     public function edit($id)
     {
         $record = Menu::find($id);
-        $formLangs = $this->sharedHelper->getExcludedFormLangs($record);
-        $modalLangs = $this->sharedHelper->getExcludedModalLangs($record);
+        $formLangs = SharedHelper::getExcludedFormLangs($record);
+        $modalLangs = SharedHelper::getExcludedModalLangs($record);
         $categories = Menu::query()->whereNull('parent_id')->whereNull('lang_parent_id')->orderBy('name','asc')->paginate();
         return view('admin.menu.form',compact('record','categories','formLangs','modalLangs'));
     }

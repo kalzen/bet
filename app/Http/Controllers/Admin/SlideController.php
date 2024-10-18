@@ -14,11 +14,7 @@ use DB;
 
 class SlideController extends Controller
 {
-    private $sharedHelper;
-    public function __construct()
-    {
-        $this->sharedHelper = app(SharedHelper::class);
-    }
+    
     public function index(Request $request)
     {
         $query = Slide::whereNull('lang_parent_id')->orderBy('ordering','asc');
@@ -83,8 +79,8 @@ class SlideController extends Controller
     public function edit($id)
     {
         $record = Slide::find($id);
-        $formLangs = $this->sharedHelper->getExcludedFormLangs($record);
-        $modalLangs = $this->sharedHelper->getExcludedModalLangs($record);
+        $formLangs = SharedHelper::getExcludedFormLangs($record);
+        $modalLangs = SharedHelper::getExcludedModalLangs($record);
         
         return view('admin.slide.form',compact('record','formLangs','modalLangs'));
     }

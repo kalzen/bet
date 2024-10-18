@@ -11,11 +11,7 @@ use Illuminate\Support\Facades\Validator;
 
 class BookerCategoryController extends Controller
 {
-    private $sharedHelper;
-    public function __construct()
-    {
-        $this->sharedHelper = app(SharedHelper::class);
-    }
+    
     public function index(Request $request)
     {
         $records = BookerCategory::whereNull('lang_parent_id')->orderBy('name','asc')->paginate();
@@ -81,8 +77,8 @@ class BookerCategoryController extends Controller
     public function edit($id)
     {
         $record = BookerCategory::find($id);
-        $formLangs = $this->sharedHelper->getExcludedFormLangs($record);
-        $modalLangs = $this->sharedHelper->getExcludedModalLangs($record);
+        $formLangs = SharedHelper::getExcludedFormLangs($record);
+        $modalLangs = SharedHelper::getExcludedModalLangs($record);
         $categories = BookerCategory::query()->whereNull('parent_id')->whereNull('lang_parent_id')->orderBy('name','asc')->paginate();
         return view('admin.bookerCategory.form',compact('categories','record','formLangs','modalLangs'));
     }

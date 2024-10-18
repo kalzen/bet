@@ -18,11 +18,7 @@ use Illuminate\Support\Str;
 
 class PostController extends Controller
 {
-    private $sharedHelper;
-    public function __construct()
-    {
-        $this->sharedHelper = app(SharedHelper::class);
-    }
+    
     public function index(Request $request)
     {
         $query = Post::whereNull('lang_parent_id')->latest();
@@ -135,8 +131,8 @@ class PostController extends Controller
         if($record == null){
             return redirect()->route('admin.post.index');
         }
-        $formLangs = $this->sharedHelper->getExcludedFormLangs($record);
-        $modalLangs = $this->sharedHelper->getExcludedModalLangs($record);
+        $formLangs = SharedHelper::getExcludedFormLangs($record);
+        $modalLangs = SharedHelper::getExcludedModalLangs($record);
 
         $document = new \DOMDocument();
         libxml_use_internal_errors(true);

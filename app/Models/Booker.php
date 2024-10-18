@@ -13,8 +13,7 @@ class Booker extends Model
 
     public function getAvailableLang()
     {
-        $sharedHelper = app(SharedHelper::class);
-        return $sharedHelper->getAvailableLang($this);
+        return SharedHelper::getAvailableLang($this);
     }
     public function codes()
     {

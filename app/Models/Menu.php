@@ -10,8 +10,7 @@ class Menu extends Model
     protected $guarded = [];
     public function getAvailableLang()
     {
-        $sharedHelper = app(SharedHelper::class);
-        return $sharedHelper->getAvailableLang($this);
+        return SharedHelper::getAvailableLang($this);
     }
     public function langs()
     {

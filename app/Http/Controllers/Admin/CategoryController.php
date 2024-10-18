@@ -11,11 +11,7 @@ use Illuminate\Support\Facades\Validator;
 
 class CategoryController extends Controller
 {
-    private $sharedHelper;
-    public function __construct()
-    {
-        $this->sharedHelper = app(SharedHelper::class);
-    }
+    
 
     public function index(Request $request)
     {
@@ -47,7 +43,7 @@ class CategoryController extends Controller
             'lang_id' => $request->lang_id,
             'lang_parent_id' => $request->lang_parent_id,
             'name' => $request->name ?? $parentCategory->name,
-            'slug' => $request->slug ?? $parentCategory->slug,
+            // 'slug' => $request->slug ?? $parentCategory->slug,
             'description' => $request->description ?? $parentCategory->description,
             ]
         );
@@ -84,8 +80,8 @@ class CategoryController extends Controller
     public function edit($id)
     {
         $record = Category::find($id);
-        $formLangs = $this->sharedHelper->getExcludedFormLangs($record);
-        $modalLangs = $this->sharedHelper->getExcludedModalLangs($record);
+        $formLangs = SharedHelper::getExcludedFormLangs($record);
+        $modalLangs = SharedHelper::getExcludedModalLangs($record);
         $categories = Category::query()->whereNull('parent_id')->whereNull('lang_parent_id')->orderBy('name','asc')->paginate();
         return view('admin.category.form',compact('categories','record','formLangs','modalLangs'));
     }

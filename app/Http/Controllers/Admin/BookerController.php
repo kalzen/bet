@@ -14,11 +14,7 @@ use Illuminate\Support\Str;
 
 class BookerController extends Controller
 {
-    private $sharedHelper;
-    public function __construct()
-    {
-        $this->sharedHelper = app(SharedHelper::class);
-    }
+    
     /**
      * Display a listing of the resource.
      *
@@ -165,8 +161,8 @@ class BookerController extends Controller
         // $langs = Lang::all();
         $record = Booker::find($id);
 
-        $formLangs = $this->sharedHelper->getExcludedFormLangs($record);
-        $modalLangs = $this->sharedHelper->getExcludedModalLangs($record);
+        $formLangs = SharedHelper::getExcludedFormLangs($record);
+        $modalLangs = SharedHelper::getExcludedModalLangs($record);
 
         $categories = BookerCategory::query()->whereNull('parent_id')->whereNull('lang_parent_id')->orderBy('name','asc')->get();
         $document = new \DOMDocument();
