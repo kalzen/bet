@@ -5,7 +5,7 @@ use App\Models\Lang;
 
 class SharedHelper
 {
-    public function getAvailableLang($lang = null)
+    public static function getAvailableLang($lang = null)
     {
         $locale = app()->getLocale();
         if ($lang->langs === null) {
@@ -28,24 +28,24 @@ class SharedHelper
         }
         return null;
     }
-    public function getExcludedFormLangs($record)
+    public static function getExcludedFormLangs($record)
     {
         $formLangs = collect([]);
-        $formLangs = $this->excludeLangs($record);
+        $formLangs = self::excludeLangs($record);
         if ($record && $record->langs) {
                 $formLangs->push($record->langs);
         }
         return $formLangs;
     }
 
-    public function getExcludedModalLangs($record)
+    public static function getExcludedModalLangs($record)
     {
         $modalLangs = collect([]);
-        $modalLangs = $this->excludeLangs($record);
+        $modalLangs = self::excludeLangs($record);
         return $modalLangs;
     }
     
-    private function excludeLangs($record)
+    private static function excludeLangs($record)
     {
         $allLangs = Lang::all();
         if ($record == null) {
