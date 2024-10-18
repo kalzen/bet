@@ -15,17 +15,18 @@ class Post extends Model
     protected $guarded = [];
     public function getAvailableLang()
     {
-        $sharedHelper = app(SharedHelper::class);
-        return $sharedHelper->getAvailableLang($this);
+        return SharedHelper::getAvailableLang($this);
     }
     public function getUrlAttribute()
     {
-        return '/tin-tuc/'.$this->slug;
+        return '/tin-tuc/' . $this->slug;
     }
-    public function scopeActive($query) {
+    public function scopeActive($query)
+    {
         $query->where('status', Post::STATUS_ACTIVE);
     }
-    public function scopeIsPromotion($query) {
+    public function scopeIsPromotion($query)
+    {
         $query->where('is_promotion', Post::STATUS_ACTIVE);
     }
     public function comments()
@@ -42,15 +43,15 @@ class Post extends Model
     }
     public function langs()
     {
-        return $this->belongsTo(Lang::class,'lang_id');
+        return $this->belongsTo(Lang::class, 'lang_id');
     }
     public function langParent()
     {
-        return $this->belongsTo(Post::class,'lang_parent_id');
+        return $this->belongsTo(Post::class, 'lang_parent_id');
     }
     public function langChildren()
     {
-        return $this->hasMany(Post::class,'lang_parent_id');
+        return $this->hasMany(Post::class, 'lang_parent_id');
     }
     public function images()
     {
@@ -63,14 +64,24 @@ class Post extends Model
     public static function boot()
     {
         parent::boot();
-        static::creating(function($post)
-        {
-            $post->slug = $post->slug ?: (Str::slug($post->title));
+
+        static::creating(function ($post) {
+            $post->slug = $post->slug ?: self::generateSlug($post);
             $post->user_id = $post->user_id ?: (auth()->user()->id ?? null);
         });
-        static::updating(function($post)
-        {
-            $post->slug = Str::slug($post->title);
+
+        static::updating(function ($post) {
+            $post->slug = self::generateSlug($post);
         });
+    }
+
+    public static function generateSlug($post)
+    {
+        $timestamp = time();
+        if (preg_match('/[^\x{0000}-\x{007F}]+/u', $post->title)) {
+            return 'post-' . Str::slug($post->langs->name) . '-' . $timestamp . '-' . ($post->id ?? Str::random(6));
+        }
+        // return Str::slug($post->title) ?: 'post-' . Str::slug($post->langs->name) . '-' . $timestamp . '-' . ($post->id ?? Str::random(6));
+        return $post->slug ?: (Str::slug($post->title));
     }
 }
