@@ -50,7 +50,7 @@
             <h2 class="title">{{ __('post.list.latest_news') }}</h2>
         </div> --}}
         <div class="global-shape style-3">
-            <img src="https://peredion.netlify.app/assets/img/shapes/shape-1.png" alt="" data-aos="fade-left"
+            <img src="{{ asset('bet/shape-1.png') }}" alt="" data-aos="fade-left"
                 data-aos-duration="500" data-aos-offset="200" data-aos-easing="ease-in" data-aos-delay="400"
                 class="aos-init">
         </div>

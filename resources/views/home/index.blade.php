@@ -140,7 +140,7 @@
     <!-- booker -->
     <div class="booker playing-bet placing-bet-page pb-0 pt-4 mt-1" id="booker">
         <div class="global-shape style-3">
-            <img src="assets/img/shapes/shape-1.png" alt="" data-aos="fade-left" data-aos-duration="700"
+            <img src="{{ asset('bet/shape-1.png') }}" alt="" data-aos="fade-left" data-aos-duration="700"
                 data-aos-delay="200">
         </div>
         <div class="container">
