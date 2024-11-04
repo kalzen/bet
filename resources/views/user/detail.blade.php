@@ -38,7 +38,7 @@
                 <div class="col-md-4">
                     <div class="card shadow-lg" style="border-radius: 20px">
                         <div class="text-center mb-3">
-                            <img src="https://bettest.com/bet/logo.png" alt="{{ $user->name }}" class="img-fluid rounded-3 pt-3" style="max-width: 200px">
+                            <img src="https://bettests.com/userfiles/files/logo.png" alt="{{ $user->name }}" class="img-fluid rounded-3 pt-3" style="max-width: 200px">
                         </div>
                         <div class="card-body">
                             <h5 class="card-title text-center">{{ $user->name }}</h5>
