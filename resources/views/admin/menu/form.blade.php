@@ -216,7 +216,8 @@
                                     for="url">{{ $message }}</label>
                             @enderror
                         </div>
-                        @if (isset($record) && $record->children->count() > 0)
+                        @if (false)
+                        {{-- @if (isset($record) && $record->children->count() > 0) --}}
                             {{-- @dd($record->children); --}}
                             <label id="url-error" class="validation-invalid-label" for="url">Đây là menu lớn và sẽ
                                 không cần đường link</label>
