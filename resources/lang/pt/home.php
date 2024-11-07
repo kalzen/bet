@@ -12,7 +12,7 @@ return [
     "view_now" => "Confira agora",
     "prediction" => "Previsão",
     "read_more" => "Leia mais",
-    "promo_code" => "Códigos promocionais",
+    "promo_code" => "Melhores Promoções de Apostas",
     "today_tips" => "DICAS de hoje",
     "top_bookmakers" => "Melhores Casas de Apostas",
     "latest_sport_news" => "Últimas Notícias Esportivas",

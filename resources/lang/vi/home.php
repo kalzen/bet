@@ -12,7 +12,7 @@ return [
     "view_now" => "Xem Ngay",
     "prediction" => "Dự đoán",
     "read_more" => "Đọc thêm",
-    "promo_code" => "Mã giảm giá",
+    "promo_code" => "Nhà cái khuyến mãi tốt nhất",
     "today_tips" => "TIPS Hôm nay",
     "top_bookmakers" => "TOP Nhà Cái Cược Uy Tín",
     "latest_sport_news" => "Tin Thể Thao Mới Nhất",
