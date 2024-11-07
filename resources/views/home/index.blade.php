@@ -149,7 +149,7 @@
                     @if ($hot_bookers->count() > 0)
                         <div class="section-title mb-3" data-aos="fade-up" data-aos-delay="100" data-aos-duration="500"
                             data-aos-easing="ease-in">
-                            <h3 class="sub-title">{{ __('home.bookmaker') }}</h3>
+                            <h3 class="sub-title" onclick="window.location.href='{{ route('booker.list') }}'">{{ __('home.bookmaker') }}</h3>
                             <h2 class="title">{{ __('home.top_bookmakers') }}</h2>
                         </div>
                     @endif
@@ -195,7 +195,7 @@
         <div class="container">
             <div class="section-title aos-init mb-3" data-aos="fade-up" data-aos-delay="100" data-aos-duration="500"
                 data-aos-easing="ease-in">
-                <h3 class="sub-title">{{ __('home.tips') }}</h3>
+                <h3 class="sub-title" onclick="window.location.href='{{ route('tip.list') }}'">{{ __('home.tips') }}</h3>
                 <h2 class="title">{{ __('home.today_tips') }}</h2>
             </div>
             @if ($tips->isEmpty())

@@ -208,7 +208,7 @@
                             border-top: 2px solid black;"
             data-bt="news-tabs-block-latest-posts">
             <h2 class="mt-4 text-4xl font-bold text-green-100 lg:text-gray-95 lg:mt-0 lg:text-2xl">
-                {{ __('post.list.recent') }}
+                {{-- {{ __('post.list.recent') }} --}}
             </h2>
             @if ($posts->count() == 6)
                 <div class="mt-4 p-4 bg-gray-100 rounded-md text-center">
