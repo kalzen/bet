@@ -126,7 +126,7 @@
                                         
                                         @if ($nav_link->children->count() > 0)
                                             <li class="nav-item dropdown">
-                                                <a class="nav-link dropdown-toggle" href="#" id="pagesDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                                <a class="nav-link dropdown-toggle" href="{{ $lang_nav_link['url'] }}" id="pagesDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                                                     {{ strtoupper($lang_nav_link['name']) }}
                                                 </a>
                                                 <ul class="dropdown-menu custom-dropdown" aria-labelledby="pagesDropdown">
@@ -168,7 +168,7 @@
                                         @endif
                                         @if ($nav_link->children->count() > 0)
                                             <li class="nav-item dropdown">
-                                                <a class="nav-link dropdown-toggle" href="#" id="pagesDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                                <a class="nav-link dropdown-toggle" href="{{ $lang_nav_link['url'] }}" id="pagesDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                                                     {{ strtoupper($lang_nav_link['name']) }}
                                                 </a>
                                                 <ul class="dropdown-menu custom-dropdown" aria-labelledby="pagesDropdown">
