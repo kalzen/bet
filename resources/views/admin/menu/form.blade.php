@@ -28,7 +28,7 @@
                         </div>
                         <div
                             class="form-group
-                            @if (isset($record) && $record->children->count() > 0) d-none @endif
+                            @if (false) d-none @endif
                         ">
                             <label class="font-weight-semibold">Link</label>
                             <input type="text" class="form-control" id="url" name="url"
@@ -38,7 +38,8 @@
                                     for="url">{{ $message }}</label>
                             @enderror
                         </div>
-                        @if (isset($record) && $record->children->count() > 0)
+                        @if (false)
+                        {{-- @if (isset($record) && $record->children->count() > 0) --}}
                             {{-- @dd($record->children); --}}
                             <label id="url-error" class="validation-invalid-label" for="url">Đây là menu lớn và sẽ
                                 không cần đường link</label>
@@ -206,7 +207,7 @@
                         </div>
                         <div
                             class="form-group
-                            @if (isset($record) && $record->children->count() > 0) d-none @endif
+                            @if (false) d-none @endif
                         ">
                             <label class="font-weight-semibold">Link</label>
                             <input type="text" class="form-control" id="url" name="url"
