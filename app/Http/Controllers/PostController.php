@@ -15,7 +15,7 @@ class PostController extends Controller
     {
         $categories = Category::orderBy('name','asc')->get();
         $featured_posts = Post::active()->orderBy('viewed','desc')->paginate();
-        $posts = Post::whereNull('lang_parent_id')->active()->paginate();
+        $posts = Post::active()->get();
         $tags = Tag::all();
         return view('post.index', compact('categories', 'posts', 'featured_posts', 'tags'));
     }
