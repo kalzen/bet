@@ -50,7 +50,9 @@
                             <p class="card-text">{{ $lang_booker->description }}</p>
                         </div>
                         <ul class="list-group list-group-flush">
-                            <li class="list-group-item"><strong>{{ __('booker.detail.category') }}:</strong> {{ $booker->categories->first() ? $booker->categories->first()->name : __('booker.list.no') }}</li>
+                            @foreach ($booker->categories as $category)
+                                <li class="list-group-item"><strong>{{ __('booker.detail.category') }}:</strong> {{ $category->getAvailableLang()?->name }}</li>
+                            @endforeach
                         </ul>
                         <div class="card-body">
                             <a href="{{$lang_booker->url}}" class="prd-btn-2 d-flex">
