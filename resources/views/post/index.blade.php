@@ -50,9 +50,8 @@
             <h2 class="title">{{ __('post.list.latest_news') }}</h2>
         </div> --}}
         <div class="global-shape style-3">
-            <img src="{{ asset('bet/shape-1.png') }}" alt="" data-aos="fade-left"
-                data-aos-duration="500" data-aos-offset="200" data-aos-easing="ease-in" data-aos-delay="400"
-                class="aos-init">
+            <img src="{{ asset('bet/shape-1.png') }}" alt="" data-aos="fade-left" data-aos-duration="500"
+                data-aos-offset="200" data-aos-easing="ease-in" data-aos-delay="400" class="aos-init">
         </div>
         <div class="container">
             <div class="row g-4">
@@ -63,10 +62,12 @@
                             $leftSidePosts = collect();
                             $counter = 1;
                             foreach ($posts as $post) {
-                                if ($counter % 3 == 0) {
-                                    $rightSidePosts->push($post);
-                                } else {
-                                    $leftSidePosts->push($post);
+                                if ($post->getAvailableLang()) {
+                                    if ($counter % 3 == 0) {
+                                        $rightSidePosts->push($post);
+                                    } else {
+                                        $leftSidePosts->push($post);
+                                    }
                                 }
                                 $counter++;
                             }
@@ -152,7 +153,7 @@
                                         </div>
                                         <div class="part-text">
                                             <span
-                                                class="post-category">{{ $post->categories[0]->getAvailableLang()->name ?? __('post.list.uncategorized')  }}</span>
+                                                class="post-category">{{ $post->categories[0]->getAvailableLang()->name ?? __('post.list.uncategorized') }}</span>
                                             <h3 class="blog-post-title">
                                                 <a href="{{ route('post.detail', ['alias' => $lang_post->slug]) }}">
                                                     {{ $lang_post->title }}</a>
@@ -219,38 +220,45 @@
                             <div class="recent-post-slider owl-carousel owl-theme owl-loaded">
 
                                 <div class="owl-stage-outer">
-                                    <div class="owl-stage" style="transform: translate3d(-987px, 0px, 0px); transition: linear; width: 2306px;">
-                                        @if(count($posts) > 0)
+                                    <div class="owl-stage"
+                                        style="transform: translate3d(-987px, 0px, 0px); transition: linear; width: 2306px;">
+                                        @if (count($posts) > 0)
                                             @for ($i = 0; $i < count($posts); $i += 2)
-                                            @if (isset($posts[$i]) && isset($posts[$i+1]) && !$posts[$i+1]->getAvailableLang() && !$posts[$i]->getAvailableLang())
-                                                @continue;
-                                            @endif
+                                                @if (isset($posts[$i]) &&
+                                                        isset($posts[$i + 1]) &&
+                                                        !$posts[$i + 1]->getAvailableLang() &&
+                                                        !$posts[$i]->getAvailableLang())
+                                                    @continue;
+                                                @endif
                                                 <div class="owl-item" style="width: 329.328px;">
                                                     <div class="recent-posts">
-                                    
+
                                                         <!-- First post -->
                                                         @if (isset($posts[$i]) && $posts[$i]->getAvailableLang())
-                                                            @php 
-                                                                $post1 = $posts[$i]; 
-                                                                $lang_post1 = $post1->getAvailableLang(); 
+                                                            @php
+                                                                $post1 = $posts[$i];
+                                                                $lang_post1 = $post1->getAvailableLang();
                                                             @endphp
                                                             <div class="single-recent-post">
                                                                 <div class="part-text">
                                                                     <h5 class="post-title">
-                                                                        <a href="{{ route('post.detail', ['alias' => $lang_post1->slug]) }}">
+                                                                        <a
+                                                                            href="{{ route('post.detail', ['alias' => $lang_post1->slug]) }}">
                                                                             {{ $lang_post1->title }}
                                                                         </a>
                                                                     </h5>
                                                                     <div class="post-stats">
                                                                         <span class="text">
-                                                                            {{ __('post.list.by') }} 
-                                                                            <a class="posted-by" href="{{ route('user.detail', ['id' => $post1->user->id]) }}">
+                                                                            {{ __('post.list.by') }}
+                                                                            <a class="posted-by"
+                                                                                href="{{ route('user.detail', ['id' => $post1->user->id]) }}">
                                                                                 {{ $post1->user->name }}
                                                                             </a>
                                                                         </span>
                                                                         <span class="text">
-                                                                            {{ __('post.list.in') }} 
-                                                                            <a class="category-by" href="{{ $post1->categories->first() ? route('post.category', ['alias' => $post1->categories->first()->slug]) : '#' }}">
+                                                                            {{ __('post.list.in') }}
+                                                                            <a class="category-by"
+                                                                                href="{{ $post1->categories->first() ? route('post.category', ['alias' => $post1->categories->first()->slug]) : '#' }}">
                                                                                 {{ $post1->categories[0]->getAvailableLang()->name ?? __('post.list.uncategorized') }}
                                                                             </a>
                                                                         </span>
@@ -258,29 +266,30 @@
                                                                 </div>
                                                             </div>
                                                         @endif
-                                    
+
                                                         <!-- Second post -->
                                                         @if (isset($posts[$i + 1]) && $posts[$i + 1]->getAvailableLang())
-                                                            @php 
-                                                                $post2 = $posts[$i + 1]; 
-                                                                $lang_post2 = $post2->getAvailableLang(); 
+                                                            @php
+                                                                $post2 = $posts[$i + 1];
+                                                                $lang_post2 = $post2->getAvailableLang();
                                                             @endphp
                                                             <div class="single-recent-post">
                                                                 <div class="part-text">
                                                                     <h5 class="post-title">
-                                                                        <a href="{{ route('post.detail', ['alias' => $lang_post2->slug]) }}">
+                                                                        <a
+                                                                            href="{{ route('post.detail', ['alias' => $lang_post2->slug]) }}">
                                                                             {{ $lang_post2->title }}
                                                                         </a>
                                                                     </h5>
                                                                     <div class="post-stats">
                                                                         <span class="text">
-                                                                            {{ __('post.list.by') }} 
+                                                                            {{ __('post.list.by') }}
                                                                             <a class="posted-by" href="#">
                                                                                 {{ $post2->user->name }}
                                                                             </a>
                                                                         </span>
                                                                         <span class="text">
-                                                                            {{ __('post.list.in') }} 
+                                                                            {{ __('post.list.in') }}
                                                                             <a class="category-by" href="#">
                                                                                 {{ $post2->categories[0]->getAvailableLang()->name ?? __('post.list.uncategorized') }}
                                                                             </a>
@@ -289,7 +298,7 @@
                                                                 </div>
                                                             </div>
                                                         @endif
-                                    
+
                                                     </div>
                                                 </div>
                                             @endfor
@@ -297,7 +306,7 @@
                                             <p>{{ __('post.list.empty') }}</p>
                                         @endif
                                     </div>
-                                    
+
                                 </div>
                                 <div class="owl-nav disabled"><button type="button" role="presentation"
                                         class="owl-prev"><img
