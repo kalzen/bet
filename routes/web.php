@@ -50,7 +50,7 @@ Route::middleware(['localization'])->group(function () {
     Route::any('/booker', [ClientBookerController::class, 'index'])->name('booker.list');
     Route::any('/user/{id}', [ClientUserController::class, 'detail'])->name('user.detail');
     Route::any('/booker/{alias}', [ClientBookerController::class, 'detail'])->name('booker.detail');
-    Route::get('/bookers/filter', 'BookerController@filter')->name('bookers.filter');
+    Route::get('/bookers/{slug}', [ClientBookerController::class, 'filter'])->name('booker.filter');
     // Route::any('/gioi-thieu', [HomeController::class, 'about'])->name('about');
     Route::get('/home', [HomeController::class, 'index'])->name('home');
     // Route::any('/lien-he', [HomeController::class, 'contact'])->name('contact');

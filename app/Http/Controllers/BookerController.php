@@ -4,8 +4,10 @@ namespace App\Http\Controllers;
 
 use App\Models\Booker;
 use App\Models\BookerCategory;
+use App\Models\Lang;
 use App\Models\Post;
 use Illuminate\Http\Request;
+use PhpParser\Node\Stmt\TryCatch;
 
 class BookerController extends Controller
 {
@@ -27,37 +29,33 @@ class BookerController extends Controller
         return view('booker.index', compact('bookers', 'hot_bookers', 'categories'));
     }
 
-    public function filter(Request $request)
+    public function filter($slug)
     {
-        $bookers = Booker::where('is_hot', 0)->orderBy('ordering', 'desc');
-        $hot_bookers = Booker::where('is_hot', 1)->orderBy('ordering', 'desc');
-
-        if ($request->has('categoryName')) {
-            $selectedCategories = $request->input('categoryName');
-            
-            $bookers = $bookers->whereHas('categories', function($query) use ($selectedCategories) {
-                $query->whereIn('name', $selectedCategories);
-            });
-
-            $hot_bookers = $hot_bookers->whereHas('categories', function($query) use ($selectedCategories) {
-                $query->whereIn('name', $selectedCategories);
-            });
+        // get current lang 
+        $current_lang_id = Lang::where('locale', app()->getLocale())->first()->id;
+        $booker_category = BookerCategory::where('slug', $slug)->first();
+        $main_category = null;
+        try {
+            $main_category = $booker_category->langParent()->first();
+        } catch (\Exception $e) {
+            $main_category = null;
         }
+        // dd($current_lang_id);
 
-        $bookers = $bookers->get();
-        $hot_bookers = $hot_bookers->get();
 
-        if ($bookers->isEmpty() && $hot_bookers->isEmpty()) {
-            return response()->json([
-                'isEmpty' => true,
-                'html' => view('booker.partials.empty')->render()
-            ]);
+        if($main_category) {
+            $bookers = Booker::whereHas('categories', function($query) use ($main_category) {
+                $query->whereIn('slug', [$main_category->slug]);
+            })->get();
         }
-
-        return response()->json([
-            'isEmpty' => false,
-            'html' => view('booker.partials.booker_list', compact('bookers', 'hot_bookers'))->render()
-        ]);
+        $hot_bookers = collect([]);
+        $categories = BookerCategory::orderBy('name', 'asc')->get();
+        try {
+            $currentCategoryName = $main_category->getAvailableLang()->name;
+        } catch (\Throwable $th) {
+            $currentCategoryName = $main_category->name;
+        }
+        return view('booker.index', compact('bookers', 'hot_bookers', 'categories', 'currentCategoryName'));
     }
 
 
