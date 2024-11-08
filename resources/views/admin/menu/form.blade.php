@@ -28,7 +28,7 @@
                         </div>
                         <div
                             class="form-group
-                            @if (false) d-none @endif
+                            @if (isset($record) && $record->langParent) d-none @endif
                         ">
                             <label class="font-weight-semibold">Link</label>
                             <input type="text" class="form-control" id="url" name="url"
@@ -207,7 +207,7 @@
                         </div>
                         <div
                             class="form-group
-                            @if (false) d-none @endif
+                            @if (isset($record) && $record->langParent) d-none @endif
                         ">
                             <label class="font-weight-semibold">Link</label>
                             <input type="text" class="form-control" id="url" name="url"
