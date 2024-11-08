@@ -126,7 +126,7 @@
                                         
                                         @if ($nav_link->children->count() > 0)
                                             <li class="nav-item dropdown">
-                                                <a class="nav-link dropdown-toggle" href="{{ $lang_nav_link['url'] }}" id="pagesDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                                <a class="nav-link dropdown-toggle" href="{{ $nav_link['url'] }}" id="pagesDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                                                     {{ strtoupper($lang_nav_link['name']) }}
                                                 </a>
                                                 <ul class="dropdown-menu custom-dropdown" aria-labelledby="pagesDropdown">
@@ -138,13 +138,13 @@
                                                         @if (!$lang_child)
                                                             @continue
                                                         @endif
-                                                        <li><a class="dropdown-item" href="{{ $lang_child['url'] }}">{{ $lang_child['name'] }}</a></li>
+                                                        <li><a class="dropdown-item" href="{{ $child['url'] }}">{{ $lang_child['name'] }}</a></li>
                                                     @endforeach
                                                 </ul>
                                             </li>
                                         @else
                                             <li class="nav-item">
-                                                <a class="nav-link" href="{{ $lang_nav_link['url'] }}">{{ strtoupper($lang_nav_link['name']) }}</a>
+                                                <a class="nav-link" href="{{ $nav_link['url'] }}">{{ strtoupper($lang_nav_link['name']) }}</a>
                                             </li>
                                         @endif
                                     @endforeach
@@ -168,7 +168,7 @@
                                         @endif
                                         @if ($nav_link->children->count() > 0)
                                             <li class="nav-item dropdown">
-                                                <a class="nav-link dropdown-toggle" href="{{ $lang_nav_link['url'] }}" id="pagesDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                                <a class="nav-link dropdown-toggle" href="{{ $nav_link['url'] }}" id="pagesDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                                                     {{ strtoupper($lang_nav_link['name']) }}
                                                 </a>
                                                 <ul class="dropdown-menu custom-dropdown" aria-labelledby="pagesDropdown">
@@ -179,13 +179,13 @@
                                                         @if (!$lang_child)
                                                             @continue
                                                         @endif
-                                                        <li><a class="dropdown-item" href="{{ $lang_child['url'] }}">{{ $lang_child['name'] }}</a></li>
+                                                        <li><a class="dropdown-item" href="{{ $child['url'] }}">{{ $lang_child['name'] }}</a></li>
                                                     @endforeach
                                                 </ul>
                                             </li>
                                         @else
                                             <li class="nav-item">
-                                                <a class="nav-link" href="{{ $lang_nav_link['url'] }}">{{ strtoupper($lang_nav_link['name']) }}</a>
+                                                <a class="nav-link" href="{{ $nav_link['url'] }}">{{ strtoupper($lang_nav_link['name']) }}</a>
                                             </li>
                                         @endif
                                     @endforeach
