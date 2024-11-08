@@ -31,31 +31,46 @@ class BookerController extends Controller
 
     public function filter($slug)
     {
-        // get current lang 
-        $current_lang_id = Lang::where('locale', app()->getLocale())->first()->id;
-        $booker_category = BookerCategory::where('slug', $slug)->first();
-        $main_category = null;
         try {
-            $main_category = $booker_category->langParent()->first();
-        } catch (\Exception $e) {
+            // get current lang 
+            $current_lang_id = Lang::where('locale', app()->getLocale())->first()->id;
+            $booker_category = BookerCategory::where('slug', $slug)->first();
             $main_category = null;
-        }
-        // dd($current_lang_id);
+            
+            try {
+                $main_category = $booker_category->langParent()->first();
+            } catch (\Throwable $e) {
+                $main_category = null;
+            }
 
+            $bookers = collect([]);
+            if($main_category) {
+                $bookers = Booker::whereHas('categories', function($query) use ($main_category) {
+                    $query->whereIn('slug', [$main_category->slug]);
+                })->get();
+            }
 
-        if($main_category) {
-            $bookers = Booker::whereHas('categories', function($query) use ($main_category) {
-                $query->whereIn('slug', [$main_category->slug]);
-            })->get();
+            $hot_bookers = collect([]);
+            $categories = BookerCategory::orderBy('name', 'asc')->get();
+            $currentCategoryName = '';
+
+            if ($main_category) {
+                try {
+                    $currentCategoryName = $main_category->getAvailableLang()->name;
+                } catch (\Throwable $e) {
+                    try {
+                        $currentCategoryName = $main_category->name;
+                    } catch (\Throwable $e) {
+                        $currentCategoryName = '';
+                    }
+                }
+            }
+
+            return view('booker.index', compact('bookers', 'hot_bookers', 'categories', 'currentCategoryName'));
+
+        } catch (\Throwable $e) {
+            return redirect()->route('booker.list');
         }
-        $hot_bookers = collect([]);
-        $categories = BookerCategory::orderBy('name', 'asc')->get();
-        try {
-            $currentCategoryName = $main_category->getAvailableLang()->name;
-        } catch (\Throwable $th) {
-            $currentCategoryName = $main_category->name;
-        }
-        return view('booker.index', compact('bookers', 'hot_bookers', 'categories', 'currentCategoryName'));
     }
 
 
