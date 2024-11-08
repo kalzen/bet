@@ -31,46 +31,39 @@ class BookerController extends Controller
 
     public function filter($slug)
     {
+        // get current lang 
+        $bookers = Booker::whereNull('lang_parent_id')->get();
+        $current_lang_id = Lang::where('locale', app()->getLocale())->first()->id;
+        $booker_category = BookerCategory::where('slug', $slug)->first();
+        $booker_category_clone = clone $booker_category;
+        $main_category = null;
+        
         try {
-            // get current lang 
-            $current_lang_id = Lang::where('locale', app()->getLocale())->first()->id;
-            $booker_category = BookerCategory::where('slug', $slug)->first();
-            $main_category = null;
-            
-            try {
-                $main_category = $booker_category->langParent()->first();
-            } catch (\Throwable $e) {
-                $main_category = null;
-            }
-
-            $bookers = collect([]);
-            if($main_category) {
-                $bookers = Booker::whereHas('categories', function($query) use ($main_category) {
-                    $query->whereIn('slug', [$main_category->slug]);
-                })->get();
-            }
-
-            $hot_bookers = collect([]);
-            $categories = BookerCategory::orderBy('name', 'asc')->get();
-            $currentCategoryName = '';
-
-            if ($main_category) {
-                try {
-                    $currentCategoryName = $main_category->getAvailableLang()->name;
-                } catch (\Throwable $e) {
-                    try {
-                        $currentCategoryName = $main_category->name;
-                    } catch (\Throwable $e) {
-                        $currentCategoryName = '';
-                    }
-                }
-            }
-
-            return view('booker.index', compact('bookers', 'hot_bookers', 'categories', 'currentCategoryName'));
-
-        } catch (\Throwable $e) {
-            return redirect()->route('booker.list');
+            $main_category = $booker_category->langParent()->first();
+        } catch (\Exception $e) {
         }
+
+        if($main_category) {
+            $bookers = Booker::whereHas('categories', function($query) use ($main_category) {
+                $query->whereIn('slug', [$main_category->slug]);
+            })->get();
+        } else {
+            $bookers = Booker::whereHas('categories', function($query) use ($booker_category) {
+                $query->whereIn('slug', [$booker_category->slug]);
+            })->get();
+        }
+        $hot_bookers = collect([]);
+        $categories = BookerCategory::orderBy('name', 'asc')->get();
+        try {
+            $currentCategoryName = $main_category->getAvailableLang()->name;
+        } catch (\Throwable $th) {
+            try {
+                $currentCategoryName = $main_category->name;
+            } catch (\Throwable $th) {
+                $currentCategoryName = '';
+            }
+        }
+        return view('booker.index', compact('bookers', 'hot_bookers', 'categories', 'currentCategoryName'));
     }
 
 

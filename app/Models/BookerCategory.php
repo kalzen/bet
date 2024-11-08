@@ -9,6 +9,7 @@ use Illuminate\Support\Str;
 class BookerCategory extends Model
 {
     protected $guarded = [];
+    protected $table = 'booker_categories';
     // public function bookers()
     // {
     //     return $this->hasMany(Booker::class, 'booker_category_id');
