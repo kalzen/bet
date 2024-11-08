@@ -1,14 +1,16 @@
 @extends('layouts.master')
 @section('content')
     <section class="inner-section blog-standard">
-        
+
         <div class="prd-breadcrumb">
             <div class="container">
                 <div class="brd-content">
-                    <div data-aos="fade-up" data-aos-delay="200" data-aos-duration="500" data-aos-easing="ease-in" class="aos-init aos-animate">
+                    <div data-aos="fade-up" data-aos-delay="200" data-aos-duration="500" data-aos-easing="ease-in"
+                        class="aos-init aos-animate">
                         <span class="sub-title">{{ __('booker.list.bookmaker') }}</span>
-                    </div>    
-                    <h2 class="title aos-init aos-animate" data-aos="fade-up" data-aos-delay="350" data-aos-duration="500" data-aos-easing="ease-in">{{ __('booker.list.popular_page') }}</h2>
+                    </div>
+                    <h2 class="title aos-init aos-animate" data-aos="fade-up" data-aos-delay="350" data-aos-duration="500"
+                        data-aos-easing="ease-in">{{ __('booker.list.popular_page') }}</h2>
                     <div class="page-direction">
                         <ul>
                             <li>
@@ -56,49 +58,62 @@
                                         <h3 class="sub-title pt-2">{{ __('booker.list.hot') }}</h3>
                                         <h2 class="title">{{ __('booker.list.popular_page') }}</h2>
                                     </div> --}}
-                                    
+
                                     @include('booker.hot-booker-slider')
                                 @endif
-                                
+
                             </div>
                         </div>
                     </div>
 
                     <div class="row all-bookers">
                         <div class="col">
-                            @if ($bookers->count() > 0)
-                                <div class="section-title aos-init" data-aos="fade-up" data-aos-delay="1"
+                            @php
+                                $empty = true;
+                                foreach ($bookers as $booker) {
+                                    if ($booker->getAvailableLang()) {
+                                        $empty = false;
+                                        break;
+                                    }
+                                }
+                            @endphp
+                            @if (!$empty)
+                                <div class="mt-3 section-title aos-init" data-aos="fade-up" data-aos-delay="1"
                                     data-aos-duration="500" data-aos-easing="ease-in">
                                     <h3 class="sub-title pt-2">{{ __('booker.list.bookmaker') }}</h3>
-                                    <h2 class="title">{{ __('booker.list.more_bookmakers') }}</h2>
+                                    <h2 class="title">{{ $currentCategoryName ?? __('home.top_bookmakers') }}</h2>
                                 </div>
                             @else
-                                <div class="alert alert-info text-center" role="alert">
+                                <div class="my-3 alert alert-info text-center" role="alert">
                                     <b>{{ __('booker.list.no_bookmakers') }}</b>
                                 </div>
                             @endif
+
                             <div class="list-group">
                                 @foreach ($bookers as $booker)
-                                @if($booker->getAvailableLang())
-                                    @php
-                                        $lang_booker = $booker->getAvailableLang();
-                                    @endphp
-                                    <div class="container mb-4">
-                                        <!-- Promo Card -->
-                                        <div class="card p-3 border-0 shadow-lg" style="border-radius: 20px">
-                                            <div class="row align-items-center">
-                                                <div class="col-5 col-md-2 text-center">
-                                                    <img src="{{ $lang_booker->image }}" alt="Dafabet Logo" class="img-fluid">
-                                                </div>
-                                                <div class="col-7 col-md-7">
-                                                    @foreach ($booker->categories as $category)
-                                                        <span class="badge bg-success">{{ $category->name }}</span>
-                                                    @endforeach
-                                                    <h5 class="card-title">{{ $lang_booker->name }}</h5>
-                                                    <p class="mt-2 mb-1"><strong>{{ Str::limit($lang_booker->description, 130, '...') }}</strong></p>
-                                                </div>
+                                    @if ($booker->getAvailableLang())
+                                        @php
+                                            $lang_booker = $booker->getAvailableLang();
+                                        @endphp
+                                        <div class="container mb-4">
+                                            <!-- Promo Card -->
+                                            <div class="card p-3 border-0 shadow-lg" style="border-radius: 20px">
+                                                <div class="row align-items-center">
+                                                    <div class="col-5 col-md-2 text-center">
+                                                        <img src="{{ $lang_booker->image }}" alt="Dafabet Logo"
+                                                            class="img-fluid">
+                                                    </div>
+                                                    <div class="col-7 col-md-7">
+                                                        @foreach ($booker->categories as $category)
+                                                            <span class="badge bg-success">{{ $category->getAvailableLang()?->name }}</span>
+                                                        @endforeach
+                                                        <h5 class="card-title">{{ $lang_booker->name }}</h5>
+                                                        <p class="mt-2 mb-1">
+                                                            <strong>{{ Str::limit($lang_booker->description, 130, '...') }}</strong>
+                                                        </p>
+                                                    </div>
 
-                                                {{-- <div class="col-12 col-md-3 text-center mt-3 mt-md-0">
+                                                    {{-- <div class="col-12 col-md-3 text-center mt-3 mt-md-0">
                                                     <div class="d-flex justify-content-between">
                                                         <div class="me-3">
                                                             <p class="mb-0"><strong>Expert Rating</strong></p>
@@ -111,29 +126,29 @@
                                                     </div>
                                                 </div> --}}
 
-                                                <div class="col-12 col-md-3 text-center mt-3 mt-md-0">
-                                                    {{-- <p><strong>Payout Speed</strong></p> --}}
-                                                    {{-- <p>Up to 3 days</p> --}}
-                                                    <div class="border rounded-3 p-2">
-                                                        <span>{{ __('booker.list.code') }}:</span>
-                                                        <strong>{{ isset($booker->codes) && $booker->codes->isNotEmpty() ? $booker->codes->first()->name : __('booker.list.no') }}</strong>
+                                                    <div class="col-12 col-md-3 text-center mt-3 mt-md-0">
+                                                        {{-- <p><strong>Payout Speed</strong></p> --}}
+                                                        {{-- <p>Up to 3 days</p> --}}
+                                                        <div class="border rounded-3 p-2">
+                                                            <span>{{ __('booker.list.code') }}:</span>
+                                                            <strong>{{ isset($booker->codes) && $booker->codes->isNotEmpty() ? $booker->codes->first()->name : __('booker.list.no') }}</strong>
+                                                        </div>
+                                                        <a href="{{ route('booker.detail', $lang_booker->id) }}"
+                                                            class="prd-btn-1 d-flex mt-1">
+                                                            <span class="ms-auto me-auto"
+                                                                style="white-space: nowrap;">{{ __('booker.list.detail') }}
+                                                                <i class="fa-duotone fa-arrow-right"></i></span>
+                                                        </a>
                                                     </div>
-                                                    <a href="{{ route('booker.detail', $lang_booker->id) }}"
-                                                        class="prd-btn-1 d-flex mt-1">
-                                                        <span class="ms-auto me-auto"
-                                                            style="white-space: nowrap;">{{ __('booker.list.detail') }} <i
-                                                                class="fa-duotone fa-arrow-right"></i></span>
-                                                    </a>
-                                                </div>
 
-                                                <div class="col-12 text-center mt-3">
-                                                    {{-- <a href="#" class="btn btn-primary w-100 mb-2">Visit Site</a> --}}
-                                                    {{-- <button class="btn btn-outline-secondary w-100">Show Details</button> --}}
+                                                    <div class="col-12 text-center mt-3">
+                                                        {{-- <a href="#" class="btn btn-primary w-100 mb-2">Visit Site</a> --}}
+                                                        {{-- <button class="btn btn-outline-secondary w-100">Show Details</button> --}}
 
+                                                    </div>
                                                 </div>
                                             </div>
                                         </div>
-                                    </div>
                                     @endif
                                 @endforeach
                             </div>
@@ -142,7 +157,7 @@
                 </div>
             </div>
         </div>
-        
+
 
         <div class="container">
             <div class="col-sm-10 col-md-7 col-lg-4">
