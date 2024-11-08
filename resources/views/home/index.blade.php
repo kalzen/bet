@@ -199,7 +199,7 @@
                 <h2 class="title">{{ __('home.today_tips') }}</h2>
             </div>
             @if ($tips->isEmpty())
-                <div class="alert alert-info text-center" role="alert">
+                <div class="my-3 alert alert-info text-center" role="alert">
                     <b>{{ __('home.no_tips') }}</b>
                 </div>
             @endif
