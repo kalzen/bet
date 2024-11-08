@@ -68,8 +68,8 @@
                                     } else {
                                         $leftSidePosts->push($post);
                                     }
+                                    $counter++;
                                 }
-                                $counter++;
                             }
                             $flip = false;
                         @endphp
