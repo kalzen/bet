@@ -71,6 +71,10 @@
     .dropdown-item:hover .flag-icon svg {
         filter: brightness(1.2);
     }
+
+    .header .mainmenu .navbar .scalation .logo img {
+  margin-top: 30px;
+}
 </style>
 
 <div class="header animated">
