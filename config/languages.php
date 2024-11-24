@@ -5,4 +5,5 @@ $lang = [
     'en-US' => 'English (US)',
     'pt-BR' => 'Português (Brazil)',
     'vi-VN' => 'Tiếng Việt (Vietnam)',
+    'ja-JP' => '日本語 (Japan)',
 ];
