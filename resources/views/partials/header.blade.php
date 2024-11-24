@@ -15,19 +15,11 @@
 
 
 <div class="header animated">
-    <div class="top-bar topbar-transparent" style="background: #161D35!important;">
+    {{-- <div class="top-bar topbar-transparent" style="background: #161D35!important;">
         <div class="container">
             <div class="row justify-content-between">
                 <div class="col-xl-5 col-lg-5 col-md-7">
                     <div class="left-side">
-                        {{-- <div class="single-bar">
-                            <a class="dashboard-overview" href="#/dashboard-overview.html">
-                                <span class="part-icon">
-                                    <i class="fa-regular fa-circle-user"></i>
-                                </span>
-                                <span class="part-text">hi, <span class="user-name">{{ $shared_config['address']['value'] }}</span></span>
-                            </a>
-                        </div> --}}
                         <div class="single-bar">
                             <a class="dashboard-overview" href="mailto:%20{{ $shared_config['email']['value'] ?? 'null' }}">
                                 <span class="part-icon">
@@ -85,12 +77,12 @@
                 </div>
             </div>
         </div>
-    </div>
+    </div> --}}
     <div class="mobile-navbar">
         <div class="container">
             <div class="row">
                 <div class="col-6 col-xl-none col-lg-none col-md-block d-flex align-items-center">
-                    <a class="mobile-logo" href="#/">
+                    <a class="mobile-logo" href="{{ route('home') }}">
                         <img src="{{ $shared_config['logo']['value'] }}" alt="">
                     </a>
                 </div>

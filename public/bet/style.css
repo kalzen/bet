@@ -1706,7 +1706,7 @@ ul {
   position: absolute;
   z-index: 3;
   width: 100%;
-  top: 0;
+  /* top: 0; */
 }
 @media (max-width: 991.98px) {
   .header {

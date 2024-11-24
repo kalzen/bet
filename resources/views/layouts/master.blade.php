@@ -6,7 +6,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <title>Bettest</title>
         <!-- favicon -->
-        <link rel="shortcut icon" href="#/favicon.ico" type="image/x-icon">
+        <link rel="shortcut icon" href="{{ $shared_config['logo']['value'] }}" type="image/x-icon">
         <!-- bootstrap -->
         <link rel="stylesheet" href="{{asset('bet/bootstrap.min.css')}}">
         <!-- animate css -->
@@ -98,6 +98,71 @@
                                     @endif
                                 @endforeach
                             </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="header">
+                <div class="top-bar topbar-transparent" style="background: #161D35!important;">
+                    <div class="container">
+                        <div class="row justify-content-between">
+                            <div class="col-xl-5 col-lg-5 col-md-7">
+                                <div class="left-side">
+                                    <div class="single-bar">
+                                        <a class="dashboard-overview" href="mailto:%20{{ $shared_config['email']['value'] ?? 'null' }}">
+                                            <span class="part-icon">
+                                                <i class="fa-regular fa-envelope"></i>
+                                            </span>
+                                            <span class="part-text">{{ $shared_config['email']['value'] ?? 'MAIL' }}</span>
+                                        </a>
+                                    </div>
+                                    {{-- <div class="single-bar dropdown">
+                                        <a href="#" role="button" id="dropdownMenuLink" data-bs-toggle="dropdown"
+                                            aria-expanded="false" class="dashboard-overview">
+                                            <span class="part-icon">
+                                                <i class="fa-regular fa-globe"></i>
+                                            </span>
+                                            <span class="part-text lang-display">
+                                                @if($langs->where('locale', App::getLocale())->first())
+                                                    {{ $langs->where('locale', App::getLocale())->first()->name }}
+                                                @else
+                                                    {{ $langs->where('locale', 'en')->first()->name ?? Session::get('locale') }}
+                                                @endif
+                                            </span>
+                                        </a>
+                                        <ul class="dropdown-menu lang-item" aria-labelledby="dropdownMenuLink">
+                                            @foreach ($langs as $lang)
+                                                <li><a class="dropdown-item" href="{{ route('change-language', ['locale' => $lang->locale]) }}">{{ $lang->name }}</a></li>
+                                            @endforeach
+                                            @if(!$langs->where('locale', App::getLocale())->first())
+                                                <li><a class="dropdown-item" href="{{ route('change-language', ['locale' => 'en']) }}">English</a></li>
+                                                <li><a class="dropdown-item" href="{{ route('change-language', ['locale' => 'vi']) }}">Tiếng Việt</a></li>
+                                            @endif
+                                        </ul>
+                                    </div> --}}
+                                </div>
+                            </div>
+                            <div class="col-xl-5 col-lg-5 col-md-5">
+                                <div class="right-side">
+                                    <div class="single-bar">
+                                        <span class="part-icon">
+                                            <i class="fa-regular fa-calendars"></i>
+                                        </span>
+                                        <span class="part-text">
+                                            <span id="date">8</span>
+                                            <span id="month">June</span>
+                                            <span id="year">2024</span>
+                                        </span>
+                                    </div>
+                                    <div class="single-bar">
+                                        <span class="part-icon">
+                                            <i class="fa-solid fa-timer"></i>
+                                        </span>
+                                        <span class="part-text"><span class="timer" id="hours">03</span>:<span class="timer"
+                                                id="minutes">02</span>:<span class="timer" id="seconds">49</span></span>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
