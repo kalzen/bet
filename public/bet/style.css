@@ -2495,6 +2495,9 @@ ul {
     height: 90px;
   }
 }
+.header .mainmenu .navbar .scalation .logo img {
+  margin-top: 30px;
+}
 .header .mainmenu .navbar .scalation .logo-2 {
   height: calc(100% + 51px);
   width: 100%;
