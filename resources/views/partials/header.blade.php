@@ -12,7 +12,66 @@
     </span>
 </div>
 <!-- preloader end -->
+<style>
+    .changing-version+.dropdown-menu {
+        min-width: 200px;
+        margin-top: 0.5rem;
+        background: #161D35;
+        border: 1px solid rgba(255, 255, 255, 0.1);
+    }
 
+    .changing-version+.dropdown-menu .dropdown-item {
+        color: #fff;
+    }
+
+    .changing-version+.dropdown-menu .dropdown-item:hover,
+    .changing-version+.dropdown-menu .dropdown-item.active {
+        background: rgba(255, 255, 255, 0.1);
+    }
+
+    .navbar-nav .changing-version {
+        background: transparent;
+        border: none;
+        padding: 0.5rem 1rem;
+    }
+
+    .navbar-nav .changing-version:hover {
+        color: var(--primary-color);
+    }
+
+    .language-flag {
+        width: 20px;
+        height: 15px;
+        object-fit: cover;
+        border-radius: 2px;
+    }
+
+    .changing-version svg {
+        width: 20px;
+        height: 15px;
+        border-radius: 2px;
+    }
+
+    /* Nếu muốn thêm hiệu ứng hover */
+    .changing-version:hover svg {
+        filter: brightness(1.2);
+    }
+
+    .dropdown-item .flag-icon svg {
+        width: 20px;
+        height: 15px;
+        border-radius: 2px;
+    }
+
+    .dropdown-item {
+        padding: 0.5rem 1rem;
+    }
+
+    /* Nếu muốn thêm hiệu ứng hover cho flag trong dropdown */
+    .dropdown-item:hover .flag-icon svg {
+        filter: brightness(1.2);
+    }
+</style>
 
 <div class="header animated">
     {{-- <div class="top-bar topbar-transparent" style="background: #161D35!important;">
@@ -35,7 +94,7 @@
                                     <i class="fa-regular fa-globe"></i>
                                 </span>
                                 <span class="part-text lang-display">
-                                    @if($langs->where('locale', App::getLocale())->first())
+                                    @if ($langs->where('locale', App::getLocale())->first())
                                         {{ $langs->where('locale', App::getLocale())->first()->name }}
                                     @else
                                         {{ $langs->where('locale', 'en')->first()->name ?? Session::get('locale') }}
@@ -46,7 +105,7 @@
                                 @foreach ($langs as $lang)
                                     <li><a class="dropdown-item" href="{{ route('change-language', ['locale' => $lang->locale]) }}">{{ $lang->name }}</a></li>
                                 @endforeach
-                                @if(!$langs->where('locale', App::getLocale())->first())
+                                @if (!$langs->where('locale', App::getLocale())->first())
                                     <li><a class="dropdown-item" href="{{ route('change-language', ['locale' => 'en']) }}">English</a></li>
                                     <li><a class="dropdown-item" href="{{ route('change-language', ['locale' => 'vi']) }}">Tiếng Việt</a></li>
                                 @endif
@@ -87,14 +146,52 @@
                     </a>
                 </div>
                 <div class="col-6 col-xl-none col-lg-none col-lg-block">
-                    <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
-                        data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
-                        aria-expanded="false" aria-label="Toggle navigation">
-                        <i class="fa-light fa-bars"></i>
-                    </button>
-                    <button class="changing-version" data-bs-toggle="modal" data-bs-target="#comming_soon">
-                        <i class="fa-solid fa-moon-stars"></i>
-                    </button>
+                    <div class="d-flex justify-content-end align-items-center">
+                        <div class="dropdown d-inline-block me-2">
+                            <button class="changing-version" type="button" id="languageSelector"
+                                data-bs-toggle="dropdown" aria-expanded="false">
+                                {!! \App\Helpers\LanguageHelper::getCountryFlag(App::getLocale()) !!}
+                            </button>
+                            <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="languageSelector">
+                                @foreach ($langs as $lang)
+                                    <li>
+                                        <a class="dropdown-item d-flex align-items-center {{ App::getLocale() == $lang->locale ? 'active' : '' }}"
+                                            href="{{ route('change-language', ['locale' => $lang->locale]) }}">
+                                            <span class="flag-icon me-2">
+                                                {!! \App\Helpers\LanguageHelper::getCountryFlag($lang->locale) !!}
+                                            </span>
+                                            {{ $lang->name }}
+                                        </a>
+                                    </li>
+                                @endforeach
+                                @if (!$langs->where('locale', App::getLocale())->first())
+                                    <li>
+                                        <a class="dropdown-item d-flex align-items-center" 
+                                           href="{{ route('change-language', ['locale' => 'en']) }}">
+                                            <span class="flag-icon me-2">
+                                                {!! \App\Helpers\LanguageHelper::getCountryFlag('en') !!}
+                                            </span>
+                                            English
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a class="dropdown-item d-flex align-items-center" 
+                                           href="{{ route('change-language', ['locale' => 'vi']) }}">
+                                            <span class="flag-icon me-2">
+                                                {!! \App\Helpers\LanguageHelper::getCountryFlag('vi') !!}
+                                            </span>
+                                            Tiếng Việt
+                                        </a>
+                                    </li>
+                                @endif
+                            </ul>
+                        </div>
+                        <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+                            data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
+                            aria-expanded="false" aria-label="Toggle navigation">
+                            <i class="fa-light fa-bars"></i>
+                        </button>
+                    </div>
                 </div>
             </div>
         </div>
@@ -115,13 +212,16 @@
                                         @if (!$lang_nav_link)
                                             @continue
                                         @endif
-                                        
+
                                         @if ($nav_link->children->count() > 0)
                                             <li class="nav-item dropdown">
-                                                <a class="nav-link dropdown-toggle" href="{{ $nav_link['url'] }}" id="pagesDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                                <a class="nav-link dropdown-toggle" href="{{ $nav_link['url'] }}"
+                                                    id="pagesDropdown" role="button" data-bs-toggle="dropdown"
+                                                    aria-expanded="false">
                                                     {{ strtoupper($lang_nav_link['name']) }}
                                                 </a>
-                                                <ul class="dropdown-menu custom-dropdown" aria-labelledby="pagesDropdown">
+                                                <ul class="dropdown-menu custom-dropdown"
+                                                    aria-labelledby="pagesDropdown">
                                                     {{-- @dd($nav_link->langChildren()); --}}
                                                     @foreach ($nav_link['children'] as $child)
                                                         @php
@@ -130,13 +230,16 @@
                                                         @if (!$lang_child)
                                                             @continue
                                                         @endif
-                                                        <li><a class="dropdown-item" href="{{ $child['url'] }}">{{ $lang_child['name'] }}</a></li>
+                                                        <li><a class="dropdown-item"
+                                                                href="{{ $child['url'] }}">{{ $lang_child['name'] }}</a>
+                                                        </li>
                                                     @endforeach
                                                 </ul>
                                             </li>
                                         @else
                                             <li class="nav-item">
-                                                <a class="nav-link" href="{{ $nav_link['url'] }}">{{ strtoupper($lang_nav_link['name']) }}</a>
+                                                <a class="nav-link"
+                                                    href="{{ $nav_link['url'] }}">{{ strtoupper($lang_nav_link['name']) }}</a>
                                             </li>
                                         @endif
                                     @endforeach
@@ -160,10 +263,13 @@
                                         @endif
                                         @if ($nav_link->children->count() > 0)
                                             <li class="nav-item dropdown">
-                                                <a class="nav-link dropdown-toggle" href="{{ $nav_link['url'] }}" id="pagesDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                                <a class="nav-link dropdown-toggle" href="{{ $nav_link['url'] }}"
+                                                    id="pagesDropdown" role="button" data-bs-toggle="dropdown"
+                                                    aria-expanded="false">
                                                     {{ strtoupper($lang_nav_link['name']) }}
                                                 </a>
-                                                <ul class="dropdown-menu custom-dropdown" aria-labelledby="pagesDropdown">
+                                                <ul class="dropdown-menu custom-dropdown"
+                                                    aria-labelledby="pagesDropdown">
                                                     @foreach ($nav_link['children'] as $child)
                                                         @php
                                                             $lang_child = $child->getAvailableLang();
@@ -171,20 +277,65 @@
                                                         @if (!$lang_child)
                                                             @continue
                                                         @endif
-                                                        <li><a class="dropdown-item" href="{{ $child['url'] }}">{{ $lang_child['name'] }}</a></li>
+                                                        <li><a class="dropdown-item"
+                                                                href="{{ $child['url'] }}">{{ $lang_child['name'] }}</a>
+                                                        </li>
                                                     @endforeach
                                                 </ul>
                                             </li>
                                         @else
                                             <li class="nav-item">
-                                                <a class="nav-link" href="{{ $nav_link['url'] }}">{{ strtoupper($lang_nav_link['name']) }}</a>
+                                                <a class="nav-link"
+                                                    href="{{ $nav_link['url'] }}">{{ strtoupper($lang_nav_link['name']) }}</a>
                                             </li>
                                         @endif
                                     @endforeach
+
+                                    <li class="nav-item dropdown">
+                                        <button class="changing-version nav-link" type="button"
+                                            id="desktopLanguageSelector" data-bs-toggle="dropdown"
+                                            aria-expanded="false">
+                                            {!! \App\Helpers\LanguageHelper::getCountryFlag(App::getLocale()) !!}
+                                        </button>
+                                        <ul class="dropdown-menu dropdown-menu-end"
+                                            aria-labelledby="desktopLanguageSelector">
+                                            @foreach ($langs as $lang)
+                                                <li>
+                                                    <a class="dropdown-item d-flex align-items-center {{ App::getLocale() == $lang->locale ? 'active' : '' }}"
+                                                        href="{{ route('change-language', ['locale' => $lang->locale]) }}">
+                                                        <span class="flag-icon me-2">
+                                                            {!! \App\Helpers\LanguageHelper::getCountryFlag($lang->locale) !!}
+                                                        </span>
+                                                        {{ $lang->name }}
+                                                    </a>
+                                                </li>
+                                            @endforeach
+                                            @if (!$langs->where('locale', App::getLocale())->first())
+                                                <li>
+                                                    <a class="dropdown-item d-flex align-items-center" 
+                                                       href="{{ route('change-language', ['locale' => 'en']) }}">
+                                                        <span class="flag-icon me-2">
+                                                            {!! \App\Helpers\LanguageHelper::getCountryFlag('en') !!}
+                                                        </span>
+                                                        English
+                                                    </a>
+                                                </li>
+                                                <li>
+                                                    <a class="dropdown-item d-flex align-items-center" 
+                                                       href="{{ route('change-language', ['locale' => 'vi']) }}">
+                                                        <span class="flag-icon me-2">
+                                                            {!! \App\Helpers\LanguageHelper::getCountryFlag('vi') !!}
+                                                        </span>
+                                                        Tiếng Việt
+                                                    </a>
+                                                </li>
+                                            @endif
+                                        </ul>
+                                    </li>
                                 </ul>
                             </div>
                         </div>
-                        
+
                     </div>
                 </div>
             </nav>
