@@ -15,14 +15,16 @@ class BookerController extends Controller
     public function index()
     {
         $locale = app()->getLocale();
-        $bookers = Booker::where('is_hot', 0)
+        $bookers = Booker::whereNull('lang_parent_id')
             ->whereNull('lang_parent_id')
             ->orderBy('ordering', 'desc')
+            ->orderBy('is_hot', 'desc')
             ->get();
-        $hot_bookers = Booker::where('is_hot', 1)
-            ->whereNull('lang_parent_id')
-            ->orderBy('ordering', 'desc')
-            ->get();
+        $hot_bookers = collect([]);
+        // $hot_bookers = Booker::where('is_hot', 1)
+        //     ->whereNull('lang_parent_id')
+        //     ->orderBy('ordering', 'desc')
+        //     ->get();
 
         $categories = BookerCategory::orderBy('name', 'asc')->get();
 
@@ -37,18 +39,18 @@ class BookerController extends Controller
         $booker_category = BookerCategory::where('slug', $slug)->first();
         $booker_category_clone = clone $booker_category;
         $main_category = null;
-        
+
         try {
             $main_category = $booker_category->langParent()->first();
         } catch (\Exception $e) {
         }
 
-        if($main_category) {
-            $bookers = Booker::whereHas('categories', function($query) use ($main_category) {
+        if ($main_category) {
+            $bookers = Booker::whereHas('categories', function ($query) use ($main_category) {
                 $query->whereIn('slug', [$main_category->slug]);
             })->get();
         } else {
-            $bookers = Booker::whereHas('categories', function($query) use ($booker_category) {
+            $bookers = Booker::whereHas('categories', function ($query) use ($booker_category) {
                 $query->whereIn('slug', [$booker_category->slug]);
             })->get();
         }
@@ -70,7 +72,7 @@ class BookerController extends Controller
 
     public function detail($alias)
     {
-        $booker = Booker::where('id',$alias)->firstOrFail();
-        return view('booker.detail',compact('booker'));
+        $booker = Booker::where('id', $alias)->firstOrFail();
+        return view('booker.detail', compact('booker'));
     }
 }
