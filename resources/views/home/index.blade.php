@@ -1,5 +1,21 @@
 @extends('layouts.master')
 @section('content')
+    <style>
+        @media (max-width: 767px) {
+            .banner-text {
+                font-size: 1.8rem!important;
+                line-height: 1.5em;
+            }
+
+            .banner-content{
+                padding: 50px 5px 0px 5px !important;
+            }
+
+            .card-wrapper{
+                /* padding-top: 10px !important; */
+            }
+        }
+    </style>
     <link rel="stylesheet" href="{{ asset('bet/home.css') }}">
     <!-- banner begin -->
     <div class="banner-7">
