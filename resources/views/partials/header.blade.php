@@ -73,8 +73,8 @@
     }
 
     .header .mainmenu .navbar .scalation .logo img {
-  margin-top: 30px;
-}
+        margin-top: 30px;
+    }
 </style>
 
 <div class="header animated">
@@ -170,8 +170,8 @@
                                 @endforeach
                                 @if (!$langs->where('locale', App::getLocale())->first())
                                     <li>
-                                        <a class="dropdown-item d-flex align-items-center" 
-                                           href="{{ route('change-language', ['locale' => 'en']) }}">
+                                        <a class="dropdown-item d-flex align-items-center"
+                                            href="{{ route('change-language', ['locale' => 'en']) }}">
                                             <span class="flag-icon me-2">
                                                 {!! \App\Helpers\LanguageHelper::getCountryFlag('en') !!}
                                             </span>
@@ -179,8 +179,8 @@
                                         </a>
                                     </li>
                                     <li>
-                                        <a class="dropdown-item d-flex align-items-center" 
-                                           href="{{ route('change-language', ['locale' => 'vi']) }}">
+                                        <a class="dropdown-item d-flex align-items-center"
+                                            href="{{ route('change-language', ['locale' => 'vi']) }}">
                                             <span class="flag-icon me-2">
                                                 {!! \App\Helpers\LanguageHelper::getCountryFlag('vi') !!}
                                             </span>
@@ -316,8 +316,8 @@
                                             @endforeach
                                             @if (!$langs->where('locale', App::getLocale())->first())
                                                 <li>
-                                                    <a class="dropdown-item d-flex align-items-center" 
-                                                       href="{{ route('change-language', ['locale' => 'en']) }}">
+                                                    <a class="dropdown-item d-flex align-items-center"
+                                                        href="{{ route('change-language', ['locale' => 'en']) }}">
                                                         <span class="flag-icon me-2">
                                                             {!! \App\Helpers\LanguageHelper::getCountryFlag('en') !!}
                                                         </span>
@@ -325,8 +325,8 @@
                                                     </a>
                                                 </li>
                                                 <li>
-                                                    <a class="dropdown-item d-flex align-items-center" 
-                                                       href="{{ route('change-language', ['locale' => 'vi']) }}">
+                                                    <a class="dropdown-item d-flex align-items-center"
+                                                        href="{{ route('change-language', ['locale' => 'vi']) }}">
                                                         <span class="flag-icon me-2">
                                                             {!! \App\Helpers\LanguageHelper::getCountryFlag('vi') !!}
                                                         </span>
