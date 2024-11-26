@@ -12,7 +12,7 @@ return [
     "view_now" => "Check Now",
     "prediction" => "Prediction",
     "read_more" => "Read more",
-    "promo_code" => "Best Betting Promotions",
+    "promo_code" => "Betting Promotions",
     "today_tips" => "Today's TIPS",
     "top_bookmakers" => "TOP Bookmakers",
     "latest_sport_news" => "Latest Sport News",
