@@ -18,7 +18,7 @@ class CreateAssignedContentsTable extends Migration
             $table->id();
             $table->unsignedBigInteger('lang_parent_id')->nullable()->default(null);
             $table->unsignedBigInteger('lang_id')->nullable()->default(null);
-            $table->string('route_name', 255)->unique();
+            $table->string('route_name', 255);
             $table->text('content')->nullable();
             $table->unsignedInteger('status')->nullable()->default(AssignedContent::STATUS_ACTIVE);
             $table->timestamps();

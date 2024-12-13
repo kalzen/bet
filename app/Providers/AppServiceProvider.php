@@ -2,6 +2,7 @@
 
 namespace App\Providers;
 
+use App\Models\AssignedContent;
 use App\Models\Booker;
 use Illuminate\Support\ServiceProvider;
 use Illuminate\Support\Facades\Schema;
@@ -14,7 +15,9 @@ use App\Models\Lang;
 use App\Models\Menu;
 use App\Models\Order;
 use App\Models\Slide;
+use Exception;
 use Illuminate\Support\Facades\App;
+use Illuminate\Support\Facades\Route;
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -35,6 +38,7 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot()
     {
+        // if 
         Schema::defaultStringLength(191);
         Paginator::useBootstrap();
         View::composer('admin.partials.sidebar', function ($view) {
@@ -46,8 +50,19 @@ class AppServiceProvider extends ServiceProvider
             View::share('langs', Lang::orderBy('id','asc')->get());
         });
         View::composer(['*'], function ($view) {
+            $routeName = Route::currentRouteName();
+            try{
+                if ($routeName == 'index'){
+                    $routeName = 'home';
+                }
+                // get the assigned content for the current route
+                $assignedContent = AssignedContent::all()->where('route_name', $routeName)->first();
+                if ($assignedContent) $assignedContent = $assignedContent->getAvailableLang();
+            }catch(Exception $e){
+                $assignedContent = new AssignedContent();
+            }
             View::share('shared_config', Config::all()->keyBy('name'));
-            
+            View::share('assignedContent', $assignedContent);
         });
         View::composer(['home.*','partials.header', 'product.index', 'layouts.*'], function ($view) {
             View::share('shared_categories', Catalogue::all());

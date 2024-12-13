@@ -11,10 +11,11 @@ use App\Models\Category;
 use App\Models\Lang;
 use Illuminate\Support\Facades\Validator;
 use Log;
-use DB;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\App;
 use Sunra\PhpSimple\HtmlDomParser;
 use Illuminate\Support\Str;
+use Exception;
 
 class PostController extends Controller
 {

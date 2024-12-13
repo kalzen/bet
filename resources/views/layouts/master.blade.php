@@ -41,8 +41,12 @@
     <div class="flying-shadow hide"><i class="fa-duotone fa-paper-plane"></i></div>
     @include('partials.header')
 
-
     @yield('content')
+    @if(isset($assignedContent) && $assignedContent->content)
+        <div class="custom-content px-5">
+            {!! $assignedContent->content !!}
+        </div>
+    @endif
 
     <!-- footer begin -->
     <div class="footer">

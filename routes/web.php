@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Admin\AssignedContentController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\Admin\DashboardController;
@@ -26,6 +27,7 @@ use App\Http\Controllers\LangController;
 use App\Http\Controllers\LocaleController;
 use App\Http\Controllers\TipController as ClientTipController;
 use App\Http\Controllers\UserController as ClientUserController;
+
 
 /*
 |--------------------------------------------------------------------------
@@ -101,6 +103,8 @@ Route::middleware(['auth'])->name('admin.')->prefix('admin')->group(function () 
     Route::resource('attribute', AttributeController::class);
     //Post
     Route::resource('post', PostController::class);
+    //Assigned Content
+    Route::resource('assigned-content', AssignedContentController::class);
     //Message
     Route::resource('message', MessageController::class);
     //Testimonial
@@ -123,6 +127,10 @@ Route::middleware(['auth'])->name('admin.')->prefix('admin')->group(function () 
         Route::post('category', [PostController::class, 'category'])->name('category');
         Route::post('lang', [PostController::class, 'lang'])->name('lang');
         Route::post('remove-bind', [PostController::class, 'removeBind'])->name('removeBind');
+    });
+    Route::prefix('assigned-content')->name('assigned-content.')->group(function () {
+        Route::post('lang', [AssignedContentController::class, 'lang'])->name('lang');
+        Route::post('remove-bind', [AssignedContentController::class, 'removeBind'])->name('removeBind');
     });
     Route::prefix('booker')->name('booker.')->group(function () {
         Route::post('category', [BookerController::class, 'category'])->name('category');

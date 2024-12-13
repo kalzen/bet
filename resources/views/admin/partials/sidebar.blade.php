@@ -104,6 +104,7 @@
                         <li class="nav-item"><a href="{{route('admin.post.index')}}" class="nav-link">Tất cả bài viết</a></li>
                         <li class="nav-item"><a href="{{route('admin.post.create')}}" class="nav-link">Viết bài mới</a></li>
                         <li class="nav-item"><a href="{{route('admin.category.index')}}" class="nav-link">Chuyên mục</a></li>
+                        <li class="nav-item"><a href="{{route('admin.assigned-content.index')}}" class="nav-link">Bài viết cuối trang</a></li>
                     </ul>
                 </li>
                 {{-- <li class="nav-item nav-item-submenu">

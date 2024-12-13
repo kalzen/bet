@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Http\Controllers\Admin\SharedHelper;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
@@ -13,4 +14,22 @@ class AssignedContent extends Model
     use HasFactory;
 
     protected $fillable = ['lang_parent_id', 'lang_id', 'route_name', 'content', 'status'];
+
+    public function getAvailableLang()
+    {
+        return SharedHelper::getAvailableLang($this);
+    }
+
+    public function langs()
+    {
+        return $this->belongsTo(Lang::class, 'lang_id');
+    }
+    public function langParent()
+    {
+        return $this->belongsTo(AssignedContent::class, 'lang_parent_id');
+    }
+    public function langChildren()
+    {
+        return $this->hasMany(AssignedContent::class, 'lang_parent_id');
+    }
 }

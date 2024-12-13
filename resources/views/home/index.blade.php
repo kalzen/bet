@@ -2,7 +2,7 @@
 @section('content')
     <style>
         @media (max-width: 767px) {
-            .ban{!!  !!}-text {
+            .banner-text {
                 font-size: 1.8rem!important;
                 line-height: 1.5em;
             }
