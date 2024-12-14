@@ -37,7 +37,7 @@
                             </div>
                         </div>
                         <div class="d-flex justify-content-center align-items-center flex-wrap gap-1">
-                            <a href="{{ route('booker.detail', $booker->id) }}" class="prd-btn-1 w-100">
+                            <a href="{{ route('booker.detail', ['locale_code' => $shared_locale, 'alias' => $booker->id]) }}" class="prd-btn-1 w-100">
                                 <span class="ms-auto me-auto">{{ __('home.detail') }}</span> <i
                                     class="fa-duotone fa-arrow-right"></i>
                             </a>

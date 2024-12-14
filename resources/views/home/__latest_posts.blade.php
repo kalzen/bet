@@ -10,7 +10,7 @@
                         {{-- <h2 class="text-4xl mb-4 font-bold text-green-100 lg:text-6xl">Betting News</h2> --}}
                         <div class="section-title aos-init mb-3" data-aos="fade-up" data-aos-delay="100"
                             data-aos-duration="500" data-aos-easing="ease-in">
-                            <h3 class="sub-title" onclick="window.location.href='{{ route('post.list') }}'">{{ __('home.news') }}</h3>
+                            <h3 class="sub-title" onclick="window.location.href='{{ route('post.list', [ 'locale_code' => Session::get('locale') ]) }}'">{{ __('home.news') }}</h3>
                             <h2 class="title mb-3">{{ __('home.latest_sport_news') }}</h2>
                         </div>
                     </div>
@@ -43,7 +43,7 @@
                                         @break;
                                     @endif
                                     <a 
-                                        href="{{ route('post.detail', ['alias' => $first_post->slug ?? $post->id]) }}"
+                                        href="{{ route('post.detail', [ 'locale_code' => Session::get('locale') ,'alias' => $first_post->slug ?? $post->id]) }}"
                                         title="{{ $first_post->title }}" class="group !no-underline "
                                         data-bt="tiles-any-cpt-xl">
                                         <img sizes="720px"
@@ -94,7 +94,7 @@
                                     @break;
                                 @endif
                                 <div class="{{ $count == 2 ? 'post-hide' : '' }}">
-                                    <a href="{{ route('post.detail', ['alias' => $post->slug]) }}"
+                                    <a href="{{ route('post.detail', [ 'locale_code' => Session::get('locale') ,'alias' => $post->slug]) }}"
                                         title="{{ $post->title }}"
                                         class="post-border group !no-underline grid grid-cols-[165px,auto] lg:grid-cols-1 xl:grid-cols-2 gap-3 lg:gap-6 lg:border-solid lg:border-t-2 lg:border-black lg:pt-8"
                                         style="
@@ -157,7 +157,7 @@
                                     @break;
                                 @endif
                             <div class="">
-                                <a href="{{ route('post.detail', ['alias' => $post->slug]) }}"
+                                <a href="{{ route('post.detail', [ 'locale_code' => Session::get('locale') , 'alias' => $post->slug]) }}"
                                     title="{{ $post->title }}"
                                     class="post-border grid lg:grid-cols-1 gap-3 max-lg:grid max-lg:grid-cols-[165px,auto] max-lg:gap-3 group !no-underline {{ $count > 3 ? ' lg:border-solid lg:border-t-2 lg:border-black lg:pt-8' : '' }}"
                                     style="
@@ -229,7 +229,7 @@
                     @if ($count > 10)
                     @break;
                 @endif
-                <a href="{{ route('post.detail', ['alias' => $post->slug]) }}"
+                <a href="{{ route('post.detail', [ 'locale_code' => Session::get('locale') ,'alias' => $post->slug]) }}"
                     title="Hard Rock Bet Forges Innovative Betting Partnership with NHL’s Florida Panthers"
                     class="border-b border-black mt-4 mb-4 pb-2 hover:no-underline group block cursor-pointer lg:border-0 lg:border-transparent lg:mb-0 lg:pb-0 "
                     data-bt="tiles-news-xs">
@@ -269,7 +269,7 @@
                 @php
                     $count++;
                 @endphp
-                <a href="{{ route('booker.detail', $booker->id) }}" target="_blank"
+                <a href="{{ route('booker.detail',[ 'locale_code' => Session::get('locale') , 'alias' => $booker->id]) }}" target="_blank"
                     rel="nofollow noopener" title="{{ $booker->name }}"
                     class="flex flex-grow flex-row items-center bg-white p-2 shadow group hover:no-underline "
                     data-bt="tiles-betting-site-sm">

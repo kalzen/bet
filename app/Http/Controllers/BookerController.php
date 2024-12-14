@@ -70,7 +70,7 @@ class BookerController extends Controller
 
 
 
-    public function detail($alias)
+    public function detail($locale, $alias)
     {
         $booker = Booker::where('id', $alias)->firstOrFail();
         return view('booker.detail', compact('booker'));

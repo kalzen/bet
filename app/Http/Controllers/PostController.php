@@ -19,7 +19,7 @@ class PostController extends Controller
         $tags = Tag::all();
         return view('post.index', compact('categories', 'posts', 'featured_posts', 'tags'));
     }
-    public function detail($alias)
+    public function detail($locale, $alias)
     {
         $post = Post::active()->where('slug', $alias)->first();
         if (!$post) {

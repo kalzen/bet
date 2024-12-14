@@ -26,7 +26,7 @@
                             {{ $code->name }}
                     </div>
                         @if($booker)
-                            <a href="{{ route('booker.detail', $booker->langParent??$booker->langParent->id??$booker->id) }}" class="prd-btn-1 d-flex mt-3">
+                            <a href="{{ route('booker.detail', ['locale_code' => $shared_locale, 'alias' => $booker->langParent??$booker->langParent->id??$booker->id]) }}" class="prd-btn-1 d-flex mt-3">
                                 <span class="ms-auto me-auto">{{ __('home.view_now') }}<i
                                         class="fa-duotone fa-arrow-right"></i></span>
                             </a>

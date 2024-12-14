@@ -104,7 +104,7 @@
                                         </div>
                                     </div>
                                     <div class="col-lg-3 col-md-3 col-3 text-end pe-3">
-                                        <a href="{{ route('booker.detail', $booker->id) }}" class="prd-btn-1"><small
+                                        <a href="{{ route('booker.detail', [ 'locale_code' => Session::get('locale'), 'alias' => $booker->id]) }}" class="prd-btn-1"><small
                                                 class="text-small" style="white-space: nowrap;">{{ __('home.view') }}</small></a>
                                         {{-- <a href="{{ route('booker.detail', $code->booker->id) }}" class="prd-btn-1 d-flex mt-3">
                                     <span class="ms-auto me-auto">XEM NGAY<i class="fa-duotone fa-arrow-right"></i></span> 
@@ -165,7 +165,7 @@
                     @if ($hot_bookers->count() > 0)
                         <div class="section-title mb-3" data-aos="fade-up" data-aos-delay="100" data-aos-duration="500"
                             data-aos-easing="ease-in">
-                            <h3 class="sub-title" onclick="window.location.href='{{ route('booker.list') }}'">{{ __('home.bookmaker') }}</h3>
+                            <h3 class="sub-title" onclick="window.location.href='{{ route('booker.list', [ 'locale_code' => Session::get('locale') ]) }}'">{{ __('home.bookmaker') }}</h3>
                             <h2 class="title">{{ __('home.top_bookmakers') }}</h2>
                         </div>
                     @endif
@@ -211,7 +211,7 @@
         <div class="container">
             <div class="section-title aos-init mb-3" data-aos="fade-up" data-aos-delay="100" data-aos-duration="500"
                 data-aos-easing="ease-in">
-                <h3 class="sub-title" onclick="window.location.href='{{ route('tip.list') }}'">{{ __('home.tips') }}</h3>
+                <h3 class="sub-title" onclick="window.location.href='{{ route('tip.list', [ 'locale_code' => Session::get('locale') ]) }}'">{{ __('home.tips') }}</h3>
                 <h2 class="title">{{ __('home.today_tips') }}</h2>
             </div>
             @if ($tips->isEmpty())

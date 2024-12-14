@@ -18,11 +18,32 @@ class Localization
      * @param  \Closure(\Illuminate\Http\Request): (\Illuminate\Http\Response|\Illuminate\Http\RedirectResponse)  $next
      * @return \Illuminate\Http\Response|\Illuminate\Http\RedirectResponse
      */
+    private $locales;
+
+    public function __construct()
+    {
+        $this->locales = include base_path('config/locales.php');
+    }
     public function handle(Request $request, Closure $next)
     {
+        // locale_code
+        $url_locale = $request->route('locale_code');
+        $twoCharKeys = array_map(function ($key) {
+            return substr($key, 0, 2);
+        }, array_keys($this->locales));
+        // if not found a valid locale, default to en
+        if (in_array($url_locale, $twoCharKeys)) {
+            // dd($url_locale, $twoCharKeys);
+            Session::put('locale', $url_locale);
+            App::setLocale($url_locale);
+            return $next($request);
+        }
+        // redirect to home route
+        // return redirect("/en");
         // $this->getCurrentLocale();
+
         $locale = Session::get('locale');
-        // $locale = null;
+        // // $locale = null;
         if($locale == null){
             $locale = $this->getCurrentLocale()??'en';
         }

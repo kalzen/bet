@@ -5,11 +5,13 @@ namespace App\Http\Controllers;
 use App\Models\Lang;
 use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\App;
+use Illuminate\Support\Facades\Route;
 
 class LocaleController extends Controller
 {
     public function setLocale($locale)
     {
+        $currentLocale = Session::get('locale', config('app.locale'));
         $langs = Lang::all();
         $lang = $langs->where('locale', $locale)->first();
         
@@ -18,7 +20,7 @@ class LocaleController extends Controller
             App::setLocale($locale);
             Session::put('locale', $locale);
         } else {
-           Session::get('locale', config('app.locale'));
+            Session::get('locale', config('app.locale'));
         }
         
         if ($langs->isEmpty()) {
@@ -30,6 +32,11 @@ class LocaleController extends Controller
             Session::get('locale', config('app.locale'));
             App::setLocale($locale);
         }
-        return redirect()->back();
+        // get previous route name?
+        $targetUrl = redirect()->back()->getTargetUrl();
+        if (strpos($targetUrl, '/'.$currentLocale.'/') !== false) {
+            $targetUrl = str_replace('/'.$currentLocale.'/', '/'.$locale.'/', $targetUrl);
+        }
+        return redirect($targetUrl);
     }
 }

@@ -18,6 +18,7 @@ use App\Models\Slide;
 use Exception;
 use Illuminate\Support\Facades\App;
 use Illuminate\Support\Facades\Route;
+use Illuminate\Support\Facades\Session;
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -63,6 +64,8 @@ class AppServiceProvider extends ServiceProvider
             }
             View::share('shared_config', Config::all()->keyBy('name'));
             View::share('assignedContent', $assignedContent);
+            // Session::get('locale')
+            View::share('shared_locale', Session::get('locale'));
         });
         View::composer(['home.*','partials.header', 'product.index', 'layouts.*'], function ($view) {
             View::share('shared_categories', Catalogue::all());
