@@ -36,6 +36,8 @@ class LocaleController extends Controller
         $targetUrl = redirect()->back()->getTargetUrl();
         if (strpos($targetUrl, '/'.$currentLocale.'/') !== false) {
             $targetUrl = str_replace('/'.$currentLocale.'/', '/'.$locale.'/', $targetUrl);
+        } else if (strpos($targetUrl, '/' . $currentLocale) !== false && substr($targetUrl, -1) !== '/') {
+            $targetUrl = str_replace('/'.$currentLocale, '/'.$locale, $targetUrl);
         }
         return redirect($targetUrl);
     }
