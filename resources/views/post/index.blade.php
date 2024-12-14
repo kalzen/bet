@@ -331,7 +331,7 @@
                                         @foreach ($categories as $category)
                                             @if ($category->getAvailableLang())
                                                 <li>
-                                                    <a href="{{ route('post.category', ['alias' => $category->slug]) }}">
+                                                    <a href="{{ route('post.category', [ 'locale_code' => Session::get('locale') ,'alias' => $category->slug]) }}">
                                                         <span
                                                             class="cl-cat">{{ $category->getAvailableLang()->name }}</span>
                                                         <span class="q-numb">({{ $category->posts->count() }})</span>
