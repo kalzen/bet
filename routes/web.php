@@ -28,6 +28,7 @@ use App\Http\Controllers\LocaleController;
 use App\Http\Controllers\TipController as ClientTipController;
 use App\Http\Controllers\UserController as ClientUserController;
 use Illuminate\Support\Facades\Session;
+use App\Http\Middleware\Localization;
 
 /*
 |--------------------------------------------------------------------------
@@ -42,50 +43,37 @@ use Illuminate\Support\Facades\Session;
 
 Auth::routes();
 
-Route::get('/lang/{locale}', [LocaleController::class, 'setLocale'])->name('change-language');
 
-Route::middleware(['localization'])->group(function () {
-    $locale = App::getLocale()??'en';
+Route::middleware(['redirector'])->group(function () {
+    $locale = Session::get('locale', config('app.locale'))??'en';
     Route::get('/', function () use ($locale) {
-        return redirect("/$locale");
     });
     Route::get('/tip', function () use ($locale) {
-        return redirect("/$locale/tip");
     })->name('tip.list.no-lang');
     Route::any('/booker', function () use ($locale) {
-        return redirect("/$locale/booker");
     })->name('booker.list.no-lang');
     Route::any('/user/{id}', function ($id) use ($locale) {
-        return redirect("/$locale/user/$id");
     })->name('user.detail.no-lang');
     Route::any('/booker/{alias}', function ($alias) use ($locale) {
-        return redirect("/$locale/booker/$alias");
     })->name('booker.detail.no-lang');
     Route::get('/bookers/{slug}', function ($slug) use ($locale) {
-        return redirect("/$locale/bookers/$slug");
     })->name('booker.filter.no-lang');
     Route::get('/home', function () use ($locale) {
-        return redirect("/$locale/home");
     })->name('home.no-lang');
     Route::get('/news/', function () use ($locale) {
-        return redirect("/$locale/news");
     })->name('post.list.no-lang');
     Route::get('/news-category/{alias}', function ($alias) use ($locale) {
-        return redirect("/$locale/news-category/$alias");
     })->name('post.category.no-lang');
     Route::get('/news/search', function () use ($locale) {
-        return redirect("/$locale/news/search");
     })->name('post.search.no-lang');
     Route::get('/news/{alias}', function ($alias) use ($locale) {
-        return redirect("/$locale/news/$alias");
     })->name('post.detail.no-lang');
     Route::any('/livescore', function () use ($locale) {
-        return redirect("/$locale/livescore");
     })->name('livescore.index.no-lang');
     Route::any('/leaderboard', function () use ($locale) {
-        return redirect("/$locale/leaderboard");
     })->name('bxh.index.no-lang');
 });
+Route::get('/lang/{locale}', [LocaleController::class, 'setLocale'])->name('change-language');
 
 Route::group(['prefix' => '{locale_code}', 'middleware' => 'localization'], function () {
 // Route::middleware(['localization'])->group(function () {
