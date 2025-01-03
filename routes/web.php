@@ -75,40 +75,6 @@ Route::middleware(['redirector'])->group(function () {
 });
 Route::get('/lang/{locale}', [LocaleController::class, 'setLocale'])->name('change-language');
 
-Route::group(['prefix' => '{locale_code}', 'middleware' => 'localization'], function () {
-// Route::middleware(['localization'])->group(function () {
-    Route::get('/', [HomeController::class, 'index'])->name('index');
-    // Route::get('/logout', [HomeController::class, 'logout'])->name('logout');
-    // Route::get('/tu-van', [HomeController::class, 'advise'])->name('advise');
-    Route::get('/tip', [ClientTipController::class, 'index'])->name('tip.list');
-    Route::any('/booker', [ClientBookerController::class, 'index'])->name('booker.list');
-    Route::any('/user/{id}', [ClientUserController::class, 'detail'])->name('user.detail');
-    Route::any('/booker/{alias}', [ClientBookerController::class, 'detail'])->name('booker.detail');
-    Route::get('/bookers/{slug}', [ClientBookerController::class, 'filter'])->name('booker.filter');
-    // Route::any('/gioi-thieu', [HomeController::class, 'about'])->name('about');
-    Route::get('/home', [HomeController::class, 'index'])->name('home');
-    // Route::any('/lien-he', [HomeController::class, 'contact'])->name('contact');
-    // Route::get('/san-pham/{alias}', [App\Http\Controllers\ProductController::class, 'detail'])->name('product.detail');
-    // Route::get('/search', [App\Http\Controllers\ProductController::class, 'searchByKeyword'])->name('product.search');
-    // Route::get('/danh-muc/{alias}', [App\Http\Controllers\ProductController::class, 'catalogue'])->name('product.catalogue');
-    Route::get('/news/', [App\Http\Controllers\PostController::class, 'index'])->name('post.list');
-    Route::get('/news-category/{alias}', [App\Http\Controllers\PostController::class, 'category'])->name('post.category');
-    Route::get('/news/search', [App\Http\Controllers\PostController::class, 'search'])->name('post.search');
-    Route::get('/news/{alias}', [App\Http\Controllers\PostController::class, 'detail'])->name('post.detail');
-    Route::any('/livescore', [App\Http\Controllers\LiveScoreController::class, 'index'])->name('livescore.index');
-    Route::any('/leaderboard', [App\Http\Controllers\BXHController::class, 'index'])->name('bxh.index');
-    // Route::get('/crawl', [App\Http\Controllers\ProductController::class, 'crawl'])->name('product.crawl');
-    // Route::get('/getPrice', [App\Http\Controllers\ProductController::class, 'getPrice'])->name('getPrice');
-    // Route::get('/getThumb', [App\Http\Controllers\ProductController::class, 'getThumb'])->name('getThumb');
-    // Route::get('/addtocart', [App\Http\Controllers\ProductController::class, 'addtocart'])->name('addtocart');
-    // Route::get('/cart', [App\Http\Controllers\ProductController::class, 'cart'])->name('cart');
-    // Route::get('/gio-hang', [App\Http\Controllers\ProductController::class, 'cartIndex'])->name('cart.index');
-    // Route::get('/thanh-toan', [App\Http\Controllers\ProductController::class, 'checkout'])->name('checkout');
-    // Route::get('/remove-cart', [App\Http\Controllers\ProductController::class, 'removeFromCart'])->name('removeFromCart');
-    // Route::get('/clearcookies', [App\Http\Controllers\ProductController::class, 'clearCookie'])->name('clearcookie');
-    // Route::get('product/update-cart-item', [App\Http\Controllers\ProductController::class, 'updateCartItem'])->name('product.update-cart-item');
-});
-
 Route::middleware(['auth'])->name('admin.')->prefix('admin')->group(function () {
     Route::get('', [DashboardController::class, 'index'])->name('index');
     Route::get('logout', [DashboardController::class, 'logout'])->name('logout');
@@ -182,3 +148,39 @@ Route::middleware(['auth'])->name('admin.')->prefix('admin')->group(function () 
         Route::post('', [SettingController::class, 'update'])->name('update');
     });
 });
+
+Route::group(['prefix' => '{locale_code}', 'middleware' => 'localization'], function () {
+// Route::middleware(['localization'])->group(function () {
+    Route::get('/', [HomeController::class, 'index'])->name('index');
+    // Route::get('/logout', [HomeController::class, 'logout'])->name('logout');
+    // Route::get('/tu-van', [HomeController::class, 'advise'])->name('advise');
+    Route::get('/tip', [ClientTipController::class, 'index'])->name('tip.list');
+    Route::any('/booker', [ClientBookerController::class, 'index'])->name('booker.list');
+    Route::any('/user/{id}', [ClientUserController::class, 'detail'])->name('user.detail');
+    Route::any('/booker/{alias}', [ClientBookerController::class, 'detail'])->name('booker.detail');
+    Route::get('/bookers/{slug}', [ClientBookerController::class, 'filter'])->name('booker.filter');
+    // Route::any('/gioi-thieu', [HomeController::class, 'about'])->name('about');
+    Route::get('/home', [HomeController::class, 'index'])->name('home');
+    // Route::any('/lien-he', [HomeController::class, 'contact'])->name('contact');
+    // Route::get('/san-pham/{alias}', [App\Http\Controllers\ProductController::class, 'detail'])->name('product.detail');
+    // Route::get('/search', [App\Http\Controllers\ProductController::class, 'searchByKeyword'])->name('product.search');
+    // Route::get('/danh-muc/{alias}', [App\Http\Controllers\ProductController::class, 'catalogue'])->name('product.catalogue');
+    Route::get('/news/', [App\Http\Controllers\PostController::class, 'index'])->name('post.list');
+    Route::get('/news-category/{alias}', [App\Http\Controllers\PostController::class, 'category'])->name('post.category');
+    Route::get('/news/search', [App\Http\Controllers\PostController::class, 'search'])->name('post.search');
+    Route::get('/news/{alias}', [App\Http\Controllers\PostController::class, 'detail'])->name('post.detail');
+    Route::any('/livescore', [App\Http\Controllers\LiveScoreController::class, 'index'])->name('livescore.index');
+    Route::any('/leaderboard', [App\Http\Controllers\BXHController::class, 'index'])->name('bxh.index');
+    // Route::get('/crawl', [App\Http\Controllers\ProductController::class, 'crawl'])->name('product.crawl');
+    // Route::get('/getPrice', [App\Http\Controllers\ProductController::class, 'getPrice'])->name('getPrice');
+    // Route::get('/getThumb', [App\Http\Controllers\ProductController::class, 'getThumb'])->name('getThumb');
+    // Route::get('/addtocart', [App\Http\Controllers\ProductController::class, 'addtocart'])->name('addtocart');
+    // Route::get('/cart', [App\Http\Controllers\ProductController::class, 'cart'])->name('cart');
+    // Route::get('/gio-hang', [App\Http\Controllers\ProductController::class, 'cartIndex'])->name('cart.index');
+    // Route::get('/thanh-toan', [App\Http\Controllers\ProductController::class, 'checkout'])->name('checkout');
+    // Route::get('/remove-cart', [App\Http\Controllers\ProductController::class, 'removeFromCart'])->name('removeFromCart');
+    // Route::get('/clearcookies', [App\Http\Controllers\ProductController::class, 'clearCookie'])->name('clearcookie');
+    // Route::get('product/update-cart-item', [App\Http\Controllers\ProductController::class, 'updateCartItem'])->name('product.update-cart-item');
+});
+
+
