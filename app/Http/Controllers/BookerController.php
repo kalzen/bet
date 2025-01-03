@@ -31,7 +31,7 @@ class BookerController extends Controller
         return view('booker.index', compact('bookers', 'hot_bookers', 'categories'));
     }
 
-    public function filter($slug)
+    public function filter($lang, $slug)
     {
         // get current lang 
         $bookers = Booker::whereNull('lang_parent_id')->get();
