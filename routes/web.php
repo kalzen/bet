@@ -27,6 +27,7 @@ use App\Http\Controllers\LangController;
 use App\Http\Controllers\LocaleController;
 use App\Http\Controllers\TipController as ClientTipController;
 use App\Http\Controllers\UserController as ClientUserController;
+use Illuminate\Support\Facades\App;
 use Illuminate\Support\Facades\Session;
 
 /*
@@ -45,7 +46,7 @@ Auth::routes();
 Route::get('/lang/{locale}', [LocaleController::class, 'setLocale'])->name('change-language');
 
 Route::middleware(['localization'])->group(function () {
-    $locale = Session::get('locale')??'en';
+    $locale = App::getLocale()??'en';
     Route::get('/', function () use ($locale) {
         return redirect("/$locale");
     });
@@ -120,6 +121,7 @@ Route::group(['prefix' => '{locale_code}', 'middleware' => 'localization'], func
     // Route::get('/clearcookies', [App\Http\Controllers\ProductController::class, 'clearCookie'])->name('clearcookie');
     // Route::get('product/update-cart-item', [App\Http\Controllers\ProductController::class, 'updateCartItem'])->name('product.update-cart-item');
 });
+
 Route::middleware(['auth'])->name('admin.')->prefix('admin')->group(function () {
     Route::get('', [DashboardController::class, 'index'])->name('index');
     Route::get('logout', [DashboardController::class, 'logout'])->name('logout');
