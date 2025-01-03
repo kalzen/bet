@@ -27,7 +27,6 @@ use App\Http\Controllers\LangController;
 use App\Http\Controllers\LocaleController;
 use App\Http\Controllers\TipController as ClientTipController;
 use App\Http\Controllers\UserController as ClientUserController;
-use Illuminate\Support\Facades\App;
 use Illuminate\Support\Facades\Session;
 
 /*
