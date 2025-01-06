@@ -286,7 +286,7 @@
                 @php
                     $count++;
                 @endphp
-                <a href="{{ route('booker.detail', ['locale' => Session::get('locale'), 'alias' => $booker->id]) }}" target="_blank"
+                <a href="{{ route('booker.detail',[ 'locale_code' => Session::get('locale') , 'alias' => $booker->id]) }}" target="_blank"
                     rel="nofollow noopener" title="{{ $booker->name }}"
                     class="flex flex-grow flex-row items-center bg-white p-2 shadow group hover:no-underline "
                     data-bt="tiles-betting-site-sm">
