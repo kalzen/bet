@@ -108,7 +108,7 @@
                                             title="{{ $post->title }}" class="post-border group !no-underline grid grid-cols-[165px,auto] lg:grid-cols-1 xl:grid-cols-2 gap-3 lg:gap-6 lg:border-solid lg:border-t-2 lg:border-black lg:pt-8"
                                             style="border: none; border-top: 2px solid black;" data-bt="tiles-any-cpt-lg">
                                     @else
-                                        <a href="{{ '/' . Session::get('locale') . '/news/' . $post->slug }}"
+                                        <a href="{{ route('post.detail', ['locale' => Session::get('locale'), 'alias' => $post->slug]) }}"
                                             title="{{ $post->title }}" class="post-border group !no-underline grid grid-cols-[165px,auto] lg:grid-cols-1 xl:grid-cols-2 gap-3 lg:gap-6 lg:border-solid lg:border-t-2 lg:border-black lg:pt-8"
                                             style="border: none; border-top: 2px solid black;" data-bt="tiles-any-cpt-lg">
                                     @endif
@@ -173,7 +173,7 @@
                                         title="{{ $post->title }}" class="post-border grid lg:grid-cols-1 gap-3 max-lg:grid max-lg:grid-cols-[165px,auto] max-lg:gap-3 group !no-underline {{ $count > 3 ? ' lg:border-solid lg:border-t-2 lg:border-black lg:pt-8' : '' }}"
                                         style="border: none; border-top: 2px solid black;" data-bt="tiles-any-cpt-md">
                                 @else
-                                    <a href="{{ '/' . Session::get('locale') . '/news/' . $post->slug }}"
+                                    <a href="{{ route('post.detail', ['locale' => Session::get('locale'), 'alias' => $post->slug]) }}"
                                         title="{{ $post->title }}" class="post-border grid lg:grid-cols-1 gap-3 max-lg:grid max-lg:grid-cols-[165px,auto] max-lg:gap-3 group !no-underline {{ $count > 3 ? ' lg:border-solid lg:border-t-2 lg:border-black lg:pt-8' : '' }}"
                                         style="border: none; border-top: 2px solid black;" data-bt="tiles-any-cpt-md">
                                 @endif
