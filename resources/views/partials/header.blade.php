@@ -145,7 +145,11 @@
         <div class="container">
             <div class="row">
                 <div class="col-6 col-xl-none col-lg-none col-md-block d-flex align-items-center">
-                    <a class="mobile-logo" href="{{ Session::get('locale') == config('app.locale') ? route('default.home') : route('home', ['locale' => Session::get('locale')]) }}">
+                    @if(Session::get('locale') == config('app.locale'))
+                        <a class="mobile-logo" href="{{ route('default.home') }}">
+                    @else
+                        <a class="mobile-logo" href="{{ '/' . Session::get('locale') }}">
+                    @endif
                         <img src="{{ $shared_config['logo']['value'] }}" alt="">
                     </a>
                 </div>
@@ -251,7 +255,11 @@
                             </div>
                             <div class="col-2 col-lg-2 d-xl-block d-lg-block d-md-none">
                                 <div class="logo">
-                                    <a href="{{ Session::get('locale') == config('app.locale') ? route('default.home') : route('home', ['locale' => Session::get('locale')]) }}">
+                                    @if(Session::get('locale') == config('app.locale'))
+                                        <a href="{{ route('default.home') }}">
+                                    @else
+                                        <a href="{{ '/' . Session::get('locale') }}">
+                                    @endif
                                         <img src="{{ $shared_config['logo']['value'] }}" alt="">
                                     </a>
                                 </div>

@@ -26,9 +26,12 @@
                             {{ $code->name }}
                     </div>
                         @if($booker)
-                            <a href="{{ route('booker.detail', ['locale' => Session::get('locale'), 'alias' => $booker->id]) }}" class="prd-btn-1 d-flex mt-3">
-                                <span class="ms-auto me-auto">{{ __('home.view_now') }}<i
-                                        class="fa-duotone fa-arrow-right"></i></span>
+                            @if(Session::get('locale') == config('app.locale'))
+                                <a href="{{ route('default.booker.detail', ['alias' => $booker->id]) }}" class="prd-btn-1 d-flex mt-3">
+                            @else
+                                <a href="{{ '/' . Session::get('locale') . '/booker/' . $booker->id }}" class="prd-btn-1 d-flex mt-3">
+                            @endif
+                                <span class="ms-auto me-auto">{{ __('home.view_now') }}<i class="fa-duotone fa-arrow-right"></i></span>
                             </a>
                         @else
                             <span class="prd-btn-1 d-flex mt-3 disabled">
