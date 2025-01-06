@@ -151,7 +151,10 @@ Route::middleware(['auth'])->name('admin.')->prefix('admin')->group(function () 
 
 Route::group(['prefix' => '{locale_code}', 'middleware' => 'localization'], function () {
 // Route::middleware(['localization'])->group(function () {
-    Route::get('/', [HomeController::class, 'index'])->name('index');
+    Route::get('/', [HomeController::class, 'index'])->name('home');
+    Route::get('/home', function () {
+        return redirect()->route('home');
+    })->name('index');
     // Route::get('/logout', [HomeController::class, 'logout'])->name('logout');
     // Route::get('/tu-van', [HomeController::class, 'advise'])->name('advise');
     Route::get('/tip', [ClientTipController::class, 'index'])->name('tip.list');
@@ -160,7 +163,7 @@ Route::group(['prefix' => '{locale_code}', 'middleware' => 'localization'], func
     Route::any('/booker/{alias}', [ClientBookerController::class, 'detail'])->name('booker.detail');
     Route::get('/bookers/{slug}', [ClientBookerController::class, 'filter'])->name('booker.filter');
     // Route::any('/gioi-thieu', [HomeController::class, 'about'])->name('about');
-    Route::get('/home', [HomeController::class, 'index'])->name('home');
+    // Route::get('/home', [HomeController::class, 'index'])->name('home');
     // Route::any('/lien-he', [HomeController::class, 'contact'])->name('contact');
     // Route::get('/san-pham/{alias}', [App\Http\Controllers\ProductController::class, 'detail'])->name('product.detail');
     // Route::get('/search', [App\Http\Controllers\ProductController::class, 'searchByKeyword'])->name('product.search');
