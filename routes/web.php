@@ -152,8 +152,8 @@ Route::middleware(['auth'])->name('admin.')->prefix('admin')->group(function () 
 Route::group(['prefix' => '{locale_code}', 'middleware' => 'localization'], function () {
 // Route::middleware(['localization'])->group(function () {
     Route::get('/', [HomeController::class, 'index'])->name('home');
-    Route::get('/home', function () {
-        return redirect()->route('home');
+    Route::get('/home', function ($locale_code) {
+        return redirect()->route('home', ['locale_code' => $locale_code]);
     })->name('index');
     // Route::get('/logout', [HomeController::class, 'logout'])->name('logout');
     // Route::get('/tu-van', [HomeController::class, 'advise'])->name('advise');
