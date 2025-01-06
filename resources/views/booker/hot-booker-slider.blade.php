@@ -37,16 +37,21 @@
                             </div>
                         </div>
                         <div class="d-flex justify-content-center align-items-center flex-wrap gap-1">
-                            <a href="{{ route('booker.detail', ['locale_code' => $shared_locale, 'alias' => $booker->id]) }}" class="prd-btn-1 w-100">
-                                <span class="ms-auto me-auto">{{ __('home.detail') }}</span> <i
-                                    class="fa-duotone fa-arrow-right"></i>
-                            </a>
+                            @if(Session::get('locale') == config('app.locale'))
+                                <a href="{{ route('default.booker.detail', ['alias' => $booker->id]) }}" class="prd-btn-1 w-100">
+                                    <span class="ms-auto me-auto">{{ __('home.detail') }}</span>
+                                    <i class="fa-duotone fa-arrow-right"></i>
+                                </a>
+                            @else
+                                <a href="{{ route('booker.detail', ['locale' => Session::get('locale'), 'alias' => $booker->id]) }}" class="prd-btn-1 w-100">
+                                    <span class="ms-auto me-auto">{{ __('home.detail') }}</span>
+                                    <i class="fa-duotone fa-arrow-right"></i>
+                                </a>
+                            @endif
                             <a href="{{ $booker->url }}" class="prd-btn-2 w-100">
-                                <span class="ms-auto me-auto">{{ __('home.bet') }}</span> <i
-                                    class="fa-duotone fa-arrow-right"></i>
+                                <span class="ms-auto me-auto">{{ __('home.bet') }}</span>
+                                <i class="fa-duotone fa-arrow-right"></i>
                             </a>
-                            {{-- <span class="me-2">{{ __('booker.list.code') }}:</span>
-                                <strong>{{ isset($booker->codes) && $booker->codes->isNotEmpty() ? $booker->codes->first()->name : __('booker.list.no') }}</strong> --}}
                         </div>
                     </div>
                 </li>
