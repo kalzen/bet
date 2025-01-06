@@ -175,8 +175,8 @@ Route::group([
     'where' => ['locale' => '[a-z]{2}']
 ], function () {
     Route::get('/', [HomeController::class, 'index'])->name('home');
-    Route::get('/home', function ($locale) {
-        return redirect()->route('home', ['locale' => $locale]);
+    Route::get('/home', function ($locale_code) {
+        return redirect()->route('home', ['locale_code' => $locale_code]);
     })->name('index');
     // Route::get('/logout', [HomeController::class, 'logout'])->name('logout');
     // Route::get('/tu-van', [HomeController::class, 'advise'])->name('advise');

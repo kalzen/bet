@@ -133,7 +133,7 @@
                                                             <span>{{ __('booker.list.code') }}:</span>
                                                             <strong>{{ isset($booker->codes) && $booker->codes->isNotEmpty() ? $booker->codes->first()->name : __('booker.list.no') }}</strong>
                                                         </div>
-                                                        <a href="{{ route('booker.detail', ['locale' => $shared_locale, 'alias' => $lang_booker->id]) }}"
+                                                        <a href="{{ route('booker.detail', ['locale_code' => $shared_locale, 'alias' => $lang_booker->id]) }}"
                                                             class="prd-btn-1 d-flex mt-1">
                                                             <span class="ms-auto me-auto"
                                                                 style="white-space: nowrap;">{{ __('booker.list.detail') }}

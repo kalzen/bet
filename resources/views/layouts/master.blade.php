@@ -61,7 +61,7 @@
                         <div class="part-about">
                             <div class="footer-logo aos-init" data-aos="fade-up" data-aos-delay="100"
                                 data-aos-duration="500" data-aos-easing="ease-in">
-                                <a href="{{ route('home',[ 'locale' => Session::get('locale')]) }}">
+                                <a href="{{ route('home',[ 'locale_code' => Session::get('locale')]) }}">
                                     <img src="{{ $shared_config['logo']['value'] }}" alt="" class="logo">
                                 </a>
                             </div>

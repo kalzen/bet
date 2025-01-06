@@ -101,12 +101,12 @@
                                             <span
                                                 class="post-category">{{ $post->categories[0]->getAvailableLang()->name ?? __('post.list.uncategorized') }}</span>
                                             <h3 class="blog-post-title">
-                                                <a href="{{ route('post.detail', [ 'locale' => Session::get('locale'),'alias' => $lang_post->slug]) }}">
+                                                <a href="{{ route('post.detail', [ 'locale_code' => Session::get('locale'),'alias' => $lang_post->slug]) }}">
                                                     {{ $lang_post->title }}</a>
                                             </h3>
                                             <p>{{ Str::limit($lang_post->description, 100) }}</p>
                                             <div class="post-info-stats">
-                                                <a href="{{ route('user.detail', [ 'locale' => Session::get('locale'),'id' => $post->user->id]) }}"
+                                                <a href="{{ route('user.detail', [ 'locale_code' => Session::get('locale'),'id' => $post->user->id]) }}"
                                                     class="post-creator">
                                                     <div class="creator-pic">
                                                         <img src="{{ $shared_config['logo']['value'] }}"
@@ -155,12 +155,12 @@
                                             <span
                                                 class="post-category">{{ $post->categories[0]->getAvailableLang()->name ?? __('post.list.uncategorized') }}</span>
                                             <h3 class="blog-post-title">
-                                                <a href="{{ route('post.detail', [ 'locale' => Session::get('locale'),'alias' => $lang_post->slug]) }}">
+                                                <a href="{{ route('post.detail', [ 'locale_code' => Session::get('locale'),'alias' => $lang_post->slug]) }}">
                                                     {{ $lang_post->title }}</a>
                                             </h3>
                                             <p>{{ Str::limit($lang_post->description, 100) }}</p>
                                             <div class="post-info-stats">
-                                                <a href="{{ route('user.detail', [ 'locale' => Session::get('locale'),'id' => $post->user->id]) }}"
+                                                <a href="{{ route('user.detail', [ 'locale_code' => Session::get('locale'),'id' => $post->user->id]) }}"
                                                     class="post-creator">
                                                     <div class="creator-pic">
                                                         <img src="{{ $shared_config['logo']['value'] }}"
@@ -243,7 +243,7 @@
                                                                 <div class="part-text">
                                                                     <h5 class="post-title">
                                                                         <a
-                                                                            href="{{ route('post.detail', [ 'locale' => Session::get('locale'),'alias' => $lang_post1->slug]) }}">
+                                                                            href="{{ route('post.detail', [ 'locale_code' => Session::get('locale'),'alias' => $lang_post1->slug]) }}">
                                                                             {{ $lang_post1->title }}
                                                                         </a>
                                                                     </h5>
@@ -251,14 +251,14 @@
                                                                         <span class="text">
                                                                             {{ __('post.list.by') }}
                                                                             <a class="posted-by"
-                                                                                href="{{ route('user.detail', [ 'locale' => Session::get('locale'),'id' => $post1->user->id]) }}">
+                                                                                href="{{ route('user.detail', [ 'locale_code' => Session::get('locale'),'id' => $post1->user->id]) }}">
                                                                                 {{ $post1->user->name }}
                                                                             </a>
                                                                         </span>
                                                                         <span class="text">
                                                                             {{ __('post.list.in') }}
                                                                             <a class="category-by"
-                                                                                href="{{ $post1->categories->first() ? route('post.category', ['locale' => Session::get('locale'),'alias' => $post1->categories->first()->slug]) : '#' }}">
+                                                                                href="{{ $post1->categories->first() ? route('post.category', ['locale_code' => Session::get('locale'),'alias' => $post1->categories->first()->slug]) : '#' }}">
                                                                                 {{ $post1->categories[0]->getAvailableLang()->name ?? __('post.list.uncategorized') }}
                                                                             </a>
                                                                         </span>
@@ -277,7 +277,7 @@
                                                                 <div class="part-text">
                                                                     <h5 class="post-title">
                                                                         <a
-                                                                            href="{{ route('post.detail', [ 'locale' => Session::get('locale') ,'alias' => $lang_post2->slug]) }}">
+                                                                            href="{{ route('post.detail', [ 'locale_code' => Session::get('locale') ,'alias' => $lang_post2->slug]) }}">
                                                                             {{ $lang_post2->title }}
                                                                         </a>
                                                                     </h5>
@@ -331,7 +331,7 @@
                                         @foreach ($categories as $category)
                                             @if ($category->getAvailableLang())
                                                 <li>
-                                                    <a href="{{ route('post.category', [ 'locale' => Session::get('locale') ,'alias' => $category->slug]) }}">
+                                                    <a href="{{ route('post.category', [ 'locale_code' => Session::get('locale') ,'alias' => $category->slug]) }}">
                                                         <span
                                                             class="cl-cat">{{ $category->getAvailableLang()->name }}</span>
                                                         <span class="q-numb">({{ $category->posts->count() }})</span>
