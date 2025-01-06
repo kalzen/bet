@@ -4,6 +4,7 @@ namespace App\Http\Middleware;
 
 use Closure;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\App;
 use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\Redirect;
 
@@ -18,7 +19,13 @@ class Redirector
      */
     public function handle(Request $request, Closure $next)
     {
-        $locale = Session::get('locale', config('app.locale'))??'en';
+        // dd('stop');
+        // $locale = Session::get('locale', config('app.locale'))??'en';
+        // if ($locale == 'en'){
+            Session::put('locale', 'en');
+            App::setLocale('en');
+            return $next($request);
+        // }
         // dd($locale,$request,$path = $request->path());
         // Extract the request path
         $path = $request->path();

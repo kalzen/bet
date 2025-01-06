@@ -28,6 +28,10 @@ class Localization
     {
         // locale_code
         $url_locale = $request->route('locale_code');
+        // dd($url_locale);
+        if ($url_locale == null) {
+            $url_locale = 'en';
+        }
         $twoCharKeys = array_map(function ($key) {
             return substr($key, 0, 2);
         }, array_keys($this->locales));
