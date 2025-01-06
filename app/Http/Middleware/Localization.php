@@ -26,7 +26,7 @@ class Localization
     }
     public function handle(Request $request, Closure $next)
     {
-        // locale_code
+        // locale
         $url_locale = $request->route('locale_code');
         $twoCharKeys = array_map(function ($key) {
             return substr($key, 0, 2);
