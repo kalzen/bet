@@ -10,7 +10,13 @@
                         {{-- <h2 class="text-4xl mb-4 font-bold text-green-100 lg:text-6xl">Betting News</h2> --}}
                         <div class="section-title aos-init mb-3" data-aos="fade-up" data-aos-delay="100"
                             data-aos-duration="500" data-aos-easing="ease-in">
-                            <h3 class="sub-title" onclick="window.location.href='{{ route('post.list', [ 'locale_code' => Session::get('locale') ]) }}'">{{ __('home.news') }}</h3>
+                            @if(Session::get('locale') == config('app.locale'))
+                                <h3 class="sub-title" onclick="window.location.href='{{ route('default.post.list') }}'">
+                            @else
+                                <h3 class="sub-title" onclick="window.location.href='{{ route('post.list', ['locale' => Session::get('locale')]) }}'">
+                            @endif
+                                {{ __('home.news') }}
+                            </h3>
                             <h2 class="title mb-3">{{ __('home.latest_sport_news') }}</h2>
                         </div>
                     </div>
@@ -42,10 +48,13 @@
                                         @if ($count > 0)
                                         @break;
                                     @endif
-                                    <a 
-                                        href="{{ route('post.detail', [ 'locale_code' => Session::get('locale') ,'alias' => $first_post->slug ?? $post->id]) }}"
-                                        title="{{ $first_post->title }}" class="group !no-underline "
-                                        data-bt="tiles-any-cpt-xl">
+                                    @if(Session::get('locale') == config('app.locale'))
+                                        <a href="{{ route('default.post.detail', ['alias' => $first_post->slug ?? $post->id]) }}"
+                                            title="{{ $first_post->title }}" class="group !no-underline">
+                                    @else
+                                        <a href="{{ route('post.detail', ['locale' => Session::get('locale'), 'alias' => $first_post->slug ?? $post->id]) }}"
+                                            title="{{ $first_post->title }}" class="group !no-underline">
+                                    @endif
                                         <img sizes="720px"
                                             src="{{ $first_post->images->first()->url ?? 'https://via.placeholder.com/150x100' }}"
                                             alt="{{ $first_post->title }}" width="628" height="353"
@@ -94,13 +103,15 @@
                                     @break;
                                 @endif
                                 <div class="{{ $count == 2 ? 'post-hide' : '' }}">
-                                    <a href="{{ route('post.detail', [ 'locale_code' => Session::get('locale') ,'alias' => $post->slug]) }}"
-                                        title="{{ $post->title }}"
-                                        class="post-border group !no-underline grid grid-cols-[165px,auto] lg:grid-cols-1 xl:grid-cols-2 gap-3 lg:gap-6 lg:border-solid lg:border-t-2 lg:border-black lg:pt-8"
-                                        style="
-                                            border: none;
-                                            border-top: 2px solid black;"
-                                        data-bt="tiles-any-cpt-lg">
+                                    @if(Session::get('locale') == config('app.locale'))
+                                        <a href="{{ route('default.post.detail', ['alias' => $post->slug]) }}"
+                                            title="{{ $post->title }}" class="post-border group !no-underline grid grid-cols-[165px,auto] lg:grid-cols-1 xl:grid-cols-2 gap-3 lg:gap-6 lg:border-solid lg:border-t-2 lg:border-black lg:pt-8"
+                                            style="border: none; border-top: 2px solid black;" data-bt="tiles-any-cpt-lg">
+                                    @else
+                                        <a href="{{ route('post.detail', ['locale' => Session::get('locale'), 'alias' => $post->slug]) }}"
+                                            title="{{ $post->title }}" class="post-border group !no-underline grid grid-cols-[165px,auto] lg:grid-cols-1 xl:grid-cols-2 gap-3 lg:gap-6 lg:border-solid lg:border-t-2 lg:border-black lg:pt-8"
+                                            style="border: none; border-top: 2px solid black;" data-bt="tiles-any-cpt-lg">
+                                    @endif
                                         <div class="flex items-center justify-center xl:order-2">
                                             <img sizes="360px"
                                                 src="{{ $post->images->first()->url ?? 'https://via.placeholder.com/150x100' }}"
@@ -157,13 +168,15 @@
                                     @break;
                                 @endif
                             <div class="">
-                                <a href="{{ route('post.detail', [ 'locale_code' => Session::get('locale') , 'alias' => $post->slug]) }}"
-                                    title="{{ $post->title }}"
-                                    class="post-border grid lg:grid-cols-1 gap-3 max-lg:grid max-lg:grid-cols-[165px,auto] max-lg:gap-3 group !no-underline {{ $count > 3 ? ' lg:border-solid lg:border-t-2 lg:border-black lg:pt-8' : '' }}"
-                                    style="
-                                        border: none;
-                                        border-top: 2px solid black;"
-                                    data-bt="tiles-any-cpt-md">
+                                @if(Session::get('locale') == config('app.locale'))
+                                    <a href="{{ route('default.post.detail', ['alias' => $post->slug]) }}"
+                                        title="{{ $post->title }}" class="post-border grid lg:grid-cols-1 gap-3 max-lg:grid max-lg:grid-cols-[165px,auto] max-lg:gap-3 group !no-underline {{ $count > 3 ? ' lg:border-solid lg:border-t-2 lg:border-black lg:pt-8' : '' }}"
+                                        style="border: none; border-top: 2px solid black;" data-bt="tiles-any-cpt-md">
+                                @else
+                                    <a href="{{ route('post.detail', ['locale' => Session::get('locale'), 'alias' => $post->slug]) }}"
+                                        title="{{ $post->title }}" class="post-border grid lg:grid-cols-1 gap-3 max-lg:grid max-lg:grid-cols-[165px,auto] max-lg:gap-3 group !no-underline {{ $count > 3 ? ' lg:border-solid lg:border-t-2 lg:border-black lg:pt-8' : '' }}"
+                                        style="border: none; border-top: 2px solid black;" data-bt="tiles-any-cpt-md">
+                                @endif
                                     <img sizes="360px"
                                         src="{{ $post->images->first()->url ?? 'https://via.placeholder.com/150x100' }}"
                                         alt="{{ $post->title }}"
@@ -203,10 +216,7 @@
             @endif
         </div>
         <div class="post-border order-4 col-span-12 gap-8 articles lg:order-3 lg:col-span-4 lg:border-b-2 lg:border-solid lg:border-black lg:pb-8 xl:col-span-3"
-            style="
-                            border: none;
-                            border-top: 2px solid black;"
-            data-bt="news-tabs-block-latest-posts">
+            style="border: none; border-top: 2px solid black;" data-bt="news-tabs-block-latest-posts">
             <h2 class="mt-4 text-4xl font-bold text-green-100 lg:text-gray-95 lg:mt-0 lg:text-2xl">
                 {{-- {{ __('post.list.recent') }} --}}
             </h2>
@@ -229,10 +239,17 @@
                     @if ($count > 10)
                     @break;
                 @endif
-                <a href="{{ route('post.detail', [ 'locale_code' => Session::get('locale') ,'alias' => $post->slug]) }}"
-                    title="Hard Rock Bet Forges Innovative Betting Partnership with NHL’s Florida Panthers"
-                    class="border-b border-black mt-4 mb-4 pb-2 hover:no-underline group block cursor-pointer lg:border-0 lg:border-transparent lg:mb-0 lg:pb-0 "
-                    data-bt="tiles-news-xs">
+                @if(Session::get('locale') == config('app.locale'))
+                    <a href="{{ route('default.post.detail', ['alias' => $post->slug]) }}"
+                        title="Hard Rock Bet Forges Innovative Betting Partnership with NHL’s Florida Panthers"
+                        class="border-b border-black mt-4 mb-4 pb-2 hover:no-underline group block cursor-pointer lg:border-0 lg:border-transparent lg:mb-0 lg:pb-0 "
+                        data-bt="tiles-news-xs">
+                @else
+                    <a href="{{ route('post.detail', ['locale' => Session::get('locale'), 'alias' => $post->slug]) }}"
+                        title="Hard Rock Bet Forges Innovative Betting Partnership with NHL’s Florida Panthers"
+                        class="border-b border-black mt-4 mb-4 pb-2 hover:no-underline group block cursor-pointer lg:border-0 lg:border-transparent lg:mb-0 lg:pb-0 "
+                        data-bt="tiles-news-xs">
+                @endif
                     <div class="flex items-center gap-2 text-xs text-gray-40">
                         <span class="font-semibold text-red-100"
                             data-bt="tiles-news-xs-label">{{ $post->categories[0]->getAvailableLang()->name ?? __('post.list.uncategorized') }}</span>
@@ -309,79 +326,6 @@
     </div>
 </div>
 </section>
-<script>
-    document.addEventListener('alpine:init', () => {
-        Alpine.data('news_grid', () => ({
-            active_tab: 0,
-            tabs: [
-                [{
-                    "p": 27402,
-                    "l": "NBA"
-                }, {
-                    "p": 27378,
-                    "l": "NBA"
-                }, {
-                    "p": 25956,
-                    "l": "Industry"
-                }, {
-                    "p": 25699,
-                    "l": "States"
-                }],
-                [{
-                    "p": false,
-                    "l": ""
-                }, {
-                    "p": false,
-                    "l": ""
-                }, {
-                    "p": false,
-                    "l": ""
-                }, {
-                    "p": false,
-                    "l": ""
-                }]
-            ],
-            init() {
-                this.$watch('active_tab', (val, oldVal) => {
-                    if (val !== oldVal) {
-                        this.$refs['news-grid'].classList.add('opacity-25');
-                        // fetch data
-                        fetch('https://betting.com/wp-admin/admin-ajax.php?action=news_grid', {
-                                method: 'POST',
-                                headers: {
-                                    'Content-Type': 'application/json',
-                                },
-                                'body': JSON.stringify({
-                                    tab: this.tabs[val],
-                                    nonce: '4d2882241e'
-                                }),
-                            })
-                            .then(response => {
-                                if (!response.ok) {
-                                    if (response.status === 403) {
-                                        alert(
-                                            'Your session has expired. Please refresh the page.'
-                                        );
-                                        throw new Error('Invalid nonce');
-                                    }
-                                }
-                                return response.text();
-                            })
-                            .then(data => {
-                                this.$refs['news-grid'].innerHTML = data;
-                            })
-                            .catch(error => {
-                                console.error(error)
-                            })
-                            .finally(() => {
-                                this.$refs['news-grid'].classList.remove('opacity-25');
-                            });
-                    }
-                });
-            }
-        }))
-    })
-</script>
 </div>
 </div>
 </div>
