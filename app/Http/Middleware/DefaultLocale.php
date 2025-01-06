@@ -12,19 +12,7 @@ class DefaultLocale
         $locale = session('locale', config('app.locale'));
         
         if ($locale !== config('app.locale')) {
-            $uri = $request->getRequestUri();
-            $defaultRouteName = $request->route()->getName();
-            
-            // If route is default.*, redirect to localized version
-            if (strpos($defaultRouteName, 'default.') === 0) {
-                $localizedRouteName = str_replace('default.', '', $defaultRouteName);
-                return redirect()->route($localizedRouteName, array_merge(
-                    ['locale' => $locale],
-                    $request->route()->parameters()
-                ));
-            }
-            
-            return redirect()->to('/' . $locale . $uri);
+            return redirect()->to('/' . $locale . $request->getRequestUri());
         }
 
         return $next($request);

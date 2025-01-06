@@ -153,19 +153,19 @@ Route::middleware(['auth'])->name('admin.')->prefix('admin')->group(function () 
 Route::group([
     'middleware' => ['localization', 'defaultLocale']
 ], function () {
-    Route::get('/', [HomeController::class, 'index'])->name('default.home');
-    Route::get('/home', [HomeController::class, 'index'])->name('default.index');
-    Route::get('/tip', [ClientTipController::class, 'index'])->name('default.tip.list');
-    Route::any('/booker', [ClientBookerController::class, 'index'])->name('default.booker.list');
-    Route::any('/user/{id}', [ClientUserController::class, 'detail'])->name('default.user.detail');
-    Route::any('/booker/{alias}', [ClientBookerController::class, 'detail'])->name('default.booker.detail');
-    Route::get('/bookers/{slug}', [ClientBookerController::class, 'filter'])->name('default.booker.filter');
-    Route::get('/news/', [App\Http\Controllers\PostController::class, 'index'])->name('default.post.list');
-    Route::get('/news-category/{alias}', [App\Http\Controllers\PostController::class, 'category'])->name('default.post.category');
-    Route::get('/news/search', [App\Http\Controllers\PostController::class, 'search'])->name('default.post.search');
-    Route::get('/news/{alias}', [App\Http\Controllers\PostController::class, 'detail'])->name('default.post.detail');
-    Route::any('/livescore', [App\Http\Controllers\LiveScoreController::class, 'index'])->name('default.livescore.index');
-    Route::any('/leaderboard', [App\Http\Controllers\BXHController::class, 'index'])->name('default.bxh.index');
+    Route::get('/', [HomeController::class, 'index'])->name('home');
+    Route::get('/home', [HomeController::class, 'index'])->name('index');
+    Route::get('/tip', [ClientTipController::class, 'index'])->name('tip.list');
+    Route::any('/booker', [ClientBookerController::class, 'index'])->name('booker.list');
+    Route::any('/user/{id}', [ClientUserController::class, 'detail'])->name('user.detail');
+    Route::any('/booker/{alias}', [ClientBookerController::class, 'detail'])->name('booker.detail');
+    Route::get('/bookers/{slug}', [ClientBookerController::class, 'filter'])->name('booker.filter');
+    Route::get('/news/', [App\Http\Controllers\PostController::class, 'index'])->name('post.list');
+    Route::get('/news-category/{alias}', [App\Http\Controllers\PostController::class, 'category'])->name('post.category');
+    Route::get('/news/search', [App\Http\Controllers\PostController::class, 'search'])->name('post.search');
+    Route::get('/news/{alias}', [App\Http\Controllers\PostController::class, 'detail'])->name('post.detail');
+    Route::any('/livescore', [App\Http\Controllers\LiveScoreController::class, 'index'])->name('livescore.index');
+    Route::any('/leaderboard', [App\Http\Controllers\BXHController::class, 'index'])->name('bxh.index');
 });
 
 // Non-default locale routes - with prefix
