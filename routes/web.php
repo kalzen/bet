@@ -150,9 +150,7 @@ Route::middleware(['auth'])->name('admin.')->prefix('admin')->group(function () 
 });
 
 // Default locale routes - no prefix
-Route::group([
-    'middleware' => ['localization', 'defaultLocale']
-], function () {
+Route::middleware(['localization'])->group(function () {
     Route::get('/', [HomeController::class, 'index'])->name('home');
     Route::get('/home', [HomeController::class, 'index'])->name('index');
     Route::get('/tip', [ClientTipController::class, 'index'])->name('tip.list');
@@ -166,7 +164,7 @@ Route::group([
     Route::get('/news/{alias}', [App\Http\Controllers\PostController::class, 'detail'])->name('post.detail');
     Route::any('/livescore', [App\Http\Controllers\LiveScoreController::class, 'index'])->name('livescore.index');
     Route::any('/leaderboard', [App\Http\Controllers\BXHController::class, 'index'])->name('bxh.index');
-});
+})->middleware('defaultLocale');
 
 // Non-default locale routes - with prefix
 Route::group([
