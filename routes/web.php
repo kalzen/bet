@@ -52,12 +52,12 @@ Route::middleware(['localization'])->group(function () {
     Route::any('/booker/{alias}', [ClientBookerController::class, 'detail'])->name('booker.detail');
     Route::get('/bookers/{slug}', [ClientBookerController::class, 'filter'])->name('booker.filter');
     // Route::any('/gioi-thieu', [HomeController::class, 'about'])->name('about');
-    Route::get('/home', [HomeController::class, 'index'])->name('home');
+    //Route::get('/home', [HomeController::class, 'index'])->name('home');
     // Route::any('/lien-he', [HomeController::class, 'contact'])->name('contact');
     // Route::get('/san-pham/{alias}', [App\Http\Controllers\ProductController::class, 'detail'])->name('product.detail');
     // Route::get('/search', [App\Http\Controllers\ProductController::class, 'searchByKeyword'])->name('product.search');
     // Route::get('/danh-muc/{alias}', [App\Http\Controllers\ProductController::class, 'catalogue'])->name('product.catalogue');
-    Route::get('/news/', [App\Http\Controllers\PostController::class, 'index'])->name('post.list');
+    Route::get('/news', [App\Http\Controllers\PostController::class, 'index'])->name('post.list');
     Route::get('/news-category/{alias}', [App\Http\Controllers\PostController::class, 'category'])->name('post.category');
     Route::get('/news/search', [App\Http\Controllers\PostController::class, 'search'])->name('post.search');
     Route::get('/news/{alias}', [App\Http\Controllers\PostController::class, 'detail'])->name('post.detail');
