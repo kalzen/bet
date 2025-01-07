@@ -1,6 +1,10 @@
 <!DOCTYPE html>
 <html lang="vn">
-
+@php
+    $currentLocale = App::getLocale();
+    $appUrl = env('APP_URL');
+    // dd($appUrl);
+@endphp
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 
@@ -66,7 +70,7 @@
                                         <img src="{{ $shared_config['logo']['value'] }}" alt="" class="logo">
                                     </a>
                                 @else
-                                    <a href="{{ Session::get('locale') }}">
+                                    <a href="{{ $appUrl. '/' . ($currentLocale == 'en' ? '' : $currentLocale . '/') }}">
                                         <img src="{{ $shared_config['logo']['value'] }}" alt="" class="logo">
                                     </a>
                                 @endif

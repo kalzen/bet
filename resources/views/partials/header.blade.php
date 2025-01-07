@@ -261,7 +261,7 @@
                                             <img src="{{ $shared_config['logo']['value'] }}" alt="" class="logo">
                                         </a>
                                     @else
-                                        <a href="{{ Session::get('locale') }}">
+                                        <a href="{{ $appUrl. '/' . ($currentLocale == 'en' ? '' : $currentLocale . '/') }}">
                                             <img src="{{ $shared_config['logo']['value'] }}" alt="" class="logo">
                                         </a>
                                     @endif
