@@ -172,7 +172,7 @@
                     @if ($hot_bookers->count() > 0)
                         <div class="section-title mb-3" data-aos="fade-up" data-aos-delay="100" data-aos-duration="500"
                             data-aos-easing="ease-in">
-                            <h3 class="sub-title" onclick="window.location.href='{{ route('booker.list', [ 'locale_code' => Session::get('locale') ]) }}'">{{ __('home.bookmaker') }}</h3>
+                            <h3 class="sub-title" onclick="window.location.href='{{ (Session::get('locale') == 'en') ? route('booker.list.no-lang') : route('booker.list', [ 'locale_code' => Session::get('locale') ]) }}'">{{ __('home.bookmaker') }}</h3>
                             <h2 class="title">{{ __('home.top_bookmakers') }}</h2>
                         </div>
                     @endif
@@ -218,7 +218,7 @@
         <div class="container">
             <div class="section-title aos-init mb-3" data-aos="fade-up" data-aos-delay="100" data-aos-duration="500"
                 data-aos-easing="ease-in">
-                <h3 class="sub-title" onclick="window.location.href='{{ route('tip.list', [ 'locale_code' => Session::get('locale') ]) }}'">{{ __('home.tips') }}</h3>
+                <h3 class="sub-title" onclick="window.location.href='{{ (Session::get('locale') == 'en') ? route('tip.list.no-lang') : route('tip.list', [ 'locale_code' => Session::get('locale') ]) }}'">{{ __('home.tips') }}</h3>
                 <h2 class="title">{{ __('home.today_tips') }}</h2>
             </div>
             @if ($tips->isEmpty())
@@ -227,6 +227,10 @@
                 </div>
             @endif
             @foreach ($tips as $tip)
+                @php
+                    $langTip = $tip->getAvailableLang();
+                @endphp
+                @if (!$langTip) @break @endif
                 <div class="card mb-3 p-3 col-md-12 shadow-sm" style="border-radius: 20px;">
                     <div class="row d-md-flex justify-content-evenly align-items-center">
                         <!-- Date and Time -->
