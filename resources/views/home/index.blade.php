@@ -227,10 +227,11 @@
                 </div>
             @endif
             @foreach ($tips as $tip)
+            @if ($tip->getAvailableLang())
                 @php
                     $langTip = $tip->getAvailableLang();
                 @endphp
-                @if (!$langTip) @break @endif
+                @if (!$langTip) @continue @endif
                 <div class="card mb-3 p-3 col-md-12 shadow-sm" style="border-radius: 20px;">
                     <div class="row d-md-flex justify-content-evenly align-items-center">
                         <!-- Date and Time -->
@@ -333,6 +334,7 @@
                         </div>
                     </div>
                 </div>
+                @endif
             @endforeach
 
         </div>
