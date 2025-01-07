@@ -53,7 +53,7 @@ class LocaleController extends Controller
         } else if (strpos($targetUrl, '/' . $currentLocale) !== false && substr($targetUrl, -1) !== '/') {
             $targetUrl = str_replace('/'.$currentLocale, '/'.$locale, $targetUrl);
         } else {
-            $targetUrl = str_replace('http://'.$_SERVER['HTTP_HOST'], 'http://'.$_SERVER['HTTP_HOST'].'/'.$locale, $targetUrl);
+            $targetUrl = str_replace('https://'.$_SERVER['HTTP_HOST'], 'https://'.$_SERVER['HTTP_HOST'].'/'.$locale, $targetUrl);
             // remove double slash
             // $targetUrl = str_replace('//', '/', $targetUrl);
             // dd ($targetUrl);
