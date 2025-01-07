@@ -101,13 +101,25 @@
                                             <span
                                                 class="post-category">{{ $post->categories[0]->getAvailableLang()->name ?? __('post.list.uncategorized') }}</span>
                                             <h3 class="blog-post-title">
-                                                <a href="{{ route('post.detail', [ 'locale_code' => Session::get('locale'),'alias' => $lang_post->slug]) }}">
-                                                    {{ $lang_post->title }}</a>
+                                                @if (Session::get('locale') == 'en')
+                                                    <a href="{{ route('post.detail.no-lang', ['alias' => $lang_post->slug]) }}">
+                                                        {{ $lang_post->title }}
+                                                    </a>
+                                                @else
+                                                    <a href="{{ route('post.detail', [ 'locale_code' => Session::get('locale'),'alias' => $lang_post->slug]) }}">
+                                                        {{ $lang_post->title }}
+                                                    </a>
+                                                @endif
                                             </h3>
                                             <p>{{ Str::limit($lang_post->description, 100) }}</p>
                                             <div class="post-info-stats">
-                                                <a href="{{ route('user.detail', [ 'locale_code' => Session::get('locale'),'id' => $post->user->id]) }}"
-                                                    class="post-creator">
+                                                @if (Session::get('locale') == 'en')
+                                                    <a href="{{ route('user.detail.no-lang', ['id' => $post->user->id]) }}"
+                                                        class="post-creator">
+                                                @else
+                                                    <a href="{{ route('user.detail', [ 'locale_code' => Session::get('locale'),'id' => $post->user->id]) }}"
+                                                        class="post-creator">
+                                                @endif
                                                     <div class="creator-pic">
                                                         <img src="{{ $shared_config['logo']['value'] }}"
                                                             alt="{{ $post->user->name }}">
@@ -155,13 +167,25 @@
                                             <span
                                                 class="post-category">{{ $post->categories[0]->getAvailableLang()->name ?? __('post.list.uncategorized') }}</span>
                                             <h3 class="blog-post-title">
-                                                <a href="{{ route('post.detail', [ 'locale_code' => Session::get('locale'),'alias' => $lang_post->slug]) }}">
-                                                    {{ $lang_post->title }}</a>
+                                                @if (Session::get('locale') == 'en')
+                                                    <a href="{{ route('post.detail.no-lang', ['alias' => $lang_post->slug]) }}">
+                                                        {{ $lang_post->title }}
+                                                    </a>
+                                                @else
+                                                    <a href="{{ route('post.detail', [ 'locale_code' => Session::get('locale'),'alias' => $lang_post->slug]) }}">
+                                                        {{ $lang_post->title }}
+                                                    </a>
+                                                @endif
                                             </h3>
                                             <p>{{ Str::limit($lang_post->description, 100) }}</p>
                                             <div class="post-info-stats">
-                                                <a href="{{ route('user.detail', [ 'locale_code' => Session::get('locale'),'id' => $post->user->id]) }}"
-                                                    class="post-creator">
+                                                @if (Session::get('locale') == 'en')
+                                                    <a href="{{ route('user.detail.no-lang', ['id' => $post->user->id]) }}"
+                                                        class="post-creator">
+                                                @else
+                                                    <a href="{{ route('user.detail', [ 'locale_code' => Session::get('locale'),'id' => $post->user->id]) }}"
+                                                        class="post-creator">
+                                                @endif
                                                     <div class="creator-pic">
                                                         <img src="{{ $shared_config['logo']['value'] }}"
                                                             alt="{{ $post->user->name }}">
@@ -242,25 +266,44 @@
                                                             <div class="single-recent-post">
                                                                 <div class="part-text">
                                                                     <h5 class="post-title">
-                                                                        <a
-                                                                            href="{{ route('post.detail', [ 'locale_code' => Session::get('locale'),'alias' => $lang_post1->slug]) }}">
-                                                                            {{ $lang_post1->title }}
-                                                                        </a>
+                                                                        @if (Session::get('locale') == 'en')
+                                                                            <a href="{{ route('post.detail.no-lang', ['alias' => $lang_post1->slug]) }}">
+                                                                                {{ $lang_post1->title }}
+                                                                            </a>
+                                                                        @else
+                                                                            <a href="{{ route('post.detail', [ 'locale_code' => Session::get('locale'),'alias' => $lang_post1->slug]) }}">
+                                                                                {{ $lang_post1->title }}
+                                                                            </a>
+                                                                        @endif
                                                                     </h5>
                                                                     <div class="post-stats">
                                                                         <span class="text">
                                                                             {{ __('post.list.by') }}
-                                                                            <a class="posted-by"
-                                                                                href="{{ route('user.detail', [ 'locale_code' => Session::get('locale'),'id' => $post1->user->id]) }}">
-                                                                                {{ $post1->user->name }}
-                                                                            </a>
+                                                                            @if (Session::get('locale') == 'en')
+                                                                                <a class="posted-by"
+                                                                                    href="{{ route('user.detail.no-lang', ['id' => $post1->user->id]) }}">
+                                                                                    {{ $post1->user->name }}
+                                                                                </a>
+                                                                            @else
+                                                                                <a class="posted-by"
+                                                                                    href="{{ route('user.detail', [ 'locale_code' => Session::get('locale'),'id' => $post1->user->id]) }}">
+                                                                                    {{ $post1->user->name }}
+                                                                                </a>
+                                                                            @endif
                                                                         </span>
                                                                         <span class="text">
                                                                             {{ __('post.list.in') }}
-                                                                            <a class="category-by"
-                                                                                href="{{ $post1->categories->first() ? route('post.category', ['locale_code' => Session::get('locale'),'alias' => $post1->categories->first()->slug]) : '#' }}">
-                                                                                {{ $post1->categories[0]->getAvailableLang()->name ?? __('post.list.uncategorized') }}
-                                                                            </a>
+                                                                            @if (Session::get('locale') == 'en')
+                                                                                <a class="category-by"
+                                                                                    href="{{ $post1->categories->first() ? route('post.category.no-lang', ['alias' => $post1->categories->first()->slug]) : '#' }}">
+                                                                                    {{ $post1->categories[0]->getAvailableLang()->name ?? __('post.list.uncategorized') }}
+                                                                                </a>
+                                                                            @else
+                                                                                <a class="category-by"
+                                                                                    href="{{ $post1->categories->first() ? route('post.category', [ 'locale_code' => Session::get('locale'),'alias' => $post1->categories->first()->slug]) : '#' }}">
+                                                                                    {{ $post1->categories[0]->getAvailableLang()->name ?? __('post.list.uncategorized') }}
+                                                                                </a>
+                                                                            @endif
                                                                         </span>
                                                                     </div>
                                                                 </div>
@@ -276,10 +319,15 @@
                                                             <div class="single-recent-post">
                                                                 <div class="part-text">
                                                                     <h5 class="post-title">
-                                                                        <a
-                                                                            href="{{ route('post.detail', [ 'locale_code' => Session::get('locale') ,'alias' => $lang_post2->slug]) }}">
-                                                                            {{ $lang_post2->title }}
-                                                                        </a>
+                                                                        @if (Session::get('locale') == 'en')
+                                                                            <a href="{{ route('post.detail.no-lang', ['alias' => $lang_post2->slug]) }}">
+                                                                                {{ $lang_post2->title }}
+                                                                            </a>
+                                                                        @else
+                                                                            <a href="{{ route('post.detail', [ 'locale_code' => Session::get('locale'),'alias' => $lang_post2->slug]) }}">
+                                                                                {{ $lang_post2->title }}
+                                                                            </a>
+                                                                        @endif
                                                                     </h5>
                                                                     <div class="post-stats">
                                                                         <span class="text">
