@@ -104,8 +104,15 @@
                                         </div>
                                     </div>
                                     <div class="col-lg-3 col-md-3 col-3 text-end pe-3">
-                                        <a href="{{ route('booker.detail', [ 'locale_code' => Session::get('locale'), 'alias' => $booker->id]) }}" class="prd-btn-1"><small
-                                                class="text-small" style="white-space: nowrap;">{{ __('home.view') }}</small></a>
+                                        @if (Session::get('locale') == 'en')
+                                            <a href="{{ route('booker.detail.no-lang', ['alias' => $booker->id]) }}" class="prd-btn-1">
+                                                <small class="text-small" style="white-space: nowrap;">{{ __('home.view') }}</small>
+                                            </a>
+                                        @else
+                                            <a href="{{ route('booker.detail', [ 'locale_code' => Session::get('locale'), 'alias' => $booker->id]) }}" class="prd-btn-1">
+                                                <small class="text-small" style="white-space: nowrap;">{{ __('home.view') }}</small>
+                                            </a>
+                                        @endif
                                         {{-- <a href="{{ route('booker.detail', $code->booker->id) }}" class="prd-btn-1 d-flex mt-3">
                                     <span class="ms-auto me-auto">XEM NGAY<i class="fa-duotone fa-arrow-right"></i></span> 
                                     </a> --}}

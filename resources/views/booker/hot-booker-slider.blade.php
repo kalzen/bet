@@ -37,10 +37,17 @@
                             </div>
                         </div>
                         <div class="d-flex justify-content-center align-items-center flex-wrap gap-1">
-                            <a href="{{ route('booker.detail', ['locale_code' => $shared_locale, 'alias' => $booker->id]) }}" class="prd-btn-1 w-100">
-                                <span class="ms-auto me-auto">{{ __('home.detail') }}</span> <i
-                                    class="fa-duotone fa-arrow-right"></i>
-                            </a>
+                            @if (Session::get('locale') == 'en')
+                                <a href="{{ route('booker.detail.no-lang', ['alias' => $booker->id]) }}" class="prd-btn-1 w-100">
+                                    <span class="ms-auto me-auto">{{ __('home.detail') }}</span> <i
+                                        class="fa-duotone fa-arrow-right"></i>
+                                </a>
+                            @else
+                                <a href="{{ route('booker.detail', [ 'locale_code' => Session::get('locale'),'alias' => $booker->id]) }}" class="prd-btn-1 w-100">
+                                    <span class="ms-auto me-auto">{{ __('home.detail') }}</span> <i
+                                        class="fa-duotone fa-arrow-right"></i>
+                                </a>
+                            @endif
                             <a href="{{ $booker->url }}" class="prd-btn-2 w-100">
                                 <span class="ms-auto me-auto">{{ __('home.bet') }}</span> <i
                                     class="fa-duotone fa-arrow-right"></i>

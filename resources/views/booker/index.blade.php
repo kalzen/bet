@@ -133,12 +133,19 @@
                                                             <span>{{ __('booker.list.code') }}:</span>
                                                             <strong>{{ isset($booker->codes) && $booker->codes->isNotEmpty() ? $booker->codes->first()->name : __('booker.list.no') }}</strong>
                                                         </div>
-                                                        <a href="{{ route('booker.detail', ['locale_code' => $shared_locale, 'alias' => $lang_booker->id]) }}"
-                                                            class="prd-btn-1 d-flex mt-1">
-                                                            <span class="ms-auto me-auto"
-                                                                style="white-space: nowrap;">{{ __('booker.list.detail') }}
-                                                                <i class="fa-duotone fa-arrow-right"></i></span>
-                                                        </a>
+                                                        @if (Session::get('locale') == 'en')
+                                                            <a href="{{ route('booker.detail.no-lang', ['alias' => $lang_booker->id]) }}" class="prd-btn-1 d-flex mt-1">
+                                                                <span class="ms-auto me-auto" style="white-space: nowrap;">
+                                                                    {{ __('booker.list.detail') }} <i class="fa-duotone fa-arrow-right"></i>
+                                                                </span>
+                                                            </a>
+                                                        @else
+                                                            <a href="{{ route('booker.detail', ['locale_code' => $shared_locale, 'alias' => $lang_booker->id]) }}" class="prd-btn-1 d-flex mt-1">
+                                                                <span class="ms-auto me-auto" style="white-space: nowrap;">
+                                                                    {{ __('booker.list.detail') }} <i class="fa-duotone fa-arrow-right"></i>
+                                                                </span>
+                                                            </a>
+                                                        @endif
                                                     </div>
 
                                                     <div class="col-12 text-center mt-3">
