@@ -379,11 +379,18 @@
                                         @foreach ($categories as $category)
                                             @if ($category->getAvailableLang())
                                                 <li>
-                                                    <a href="{{ route('post.category', [ 'locale_code' => Session::get('locale') ,'alias' => $category->slug]) }}">
-                                                        <span
-                                                            class="cl-cat">{{ $category->getAvailableLang()->name }}</span>
-                                                        <span class="q-numb">({{ $category->posts->count() }})</span>
-                                                    </a>
+                                                    {{-- <a href="{{ route('post.category', [ 'locale_code' => Session::get('locale') ,'alias' => $category->slug]) }}"> --}}
+                                                    @if (Session::get('locale') == 'en')
+                                                        <a href="{{ route('post.list.no-lang') }}">
+                                                            <span class="cl-cat">{{ $category->getAvailableLang()->name }}</span>
+                                                            <span class="q-numb">({{ $category->posts->count() }})</span>
+                                                        </a>
+                                                    @else
+                                                        <a href="{{ route('post.list', ['locale_code' => Session::get('locale')]) }}">
+                                                            <span class="cl-cat">{{ $category->getAvailableLang()->name }}</span>
+                                                            <span class="q-numb">({{ $category->posts->count() }})</span>
+                                                        </a>
+                                                    @endif
                                                 </li>
                                             @endif
                                         @endforeach
