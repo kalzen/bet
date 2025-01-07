@@ -30,9 +30,13 @@
                             class="form-group
                             @if (isset($record) && $record->langParent) d-none @endif
                         ">
-                            <label class="font-weight-semibold">Link</label>
-                            <input type="text" class="form-control" id="url" name="url"
-                                value="{{ old('url') ?: $record->url ?? '' }}">
+                            <label class="font-weight-semibold">Trang (Không sửa nếu chưa rõ)</label>
+                            <select class="form-control" id="url" name="url">
+                                <option value="">Chọn một trang</option>
+                                @foreach (['home', 'tip', 'booker', 'booker/promotion', 'booker/cassino', 'booker/slot-ranhura', 'booker/esportes', 'booker/horse-racing', 'news', 'livescore', 'leaderboard', 'user/1'] as $route)
+                                    <option value="{{ $route=='home'?'':$route }}" {{ old('url') == $route || (isset($record) && $record->url == $route) ? 'selected' : '' }}>{{ $route }}</option>
+                                @endforeach
+                            </select>
                             @error('url')
                                 <label id="url-error" class="validation-invalid-label"
                                     for="url">{{ $message }}</label>
