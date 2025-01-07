@@ -26,10 +26,15 @@
                             {{ $code->name }}
                     </div>
                         @if($booker)
-                            <a href="{{ route('booker.detail', ['locale_code' => $shared_locale, 'alias' => $booker->langParent??$booker->langParent->id??$booker->id]) }}" class="prd-btn-1 d-flex mt-3">
-                                <span class="ms-auto me-auto">{{ __('home.view_now') }}<i
-                                        class="fa-duotone fa-arrow-right"></i></span>
-                            </a>
+                            @if (Session::get('locale') == 'en')
+                                <a href="{{ route('booker.detail.no-lang', ['alias' => $booker->langParent ?? $booker->langParent->id ?? $booker->id]) }}" class="prd-btn-1 d-flex mt-3">
+                                    <span class="ms-auto me-auto">{{ __('home.view_now') }}<i class="fa-duotone fa-arrow-right"></i></span>
+                                </a>
+                            @else
+                                <a href="{{ route('booker.detail', ['locale_code' => Session::get('locale'), 'alias' => $booker->langParent ?? $booker->langParent->id ?? $booker->id]) }}" class="prd-btn-1 d-flex mt-3">
+                                    <span class="ms-auto me-auto">{{ __('home.view_now') }}<i class="fa-duotone fa-arrow-right"></i></span>
+                                </a>
+                            @endif
                         @else
                             <span class="prd-btn-1 d-flex mt-3 disabled">
                                 <span class="ms-auto me-auto">{{ __('home.view_now') }}<i
