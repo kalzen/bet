@@ -203,7 +203,7 @@ Route::middleware(['redirector'])->group(function () {
     $locale = 'en';
     Route::get('/', function () use ($locale) {
         return app(HomeController::class)->index($locale);
-    });
+    })->name('index.no-lang');
     Route::get('/tip', function () use ($locale) {
         return app(ClientTipController::class)->index($locale);
     })->name('tip.list.no-lang');

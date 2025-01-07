@@ -256,9 +256,15 @@
                             </div>
                             <div class="col-2 col-lg-2 d-xl-block d-lg-block d-md-none">
                                 <div class="logo">
-                                    <a href="{{ route('home',[ 'locale_code' => Session::get('locale')]) }}">
-                                        <img src="{{ $shared_config['logo']['value'] }}" alt="">
-                                    </a>
+                                    @if (Session::get('locale') == 'en')
+                                        <a href="/">
+                                            <img src="{{ $shared_config['logo']['value'] }}" alt="" class="logo">
+                                        </a>
+                                    @else
+                                        <a href="{{ Session::get('locale') }}">
+                                            <img src="{{ $shared_config['logo']['value'] }}" alt="" class="logo">
+                                        </a>
+                                    @endif
                                 </div>
                             </div>
                             <div class="col-xl-5 col-lg-5">

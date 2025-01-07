@@ -61,9 +61,15 @@
                         <div class="part-about">
                             <div class="footer-logo aos-init" data-aos="fade-up" data-aos-delay="100"
                                 data-aos-duration="500" data-aos-easing="ease-in">
-                                <a href="{{ route('home',[ 'locale_code' => Session::get('locale')]) }}">
-                                    <img src="{{ $shared_config['logo']['value'] }}" alt="" class="logo">
-                                </a>
+                                @if (Session::get('locale') == 'en')
+                                    <a href="/">
+                                        <img src="{{ $shared_config['logo']['value'] }}" alt="" class="logo">
+                                    </a>
+                                @else
+                                    <a href="{{ Session::get('locale') }}">
+                                        <img src="{{ $shared_config['logo']['value'] }}" alt="" class="logo">
+                                    </a>
+                                @endif
                             </div>
                             {{-- <p data-aos="fade-up" data-aos-delay="150" data-aos-duration="500" data-aos-easing="ease-in" class="aos-init">This allows bettors to bet over or under the bookmaker's score,<br> and indicate what they believe the difference in points will be.</p> --}}
                             <ul class="importants-links">
