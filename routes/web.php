@@ -97,6 +97,11 @@ Route::middleware(['auth'])->name('admin.')->prefix('admin')->group(function () 
         Route::post('lang', [PostController::class, 'lang'])->name('lang');
         Route::post('remove-bind', [PostController::class, 'removeBind'])->name('removeBind');
     });
+    
+    Route::prefix('tip')->name('tip.')->group(function () {
+        Route::post('lang', [TipController::class, 'lang'])->name('lang');
+        Route::post('remove-bind', [TipController::class, 'removeBind'])->name('removeBind');
+    });
     Route::prefix('assigned-content')->name('assigned-content.')->group(function () {
         Route::post('lang', [AssignedContentController::class, 'lang'])->name('lang');
         Route::post('remove-bind', [AssignedContentController::class, 'removeBind'])->name('removeBind');
