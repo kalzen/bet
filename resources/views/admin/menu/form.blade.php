@@ -33,7 +33,7 @@
                             <label class="font-weight-semibold">Trang (Không sửa nếu chưa rõ)</label>
                             <select class="form-control" id="url" name="url">
                                 <option value="">Chọn một trang</option>
-                                @foreach (['home', 'tip', 'booker', 'booker/promotion', 'booker/cassino', 'booker/slot-ranhura', 'booker/esportes', 'booker/horse-racing', 'news', 'livescore', 'leaderboard', 'user/1'] as $route)
+                                @foreach (['home', 'tip', 'booker', 'bookers/promotion', 'bookers/cassino', 'bookers/slot-ranhura', 'bookers/esportes', 'bookers/horse-racing', 'news', 'livescore', 'leaderboard', 'user/1'] as $route)
                                     <option value="{{ $route=='home'?'':$route }}" {{ old('url') == $route || (isset($record) && $record->url == $route) ? 'selected' : '' }}>{{ $route }}</option>
                                 @endforeach
                             </select>
