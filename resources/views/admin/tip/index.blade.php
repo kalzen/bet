@@ -9,9 +9,11 @@
                 <table class="table table-bordered">
                     <thead>
                         <tr>
-                            <th>#</th>
+                            {{-- <th>#</th> --}}
                             <th>Team 1</th>
                             <th>Team 2</th>
+                            <th>Ngôn ngữ gốc</th>
+                            <th>Ngôn ngữ khác</th>
                             <th>Thời gian</th>
                             <th></th>
                         </tr>
@@ -19,9 +21,9 @@
                     <tbody>
                         @foreach($records as $record)
                         <tr>
-                            <td>
+                            {{-- <td>
                                 <input type="checkbox" name="ids[]" value="{{$record->id}}" class="form-input-styled">
-                            </td>
+                            </td> --}}
                             <td>
                                 <a href="{{route('admin.tip.edit', $record->id)}}">
                                     @if($record->logo_team_1)
@@ -31,16 +33,36 @@
                                 </a>
                             </td>
                             <td>
-                                @if($record->logo_team_2)
-                                <img src="{{$record->logo_team_2}}" height="50">
-                                {{$record->name_team_2}}
-                                @endif
+                                <a href="{{route('admin.tip.edit', $record->id)}}">
+                                    @if($record->logo_team_2)
+                                    <img src="{{$record->logo_team_2}}" height="50">
+                                    {{$record->name_team_2}}
+                                    @endif
+                                </a>
+                            </td>
+                            <td>
+                                <a href="{{route('admin.tip.edit', $record->id)}}">
+                                    <span class="badge bg-info">
+                                        {{ $record->langs ? $record->langs->name : 'Không có sẵn' }}
+                                    </span>
+                                </a>
+                            </td>
+                            <td>
+                                @php
+                                    $langNames = [];
+                                @endphp
+                                @foreach($record->langChildren as $child)
+                                    @php
+                                        $langNames[] = '<a href="' . route('admin.tip.edit', $child->id) . '"><span class="badge bg-success">' . ($child->langs ? $child->langs->name : 'Không có sẵn') . '</span></a>';
+                                    @endphp
+                                @endforeach
+                                {!! implode(' ', $langNames) !!}
                             </td>
                             <td>
                                 {{$record->date}}
                             </td>
                             <td>
-                                <a href="{{route('admin.tip.edit', $record->id)}}">Sửa</a>
+                                {{-- <a href="{{route('admin.tip.edit', $record->id)}}">Sửa</a> --}}
                                 <a href="javascript:;" class="js-delete text-danger" data-key="{{$record->id}}" title="Xóa"><i class="icon-trash"></i></a>
                             </td>
                         </tr>
@@ -60,34 +82,34 @@
         </div>
     </div>
     <!-- /bordered card body table -->
-<script>
+    <script>
     
-    $('.js-delete').on('click', function() {
-        let id = $(this).data('key')
-        swal({
-            title: 'Bạn chắc chắn muốn xóa?',
-            text: "Thao tác sẽ không thể hoàn tác!",
-            type: 'warning',
-            showCancelButton: true,
-            confirmButtonText: 'Xác nhận xóa!',
-            cancelButtonText: 'Hủy',
-            confirmButtonClass: 'btn btn-danger',
-            cancelButtonClass: 'btn btn-default',
-            buttonsStyling: false
-        }).then(function (res) {
-            if (res.value) {
-                $.ajax({
-                    url: '{{route('admin.tip.destroy','idx')}}'.replace(/idx/, id),
-                    method:'DELETE',data:{_token:'{{csrf_token()}}'},dataType:'json',
-                    success:function(resp) {
-                        toastr[resp.success ? 'success' : 'error'](resp.message)
-                        setTimeout(function() {
-                            location.reload();
-                        }, 1000);
-                    }
-                })
-            }
-        }, function (dismiss) {});
-    });
-</script>
+        $('.js-delete').on('click', function() {
+            let id = $(this).data('key')
+            swal({
+                title: 'Bạn chắc chắn muốn xóa?',
+                text: "Thao tác sẽ không thể hoàn tác!",
+                type: 'warning',
+                showCancelButton: true,
+                confirmButtonText: 'Xác nhận xóa!',
+                cancelButtonText: 'Hủy',
+                confirmButtonClass: 'btn btn-danger',
+                cancelButtonClass: 'btn btn-default',
+                buttonsStyling: false
+            }).then(function (res) {
+                if (res.value) {
+                    $.ajax({
+                        url: '{{route('admin.tip.destroy','idx')}}'.replace(/idx/, id),
+                        method:'DELETE',data:{_token:'{{csrf_token()}}'},dataType:'json',
+                        success:function(resp) {
+                            toastr[resp.success ? 'success' : 'error'](resp.message)
+                            setTimeout(function() {
+                                location.reload();
+                            }, 1000);
+                        }
+                    })
+                }
+            }, function (dismiss) {});
+        });
+    </script>
 @endsection
