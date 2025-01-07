@@ -43,7 +43,7 @@
                                         @break;
                                     @endif
                                     <a 
-                                        href="{{ route('post.detail', [ 'locale_code' => Session::get('locale') ,'alias' => $first_post->slug ?? $post->id]) }}"
+                                        href="{{ Session::get('locale') == 'en' ? route('post.detail.no-lang', ['alias' => $first_post->slug ?? $post->id]) : route('post.detail', ['locale_code' => Session::get('locale'), 'alias' => $first_post->slug ?? $post->id]) }}"
                                         title="{{ $first_post->title }}" class="group !no-underline "
                                         data-bt="tiles-any-cpt-xl">
                                         <img sizes="720px"
@@ -94,7 +94,7 @@
                                     @break;
                                 @endif
                                 <div class="{{ $count == 2 ? 'post-hide' : '' }}">
-                                    <a href="{{ route('post.detail', [ 'locale_code' => Session::get('locale') ,'alias' => $post->slug]) }}"
+                                    <a href="{{ (Session::get('locale') == 'en') ? route('post.detail.no-lang', $post->slug) : route('post.detail', [ 'locale_code' => Session::get('locale') ,'alias' => $post->slug]) }}"
                                         title="{{ $post->title }}"
                                         class="post-border group !no-underline grid grid-cols-[165px,auto] lg:grid-cols-1 xl:grid-cols-2 gap-3 lg:gap-6 lg:border-solid lg:border-t-2 lg:border-black lg:pt-8"
                                         style="
@@ -157,7 +157,7 @@
                                     @break;
                                 @endif
                             <div class="">
-                                <a href="{{ route('post.detail', [ 'locale_code' => Session::get('locale') , 'alias' => $post->slug]) }}"
+                                <a href="{{ (Session::get('locale') == 'en') ? route('post.detail.no-lang', $post->slug) : route('post.detail', [ 'locale_code' => Session::get('locale') , 'alias' => $post->slug]) }}"
                                     title="{{ $post->title }}"
                                     class="post-border grid lg:grid-cols-1 gap-3 max-lg:grid max-lg:grid-cols-[165px,auto] max-lg:gap-3 group !no-underline {{ $count > 3 ? ' lg:border-solid lg:border-t-2 lg:border-black lg:pt-8' : '' }}"
                                     style="
@@ -229,7 +229,7 @@
                     @if ($count > 10)
                     @break;
                 @endif
-                <a href="{{ route('post.detail', [ 'locale_code' => Session::get('locale') ,'alias' => $post->slug]) }}"
+                <a href="{{ (Session::get('locale') == 'en') ? route('post.detail.no-lang', $post->slug) : route('post.detail', [ 'locale_code' => Session::get('locale') ,'alias' => $post->slug]) }}"
                     title="Hard Rock Bet Forges Innovative Betting Partnership with NHL’s Florida Panthers"
                     class="border-b border-black mt-4 mb-4 pb-2 hover:no-underline group block cursor-pointer lg:border-0 lg:border-transparent lg:mb-0 lg:pb-0 "
                     data-bt="tiles-news-xs">
@@ -269,7 +269,8 @@
                 @php
                     $count++;
                 @endphp
-                <a href="{{ route('booker.detail',[ 'locale_code' => Session::get('locale') , 'alias' => $booker->id]) }}" target="_blank"
+                <a href="{{ (Session::get('locale') == 'en') ? route('booker.detail.no-lang', $booker->id) : route('booker.detail', [ 'locale_code' => Session::get('locale') , 'alias' => $booker->id]) }}"
+                    target="_blank"
                     rel="nofollow noopener" title="{{ $booker->name }}"
                     class="flex flex-grow flex-row items-center bg-white p-2 shadow group hover:no-underline "
                     data-bt="tiles-betting-site-sm">
