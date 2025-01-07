@@ -7,9 +7,10 @@ use Illuminate\Http\Request;
 
 class UserController extends Controller
 {
-    public function detail(Request $request)
+    public function detail($lang, $id)
     {
-        $id = $request->id;
+        // dd($lang, $request);
+        // $id = $request->id;
         $user = User::find($id);
         return view('user.detail', compact('user'));
     }
