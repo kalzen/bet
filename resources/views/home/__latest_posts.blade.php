@@ -1,6 +1,6 @@
 <link rel="stylesheet" href="{{ asset('bet/latest_posts.css') }}">
 <div class="latest-posts">
-    <div class=" container py-8 px-4">
+    <div class=" container pt-8 pb-0 px-4">
         <div class="wp-block-container ">
             <div class="wp-block-news-tabs">
                 <section class="grid grid-cols-12 gap-6 news-grid pt-12 lg:py-12 xl:gap-8"
@@ -10,7 +10,7 @@
                         {{-- <h2 class="text-4xl mb-4 font-bold text-green-100 lg:text-6xl">Betting News</h2> --}}
                         <div class="section-title aos-init mb-3" data-aos="fade-up" data-aos-delay="100"
                             data-aos-duration="500" data-aos-easing="ease-in">
-                            <h3 class="sub-title" onclick="window.location.href='{{ (Session::get('locale') == 'en') ? route('post.list.no-lang') : route('post.list', [ 'locale_code' => Session::get('locale') ]) }}'">{{ __('home.news') }}</h3>
+                            {{-- <h3 class="sub-title" onclick="window.location.href='{{ (Session::get('locale') == 'en') ? route('post.list.no-lang') : route('post.list', [ 'locale_code' => Session::get('locale') ]) }}'">{{ __('home.news') }}</h3> --}}
                             <h2 class="title mb-3">{{ __('home.latest_sport_news') }}</h2>
                         </div>
                     </div>

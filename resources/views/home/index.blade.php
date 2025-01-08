@@ -24,6 +24,9 @@
             position: relative;
             margin: -20px -30px 30px 0px;
         }
+        .sub-title{
+            cursor: pointer;
+        }
     </style>
     <link rel="stylesheet" href="{{ asset('bet/home.css') }}">
     <!-- banner begin -->
@@ -183,17 +186,25 @@
                     @if ($hot_bookers->count() > 0)
                         <div class="section-title mb-3" data-aos="fade-up" data-aos-delay="100" data-aos-duration="500"
                             data-aos-easing="ease-in">
-                            <h3 class="sub-title" onclick="window.location.href='{{ (Session::get('locale') == 'en') ? route('booker.list.no-lang') : route('booker.list', [ 'locale_code' => Session::get('locale') ]) }}'">{{ __('home.bookmaker') }}</h3>
+                            {{-- <h3 class="sub-title" onclick="window.location.href='{{ (Session::get('locale') == 'en') ? route('booker.list.no-lang') : route('booker.list', [ 'locale_code' => Session::get('locale') ]) }}'">{{ __('home.bookmaker') }}</h3> --}}
                             <h2 class="title">{{ __('home.top_bookmakers') }}</h2>
                         </div>
                     @endif
                     @include('booker.hot-booker-slider')
+                    <div class="section-title mb-3" data-aos="fade-up" data-aos-delay="100" data-aos-duration="500"
+                        data-aos-easing="ease-in">
+                        <h3 class="sub-title" onclick="window.location.href='{{ (Session::get('locale') == 'en') ? route('booker.list.no-lang') : route('booker.list', [ 'locale_code' => Session::get('locale') ]) }}'">{{ __('home.read_more') }}</h3>
+                    </div>
                 </div>
             </div>
         </div>
         <!-- end booker -->
 
         @include('home.__latest_posts')
+        <div class="section-title mb-3" data-aos="fade-up" data-aos-delay="100" data-aos-duration="500"
+            data-aos-easing="ease-in">
+            <h3 class="sub-title" onclick="window.location.href='{{ (Session::get('locale') == 'en') ? route('post.list.no-lang') : route('post.list', [ 'locale_code' => Session::get('locale') ]) }}'">{{ __('home.read_more') }}</h3>
+        </div>
 
     </div>
     <!-- playing bet end -->
@@ -221,7 +232,7 @@
     </div>
     <!-- call to action end -->
 
-    <div class="sports-schedule pt-3">
+    <div class="sports-schedule pt-5">
         <div class="global-shape style-4">
             <img src="{{ asset('bet/shape-1.png') }}" alt="" data-aos="fade-left" data-aos-duration="1500"
                 data-aos-delay="500" class="aos-init">
@@ -229,7 +240,7 @@
         <div class="container">
             <div class="section-title aos-init mb-3" data-aos="fade-up" data-aos-delay="100" data-aos-duration="500"
                 data-aos-easing="ease-in">
-                <h3 class="sub-title" onclick="window.location.href='{{ (Session::get('locale') == 'en') ? route('tip.list.no-lang') : route('tip.list', [ 'locale_code' => Session::get('locale') ]) }}'">{{ __('home.tips') }}</h3>
+                {{-- <h3 class="sub-title" onclick="window.location.href='{{ (Session::get('locale') == 'en') ? route('tip.list.no-lang') : route('tip.list', [ 'locale_code' => Session::get('locale') ]) }}'"></h3> --}}
                 <h2 class="title">{{ __('home.today_tips') }}</h2>
             </div>
             @if ($tips->isEmpty())
@@ -347,7 +358,10 @@
                 </div>
                 @endif
             @endforeach
-
+            <div class="section-title mb-3" data-aos="fade-up" data-aos-delay="100" data-aos-duration="500"
+                data-aos-easing="ease-in">
+                <h3 class="sub-title" onclick="window.location.href='{{ (Session::get('locale') == 'en') ? route('tip.list.no-lang') : route('tip.list', [ 'locale_code' => Session::get('locale') ]) }}'">{{ __('home.read_more') }}</h3>
+            </div>
         </div>
     </div>
     <!-- sports schedule end -->
