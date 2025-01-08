@@ -11,7 +11,7 @@ return [
     "bookmaker" => "Nhà cái",
     "view_now" => "Xem Ngay",
     "prediction" => "Dự đoán",
-    "read_more" => "Đọc thêm",
+    "read_more" => "Xem thêm",
     "promo_code" => "Mã khuyến mãi nhà cái",
     "today_tips" => "TIPS Hôm nay",
     "top_bookmakers" => "TOP Nhà Cái Cược Uy Tín",
