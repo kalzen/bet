@@ -201,7 +201,7 @@
         <!-- end booker -->
 
         @include('home.__latest_posts')
-        <div class="section-title mb-3" data-aos="fade-up" data-aos-delay="100" data-aos-duration="500"
+        <div class="section-title pb-3 mb-0" data-aos="fade-up" data-aos-delay="100" data-aos-duration="500"
             data-aos-easing="ease-in">
             <h3 class="sub-title" onclick="window.location.href='{{ (Session::get('locale') == 'en') ? route('post.list.no-lang') : route('post.list', [ 'locale_code' => Session::get('locale') ]) }}'">{{ __('home.read_more') }}</h3>
         </div>
