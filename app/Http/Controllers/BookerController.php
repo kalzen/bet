@@ -56,6 +56,7 @@ class BookerController extends Controller
         }
         $hot_bookers = collect([]);
         $categories = BookerCategory::orderBy('name', 'asc')->get();
+        
         try {
             $currentCategoryName = $main_category->getAvailableLang()->name;
         } catch (\Throwable $th) {
@@ -65,7 +66,16 @@ class BookerController extends Controller
                 $currentCategoryName = '';
             }
         }
-        return view('booker.index', compact('bookers', 'hot_bookers', 'categories', 'currentCategoryName'));
+        try {
+            $currentCategoryNameEng = $slug;
+        } catch (\Throwable $th) {
+            try {
+                $currentCategoryNameEng = $main_category->slug;
+            } catch (\Throwable $th) {
+                $currentCategoryNameEng = '';
+            }
+        }
+        return view('booker.index', compact('bookers', 'hot_bookers', 'categories', 'currentCategoryName','currentCategoryNameEng'));
     }
 
 

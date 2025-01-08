@@ -52,15 +52,22 @@ class AppServiceProvider extends ServiceProvider
         });
         View::composer(['*'], function ($view) {
             $routeName = Route::currentRouteName();
+            $data = $view->getData();
+            // dd($data);
+            $currentCategoryNameEng = strtolower($data['currentCategoryNameEng'] ?? '');
             // remnove '.no-lang' from the string if found
             $routeName = str_replace('.no-lang', '', $routeName);
-
+            if (!empty($currentCategoryNameEng)) {
+                $routeName = $routeName . ',' . $currentCategoryNameEng;
+            }
+            // dd($routeName,$currentCategoryName);
             try{
                 if ($routeName == 'index'){
                     $routeName = 'home';
                 }
                 // get the assigned content for the current route
                 $assignedContent = AssignedContent::all()->where('route_name', $routeName)->first();
+                // dd($routeName,$assignedContent);
                 if (!$assignedContent) {
                     $assignedContent = AssignedContent::all()->where('route_name', $routeName)->first();
                 }
