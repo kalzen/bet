@@ -79,6 +79,17 @@
 .prd-breadcrumb{
     transform: translateY(-4rem);
 }
+.section-title h1.title:after {
+    content: "";
+    height: 27px;
+    width: 153px;
+    background: url("{{ asset('img/icon/section-title.png', false) }}") left center no-repeat;
+    background-size: contain;
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+}
 </style>
     <section class="inner-section blog-standard">
 
