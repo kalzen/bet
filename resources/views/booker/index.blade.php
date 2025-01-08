@@ -1,5 +1,85 @@
 @extends('layouts.master')
 @section('content')
+<style>
+    .section-title h1.title {
+  -webkit-text-fill-color: transparent;
+  -webkit-background-clip: text;
+  background-image: linear-gradient(144.14deg, #4D233F -11.44%, #305B9F 123.42%);
+  font-weight: 700;
+  font-size: 50px;
+  line-height: 60px;
+  letter-spacing: 0.03em;
+  position: relative;
+  padding-bottom: 45px;
+  margin-bottom: 0;
+}
+.section-title h1.title:after {
+  content: "";
+  height: 27px;
+  width: 153px;
+  background: url("../img/icon/section-title.png") left center no-repeat;
+  background-size: contain;
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+}
+@media (max-width: 1399.98px) {
+  .section-title h1.title:after {
+    height: 24px;
+    width: 133px;
+  }
+}
+@media (max-width: 991.98px) {
+  .section-title h1.title:after {
+    height: 21px;
+    width: 120px;
+  }
+}
+@media (max-width: 1399.98px) {
+  .section-title h1.title {
+    font-size: 45px;
+    line-height: 55px;
+    padding-bottom: 41px;
+  }
+}
+@media (max-width: 1199.98px) {
+  .section-title h1.title {
+    font-size: 40px;
+    line-height: 50px;
+    padding-bottom: 37px;
+  }
+}
+@media (max-width: 991.98px) {
+  .section-title h1.title {
+    font-size: 36px;
+    line-height: 46px;
+    padding-bottom: 36px;
+  }
+}
+@media (max-width: 767.98px) {
+  .section-title h1.title {
+    font-size: 34px;
+    line-height: 44px;
+  }
+}
+@media (max-width: 575.98px) {
+  .section-title h1.title {
+    font-size: 30px;
+    line-height: 40px;
+    padding-bottom: 32px;
+  }
+}
+@media (max-width: 479.98px) {
+  .section-title h1.title {
+    font-size: 28px;
+    line-height: 38px;
+  }
+}
+.prd-breadcrumb{
+    transform: translateY(-4rem);
+}
+</style>
     <section class="inner-section blog-standard">
 
         <div class="prd-breadcrumb">
@@ -7,10 +87,10 @@
                 <div class="brd-content">
                     <div data-aos="fade-up" data-aos-delay="200" data-aos-duration="500" data-aos-easing="ease-in"
                         class="aos-init aos-animate">
-                        <span class="sub-title">{{ __('booker.list.bookmaker') }}</span>
+                        {{-- <span class="sub-title">{{ __('booker.list.bookmaker') }}</span> --}}
                     </div>
-                    <h2 class="title aos-init aos-animate" data-aos="fade-up" data-aos-delay="350" data-aos-duration="500"
-                        data-aos-easing="ease-in">{{ __('booker.list.popular_page') }}</h2>
+                    {{-- <h2 class="title aos-init aos-animate" data-aos="fade-up" data-aos-delay="350" data-aos-duration="500"
+                        data-aos-easing="ease-in">{{ __('booker.list.popular_page') }}</h2> --}}
                     <div class="page-direction">
                         <ul>
                             <li>
@@ -26,7 +106,7 @@
                 </div>
             </div>
         </div>
-        <div class="container-fluid mt-3">
+        <div class="container-fluid">
             <div class="row">
                 <!-- Left column for categories -->
                 {{-- <div class="col-md-3 bg-light p-3">
@@ -80,8 +160,8 @@
                             @if (!$empty)
                                 <div class="mt-3 section-title aos-init" data-aos="fade-up" data-aos-delay="1"
                                     data-aos-duration="500" data-aos-easing="ease-in">
-                                    <h3 class="sub-title pt-2">{{ __('booker.list.bookmaker') }}</h3>
-                                    <h2 class="title">{{ $currentCategoryName ?? __('home.top_bookmakers') }}</h2>
+                                    {{-- <h3 class="sub-title pt-2">{{ __('booker.list.bookmaker') }}</h3> --}}
+                                    <h1 class="title">{{ $currentCategoryName ?? __('home.top_bookmakers') }}</h1>
                                 </div>
                             @else
                                 <div class="my-3 alert alert-info text-center" role="alert">

@@ -6,14 +6,23 @@
                 font-size: 1.8rem!important;
                 line-height: 1.5em;
             }
-
+            
             .banner-content{
                 padding: 50px 5px 0px 5px !important;
             }
-
+            
             .card-wrapper{
                 /* padding-top: 10px !important; */
             }
+        }
+        .banner-text {
+            font-size: 80px;
+            font-weight: 700;
+            letter-spacing: 0.02em;
+            text-transform: uppercase;
+            color: #fff;
+            position: relative;
+            margin: -20px -30px 30px 0px;
         }
     </style>
     <link rel="stylesheet" href="{{ asset('bet/home.css') }}">
@@ -25,16 +34,18 @@
                 <div
                     class="col-xxl-5 col-xl-5 col-lg-5 col-md-8 d-xl-block d-lg-block d-md-flex d-block align-items-center banner-wrapper">
                     <div class="banner-content">
-                        <h1 class="title" data-aos="fade-up" data-aos-delay="150" data-aos-duration="500"
+                        <div class="title">
+                            <h1 class="banner-text" data-aos="fade-up" data-aos-delay="150" data-aos-duration="500"
                             data-aos-easing="ease-in">
-                        <span class="banner-text">
-                            @if ($slides->count() > 0 && $slides[0]->getAvailableLang())
+                                @if ($slides->count() > 0 && $slides[0]->getAvailableLang())
                                 {{ $slides[0]->getAvailableLang()->name }}
-                            @else
+                                @else
                                 {{ __('Welcome!') }}
-                            @endif
-                        </span>
-                        </h1>
+                                @endif
+                                {{-- <h1 class="banner-text">
+                                </h1> --}}
+                            </h1>
+                        </div>
                         <div class="all-btn" data-aos="fade-up" data-aos-delay="300" data-aos-duration="500"
                             data-aos-easing="ease-in">
                             @if ($slides->count() > 0 && $slides[0]->getAvailableLang())

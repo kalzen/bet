@@ -47,7 +47,7 @@
 
     @yield('content')
     @if(isset($assignedContent) && $assignedContent->content)
-        <div class="custom-content px-5">
+        <div class="custom-content px-3">
             {!! $assignedContent->content !!}
         </div>
     @endif

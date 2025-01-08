@@ -13,13 +13,110 @@
     <meta property="og:description" content="{{ substr(strip_tags($lang_post->description), 0, 300) }}">
 @stop
 @section('content')
+<style>
+    .section-title h1.title {
+  -webkit-text-fill-color: transparent;
+  -webkit-background-clip: text;
+  background-image: linear-gradient(144.14deg, #4D233F -11.44%, #305B9F 123.42%);
+  font-weight: 700;
+  font-size: 50px;
+  line-height: 60px;
+  letter-spacing: 0.03em;
+  position: relative;
+  padding-bottom: 45px;
+  margin-bottom: 0;
+}
+.section-title h1.title:after {
+  content: "";
+  height: 27px;
+  width: 153px;
+  background: url("../img/icon/section-title.png") left center no-repeat;
+  background-size: contain;
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+}
+@media (max-width: 1399.98px) {
+  .section-title h1.title:after {
+    height: 24px;
+    width: 133px;
+  }
+}
+@media (max-width: 991.98px) {
+  .section-title h1.title:after {
+    height: 21px;
+    width: 120px;
+  }
+}
+@media (max-width: 1399.98px) {
+  .section-title h1.title {
+    font-size: 45px;
+    line-height: 55px;
+    padding-bottom: 41px;
+  }
+}
+@media (max-width: 1199.98px) {
+  .section-title h1.title {
+    font-size: 40px;
+    line-height: 50px;
+    padding-bottom: 37px;
+  }
+}
+@media (max-width: 991.98px) {
+  .section-title h1.title {
+    font-size: 36px;
+    line-height: 46px;
+    padding-bottom: 36px;
+  }
+}
+@media (max-width: 767.98px) {
+  .section-title h1.title {
+    font-size: 34px;
+    line-height: 44px;
+  }
+}
+@media (max-width: 575.98px) {
+  .section-title h1.title {
+    font-size: 30px;
+    line-height: 40px;
+    padding-bottom: 32px;
+  }
+}
+@media (max-width: 479.98px) {
+  .section-title h1.title {
+    font-size: 28px;
+    line-height: 38px;
+  }
+}
+.prd-breadcrumb{
+    transform: translateY(-4rem);
+}
+.blog-details .post-element .author-info .author-descr span.auth-name {
+    font-size: 12px;
+}
+.blog-details .post-element .author-info .author-descr span.break-icon {
+    font-size: 19px;
+}
+.blog-details .post-element .author-info .author-descr span.auth-designation {
+    font-size: 11px;
+    margin-right: 10px;
+}
+.blog-details .post-element .author-info .author-pic {
+    width: 31px;
+    height: 43px;
+    border-radius: 50%;
+    overflow: hidden;
+    margin-right: 10px;
+}
+</style>
 <div class="prd-breadcrumb">
     <div class="container">
         <div class="brd-content">
             <div data-aos="fade-up" data-aos-delay="200" data-aos-duration="500" data-aos-easing="ease-in" class="aos-init aos-animate">
-                <span class="sub-title">{{ __('post.list.news') }}</span>
+                {{-- <span class="sub-title">{{ __('post.list.news') }}</span> --}}
             </div>    
-            <h2 class="title aos-init aos-animate" data-aos="fade-up" data-aos-delay="350" data-aos-duration="500" data-aos-easing="ease-in">{{ $lang_post->title }}</h2>
+            {{-- <h2 class="title aos-init aos-animate" data-aos="fade-up" data-aos-delay="350" data-aos-duration="500" data-aos-easing="ease-in">{{ $lang_post->title }}</h2> --}}
             <div class="page-direction">
                 <ul>
                     <li>
@@ -35,7 +132,7 @@
         </div>
     </div>
 </div>
-    <div class="blog-details">
+    <div class="blog-details pt-0">
         <div class="global-shape style-3">
             <img src="assets/img/shapes/shape-1.png" alt="" data-aos="fade-left" data-aos-duration="500"
                 data-aos-offset="200" data-aos-easing="ease-in" data-aos-delay="400" class="aos-init aos-animate">
@@ -47,8 +144,8 @@
                     <span class="category-name">{{ $post->categories[0]->getAvailableLang()->name ?? __('post.list.uncategorized') }}</span>
                     <span class="posted-time">{{ $post->created_at->diffForHumans() }}</span>
                 </div>
-                <h2 class="post-title aos-init aos-animate" data-aos="fade-up" data-aos-delay="150" data-aos-duration="500"
-                    data-aos-easing="ease-in"><span>{{ $lang_post->title }}</span></h2>
+                <h1 class="post-title aos-init aos-animate" data-aos="fade-up" data-aos-delay="150" data-aos-duration="500"
+                    data-aos-easing="ease-in">{{ $lang_post->title }}</h1>
                 <div class="author-info aos-init aos-animate" data-aos="fade-up" data-aos-delay="200"
                     data-aos-duration="500" data-aos-easing="ease-in">
                     <div class="author-pic">
@@ -57,7 +154,7 @@
                     <div class="author-descr">
                         <span class="auth-name">{{ $post->user->name }}</span>
                         <span class="break-icon">/</span>
-                        <span class="auth-designation">{{ $post->user->email }}</span>
+                        <span class="auth-designation">{{ $post->created_at->diffForHumans() }}</span>
                     </div>
                 </div>
                 {!! $lang_post->content !!}
