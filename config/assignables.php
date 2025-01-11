@@ -32,10 +32,10 @@ $routeList = [
         "name" => "Trang xem chi tiết nhà cái (/booker/n)"
     ],
     "post.list" => [
-        "name" => "Trang Danh Sách Tin tức mới hôm nay (/post)"
+        "name" => "Trang Danh Sách Tin tức mới hôm nay (/news)"
     ],
     "post.detail" => [
-        "name" => "Trang đọc tin tức chi tiết (/post/tin-tuc-chi-tiet)"
+        "name" => "Trang đọc tin tức chi tiết (/news/tin-tuc-chi-tiet)"
     ],
     "tip.list" => [
         "name" => "Trang TIPS Hôm nay (/tip)"
