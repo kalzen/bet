@@ -22,6 +22,7 @@ use App\Http\Controllers\Admin\BookerController;
 use App\Http\Controllers\Admin\CodeController;
 use App\Http\Controllers\Admin\LangController as AdminLangController;
 use App\Http\Controllers\Admin\TipController;
+use App\Http\Controllers\Admin\TitleController;
 use App\Http\Controllers\BookerController as ClientBookerController;
 use App\Http\Controllers\LangController;
 use App\Http\Controllers\LocaleController;
@@ -52,6 +53,7 @@ Route::middleware(['auth'])->name('admin.')->prefix('admin')->group(function () 
     Route::get('dashboard', [DashboardController::class, 'index'])->name('dashboard');
     //User
     Route::resource('user', UserController::class);
+    Route::resource('title', TitleController::class);
     //Slide
     Route::resource('slide', SlideController::class);
     Route::post('slide/lang', [SlideController::class, 'lang'])->name('slide.lang');
@@ -105,6 +107,10 @@ Route::middleware(['auth'])->name('admin.')->prefix('admin')->group(function () 
     Route::prefix('assigned-content')->name('assigned-content.')->group(function () {
         Route::post('lang', [AssignedContentController::class, 'lang'])->name('lang');
         Route::post('remove-bind', [AssignedContentController::class, 'removeBind'])->name('removeBind');
+    });
+    Route::prefix('title')->name('title.')->group(function () {
+        Route::post('lang', [TitleController::class, 'lang'])->name('lang');
+        Route::post('remove-bind', [TitleController::class, 'removeBind'])->name('removeBind');
     });
     Route::prefix('booker')->name('booker.')->group(function () {
         Route::post('category', [BookerController::class, 'category'])->name('category');
