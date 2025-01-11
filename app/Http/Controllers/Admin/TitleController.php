@@ -75,6 +75,7 @@ class TitleController extends Controller
                     'lang_parent_id' => $request->lang_parent_id,
                     'status' => $request->status ?? $parentPost->status,
                     'content' => $request->content ?? $parentPost->content,
+                    'title' => $request->title ?? $parentPost->title,
                     'route_name' => $parentPost->route_name
                 ]
             );
@@ -116,7 +117,7 @@ class TitleController extends Controller
                 return redirect()->route('admin.title.index')->with('error', $this->routeList[$routeName]['name'] .' đã được gắn bài viết rồi, vui lòng chỉnh sửa nội dung hoặc xoá và tạo lại.');
                 dd('ok');
             }
-            $post = AssignedTitle::create($request->only(['route_name', 'content', 'status', 'lang_id']));
+            $post = AssignedTitle::create($request->only(['route_name', 'content', 'title', 'status', 'lang_id']));
             // $post->categories()->sync($request->category_id);
             // $post->tags()->sync(collect(explode(', ', $request->tags))->map(function ($item) {
             //     return Tag::updateOrCreate(['name' => $item]);
@@ -203,7 +204,7 @@ class TitleController extends Controller
         try {
             $post = AssignedTitle::find($id);
             // $post->update($request->only(['title', 'description', 'content', 'status', 'is_promotion', 'keyword', 'lang_id']));
-            $post->update($request->only(['route_name', 'content', 'status', 'lang_id']));
+            $post->update($request->only(['route_name', 'content', 'title', 'status', 'lang_id']));
             $childs = $post->langChildren??null;
             // dd($childs);
             if ($childs){
