@@ -21,6 +21,7 @@ class AssignedTitles extends Migration
             $table->unsignedBigInteger('lang_id')->nullable()->default(null);
             $table->string('route_name', 255);
             $table->text('content')->nullable();
+            $table->text('title')->nullable();
             $table->unsignedInteger('status')->nullable()->default(AssignedTitle::STATUS_ACTIVE);
             $table->timestamps();
         });
