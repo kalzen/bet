@@ -13,7 +13,7 @@ class AssignedTitle extends Model
     const STATUS_INACTIVE = 0;
     use HasFactory;
 
-    protected $fillable = ['lang_parent_id', 'lang_id', 'route_name', 'content', 'status'];
+    protected $fillable = ['lang_parent_id', 'lang_id', 'route_name', 'content', 'title', 'status'];
 
     public function getAvailableLang()
     {
