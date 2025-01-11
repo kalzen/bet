@@ -40,7 +40,6 @@
                             <select required name="route_name" data-placeholder="Chọn một trang" class="form-control select" data-allow-clear="true">
                                 <option value="">Chọn một trang</option>
                                 @foreach ($routeList as $key => $route)
-                                @if($key == 'home') @continue @endif
                                     <option value="{{ $key }}" {{ (old('route_name') == $key) || (isset($record) && $record->route_name == $key) ? 'selected' : '' }}>{{ $route['name'] }}</option>
                                 @endforeach
                             </select>
@@ -91,10 +90,17 @@
                         </div> --}}
 
                         <div class="form-group">
-                            <label class="font-weight-semibold">Nội dung tiêu đề <span class="required"></span></label>
+                            <label class="font-weight-semibold">Nội dung tiêu đề (Thẻ H1 trên trang) <span class="required"></span></label>
                             <textarea class="form-control" id="content" name="content" required>{{ old('content') ?: ($record->content ?? '') }}</textarea>
                             @error('content')
                             <label id="content-error" class="validation-invalid-label" for="content">{{$message}}</label>
+                            @enderror
+                        </div>
+                        <div class="form-group">
+                            <label class="font-weight-semibold">Nội dung tiêu đề (Tiêu đề trên tab trình duyệt) <span class="required"></span></label>
+                            <textarea class="form-control" id="title" name="title" required>{{ old('title') ?: ($record->title ?? '') }}</textarea>
+                            @error('title')
+                            <label id="title-error" class="validation-invalid-label" for="title">{{$message}}</label>
                             @enderror
                         </div>
                             <div id="SEO" style="display:none;"> <b>PHÂN TÍCH SEO:</b>
@@ -326,10 +332,17 @@
                     </div> --}}
 
                     <div class="form-group">
-                        <label class="font-weight-semibold">Nội dung tiêu đề <span class="required"></span></label>
+                        <label class="font-weight-semibold">Nội dung tiêu đề (Thẻ H1 trên trang) <span class="required"></span></label>
                         <textarea class="form-control" id="content" name="content" required>{{ old('content') ?: ($record->content ?? '') }}</textarea>
                         @error('content')
                         <label id="content-error" class="validation-invalid-label" for="content">{{$message}}</label>
+                        @enderror
+                    </div>
+                    <div class="form-group">
+                        <label class="font-weight-semibold">Nội dung tiêu đề (Tiêu đề trên tab trình duyệt) <span class="required"></span></label>
+                        <textarea class="form-control" id="title" name="title" required>{{ old('title') ?: ($record->title ?? '') }}</textarea>
+                        @error('title')
+                        <label id="title-error" class="validation-invalid-label" for="title">{{$message}}</label>
                         @enderror
                     </div>
                     <small class="float-right">Lưu ý: Tất cả thay đổi có thể được chỉnh sửa sau!</small>

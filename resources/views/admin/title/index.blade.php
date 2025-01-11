@@ -14,7 +14,8 @@
                             <th>Ngôn ngữ gốc</th>
                             <th>Ngôn ngữ khác</th>
                             {{-- <th>Nội dung (Xem trước)</th> --}}
-                            <th>Nội dung - {{ $records[0]->langs ? $records[0]->langs->name : '' }}</th>
+                            <th>Nội dung (Thẻ H1 trên trang)</th>
+                            <th>Tiêu đề (Tab trình duyệt)</th>
                             <th>Trạng thái</th>
                             <th>Hành động</th>
                         </tr>
@@ -51,6 +52,9 @@
                             </td> --}}
                             <td class="text-center">
                                 {{ $record->content }}
+                            </td>
+                            <td class="text-center">
+                                {{ $record->title }}
                             </td>
                             <td class="text-center">
                                 @if($record->status)
