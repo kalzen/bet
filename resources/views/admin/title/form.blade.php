@@ -327,7 +327,7 @@
 
                     <div class="form-group">
                         <label class="font-weight-semibold">Nội dung tiêu đề <span class="required"></span></label>
-                        <textarea class="ckeditor form-control" id="content" name="content" required>{{ old('content') ?: ($record->content ?? '') }}</textarea>
+                        <textarea class="form-control" id="content" name="content" required>{{ old('content') ?: ($record->content ?? '') }}</textarea>
                         @error('content')
                         <label id="content-error" class="validation-invalid-label" for="content">{{$message}}</label>
                         @enderror
