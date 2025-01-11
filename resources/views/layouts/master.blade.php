@@ -11,7 +11,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Bettest</title>
+    <title>{{ isset($assignedTitle) ? $assignedTitle->title : 'Bettests' }}</title>
     <!-- favicon -->
     <link rel="shortcut icon" href="{{ $shared_config['logo']['value'] }}" type="image/x-icon">
     <!-- bootstrap -->
