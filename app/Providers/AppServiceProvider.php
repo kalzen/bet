@@ -3,6 +3,7 @@
 namespace App\Providers;
 
 use App\Models\AssignedContent;
+use App\Models\AssignedTitle;
 use App\Models\Booker;
 use Illuminate\Support\ServiceProvider;
 use Illuminate\Support\Facades\Schema;
@@ -67,16 +68,24 @@ class AppServiceProvider extends ServiceProvider
                 }
                 // get the assigned content for the current route
                 $assignedContent = AssignedContent::all()->where('route_name', $routeName)->first();
+                $assignedTitle = AssignedTitle::all()->where('route_name', $routeName)->first();
                 // dd($routeName,$assignedContent);
                 if (!$assignedContent) {
                     $assignedContent = AssignedContent::all()->where('route_name', $routeName)->first();
                 }
+                if (!$assignedTitle) {
+                    $assignedTitle = AssignedTitle::all()->where('route_name', $routeName)->first();
+                }
                 if ($assignedContent) $assignedContent = $assignedContent->getAvailableLang();
+                if ($assignedTitle) $assignedTitle = $assignedTitle->getAvailableLang();
             }catch(Exception $e){
                 $assignedContent = new AssignedContent();
+                $assignedTitle = new AssignedTitle();
             }
             View::share('shared_config', Config::all()->keyBy('name'));
             View::share('assignedContent', $assignedContent);
+            View::share('assignedTitle', $assignedTitle);
+            // dd($assignedTitle);
             // Session::get('locale')
             View::share('shared_locale', Session::get('locale'));
         });
