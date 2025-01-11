@@ -79,6 +79,7 @@
                         <li class="nav-item"><a href="{{route('admin.slide.index')}}" class="nav-link">Slide/Banner</a></li>
                         <li class="nav-item"><a href="{{route('admin.menu.index')}}" class="nav-link">Menu</a></li>
                         <li class="nav-item"><a href="{{route('admin.lang.index')}}" class="nav-link">Ngôn ngữ hiện tại</a></li>
+                        <li class="nav-item"><a href="{{route('admin.title.index')}}" class="nav-link">Tiêu đề (H1) trang</a></li>
                     </ul>
                 </li>
                 <li class="nav-item nav-item-submenu">
