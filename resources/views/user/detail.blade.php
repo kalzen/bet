@@ -4,6 +4,83 @@
 <title>{{ __('user.detail.user_details') }}</title>
 @endsection
 @section('content')
+<style>
+    .prd-breadcrumb .brd-content h1.title {
+    font-weight: 700;
+    font-size: 46px;
+    line-height: 56px;
+    letter-spacing: 0.03em;
+    color: #FFFFFF;
+    position: relative;
+    margin-bottom: 0;
+    }
+    @media (max-width: 1399.98px) {
+    .prd-breadcrumb .brd-content h1.title {
+        font-size: 42px;
+        line-height: 52px;
+    }
+    }
+    @media (max-width: 1199.98px) {
+    .prd-breadcrumb .brd-content h1.title {
+        font-size: 38px;
+        line-height: 48px;
+    }
+    }
+    @media (max-width: 991.98px) {
+    .prd-breadcrumb .brd-content h1.title {
+        font-size: 34px;
+        line-height: 44px;
+    }
+    }
+    @media (max-width: 767.98px) {
+    .prd-breadcrumb .brd-content h1.title {
+        font-size: 30px;
+        line-height: 40px;
+        padding-bottom: 34px;
+    }
+    }
+    @media (max-width: 575.98px) {
+    .prd-breadcrumb .brd-content h1.title {
+        font-size: 26px;
+        line-height: 36px;
+    }
+    }
+    @media (max-width: 479.98px) {
+    .prd-breadcrumb .brd-content h1.title {
+        font-size: 22px;
+        line-height: 32px;
+        padding-bottom: 3px;
+    }
+    }
+    .prd-breadcrumb .brd-content h1.title:after {
+    content: "";
+    height: 26px;
+    width: 153px;
+    background: url("../img/breadcrumb/line.png") left center no-repeat;
+    background-size: contain;
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    }
+    @media (max-width: 1399.98px) {
+    .prd-breadcrumb .brd-content h1.title:after {
+        height: 24px;
+        width: 133px;
+    }
+    }
+    @media (max-width: 991.98px) {
+    .prd-breadcrumb .brd-content h1.title:after {
+        height: 21px;
+        width: 120px;
+    }
+    }
+    @media (max-width: 479.98px) {
+    .prd-breadcrumb .brd-content h1.title:after {
+        display: none;
+    }
+    }
+</style>
 {{-- <link rel="stylesheet" href="{{asset ('frontend/css/blog-details.css') }}"> --}}
 <div class="prd-breadcrumb">
     <div class="container">
@@ -11,7 +88,9 @@
             <div data-aos="fade-up" data-aos-delay="200" data-aos-duration="500" data-aos-easing="ease-in" class="aos-init aos-animate">
                 <span class="sub-title">{{ __('user.detail.overview') }}</span>
             </div>    
-            <h2 class="title aos-init aos-animate" data-aos="fade-up" data-aos-delay="350" data-aos-duration="500" data-aos-easing="ease-in">{{ __('user.detail.user_details') }}</h2>
+            {{-- <h2 class="title aos-init aos-animate" data-aos="fade-up" data-aos-delay="350" data-aos-duration="500" data-aos-easing="ease-in">{{ __('user.detail.user_details') }}</h2> --}}
+            <h1 class="title aos-init aos-animate" data-aos="fade-up" data-aos-delay="350" data-aos-duration="500"
+                    data-aos-easing="ease-in">{!! $assignedTitle->content ?? __('user.detail.user_details') !!}</h1>
             <div class="page-direction">
                 <ul>
                     <li>

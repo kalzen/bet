@@ -172,7 +172,7 @@
                                 <div class="mt-3 section-title aos-init" data-aos="fade-up" data-aos-delay="1"
                                     data-aos-duration="500" data-aos-easing="ease-in">
                                     {{-- <h3 class="sub-title pt-2">{{ __('booker.list.bookmaker') }}</h3> --}}
-                                    <h1 class="title">{{ $currentCategoryName ?? __('home.top_bookmakers') }}</h1>
+                                    <h1 class="title"> {!! $assignedTitle->content ?? __('home.top_bookmakers') !!} </h1>
                                 </div>
                             @else
                                 <div class="my-3 alert alert-info text-center" role="alert">

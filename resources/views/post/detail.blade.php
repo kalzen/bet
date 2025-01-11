@@ -116,7 +116,7 @@
             <div data-aos="fade-up" data-aos-delay="200" data-aos-duration="500" data-aos-easing="ease-in" class="aos-init aos-animate">
                 {{-- <span class="sub-title">{{ __('post.list.news') }}</span> --}}
             </div>    
-            {{-- <h2 class="title aos-init aos-animate" data-aos="fade-up" data-aos-delay="350" data-aos-duration="500" data-aos-easing="ease-in">{{ $lang_post->title }}</h2> --}}
+            <h2 class="title aos-init aos-animate" data-aos="fade-up" data-aos-delay="350" data-aos-duration="500" data-aos-easing="ease-in">{!! $assignedTitle->content ?? '' !!}</h2>
             <div class="page-direction">
                 <ul>
                     <li>
