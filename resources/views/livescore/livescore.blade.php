@@ -193,7 +193,7 @@
                     </div> --}}
 
                     <link rel="stylesheet" href="https://cdn.bettests.com/live-main/assets/position.css?v=1.0">
-                    <div id="__livescore" style="overflow: auto; max-height: 95vh;">
+                    <div id="__livescore">
                         <div class="r football">
                             <div id="app" class="A">
                                 <div class="mh" id="match-rows_calendar">
