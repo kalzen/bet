@@ -192,7 +192,7 @@
                         </div>
                     </div> --}}
 
-                    <link rel="stylesheet" href="https://cdn.bettests.com/live-main/assets/position.css?v=1.1">
+                    <link rel="stylesheet" href="https://cdn.bettests.com/live-main/assets/position.css?v=1.2">
                     <div id="__livescore">
                         <div class="r football">
                             <div id="app" class="A">
@@ -219,7 +219,7 @@
                             </div>
                         </div>
                     </div>
-                    <script src="https://cdn.bettests.com/live-main/livescore.js?v=1.1"></script>
+                    <script src="https://cdn.bettests.com/live-main/livescore.js?v=1.2"></script>
 
                 </div>
             </div>
