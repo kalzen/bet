@@ -214,6 +214,22 @@
                                             </svg>
                                         </div>
                                     </div>
+                                    <div id="calendar-popup" class="calendar-popup">
+                                        <div class="calendar-header">
+                                            <span class="calendar-nav" id="prev-month">←</span>
+                                            <span id="current-month">January 2025</span>
+                                            <span class="calendar-nav" id="next-month">→</span>
+                                        </div>
+                                        <div class="calendar-grid" id="calendar-grid">
+                                            <div class="calendar-day">Mo</div>
+                                            <div class="calendar-day">Tu</div>
+                                            <div class="calendar-day">We</div>
+                                            <div class="calendar-day">Th</div>
+                                            <div class="calendar-day">Fr</div>
+                                            <div class="calendar-day">Sa</div>
+                                            <div class="calendar-day">Su</div>
+                                        </div>
+                                    </div>
                                 </div>
                                 <div id="matches-container"></div>
                             </div>
